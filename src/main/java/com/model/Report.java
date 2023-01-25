@@ -2,6 +2,8 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -11,32 +13,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class Report implements Serializable{
     private int reportID;
-    private int bookingID;
-    private int roomID;
-    private int customerID;
-    private int reportMonth;
+    private List<Booking> bookings = new ArrayList<>();
+//    private int roomID;
+//    private int customerID;
+    private String reportMonth;
     private String reportDate;
    
     public Report(){  
     }    
 
-    public Report(int reportID, int bookingID, int roomID, int customerID) {
+    public Report(int reportID, String reportMonth, String reportDate) {
         this.reportID = reportID;
-        this.bookingID = bookingID;
-        this.roomID = roomID;
-        this.customerID = customerID;
+        this.reportMonth = reportMonth;
+        this.reportDate = reportDate;
     }
 
-    public Report(int reportID, int bookingID, int roomID, int customerID, int reportMonth, String reportDate) {
+    public Report(int reportID, List<Booking> bookings, String reportMonth, String reportDate) {
         this.reportID = reportID;
-        this.bookingID = bookingID;
-        this.roomID = roomID;
-        this.customerID = customerID;
+        this.bookings = bookings;
         this.reportMonth = reportMonth;
         this.reportDate = reportDate;
     }
     
-     public boolean matchReport(int ID){
+    public boolean matchReportDate(String date){
+        return this.reportDate.equals(date);
+    }
+    
+    public boolean matchReport(int ID){
         return this.reportID == ID;
     }
 
@@ -44,19 +47,11 @@ public class Report implements Serializable{
         return reportID;
     }
 
-    public int getBookingID() {
-        return bookingID;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public int getRoomID() {
-        return roomID;
-    }
-
-    public int getCustomerID() {
-        return customerID;
-    }
-
-    public int getReportMonth() {
+    public String getReportMonth() {
         return reportMonth;
     }
 
@@ -68,15 +63,11 @@ public class Report implements Serializable{
         this.reportID = reportID;
     }
 
-    public void setBookingID(int bookingID) {
-        this.bookingID = bookingID;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
-    public void setReportMonth(int reportMonth) {
+    public void setReportMonth(String reportMonth) {
         this.reportMonth = reportMonth;
     }
 
@@ -84,15 +75,11 @@ public class Report implements Serializable{
         this.reportDate = reportDate;
     }
 
-    public void setRoomID(int roomID) {
-        this.roomID = roomID;
-    }
-
     @Override
     public String toString() {
-        return "Report Summary {" + "report ID =" + reportID + ", booking ID = " + bookingID + ", room ID = " + roomID + ", customer ID = " + customerID + ", report Month = " + reportMonth + ", report Date = " + reportDate + '}';
+        return "Report{" + "reportID=" + reportID + ", bookings=" + bookings + ", reportMonth=" + reportMonth + ", reportDate=" + reportDate + '}';
     }
+
     
     
 }
-    

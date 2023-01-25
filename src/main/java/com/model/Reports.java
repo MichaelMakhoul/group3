@@ -33,4 +33,8 @@ public class Reports implements Serializable {
      public void removeReport(int ID){
         reports.removeIf(r -> r.matchReport(ID));
     }
+     
+      public Report reports(int reportID){
+       return this.reports.stream().filter(r -> r.matchReport(reportID)).findAny().orElse(null);
+    }   
 }
