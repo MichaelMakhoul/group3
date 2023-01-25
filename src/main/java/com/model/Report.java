@@ -2,11 +2,8 @@
 package com.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -37,6 +34,10 @@ public class Report implements Serializable{
         this.customerID = customerID;
         this.reportMonth = reportMonth;
         this.reportDate = reportDate;
+    }
+    
+     public boolean matchReport(int ID){
+        return this.reportID == ID;
     }
 
     public int getReportID() {
@@ -86,5 +87,12 @@ public class Report implements Serializable{
     public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
+
+    @Override
+    public String toString() {
+        return "Report Summary {" + "report ID =" + reportID + ", booking ID = " + bookingID + ", room ID = " + roomID + ", customer ID = " + customerID + ", report Month = " + reportMonth + ", report Date = " + reportDate + '}';
+    }
+    
+    
 }
     
