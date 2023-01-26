@@ -21,11 +21,11 @@ public class Rooms implements Serializable{
     public Rooms() {}
 
     public Room getRoomByID(int ID){
-        return this.rooms.stream().filter(admin -> admin.match(ID)).findAny().orElse(null);
+        return this.rooms.stream().filter(room -> room.match(ID)).findAny().orElse(null);
     }
     
     public Room getRoomByType(String type){
-        return this.rooms.stream().filter(admin -> admin.match(type)).findAny().orElse(null);
+        return this.rooms.stream().filter(room -> room.match(type)).findAny().orElse(null);
     }
     
     public List<Room> getRooms() {
