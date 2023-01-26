@@ -18,12 +18,12 @@ public class Customer implements Serializable {
     private String customerEmail;
     private String customerPassword;
     private String customerDOB;
-    private int customerPhone;
+    private String customerPhone;
 
     public Customer() {
     }
 
-    public Customer(String customerName, String customerEmail, String customerPassword, String customerDOB, int customerPhone) {
+    public Customer(String customerName, String customerEmail, String customerPassword, String customerDOB, String customerPhone) {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPassword = customerPassword;
@@ -31,7 +31,7 @@ public class Customer implements Serializable {
         this.customerPhone = customerPhone;
     }
 
-    public Customer(int customerID, String customerName, String customerEmail, String customerPassword, String customerDOB, int customerPhone) {
+    public Customer(int customerID, String customerName, String customerEmail, String customerPassword, String customerDOB, String customerPhone) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
@@ -80,14 +80,30 @@ public class Customer implements Serializable {
         this.customerDOB = customerDOB;
     }
 
-    public int getCustomerPhone() {
+    public String getCustomerPhone() {
         return customerPhone;
     }
 
-    public void setCustomerPhone(int customerPhone) {
+    public void setCustomerPhone (String customerPhone) {
         this.customerPhone = customerPhone;
     }
     
+    public boolean match(int ID){
+        return this.customerID == ID;
+    }
+    
+    public boolean match(String email){
+        return this.customerEmail.equals(email);
+    }
+    
+    public boolean match(String email, String password){
+        return this.customerEmail.equals(email) && this.customerPassword.equals(password);
+    }
+    
+    @Override
+    public String toString(){
+        return customerID + "\t" + customerName + "\t" + customerEmail + "\t\t" + customerDOB + "\t\t" + customerPhone;
+    }
     
 }
 

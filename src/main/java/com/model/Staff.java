@@ -18,12 +18,12 @@ public class Staff implements Serializable{
     private String staffEmail;
     private String staffPassword;
     private String staffDOB;
-    private int staffPhone;
+    private String staffPhone;
 
     public Staff() {
     }
     
-    public Staff(String staffName, String staffEmail, String staffPassword, String staffDOB, int staffPhone) {
+    public Staff(String staffName, String staffEmail, String staffPassword, String staffDOB, String staffPhone) {
         this.staffName = staffName;
         this.staffEmail = staffEmail;
         this.staffPassword = staffPassword;
@@ -31,7 +31,7 @@ public class Staff implements Serializable{
         this.staffPhone = staffPhone;
     }
     
-    public Staff(int staffID, String staffName, String staffEmail, String staffPassword, String staffDOB, int staffPhone) {
+    public Staff(int staffID, String staffName, String staffEmail, String staffPassword, String staffDOB, String staffPhone) {
         this.staffID = staffID;
         this.staffName = staffName;
         this.staffEmail = staffEmail;
@@ -80,12 +80,24 @@ public class Staff implements Serializable{
         this.staffDOB = staffDOB;
     }
 
-    public int getStaffPhone() {
+    public String getStaffPhone() {
         return staffPhone;
     }
 
-    public void setStaffPhone(int staffPhone) {
+    public void setStaffPhone(String staffPhone) {
         this.staffPhone = staffPhone;
-    }   
+    }
+    
+    public boolean match(int ID){
+        return this.staffID == ID;
+    }
+    
+    public boolean match(String email){
+        return this.staffEmail.equals(email);
+    }
+    
+    public boolean match(String email, String password){
+        return this.staffEmail.equals(email) && this.staffPassword.equals(password);
+    }
     
 }
