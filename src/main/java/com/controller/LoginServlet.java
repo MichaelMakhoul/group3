@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
        
        
         if(customer != null) { 
-                session.setAttribute("customer", customer); 
+                session.setAttribute("userType", customer); 
                 request.getRequestDispatcher("customerMain.jsp").include(request, response);
             } else {
               session.setAttribute("usernotexist", "User does not exist!");
@@ -67,6 +67,7 @@ public class LoginServlet extends HttpServlet {
        
        
         if(staff != null) { 
+                session.setAttribute("userType", staff); 
                 session.setAttribute("staff", staff); 
                 request.getRequestDispatcher("staffMain.jsp").include(request, response);
             } else {
@@ -84,7 +85,7 @@ public class LoginServlet extends HttpServlet {
 //       
 //       
 //        if(manager != null) { 
-//                session.setAttribute("manager", manager); 
+//                session.setAttribute("userType", manager); 
 //                request.getRequestDispatcher("managerMain.jsp").include(request, response);
 //            } else {
 //              session.setAttribute("usernotexist", "User does not exist!");
