@@ -12,27 +12,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author 236351
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "rooms")
-public class Rooms implements Serializable{
-    @XmlElement(name = "room")
-    private List<Room> rooms = new ArrayList();
-
-    public Rooms() {}
-
-    public Room getRoomByID(int ID){
-        return this.rooms.stream().filter(room -> room.match(ID)).findAny().orElse(null);
-    }
-    
-    public Room getRoomByType(String type){
-        return this.rooms.stream().filter(room -> room.match(type)).findAny().orElse(null);
-    }
-    
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
-}
+//@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlRootElement(name = "rooms")
+//public class Rooms implements Serializable{
+//    @XmlElement(name = "room")
+//    private List<Room> rooms = new ArrayList();
+//
+//    public Rooms() {}
+//
+//    public Room getRoomByID(int ID){
+//        return this.rooms.stream().filter(room -> room.match(ID)).findAny().orElse(null);
+//    }
+//    
+//    public Room getRoomByType(String type){
+//        return this.rooms.stream().filter(room -> room.match(type)).findAny().orElse(null);
+//    }
+//    
+//    public List<Room> getRooms() {
+//        return rooms;
+//    }
+//
+//    public void setRooms(List<Room> rooms) {
+//        this.rooms = rooms;
+//    }
+//}
