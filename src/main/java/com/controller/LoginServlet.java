@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         
+        String loginOptions = request.getParameter("loginOptions");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -40,10 +41,10 @@ public class LoginServlet extends HttpServlet {
         StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
         ManagerDAO managerDAO = (ManagerDAO) session.getAttribute("managerDAO");
 
-        String option = "";
+        
         boolean user = false;
 
-        if (option.equals("customer")) {
+        if (loginOptions.equals("customer")) {
             Customer customer = null;
             try {
                 customer = customerDAO.login(email, password);
@@ -56,12 +57,8 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("userType", customer);
                 request.getRequestDispatcher("customerMain.jsp").include(request, response);
             }
-//            } else {
-//                session.setAttribute("usernotexist", "User does not exist!");
-//                request.getRequestDispatcher("login.jsp").include(request, response);
-//            }
 
-        } else if (option.equals("staff")) {
+        } else if (loginOptions.equals("staff")) {
             Staff staff = null;
             try {
                 staff = staffDAO.login(email, password);
@@ -76,7 +73,7 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("staffMain.jsp").include(request, response);
             }
 
-        } else if (option.equals("manager")) {
+        } else if (loginOptions.equals("manager")) {
             Manager manager = null;
             try {
                 manager = managerDAO.login(email, password);
