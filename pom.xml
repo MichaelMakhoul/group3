@@ -15,7 +15,12 @@
     </properties>
     
     <dependencies>
-        <!--Added to bind xml to netbean-->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
@@ -64,17 +69,18 @@
         </dependency>
         
         <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-security-cors</artifactId>
-            <version>2.6.1</version>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-rs-security-cors</artifactId>
+        <version>2.6.1</version>
         </dependency>
         
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.17</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>8.0.17</version>
+        </dependency>
+        
     </dependencies>
 
     <build>
