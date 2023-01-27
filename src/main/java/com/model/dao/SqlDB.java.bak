@@ -28,7 +28,6 @@ public class SqlDB {
         String password = variables.get("dbpassword");
         
         URL dburl = getClass().getResource("db.properties");
-//        C:\\Users\\236351\\Documents\\github\\group3\\src\\main\\resources\\db.properties
         InputStream propsInputStream = new FileInputStream(dburl.getPath());
         Properties properties = new Properties();
         properties.load(propsInputStream);
