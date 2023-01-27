@@ -139,7 +139,5 @@ public class Booking implements Serializable{
                 + bookingFrom + ", bookingTo=" + bookingTo + ", bookingDesc=" + bookingDesc 
                 + ", bookingDate=" + bookingDate + ", bookingModifiedDate=" + bookingModifiedDate + ", rooms=" + rooms ;
     }
-    
-    
-    
+   
 }
