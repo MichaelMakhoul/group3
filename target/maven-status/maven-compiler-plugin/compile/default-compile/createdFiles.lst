@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 com\model\Bookings.class
 com\model\Booking.class
 com\model\Rooms.class
@@ -11,3 +12,9 @@ com\model\dao\SqlDB.class
 com\model\dao\SqlDBConnector.class
 com\model\dao\XmlTransformer.class
 >>>>>>> origin/Michael_Branch
+=======
+com\model\dao\SqlDB.class
+com\model\Report.class
+com\model\dao\SqlDBConnector.class
+com\model\Reports.class
+>>>>>>> origin/Monte
