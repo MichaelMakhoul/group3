@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 C:\SIUA\HotelApp\group3\src\main\java\com\model\Booking.java
 C:\SIUA\HotelApp\group3\src\main\java\com\model\Rooms.java
 C:\SIUA\HotelApp\group3\src\main\java\com\model\Room.java
 C:\SIUA\HotelApp\group3\src\main\java\com\model\Bookings.java
+=======
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\SqlDBConnector.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Manager.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\InitServlet.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Rooms.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\SqlDB.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\XmlTransformer.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Managers.java
+>>>>>>> origin/Michael_Branch
