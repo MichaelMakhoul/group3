@@ -29,7 +29,7 @@ public class SqlDB {
         
         URL dburl = getClass().getResource("db.properties");
 //        C:\\Users\\236351\\Documents\\github\\group3\\src\\main\\resources\\db.properties
-        InputStream propsInputStream = new FileInputStream("C:\\\\Users\\\\236351\\\\Documents\\\\github\\\\group3\\\\src\\\\main\\\\resources\\\\db.properties");
+        InputStream propsInputStream = new FileInputStream("C:\\Users\\236336\\Documents\\capston\\group3\\src\\main\\resources\\db.properties");
         Properties properties = new Properties();
         properties.load(propsInputStream);
         
