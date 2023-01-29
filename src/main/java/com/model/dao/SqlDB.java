@@ -1,6 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.model.dao;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,15 +14,21 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ *
+ * @author 236351
+ */
 public class SqlDB {
-
     protected Connection connection;
     
     protected Connection openConnection() throws FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException{
         Map<String,String> variables = System.getenv();
         String password = variables.get("dbpassword");
-        
-        InputStream propsInputStream = new FileInputStream("C:\\Users\\236355\\Documents\\Module 4\\group3\\src\\main\\resources\\db.properties");
+        if(password == null){
+           password = variables.get("DBPASSWORD");
+        }
+       
+        InputStream propsInputStream = getClass().getResourceAsStream("/db.properties");
         Properties properties = new Properties();
         properties.load(propsInputStream);
         

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!--Init-->
+    <servlet>
+        <servlet-name>InitServlet</servlet-name>
+        <servlet-class>com.controller.InitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitServlet</servlet-name>
+        <url-pattern>/InitServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--Login-->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.controller.LoginServlet</servlet-class>
@@ -7,6 +18,50 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--ManagerMainServlet-->
+    <servlet>
+        <servlet-name>ManagerMainServlet</servlet-name>
+        <servlet-class>com.controller.ManagerMainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManagerMainServlet</servlet-name>
+        <url-pattern>/ManagerMainServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--ManagerDeleteServlet-->
+    <servlet>
+        <servlet-name>ManagerDeleteServlet</servlet-name>
+        <servlet-class>com.controller.ManagerDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManagerDeleteServlet</servlet-name>
+        <url-pattern>/ManagerDeleteServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--Logout-->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>group3</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>group3</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
