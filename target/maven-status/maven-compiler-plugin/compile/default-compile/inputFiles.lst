@@ -20,9 +20,10 @@ C:\Users\236336\Documents\capston\group3\src\main\java\com\model\Report.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\dao\ReportSqlDAO.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\dao\SqlDB.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\Bookings.java
+C:\Users\236336\Documents\capston\group3\src\main\java\com\rest\CustomerService.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\dao\CustomerDAO.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\rest\client\UserServiceClient.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\controller\ManagerMainServlet.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\dao\ManagerDAO.java
-C:\Users\236336\Documents\capston\group3\src\main\java\com\rest\CusromerSqlService.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\Staffs.java
+C:\Users\236336\Documents\capston\group3\src\main\java\com\rest\StaffService.java
