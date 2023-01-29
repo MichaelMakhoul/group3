@@ -38,11 +38,9 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.jsp" class="active">Home</a></li>
-                                <!-- <li><a href="about.jsp">About</a></li> -->
+                                <li><a href="index.jsp" class="active">Register</a></li>
                                 <li><a href="index.jsp">Home</a></li>                                
                                 <li><a href="login.jsp" class="active">Login</a></li>
-                                <li><a href="contact.jsp">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -59,10 +57,14 @@
                             <option value="staff">Staff</option>
                             <option value="customer">Customer</option>
                         </select>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-user"></i>
+                            <input type="text" name="userName" class="login__input" placeholder="User name">
+                        </div>
                         <span class="message"><%= (exist != null) ? exist : ""%></span>
                         <div class="login__field">
                             <i class="login__icon fas fa-user"></i>
-                            <input type="text" class="login__input" placeholder="User name / Email">
+                            <input type="text" name="email" class="login__input" placeholder="Email">
                         </div>
                         <div class="login__field">
                             <i class="login__icon fas fa-lock"></i>
