@@ -5,11 +5,9 @@
  */
 package com.model.dao;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,10 +24,11 @@ public class SqlDB {
     protected Connection openConnection() throws FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException{
         Map<String,String> variables = System.getenv();
         String password = variables.get("dbpassword");
-        
-        URL dburl = getClass().getResource("db.properties");
-//        C:\\Users\\236351\\Documents\\github\\group3\\src\\main\\resources\\db.properties
-        InputStream propsInputStream = new FileInputStream("C:\\\\Users\\\\236351\\\\Documents\\\\github\\\\group3\\\\src\\\\main\\\\resources\\\\db.properties");
+        if(password == null){
+           password = variables.get("DBPASSWORD");
+        }
+       
+        InputStream propsInputStream = getClass().getResourceAsStream("/db.properties");
         Properties properties = new Properties();
         properties.load(propsInputStream);
         
