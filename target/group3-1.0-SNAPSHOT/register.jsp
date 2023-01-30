@@ -11,6 +11,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
               type='text/css'>
@@ -19,18 +20,19 @@
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/login.css" rel="stylesheet">
+        <link href="css/register.css" rel="stylesheet">
     </head>
-    
+
     <body class="tm-gray-bg">
         <%
-            String exist = (String) session.getAttribute("usernotexist");
+            String exist = (String) session.getAttribute("error");
+            session.removeAttribute("error");
         %>
         <div class="tm-header">
             <div class="container1">
                 <div class="row">
-                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                        <a href="#" class="tm-site-name">The Grand Serene</a>
+                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
+                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -38,9 +40,9 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.jsp" class="active">Register</a></li>
-                                <li><a href="index.jsp">Home</a></li>                                
-                                <li><a href="login.jsp" class="active">Login</a></li>
+                                <li><a href="index.jsp">Home</a></li>
+                                <li><a href="" class="active">Register</a></li>                                
+                                <li><a href="login.jsp">Login</a></li>                                 
                             </ul>
                         </nav>
                     </div>
@@ -51,38 +53,47 @@
         <div class="container">
             <div class="screen">
                 <div class="screen__content">
-                    <form class="login" method="POST" action="RegisterServlet">
-                        <label for="loginOptions">Register as:</label>
-                        <select name="loginOptions" id="loginOptions">                            
+                    <form class="register" method="POST" action="RegisterServlet">
+                        <label for="registerOptions">Register as:</label>
+                        <select name="registerOptions" id="registerOptions">                            
                             <option value="staff">Staff</option>
                             <option value="customer">Customer</option>
                         </select>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="text" name="userName" class="login__input" placeholder="User name">
+                        <div class="register__field">
+                            <i class="register__icon fas fa-user"></i>
+                            <input type="text" name="name" class="register__input" placeholder="Name">
                         </div>
                         <span class="message"><%= (exist != null) ? exist : ""%></span>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="text" name="email" class="login__input" placeholder="Email">
+                        <div class="register__field">
+                            <i class="register__icon fas fa-user"></i>
+                            <input type="email" name="email" class="register__input" placeholder="Email">
                         </div>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-lock"></i>
-                            <input type="password" class="login__input" placeholder="Password">
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="password" name="password" class="register__input" placeholder="Password">
                         </div>
-                        <button class="button login__submit">
-                            <span class="button__text">Log In Now</span>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="date" name="dob" class="register__input" placeholder="DOB">
+                        </div>
+
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
+                        </div>
+                        <button class="button register__submit">
+                            <span class="button__text">Sign Up Now</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
                     </form>
-                    <div class="social-login">
-                        <h3>log in via</h3>
+<!--                    <div class="social-register">
+                        <h3>sing up via</h3>
                         <div class="social-icons">
-                            <a href="#" class="social-login__icon fab fa-instagram"></a>
-                            <a href="#" class="social-login__icon fab fa-facebook"></a>
-                            <a href="#" class="social-login__icon fab fa-twitter"></a>
+                            <a href="#" class="social-register__icon fab fa-instagram"></a>
+                            <a href="#" class="social-register__icon fab fa-facebook"></a>
+                            <a href="#" class="social-register__icon fab fa-twitter"></a>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="screen__background">
                     <span class="screen__background__shape screen__background__shape4"></span>
@@ -92,6 +103,6 @@
                 </div>
             </div>
         </div>
-    <% exist = ""; %>
+        <% exist = "";%>
     </body>
 </html>
