@@ -20,9 +20,9 @@ public class CustomerDAO {
     private PreparedStatement updateSt;
     private PreparedStatement deleteSt;
 
-    private String createQy = "INSERT INTO tgs.customer(name, email, password, DOB, customer_phone)" + "VALUES(?,?,?,?,?)";
-    private String updateQy = "UPDATE tgs.customer SET name=?, password=?, DOB=?, customer_phone=? WHERE ID=?";
-    private String deleteQy = "DELETE FROM tgs.customer WHERE ID=?";
+    private String createQy = "INSERT INTO tgsdb.customer(name, email, password, DOB, customer_phone)" + "VALUES(?,?,?,?,?)";
+    private String updateQy = "UPDATE tgsdb.customer SET name=?, password=?, DOB=?, customer_phone=? WHERE ID=?";
+    private String deleteQy = "DELETE FROM tgsdb.customer WHERE ID=?";
 
     public CustomerDAO(Connection connection) throws SQLException {
         this.st = connection.createStatement();
@@ -85,6 +85,24 @@ public class CustomerDAO {
             if (email.equals(currentEmail) && password.equals(currentPassword)) {
                 int ID = Integer.parseInt(rs.getString(1));
                 String name = rs.getString(2);
+                String DOB = rs.getString(5);
+                String customerPhone = rs.getString(6);
+                return new Customer(ID, name, email, password, DOB, customerPhone);
+            }
+        }
+        return null;
+    }
+    
+    public Customer getCustomer(String email) throws SQLException{
+       String query = "SELECT * FROM tgsdb.customer WHERE EMAIL='" + email + "'";
+       ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            String currentEmail = rs.getString(3);
+
+            if (email.equals(currentEmail)) {
+                int ID = Integer.parseInt(rs.getString(1));
+                String name = rs.getString(2);
+                String password = rs.getString(4);
                 String DOB = rs.getString(5);
                 String customerPhone = rs.getString(6);
                 return new Customer(ID, name, email, password, DOB, customerPhone);
