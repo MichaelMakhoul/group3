@@ -20,9 +20,9 @@ public class CustomerDAO {
     private PreparedStatement updateSt;
     private PreparedStatement deleteSt;
 
-    private String createQy = "INSERT INTO tgs.customer(name, email, password, DOB, customer_phone)" + "VALUES(?,?,?,?,?)";
-    private String updateQy = "UPDATE tgs.customer SET name=?, password=?, DOB=?, customer_phone=? WHERE ID=?";
-    private String deleteQy = "DELETE FROM tgs.customer WHERE ID=?";
+    private String createQy = "INSERT INTO tgsdb.customer(name, email, password, DOB, customer_phone)" + "VALUES(?,?,?,?,?)";
+    private String updateQy = "UPDATE tgsdb.customer SET name=?, password=?, DOB=?, customer_phone=? WHERE ID=?";
+    private String deleteQy = "DELETE FROM tgsdb.customer WHERE ID=?";
 
     public CustomerDAO(Connection connection) throws SQLException {
         this.st = connection.createStatement();

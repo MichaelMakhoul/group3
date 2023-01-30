@@ -8,18 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
-              type='text/css'>
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link href="css/flexslider.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/login.css" rel="stylesheet">
     </head>
     
     <body class="tm-gray-bg">
@@ -38,11 +28,9 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.jsp" class="active">Home</a></li>
-                                <!-- <li><a href="about.jsp">About</a></li> -->
+                                <li><a href="index.jsp" class="active">Register</a></li>
                                 <li><a href="index.jsp">Home</a></li>                                
                                 <li><a href="login.jsp" class="active">Login</a></li>
-                                <li><a href="contact.jsp">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -59,10 +47,14 @@
                             <option value="staff">Staff</option>
                             <option value="customer">Customer</option>
                         </select>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-user"></i>
+                            <input type="text" name="userName" class="login__input" placeholder="User name">
+                        </div>
                         <span class="message"><%= (exist != null) ? exist : ""%></span>
                         <div class="login__field">
                             <i class="login__icon fas fa-user"></i>
-                            <input type="text" class="login__input" placeholder="User name / Email">
+                            <input type="text" name="email" class="login__input" placeholder="Email">
                         </div>
                         <div class="login__field">
                             <i class="login__icon fas fa-lock"></i>
