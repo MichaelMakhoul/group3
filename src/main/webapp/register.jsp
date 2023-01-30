@@ -8,10 +8,101 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
+              type='text/css'>
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="css/flexslider.css" rel="stylesheet">
+        <link href="css/templatemo-style.css" rel="stylesheet">
+        <link href="css/register.css" rel="stylesheet">
     </head>
-    <body>
-        <h1>Hello World!</h1>
+
+    <body class="tm-gray-bg">
+        <%
+            String exist = (String) session.getAttribute("error");
+            session.removeAttribute("error");
+        %>
+        <div class="tm-header">
+            <div class="container1">
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
+                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-sm-9">
+                        <div class="mobile-menu-icon">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <nav class="tm-nav">
+                            <ul>
+                                <li><a href="index.jsp">Home</a></li>
+                                <li><a href="" class="active">Register</a></li>                                
+                                <li><a href="login.jsp">Login</a></li>                                 
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="screen">
+                <div class="screen__content">
+                    <form class="register" method="POST" action="RegisterServlet">
+                        <label for="registerOptions">Register as:</label>
+                        <select name="registerOptions" id="registerOptions">                            
+                            <option value="staff">Staff</option>
+                            <option value="customer">Customer</option>
+                        </select>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-user"></i>
+                            <input type="text" name="name" class="register__input" placeholder="Name">
+                        </div>
+                        <span class="message"><%= (exist != null) ? exist : ""%></span>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-user"></i>
+                            <input type="email" name="email" class="register__input" placeholder="Email">
+                        </div>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="password" name="password" class="register__input" placeholder="Password">
+                        </div>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="date" name="dob" class="register__input" placeholder="DOB">
+                        </div>
+
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
+                        </div>
+                        <button class="button register__submit">
+                            <span class="button__text">Sign Up Now</span>
+                            <i class="button__icon fas fa-chevron-right"></i>
+                        </button>
+                    </form>
+<!--                    <div class="social-register">
+                        <h3>sing up via</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-register__icon fab fa-instagram"></a>
+                            <a href="#" class="social-register__icon fab fa-facebook"></a>
+                            <a href="#" class="social-register__icon fab fa-twitter"></a>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="screen__background">
+                    <span class="screen__background__shape screen__background__shape4"></span>
+                    <span class="screen__background__shape screen__background__shape3"></span>
+                    <span class="screen__background__shape screen__background__shape2"></span>
+                    <span class="screen__background__shape screen__background__shape1"></span>
+                </div>
+            </div>
+        </div>
+        <% exist = "";%>
     </body>
 </html>

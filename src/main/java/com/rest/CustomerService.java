@@ -7,14 +7,11 @@ import com.model.dao.SqlDBConnector;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -34,26 +31,24 @@ public class CustomerService {
     }
 
 //    @GET
-//    @Path("customer/{ID}") //http://localhost:8080/labs/rest/sqlapi/customer/100000
+//    @Path("customer/{ID}") //http://localhost:8080/group3/rest/sqlapi/customer/1001
 //    @Produces(MediaType.APPLICATION_XML)
 //    public Customers Customer(@PathParam("ID") int ID) throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
-//        Customer customer = new Customer(new SqlDBConnector().connection());
+//        CustomerDAO customerDAO = new CustomerDAO(new SqlDBConnector().connection());
 //
-//        Customer customer = Customer(ID);
-//        Customer customer = new Customer();
-//        customer.add(customer);
-//        return customer;
+//        Customer customer = customerDAO.getCustomer(ID);
+//        Customers customers = new Customers();
+//        customers.add(customer);
+//        return customers;
 //    }
 
-//    @GET
-//    @Path("customer") //http://localhost:8080/labs/rest/sqlapi/customer
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public Response Customer() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-//        Customer customer = new Customer(new SqlDBConnector().connection());
-//        customer.create("Sam", "sam@example.com", "Hello123", "2000-02-02");
-//        
-//        Customer customer = customer.login("sam@example.com", "Hello123");
-//        
-//        return Response.status(200).entity(customer).build();
-//    }
+    @GET
+    @Path("addcustomer") //http://localhost:8080/group3/rest/sqlapi/addcustomer
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response Customer() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        CustomerDAO customerDAO = new CustomerDAO(new SqlDBConnector().connection());
+        customerDAO.create("Robert Michelakos", "rob.m@example.com", "Helloworld123", "1989-04-06", "0419364236");
+        Customer customer = customerDAO.login("rob.m@example.com", "Helloworld123");
+        return Response.status(200).entity(customer).build();
+    }
 }

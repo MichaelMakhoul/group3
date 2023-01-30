@@ -23,9 +23,9 @@ public class StaffDAO {
     private PreparedStatement updateSt;
     private PreparedStatement deleteSt;
 
-    private String createQy = "INSERT INTO tgs.staff(name, email, password, DOB, customer_phone)" + "VALUES(?,?,?,?,?)";
-    private String updateQy = "UPDATE tgs.staff SET name=?, password=?, DOB=?, customer_phone=? WHERE ID=?";
-    private String deleteQy = "DELETE FROM tgs.staff WHERE ID=?";
+    private String createQy = "INSERT INTO tgsdb.staff(name, email, password, DOB, customer_phone)" + "VALUES(?,?,?,?,?)";
+    private String updateQy = "UPDATE tgsdb.staff SET name=?, password=?, DOB=?, customer_phone=? WHERE ID=?";
+    private String deleteQy = "DELETE FROM tgsdb.staff WHERE ID=?";
 
     public StaffDAO(Connection connection) throws SQLException {
         this.st = connection.createStatement();
@@ -69,6 +69,24 @@ public class StaffDAO {
             if (email.equals(currentEmail) && password.equals(currentPassword)) {
                 int ID = Integer.parseInt(rs.getString(1));
                 String name = rs.getString(2);
+                String DOB = rs.getString(5);
+                String customerPhone = rs.getString(6);
+                return new Staff(ID, name, email, password, DOB, customerPhone);
+            }
+        }
+        return null;
+    }
+        
+      public Staff getStaff(String email) throws SQLException{
+       String query = "SELECT * FROM tgsdb.customer WHERE EMAIL='" + email + "'";
+       ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            String currentEmail = rs.getString(3);
+
+            if (email.equals(currentEmail)) {
+                int ID = Integer.parseInt(rs.getString(1));
+                String name = rs.getString(2);
+                String password = rs.getString(4);
                 String DOB = rs.getString(5);
                 String customerPhone = rs.getString(6);
                 return new Staff(ID, name, email, password, DOB, customerPhone);

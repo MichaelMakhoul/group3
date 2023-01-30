@@ -40,7 +40,7 @@ public class ManagerDAO {
 
     //Read Query - Read One
     public Manager getManager(int managerID) throws SQLException {
-        String query = "SELECT * FROM tgsdb.admins WHERE ID=" + managerID;
+        String query = "SELECT * FROM tgsdb.manager WHERE ID=" + managerID;
         ResultSet rs = st.executeQuery(query);
         
         while (rs.next()) {
@@ -96,7 +96,7 @@ public class ManagerDAO {
 
     //Read Query - Read All
     public List<Manager> getManagers() throws SQLException {
-        String query = "SELECT * FROM tgsdb.admins";
+        String query = "SELECT * FROM tgsdb.manager";
         ResultSet rs = st.executeQuery(query);
         List<Manager> temp = new ArrayList<>();
         

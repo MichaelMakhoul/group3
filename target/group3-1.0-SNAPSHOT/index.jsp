@@ -10,21 +10,22 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>The Grand Serene</title>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
         <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     </head>
     <body class="tm-gray-bg">
         <div class="tm-header">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                        <a href="#" class="tm-site-name">The Grand Serene</a>	
+                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
+                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -33,7 +34,6 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.html" class="active">Home</a></li>
-                                <!-- <li><a href="about.html">About</a></li> -->
                                 <li><a href="register.jsp">Register</a></li>                                
                                 <li><a href="login.jsp">Login</a></li>
                                 <li><a href="contact.html">Contact</a></li>
@@ -51,8 +51,8 @@
                 <ul class="slides">
                     <li>
                         <div class="tm-banner-inner">
-                            <h1 class="tm-banner-title">Find <span class="tm-yellow-text">The Best</span> Place</h1>
-                            <p class="tm-banner-subtitle">For Your Holidays</p>
+                            <h1 class="tm-banner-title">Find Your Serene</h1>
+                            <p class="tm-banner-subtitle">Experience the Luxury</p>
                             <a href="#more" class="tm-banner-link">Learn More</a>	
                         </div>
                         <img src="img/banner-1.jpg" alt="Image" />	
