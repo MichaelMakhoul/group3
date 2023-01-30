@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\Reports.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\model\dao\SqlDBConnector.java
 C:\Users\236336\Documents\capston\group3\src\main\java\com\controller\ManagerDeleteServlet.java
@@ -57,3 +58,32 @@ C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\mod
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\ManagerMainServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Managers.java
 >>>>>>> origin/Michael_Branch
+=======
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Staffs.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\rest\CusromerSqlService.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Managers.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\controller\CreateAccountServlet.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Report.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\dao\ReportSqlDAO.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\rest\client\UserServiceClient.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Room.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Booking.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Customers.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\dao\StaffDAO.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Reports.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\dao\ManagerDAO.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Bookings.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\controller\LogoutServlet.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\controller\InitServlet.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\controller\ManagerMainServlet.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\dao\CustomerDAO.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\controller\ManagerDeleteServlet.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\dao\SqlDBConnector.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\dao\XmlTransformer.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Rooms.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Manager.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\controller\LoginServlet.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\dao\SqlDB.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Customer.java
+C:\Users\236333\Documents\capstone\group3\src\main\java\com\model\Staff.java
+>>>>>>> origin/Aiman_Branch

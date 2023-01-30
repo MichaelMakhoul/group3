@@ -6,6 +6,10 @@ com\model\Room.class
 com\controller\CreateAccountServlet.class
 com\model\Bookings.class
 com\rest\CusromerSqlService.class
+<<<<<<< HEAD
+=======
+com\controller\ManagerMainServlet.class
+>>>>>>> origin/Aiman_Branch
 com\model\dao\StaffDAO.class
 com\controller\InitServlet.class
 com\rest\client\UserServiceClient.class
