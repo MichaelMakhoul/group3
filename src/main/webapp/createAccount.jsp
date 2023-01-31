@@ -102,6 +102,15 @@
                 </div>
             </div>
         </div>
-        <% //exist = "";%>
+        <% 
+//            String message = (String) session.getAttribute("message");
+//            String emailError = (String) session.getAttribute("emailError");
+//            String passError = (String) session.getAttribute("passError");
+//            String dobError = (String) session.getAttribute("dobError");
+            session.removeAttribute("message");
+            session.removeAttribute("emailError");
+            session.removeAttribute("passError");
+            session.removeAttribute("dobError");
+        %>
     </body>
 </html>

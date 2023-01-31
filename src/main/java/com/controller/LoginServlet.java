@@ -54,7 +54,8 @@ public class LoginServlet extends HttpServlet {
 
             if (customer != null) {
                 user = true;
-                session.setAttribute("userType", customer);
+                session.setAttribute("userType", "customer");
+                session.setAttribute("user", customer);
                 request.getRequestDispatcher("customerMain.jsp").include(request, response);
             }
 
@@ -68,8 +69,8 @@ public class LoginServlet extends HttpServlet {
 
             if (staff != null) {
                 user = true;
-                session.setAttribute("userType", staff);
-                session.setAttribute("staff", staff);
+                session.setAttribute("userType", "staff");
+                session.setAttribute("user", staff);
                 request.getRequestDispatcher("staffMain.jsp").include(request, response);
             }
 
@@ -83,7 +84,8 @@ public class LoginServlet extends HttpServlet {
 
             if (manager != null) {
                 user = true;
-                session.setAttribute("userType", manager);
+                session.setAttribute("userType", "manager");
+                session.setAttribute("user", manager);
                 request.getRequestDispatcher("managerMain.jsp").include(request, response);
             }
 

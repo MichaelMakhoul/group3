@@ -2,6 +2,7 @@ package com.controller;
 
 import com.model.Customer;
 import com.model.dao.CustomerDAO;
+import com.model.dao.StaffDAO;
 import com.utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -37,9 +38,11 @@ public class CreateAccountServlet extends HttpServlet {
 
         CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
 
-        String creator = (String) session.getAttribute("creator");
+        String userType = (String) session.getAttribute("userType");
+        
+//        System.out.println("Creator type: "+ creator);
 
-        if (creator.equals("staff")) {
+        if (userType.equals("staff")) {
             if (!email.matches(Utils.emailRegEx) || (!password.matches(Utils.passRegEx)) || (!dob.matches(Utils.dobRegEx))) {
                 request.getRequestDispatcher("createAccount.jsp").include(request, response);
             } else {
@@ -49,6 +52,7 @@ public class CreateAccountServlet extends HttpServlet {
                         session.setAttribute("message", "Customer already exists");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     } else {
+                        
                         customerDAO.create(name, email, password, dob, phoneNumber);
                         session.setAttribute("message", "Customer created successfully");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
@@ -57,8 +61,8 @@ public class CreateAccountServlet extends HttpServlet {
                     Logger.getLogger(CreateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } else {
-            request.getRequestDispatcher("index.jsp").include(request, response);
+        } else if (userType.equals("manager")) {
+            
         }
 
     }

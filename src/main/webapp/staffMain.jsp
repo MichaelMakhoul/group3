@@ -44,8 +44,8 @@
             </div>	  	
         </div>
         <% 
-            Staff staff = (Staff) session.getAttribute("userType");
-            session.setAttribute("creator", "staff");
+            Staff staff = (Staff) session.getAttribute("user");
+//            session.setAttribute("creator", "staff");
         %>
         <h1 class="welcome_message">Welcome <%= staff.getStaffName()%></h1>
         <div>

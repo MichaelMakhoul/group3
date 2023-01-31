@@ -26,7 +26,7 @@ public class StaffViewServlet extends HttpServlet {
             Customers customers = (Customers) session.getAttribute("customers");
             List<Customer> customersList = customers.getCustomers();
             for (Customer customer : customersList) {
-                String email = "href=http://localhost:8080/group3/rest/sqlapi/customer/" + customer.getCustomerID();
+//                String email = "href=http://localhost:8080/group3/rest/sqlapi/customer/" + customer.getCustomerID();
 //                String email = "href=http://http://localhost:8080/group3/rest/sqlapi/customers=" + customer.getCustomerEmail() + ">";
                 out.println("<tr>");
                 out.println("<td>" + customer.getCustomerID() + "</td>");
