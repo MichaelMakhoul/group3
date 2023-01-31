@@ -35,7 +35,7 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
-                                <li><a href="customerMain.jsp" class="active">Staff Main</a></li>                                                              
+                                <li><a href="staffMain.jsp" class="active">Staff Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
                             </ul>
                         </nav>		
@@ -43,15 +43,18 @@
                 </div>
             </div>	  	
         </div>
-        <% Staff staff = (Staff) session.getAttribute("userType");%>
+        <% 
+            Staff staff = (Staff) session.getAttribute("user");
+//            session.setAttribute("creator", "staff");
+        %>
         <h1 class="welcome_message">Welcome <%= staff.getStaffName()%></h1>
         <div>
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                 <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                <a href="#">
+                <a href="createAccount.jsp">
                     <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span>Create a New User</span>
+                        <span>Create a New Customer</span>
 <!--                        <span>$4,200</span>-->
                     </div>	
                 </a>					
@@ -60,7 +63,7 @@
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                 <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                <a href="#">
+                <a href="StaffMainServlet">
                     <div class="tm-red-gradient-bg tm-city-price-container">
                         <span>View the list of customers</span>
 <!--                        <span>$4,200</span>-->

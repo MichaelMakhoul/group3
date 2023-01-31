@@ -3,28 +3,40 @@ com\model\Manager.class
 com\controller\LoginServlet.class
 com\model\Booking.class
 com\model\Room.class
+com\rest\StaffService.class
 com\controller\CreateAccountServlet.class
 com\model\Bookings.class
+<<<<<<< HEAD
 com\rest\CusromerSqlService.class
 <<<<<<< HEAD
 =======
 com\controller\ManagerMainServlet.class
 >>>>>>> origin/Aiman_Branch
+=======
+com\controller\ManagerMainServlet.class
+>>>>>>> origin/Michael_Branch
 com\model\dao\StaffDAO.class
 com\controller\InitServlet.class
 com\rest\client\UserServiceClient.class
 com\model\dao\ReportSqlDAO.class
+com\model\dao\BookingsDAO.class
 com\model\Staff.class
 com\model\Customer.class
 com\controller\ManagerDeleteServlet.class
 com\model\dao\CustomerDAO.class
+com\controller\StaffViewServlet.class
+com\controller\RegisterServlet.class
+com\model\dao\RoomDAO.class
 com\model\Reports.class
+com\rest\CustomerService.class
 com\model\Managers.class
 com\model\Staffs.class
 com\model\dao\ManagerDAO.class
 com\model\dao\SqlDB.class
 com\model\dao\SqlDBConnector.class
+com\utils\Utils.class
 com\controller\LogoutServlet.class
 com\model\dao\XmlTransformer.class
 com\model\Report.class
 com\model\Rooms.class
+com\controller\StaffMainServlet.class
