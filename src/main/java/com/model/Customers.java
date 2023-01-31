@@ -26,6 +26,10 @@ public class Customers implements Serializable{
     public Customers() {
     }
     
+    public void add(Customer customer){
+        this.customers.add(customer);
+    }
+    
     public void addAll(List<Customer> temp){
         this.customers.addAll(temp);
     }
