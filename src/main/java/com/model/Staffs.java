@@ -34,5 +34,8 @@ public class Staffs implements Serializable{
         this.staffs = staffs;
     }
     
+    public void addAll(List<Staff> temp){
+        this.staffs.addAll(temp);
+    }
       
 }
