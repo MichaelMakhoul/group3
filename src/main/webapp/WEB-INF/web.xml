@@ -5,16 +5,20 @@
         <servlet-name>InitServlet</servlet-name>
         <servlet-class>com.controller.InitServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StaffAccountServlet</servlet-name>
+        <servlet-class>com.controller.StaffAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InitServlet</servlet-name>
         <url-pattern>/InitServlet</url-pattern>
     </servlet-mapping>
-        <!--Register-->
+    <!--Register-->
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.controller.RegisterServlet</servlet-class>
     </servlet>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
@@ -66,6 +70,10 @@
     <servlet-mapping>
         <servlet-name>group3</servlet-name>
         <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffAccountServlet</servlet-name>
+        <url-pattern>/StaffAccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

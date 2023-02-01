@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,9 +25,9 @@ public class StaffDAO {
     private PreparedStatement updateSt;
     private PreparedStatement deleteSt;
 
-    private String createQy = "INSERT INTO tgsdb.staff(name, email, password, DOB, customer_phone)" + "VALUES(?,?,?,?,?)";
-    private String updateQy = "UPDATE tgsdb.staff SET name=?, password=?, DOB=?, customer_phone=? WHERE ID=?";
-    private String deleteQy = "DELETE FROM tgsdb.staff WHERE ID=?";
+    private String createQy = "INSERT INTO tgsdb.staff(name, email, password, DOB, staff_phone)" + "VALUES(?,?,?,?,?)";
+    private String updateQy = "UPDATE tgsdb.staff SET name=?, password=?, DOB=?, staff_phone=? WHERE staff_ID=?";
+    private String deleteQy = "DELETE FROM tgsdb.staff WHERE staff_ID=?";
 
     public StaffDAO(Connection connection) throws SQLException {
         this.st = connection.createStatement();
@@ -34,20 +36,20 @@ public class StaffDAO {
         this.deleteSt = connection.prepareStatement(deleteQy);
     }
     
-        public void create(String name, String email, String password, String dob, String customerPhone) throws SQLException {
+        public void create(String name, String email, String password, String dob, String staffPhone) throws SQLException {
         createSt.setString(1, name);
         createSt.setString(2, email);
         createSt.setString(3, password);
         createSt.setString(4, dob);
-        createSt.setString(5, customerPhone);
+        createSt.setString(5, staffPhone);
         createSt.executeUpdate();
     }
 
-    public void update(String name, String password, String dob, String customerPhone, int ID) throws SQLException {
+    public void update(String name, String password, String dob, String staffPhone, int ID) throws SQLException {
         updateSt.setString(1, name);
         updateSt.setString(2, password);
         updateSt.setString(3, dob);
-        updateSt.setString(4, customerPhone);
+        updateSt.setString(4, staffPhone);
         updateSt.setString(4, Integer.toString(ID));
         int row = updateSt.executeUpdate();
         System.out.println("Row " + row + " has been successflly updated");
@@ -78,7 +80,7 @@ public class StaffDAO {
     }
         
       public Staff getStaff(String email) throws SQLException{
-       String query = "SELECT * FROM tgsdb.customer WHERE EMAIL='" + email + "'";
+       String query = "SELECT * FROM tgsdb.staff WHERE email='" + email + "'";
        ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
             String currentEmail = rs.getString(3);
@@ -88,10 +90,28 @@ public class StaffDAO {
                 String name = rs.getString(2);
                 String password = rs.getString(4);
                 String DOB = rs.getString(5);
-                String customerPhone = rs.getString(6);
-                return new Staff(ID, name, email, password, DOB, customerPhone);
+                String staffPhone = rs.getString(6);
+                return new Staff(ID, name, email, password, DOB, staffPhone);
             }
         }
         return null;
+    }
+      
+       public List<Staff> getStaffs() throws SQLException {
+        String query = "SELECT * FROM tgsdb.staff";
+        ResultSet rs = st.executeQuery(query);
+        List<Staff> temp = new ArrayList<>();
+        
+        while (rs.next()) {
+            int ID = Integer.parseInt(rs.getString(1));
+            String name = rs.getString(2);
+            String email = rs.getString(3);
+            String password = rs.getString(4);
+            String dob = rs.getString(5);
+            String phone = rs.getString(6);
+            Staff user = new Staff(ID, name, email, password, dob, phone);
+           temp.add(user);
+        }    
+        return temp;
     }
 }

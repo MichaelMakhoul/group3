@@ -13,12 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
-              type='text/css'>
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/register.css" rel="stylesheet">
     </head>
@@ -55,9 +51,9 @@
                 <div class="screen__content">
                     <form class="register" method="POST" action="RegisterServlet">
                         <label for="registerOptions">Register as:</label>
-                        <select name="registerOptions" id="registerOptions">                            
-                            <option value="staff">Staff</option>
+                        <select name="registerOptions" id="registerOptions">
                             <option value="customer">Customer</option>
+                            <option value="staff">Staff</option>                            
                         </select>
                         <div class="register__field">
                             <i class="register__icon fas fa-user"></i>
@@ -86,14 +82,6 @@
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
                     </form>
-<!--                    <div class="social-register">
-                        <h3>sing up via</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-register__icon fab fa-instagram"></a>
-                            <a href="#" class="social-register__icon fab fa-facebook"></a>
-                            <a href="#" class="social-register__icon fab fa-twitter"></a>
-                        </div>
-                    </div>-->
                 </div>
                 <div class="screen__background">
                     <span class="screen__background__shape screen__background__shape4"></span>
