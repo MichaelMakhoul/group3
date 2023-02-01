@@ -20,11 +20,13 @@ public class Booking implements Serializable{
     
     private int bookingID;
     private int customerID;
-    private String bookingFrom;
-    private String bookingTo;
+    private String checkIn;
+    private String checkOut;
     private String bookingDesc;
+    private int totalPrice;
     private String bookingDate;
     private String bookingModifiedDate;
+    
     
     @XmlElementWrapper(name = "rooms")
     @XmlElement(name ="room")
@@ -34,22 +36,26 @@ public class Booking implements Serializable{
         this.rooms = new ArrayList<>();
     }
 
-    public Booking(int bookingID, int customerID, String bookingFrom, String bookingTo, String bookingDesc, String bookingDate, String bookingModifiedDate, List<Room> rooms) {
+    public Booking(int bookingID, int customerID, String checkIn, String checkOut, String bookingDesc, int totalPrice, String bookingDate, String bookingModifiedDate, List<Room> rooms) {
         this.bookingID = bookingID;
         this.customerID = customerID;
-        this.bookingFrom = bookingFrom;
-        this.bookingTo = bookingTo;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
         this.bookingDesc = bookingDesc;
+        this.totalPrice = totalPrice;
         this.bookingDate = bookingDate;
         this.bookingModifiedDate = bookingModifiedDate;
         this.rooms = rooms;
     }
 
-    public Booking(int customerID, String bookingFrom, String bookingTo, String bookingDesc, List<Room> rooms) {
+    
+
+    public Booking(int customerID, String checkIn, String checkOut, String bookingDesc, int totalPrice, List<Room> rooms) {
         this.customerID = customerID;
-        this.bookingFrom = bookingFrom;
-        this.bookingTo = bookingTo;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
         this.bookingDesc = bookingDesc;
+        this.totalPrice = totalPrice;
         this.rooms = rooms;
     }
     
@@ -57,12 +63,12 @@ public class Booking implements Serializable{
         return this.bookingID == id;
     }
         
-    public boolean matchBookingFrom(String date){
-        return this.bookingFrom.equals(date);
+    public boolean matchCheckIn(String date){
+        return this.checkIn.equals(date);
     }
     
-    public boolean matchBookingTo(String date){
-        return this.bookingTo.equals(date);
+    public boolean matchCheckOut(String date){
+        return this.checkOut.equals(date);
     }
     
     public boolean matchCustomerID(int id){
@@ -77,18 +83,22 @@ public class Booking implements Serializable{
         return customerID;
     }
 
-    public String getBookingFrom() {
-        return bookingFrom;
+    public String getCheckIn() {
+        return checkIn;
     }
 
-    public String getBookingTo() {
-        return bookingTo;
-    }
+    public String getCheckOut() {
+        return checkOut;
+    }   
 
     public String getBookingDesc() {
         return bookingDesc;
     }
 
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+    
     public String getBookingDate() {
         return bookingDate;
     }
@@ -109,18 +119,22 @@ public class Booking implements Serializable{
         this.customerID = customerID;
     }
 
-    public void setBookingFrom(String bookingFrom) {
-        this.bookingFrom = bookingFrom;
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
     }
 
-    public void setBookingTo(String bookingTo) {
-        this.bookingTo = bookingTo;
-    }
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
+    }    
 
     public void setBookingDesc(String bookingDesc) {
         this.bookingDesc = bookingDesc;
     }
 
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+    
     public void setBookingDate(String bookingDate) {
         this.bookingDate = bookingDate;
     }
@@ -135,11 +149,13 @@ public class Booking implements Serializable{
 
     @Override
     public String toString() {
-        return "Booking" + bookingID + ", customerID=" + customerID + ", bookingFrom=" 
-                + bookingFrom + ", bookingTo=" + bookingTo + ", bookingDesc=" + bookingDesc 
-                + ", bookingDate=" + bookingDate + ", bookingModifiedDate=" + bookingModifiedDate + ", rooms=" + rooms ;
+        return "Booking" + bookingID + ", customerID=" + customerID 
+                + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", bookingDesc=" 
+                + bookingDesc + ", totalPrice=" + totalPrice + ", bookingDate=" + bookingDate 
+                + ", bookingModifiedDate=" + bookingModifiedDate + ", rooms=" + rooms ;
     }
-    
+
+     
     
     
 }
