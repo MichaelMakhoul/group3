@@ -4,6 +4,7 @@ com\controller\LoginServlet.class
 com\model\Booking.class
 com\model\Room.class
 com\rest\StaffService.class
+com\controller\CustomerDeleteServlet.class
 com\controller\CreateAccountServlet.class
 com\model\Bookings.class
 <<<<<<< HEAD
@@ -16,6 +17,7 @@ com\controller\ManagerMainServlet.class
 com\controller\ManagerMainServlet.class
 >>>>>>> origin/Michael_Branch
 com\model\dao\StaffDAO.class
+com\controller\CustomerUpdate.class
 com\controller\InitServlet.class
 com\rest\client\UserServiceClient.class
 com\model\dao\ReportSqlDAO.class
