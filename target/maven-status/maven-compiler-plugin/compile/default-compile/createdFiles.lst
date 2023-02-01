@@ -4,10 +4,12 @@ com\controller\LoginServlet.class
 com\model\Booking.class
 com\model\Room.class
 com\rest\StaffService.class
+com\controller\CustomerDeleteServlet.class
 com\controller\CreateAccountServlet.class
 com\model\Bookings.class
 com\controller\ManagerMainServlet.class
 com\model\dao\StaffDAO.class
+com\controller\CustomerUpdate.class
 com\controller\InitServlet.class
 com\rest\client\UserServiceClient.class
 com\model\dao\ReportSqlDAO.class

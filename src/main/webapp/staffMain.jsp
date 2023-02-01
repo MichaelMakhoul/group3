@@ -20,6 +20,7 @@
         <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
     </head>
     <body>
         <div class="tm-header">
@@ -43,45 +44,30 @@
                 </div>
             </div>	  	
         </div>
-        <% 
+        <%
             Staff staff = (Staff) session.getAttribute("user");
-//            session.setAttribute("creator", "staff");
         %>
-        <h1 class="welcome_message">Welcome <%= staff.getStaffName()%></h1>
+        <h1 class="welcome_message">Welcome <%= (staff != null) ? staff.getStaffName() : ""%></h1>
         <div>
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                <a href="createAccount.jsp">
-                    <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span>Create a New Customer</span>
-<!--                        <span>$4,200</span>-->
-                    </div>	
-                </a>					
-            </div>				
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                    <a href="createAccount.jsp">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>Create a New Customer</span>
+                        </div>	
+                    </a>					
+                </div>				
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                    <a href="StaffMainServlet">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>View the list of customers</span>
+                        </div>	
+                    </a>					
+                </div>				
+            </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                <a href="StaffMainServlet">
-                    <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span>View the list of customers</span>
-<!--                        <span>$4,200</span>-->
-                    </div>	
-                </a>					
-            </div>				
-        </div>
-<!--        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                <img src="img/index-02.jpg" alt="image" class="img-responsive">
-                <a href="#">
-                    <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span>Your profile</span>
-                        <span>$4,200</span>
-                    </div>	
-                </a>					
-            </div>				
-        </div>-->
-        </div>
+
     </body>
 </html>

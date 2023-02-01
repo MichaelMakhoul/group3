@@ -9,9 +9,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -30,17 +32,17 @@ public class CustomerService {
         return customers;
     }
 
-//    @GET
-//    @Path("customer/{ID}") //http://localhost:8080/group3/rest/sqlapi/customer/1001
-//    @Produces(MediaType.APPLICATION_XML)
-//    public Customers Customer(@PathParam("ID") int ID) throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
-//        CustomerDAO customerDAO = new CustomerDAO(new SqlDBConnector().connection());
-//
-//        Customer customer = customerDAO.getCustomer(ID);
-//        Customers customers = new Customers();
-//        customers.add(customer);
-//        return customers;
-//    }
+    @GET
+    @Path("customer/{ID}") //http://localhost:8080/group3/rest/sqlapi/customer/1001
+    @Produces(MediaType.APPLICATION_XML)
+    public Customers Customer(@PathParam("ID") int ID) throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
+        CustomerDAO customerDAO = new CustomerDAO(new SqlDBConnector().connection());
+
+        Customer customer = customerDAO.getCustomer(ID);
+        Customers customers = new Customers();
+        customers.add(customer);
+        return customers;
+    }
 
     @GET
     @Path("addcustomer") //http://localhost:8080/group3/rest/sqlapi/addcustomer
