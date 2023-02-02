@@ -9,13 +9,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "bookings")
+@XmlRootElement(name = "reportlog")
 public class ReportLog implements Serializable {
     
     @XmlElement(name = "booking")
     private List<Booking> bookings = new ArrayList<>();
-    private int reportDate;
     private int reportLogID;
+    private String reportFromDate;
+    private String reportToDate;
     private int numberOfBookings;
     private int revenue;
     private String createDate;
@@ -23,9 +24,10 @@ public class ReportLog implements Serializable {
     public ReportLog() {
     }
 
-    public ReportLog(int reportDate, int reportLogID, int numberOfBookings, int revenue, String createDate) {
-        this.reportDate = reportDate;
+    public ReportLog(int reportLogID, String reportFromDate, String reportToDate, int numberOfBookings, int revenue, String createDate) {
         this.reportLogID = reportLogID;
+        this.reportFromDate = reportFromDate;
+        this.reportToDate = reportToDate;
         this.numberOfBookings = numberOfBookings;
         this.revenue = revenue;
         this.createDate = createDate;
@@ -39,12 +41,20 @@ public class ReportLog implements Serializable {
         this.bookings = bookings;
     }
 
-    public int getReportDate() {
-        return reportDate;
+    public String getReportFromDate() {
+        return reportFromDate;
     }
 
-    public void setReportDate(int reportDate) {
-        this.reportDate = reportDate;
+    public void setReportFromDate(String reportFromDate) {
+        this.reportFromDate = reportFromDate;
+    }
+
+    public String getReportToDate() {
+        return reportToDate;
+    }
+
+    public void setReportToDate(String reportToDate) {
+        this.reportToDate = reportToDate;
     }
 
     public int getReportLogID() {

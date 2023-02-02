@@ -36,23 +36,21 @@ public class CreateAccountServlet extends HttpServlet {
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
 //        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
 
+        boolean validRegex = (email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx));
+
         CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
 
         String userType = (String) session.getAttribute("userType");
-        
-//        System.out.println("Creator type: "+ creator);
 
         if (userType.equals("staff")) {
-            if (!email.matches(Utils.emailRegEx) || (!password.matches(Utils.passRegEx)) || (!dob.matches(Utils.dobRegEx))) {
-                request.getRequestDispatcher("createAccount.jsp").include(request, response);
-            } else {
+            if (validRegex) {
                 try {
                     Customer customer = customerDAO.getCustomer(email);
                     if (customer != null) {
                         session.setAttribute("message", "Customer already exists");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     } else {
-                        
+
                         customerDAO.create(name, email, password, dob, phoneNumber);
                         session.setAttribute("message", "Customer created successfully");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
@@ -60,9 +58,11 @@ public class CreateAccountServlet extends HttpServlet {
                 } catch (SQLException ex) {
                     Logger.getLogger(CreateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            } else {
+                request.getRequestDispatcher("createAccount.jsp").include(request, response);
             }
         } else if (userType.equals("manager")) {
-            
+
         }
 
     }

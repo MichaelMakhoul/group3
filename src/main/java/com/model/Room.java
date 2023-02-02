@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name ="room")
 public class Room implements Serializable{
     private int roomID;
+    private String roomNo;
     private String roomType;
     private String roomImageUrl;
     private String roomDesc;
@@ -22,16 +23,18 @@ public class Room implements Serializable{
     public Room() {
     }
 
-    public Room(int roomID, String roomType, String roomImageUrl, String roomDesc, int roomPrice) {
+    public Room(int roomID, String roomNo, String roomType, String roomImageUrl, String roomDesc, int roomPrice) {
         this.roomID = roomID;
+        this.roomNo = roomNo;
         this.roomType = roomType;
         this.roomImageUrl = roomImageUrl;
         this.roomDesc = roomDesc;
         this.roomPrice = roomPrice;
     }
 
-    public Room(String roomType, String roomImageUrl, String roomDesc, int roomPrice) {
+    public Room(String roomType, String roomNo, String roomImageUrl, String roomDesc, int roomPrice) {
         this.roomType = roomType;
+        this.roomNo = roomNo;
         this.roomImageUrl = roomImageUrl;
         this.roomDesc = roomDesc;
         this.roomPrice = roomPrice;
@@ -65,6 +68,10 @@ public class Room implements Serializable{
         return roomPrice;
     }
 
+    public String getRoomNo() {
+        return roomNo;
+    }    
+
     public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
@@ -85,15 +92,13 @@ public class Room implements Serializable{
         this.roomPrice = roomPrice;
     }
 
+    public void setRoomNo(String roomNo) {
+        this.roomNo = roomNo;
+    }      
+
     @Override
     public String toString() {
-        return "Room" + roomID + ", roomType=" + roomType + ", roomDesc=" + roomDesc + ", roomPrice=" + roomPrice + '}';
+        return "Room" + roomID + ", roomNo=" + roomNo + ", roomType=" + roomType + ", roomDesc=" + roomDesc + ", roomPrice=" + roomPrice + '}';
     }
-
-   
-
-    
-    
-    
     
 }

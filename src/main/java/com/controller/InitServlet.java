@@ -7,6 +7,7 @@ package com.controller;
 
 import com.model.dao.CustomerDAO;
 import com.model.dao.ManagerDAO;
+import com.model.dao.ReportDAO;
 import com.model.dao.SqlDBConnector;
 import com.model.dao.StaffDAO;
 import java.io.IOException;
@@ -31,6 +32,7 @@ private SqlDBConnector sqlDBConnector;
     private CustomerDAO customerDAO;
     private ManagerDAO managerDAO;
     private StaffDAO staffDAO;
+    private ReportDAO reportDAO;
 
  
 
@@ -42,6 +44,7 @@ private SqlDBConnector sqlDBConnector;
             customerDAO= new CustomerDAO(connection);
             managerDAO= new ManagerDAO(connection);
             staffDAO= new StaffDAO(connection);
+            reportDAO = new ReportDAO(connection);
         } catch (IOException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -74,6 +77,7 @@ private SqlDBConnector sqlDBConnector;
         session.setAttribute("customerDAO", customerDAO);
         session.setAttribute("managerDAO", managerDAO);
         session.setAttribute("staffDAO", staffDAO);
+        session.setAttribute("reportDAO", reportDAO);
         
     }
 

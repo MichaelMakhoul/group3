@@ -30,20 +30,19 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        //String registerOptions = request.getParameter("registerOptions");
+        String registerOptions = request.getParameter("registerOptions");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
         
-        boolean nextPage = false;
+//        boolean nextPage = false;
         String error = "";
         //boolean user = false;        
 
         String emailRegEx = "[a-zA-Z0-9_%+-]+[.][a-zA-Z0-9_%+-]+@[a-zA-Z0-9-]+(.com)";
         String passRegEx = "[A-Z][A-Za-z]{5,}\\d{2,}";
-        
 
         if (!email.matches(emailRegEx) || !password.matches(passRegEx)) {
             error = "Incorrect ";
@@ -58,26 +57,43 @@ public class RegisterServlet extends HttpServlet {
                 error += "password";
             }
             error += " format";
-        } else {
+        } else if (registerOptions.equals("customer")) {
             try {
                 CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
-                Customer customerSql = customerDAO.getCustomer(email);
-                if (customerSql != null) {
+                Customer customer = customerDAO.getCustomer(email);
+                if (customer != null) {
                     error = "User already exists";
+                    session.setAttribute("error", error);
+                    request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    nextPage = true;
                     customerDAO.create(name, email, password, dob, phoneNumber);
-                    Customer customer = customerDAO.getCustomer(email);
-                    session.setAttribute("userType", customer);
+                    customer = customerDAO.getCustomer(email);
+                    session.setAttribute("userType", "customer");
+                    session.setAttribute("user", customer);
+                    request.getRequestDispatcher("main.jsp").include(request, response);
                 }
-
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
 
             }
-        }
-        if (nextPage) {
-            request.getRequestDispatcher("customerMain.jsp").include(request, response);
+        } else if (registerOptions.equals("staff")) {
+            try {
+                StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+                Staff staff = staffDAO.getStaff(email);
+                if (staff != null) {
+                    error = "User already exist";
+                    session.setAttribute("error", error);
+                    request.getRequestDispatcher("register.jsp").include(request, response);
+                } else {
+                    staffDAO.create(name, email, password, dob, phoneNumber);
+                    staff = staffDAO.getStaff(email);
+                    session.setAttribute("userType", "staff");
+                    session.setAttribute("user", staff);
+                    request.getRequestDispatcher("main.jsp").include(request, response);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             session.setAttribute("error", error);
             request.getRequestDispatcher("register.jsp").include(request, response);

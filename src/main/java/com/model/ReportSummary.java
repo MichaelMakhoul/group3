@@ -6,25 +6,25 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "report")
+@XmlRootElement(name = "reportsummary")
+public class ReportSummary implements Serializable {
 
-public class ReportSummary implements Serializable{
+    private int reportID;
     private int bookingID;
     private String checkIn;
     private String checkOut;
     private int numberOfRooms;
-    private int price;
     private int totalPrice;
-   
-    public ReportSummary(){        
+
+    public ReportSummary() {
     }
 
-    public ReportSummary(int bookingID, String checkIn, String checkOut, int numberOfRooms, int price, int totalPrice) {
+    public ReportSummary(int reportID, int bookingID, String checkIn, String checkOut, int numberOfRooms, int totalPrice) {
+        this.reportID = reportID;
         this.bookingID = bookingID;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.numberOfRooms = numberOfRooms;
-        this.price = price;
         this.totalPrice = totalPrice;
     }
 
@@ -50,12 +50,16 @@ public class ReportSummary implements Serializable{
         return numberOfRooms;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
     public int getTotalPrice() {
         return totalPrice;
+    }
+
+    public int getReportID() {
+        return reportID;
+    }
+
+    public void setReportID(int reportID) {
+        this.reportID = reportID;
     }
 
     public void setBookingID(int bookingID) {
@@ -74,12 +78,11 @@ public class ReportSummary implements Serializable{
         this.numberOfRooms = numberOfRooms;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public boolean matchReport(int ID) {
+        return this.reportID == ID;
+    }
 }
-   
