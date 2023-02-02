@@ -12,12 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author 236361
  */
 public class BookingsDAO {
+    private RoomDAO roomDAO;
 
     private Statement st;
     private PreparedStatement addSt;
@@ -27,17 +29,45 @@ public class BookingsDAO {
     private String addQy = "INSERT INTO tgsdb.booking (customer_ID, check_in, check_out, description, total_price)"
             + "VALUES (?, ?, ?, ?, ?)";
 
-    private String updateQy = "UPDATE tgsdb.room SET ROOM_NO=?, TYPE=?, IMAGE=?,DESCRIPTION=?, PRICE=? WHERE ROOM_ID=?";
+    //private String updateQy = "UPDATE tgsdb.room SET ROOM_NO=?, TYPE=?, IMAGE=?,DESCRIPTION=?, PRICE=? WHERE ROOM_ID=?";
     private String deleteQy = "DELETE FROM tgsdb.booking WHERE `BOOKING_ID`=?";
 
     public BookingsDAO(Connection connection) {
         try {
+            roomDAO = new RoomDAO(connection);
             this.st = connection.createStatement();
             this.addSt = connection.prepareStatement(addQy, Statement.RETURN_GENERATED_KEYS);
             this.deleteSt = connection.prepareStatement(deleteQy);
         } catch (SQLException ex) {
             Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public Booking booking(int bookingID){
+        Booking booking = null;
+        try {
+            String qy = "SELECT * FROM tgsdb.booking WHERE `booking_ID`=" + bookingID;
+            ResultSet rs = st.executeQuery(qy);
+            while (rs.next()) {
+                int id = Integer.parseInt(rs.getString(1));
+                if (id == bookingID) {                    
+                    int customerID = Integer.parseInt(rs.getString(2));
+                    String checkIn = rs.getString(3);
+                    String checkOut = rs.getString(4);
+                    String desc = rs.getString(5);
+                    int totalPrice = Integer.parseInt(rs.getString(6));
+                    String bookedDate = rs.getString(7);
+                    String updateDate = rs.getString(8);                    
+                   booking = new Booking(bookingID, customerID, checkIn, checkOut, desc, totalPrice, bookedDate, updateDate, null);
+                }              
+            }
+            booking.setRooms(getBookedRooms(bookingID));  
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
+        }finally{
+            return booking;
+        }
+        
     }
 
     /**
@@ -61,19 +91,24 @@ public class BookingsDAO {
                     String bookedDate = rs.getString(7);
                     String updateDate = rs.getString(8);                    
                     bookings.add(new Booking(bookingID, customerID, checkIn, checkOut, desc, totalPrice, bookedDate, updateDate, null));
-                }
-                for(Booking b : bookings){
-                    b.setRooms(getBookedRooms(b.getBookingID()));
-                }                
+                }                              
             }
+            for(Booking b : bookings){
+                    b.setRooms(getBookedRooms(b.getBookingID()));
+            }  
         } catch (SQLException ex) {
-            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
+        }finally{
             return bookings;
         }
-        return bookings;
+        
     }
     
-
+    /**
+     * 
+     * @param bookingID
+     * @return 
+     */
     public List<Room> getBookedRooms(int bookingID) {
         List<Room> rooms = new ArrayList<>();
         try {
@@ -91,39 +126,14 @@ public class BookingsDAO {
                 rooms.add(new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
+        }finally{
             return rooms;
         }
-        return rooms;
+        
     }
 
-    /**
-     *
-     * @param roomID
-     * @return
-     */
-    public Room getRoombyID(int roomID) {
-        String qy = "SELECT * FROM tgsdb.room where `room_ID`=" + roomID;
-        try {
-            ResultSet rs = st.executeQuery(qy);
-            while (rs.next()) {
-                int id = Integer.parseInt(rs.getString(1));
-                if (id == roomID) {
-                    String roomNo = rs.getString(2);
-                    String roomType = rs.getString(3);
-                    String roomImageUrl = rs.getString(4);
-                    String roomDesc = rs.getString(5);
-                    int roomPrice = Integer.parseInt(rs.getString(6));
-                    return new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-        return null;
-    }
-
+    
     /**
      *
      * @return
@@ -150,10 +160,10 @@ public class BookingsDAO {
                 b.setRooms(getBookedRooms(b.getBookingID()));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
+        }finally{
             return bookings;
-        }
-        return bookings;
+        }        
     }
 
     /**
@@ -183,10 +193,70 @@ public class BookingsDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            return bookings;
+        } 
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public List<Booking> getCurrentBookingsbyCustomerID(int customerID) {
+        List<Booking> bookings = new ArrayList<>();
+        try {
+            String date = LocalDate.now().toString();
+            //System.out.println("date: "+date);
+            String qy = "SELECT * FROM tgsdb.booking WHERE `check_in`>'" + date+"' AND `customer_ID`=" + customerID;
+            ResultSet rs = st.executeQuery(qy);
+            while (rs.next()) {
+                int id = Integer.parseInt(rs.getString(2));
+                if(id == customerID){
+                    int bookingID = Integer.parseInt(rs.getString(1));                
+                    String checkIn = rs.getString(3);
+                    String checkOut = rs.getString(4);
+                    String desc = rs.getString(5);
+                    int totalPrice = Integer.parseInt(rs.getString(6));
+                    String bookedDate = rs.getString(7);
+                    String updateDate = rs.getString(8);                
+                    bookings.add(new Booking(bookingID, customerID, checkIn, checkOut, desc, totalPrice, bookedDate, updateDate, null));
+                }
+            }
+            for(Booking b : bookings){
+                b.setRooms(getBookedRooms(b.getBookingID()));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
             return bookings;
         }
-        return bookings;
     }
+    
+    /**
+     * 
+     * @param customerID
+     * @param checkIn
+     * @param checkOut
+     * @param desc
+     * @param totalPrice
+     * @param noOfRooms 
+     */
+    public int addBooking(int customerID, String checkIn, String checkOut, String desc, int totalPrice, int []noOfRooms){
+        List<Room> availRooms = roomDAO.getAvailableRooms(checkIn, checkOut);
+        List<Room> rooms = new ArrayList<>();
+        //String []roomType = {"DELUXE_ROOM","FAMILY_ROOM","EXECUTIVE_SUITE"};   
+        if(noOfRooms[0]>0){
+            rooms.addAll(availRooms.stream().filter(r -> r.matchType("DELUXE_ROOM")).limit(noOfRooms[0]).collect(Collectors.toList()));    
+        }
+        if(noOfRooms[1]>0){
+            rooms.addAll(availRooms.stream().filter(r -> r.matchType("FAMILY_ROOM")).limit(noOfRooms[1]).collect(Collectors.toList())); 
+        }
+        if(noOfRooms[2]>0){
+            rooms.addAll(availRooms.stream().filter(r -> r.matchType("EXECUTIVE_SUITE")).limit(noOfRooms[2]).collect(Collectors.toList())); 
+        }
+        return createBooking(customerID, checkIn, checkOut, desc, totalPrice, rooms);
+    }
+    
 
     /**
      *
@@ -195,7 +265,8 @@ public class BookingsDAO {
      * @param checkOut
      * @param rooms
      */
-    public void addBooking(int customerID, String checkIn, String checkOut, String desc, int totalPrice, List<Room> rooms) {
+    private int createBooking(int customerID, String checkIn, String checkOut, String desc, int totalPrice, List<Room> rooms) {
+        int bookingID = 0;
         try {
             addSt.setString(1, "" + customerID);
             addSt.setString(2, checkIn);
@@ -203,21 +274,29 @@ public class BookingsDAO {
             addSt.setString(4, desc);
             addSt.setString(5, "" + totalPrice);
             addSt.executeUpdate();
-            int bookingID = 0;
+            
             ResultSet rs = addSt.getGeneratedKeys();
             if (rs != null && rs.next()) {
                 bookingID = rs.getInt(1);
                 System.out.println("bookingID :" + bookingID);
             }
-            for (Room r : rooms) {
-                String qy = "INSERT INTO tgsdb.booked_rooms (booking_ID, room_id) VALUES ('" + bookingID + "', '" + r.getRoomID() + "')";
-                st.executeUpdate(qy);
-            }
+            if(rooms != null){
+                for (Room r : rooms) {
+                    String qy = "INSERT INTO tgsdb.booked_rooms (booking_ID, room_id) VALUES ('" + bookingID + "', '" + r.getRoomID() + "')";
+                    st.executeUpdate(qy);
+                }
+            }            
         } catch (SQLException ex) {
             Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }finally{
+            return bookingID;
+        }        
     }
-
+    
+    /**
+     * 
+     * @param bookingID 
+     */
     public void deleteBooking(int bookingID) {
         try {
             st.execute("SET FOREIGN_KEY_CHECKS=0");
@@ -232,5 +311,17 @@ public class BookingsDAO {
             Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * 
+     * @param customerID 
+     */
+    public void deleteBookingbyCustomerID(int customerID){
+        //only delete current Bookings
+        List<Booking> bookings = getCurrentBookingsbyCustomerID(customerID);
+        bookings.forEach(b -> deleteBooking(b.getBookingID()));        
+    }
+    
+    
 
 }
