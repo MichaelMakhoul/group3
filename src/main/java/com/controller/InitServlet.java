@@ -5,11 +5,9 @@
  */
 package com.controller;
 
-//import com.model.dao.CustomerDAO;
 import com.model.dao.ManagerDAO;
 import com.model.dao.SqlDBConnector;
 import com.model.dao.UserDAO;
-//import com.model.dao.StaffDAO;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;

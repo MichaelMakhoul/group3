@@ -21,15 +21,15 @@ import javax.xml.bind.JAXBException;
 @Path("sqlapi")
 public class CustomerService {
 
-    @GET
-    @Path("customers") //http://localhost:8080/group3/rest/sqlapi/customers
-    @Produces(MediaType.APPLICATION_XML)
-    public Customers customers() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        UserDAO customerDAO = new UserDAO(new SqlDBConnector().connection());
-        Customers customers = new Customers();
-        customers.addAll(customerDAO.getUsers("customer"));
-        return customers;
-    }
+//    @GET
+//    @Path("customers") //http://localhost:8080/group3/rest/sqlapi/customers
+//    @Produces(MediaType.APPLICATION_XML)
+//    public Customers customers() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+//        UserDAO customerDAO = new UserDAO(new SqlDBConnector().connection());
+//        Customers customers = new Customers();
+//        customers.addAll(customerDAO.getUsers("customer"));
+//        return customers;
+//    }
 
 //    @GET
 //    @Path("customer/{ID}") //http://localhost:8080/group3/rest/sqlapi/customer/1001

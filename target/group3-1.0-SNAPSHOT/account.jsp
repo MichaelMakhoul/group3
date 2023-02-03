@@ -70,7 +70,7 @@
                             <p><%= (user != null) ? user.getPhone() : ""%></p>
                         </div>
                         <li><a href="UserUpdateServlet">Update</a></li>
-                        <li><a href="CustomerDeleteServlet">Delete</a></li>
+                        <li><a href="UserDeleteServlet">Delete</a></li>
                     </div>
                 </div>
             </div>

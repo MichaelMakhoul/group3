@@ -22,11 +22,13 @@
     <body class="tm-gray-bg">
         <%
             String exist = (String) session.getAttribute("error");
+            String nameError = (String) session.getAttribute("nameError");
             String emailError = (String) session.getAttribute("emailError");
             String passError = (String) session.getAttribute("passError");
             String dobError = (String) session.getAttribute("dobError");
             String phoneError = (String) session.getAttribute("phoneError");
             session.removeAttribute("error");
+            session.removeAttribute("nameError");
             session.removeAttribute("emailError");
             session.removeAttribute("passError");
             session.removeAttribute("dobError");
@@ -66,6 +68,7 @@
                         <div class="register__field">
                             <i class="register__icon fas fa-user"></i>
                             <input type="text" name="name" class="register__input" placeholder="Name">
+                            <span class="message"><%= (nameError != null) ? nameError : ""%></span>
                         </div>
                         <span class="message"><%= (exist != null) ? exist : ""%></span>
                         <div class="register__field">
