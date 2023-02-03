@@ -36,12 +36,17 @@ public class RegisterServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
 
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
         session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
         session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
 
-        boolean validRegex = (password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx) && phoneNumber.matches(Utils.phoneRegEx) && email.matches(Utils.emailRegEx));
+        boolean validRegex = (name.matches(Utils.nameRegEx) && 
+                            email.matches(Utils.emailRegEx) && 
+                            password.matches(Utils.passRegEx) && 
+                            dob.matches(Utils.dobRegEx) && 
+                            phoneNumber.matches(Utils.phoneRegEx));
 
 //        boolean nextPage = false;
         String error = "";

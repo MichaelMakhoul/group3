@@ -23,7 +23,7 @@
     </servlet>
     <servlet>
         <servlet-name>CustomerDeleteServlet</servlet-name>
-        <servlet-class>com.controller.CustomerDeleteServlet</servlet-class>
+        <servlet-class>com.controller.UserDeleteServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>InitServlet</servlet-name>

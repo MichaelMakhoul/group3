@@ -22,6 +22,7 @@
     <body class="tm-gray-bg">
         <%
             String exist = (String) session.getAttribute("error");
+            String nameError = (String) session.getAttribute("nameError");
             String emailError = (String) session.getAttribute("emailError");
             String passError = (String) session.getAttribute("passError");
             String dobError = (String) session.getAttribute("dobError");
