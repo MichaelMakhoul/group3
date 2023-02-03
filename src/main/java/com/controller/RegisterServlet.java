@@ -5,10 +5,9 @@
  */
 package com.controller;
 
-import com.model.Customer;
-import com.model.Staff;
-import com.model.dao.CustomerDAO;
-import com.model.dao.StaffDAO;
+import com.model.User;
+import com.model.dao.UserDAO;
+import com.utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,55 +29,64 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        //String registerOptions = request.getParameter("registerOptions");
+        String registerOptions = request.getParameter("registerOptions");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
-        
-        boolean nextPage = false;
+
+        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
+
+        boolean validRegex = (password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx) && phoneNumber.matches(Utils.phoneRegEx) && email.matches(Utils.emailRegEx));
+
+//        boolean nextPage = false;
         String error = "";
         //boolean user = false;        
 
-        String emailRegEx = "[a-zA-Z0-9_%+-]+[.][a-zA-Z0-9_%+-]+@[a-zA-Z0-9-]+(.com)";
-        String passRegEx = "[A-Z][A-Za-z]{5,}\\d{2,}";
-        
-
-        if (!email.matches(emailRegEx) || !password.matches(passRegEx)) {
-            error = "Incorrect ";
-            if (!email.matches(emailRegEx)) {
-                error += "email";
-
-            }
-            if (!password.matches(passRegEx)) {
-                if (error.contains("email")) {
-                    error += " and ";
-                }
-                error += "password";
-            }
-            error += " format";
-        } else {
+//        if (!email.matches(emailRegEx) || !password.matches(passRegEx)) {
+          if (validRegex) {
             try {
-                CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
-                Customer customerSql = customerDAO.getCustomer(email);
-                if (customerSql != null) {
+                UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+                User user = userDAO.getUser(email, registerOptions);
+                if (user != null) {
                     error = "User already exists";
+                    session.setAttribute("error", error);
+                    request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    nextPage = true;
-                    customerDAO.create(name, email, password, dob, phoneNumber);
-                    Customer customer = customerDAO.getCustomer(email);
-                    session.setAttribute("userType", customer);
+                    userDAO.create(name, email, password, dob, phoneNumber, registerOptions);
+                    user = userDAO.getUser(email, registerOptions);
+                    user.setType(registerOptions);
+                    session.setAttribute("user", user);
+                    request.getRequestDispatcher("main.jsp").include(request, response);
                 }
-
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
 
             }
-        }
-        if (nextPage) {
-            request.getRequestDispatcher("customerMain.jsp").include(request, response);
-        } else {
+        } //        else if (registerOptions.equals("staff")) {
+        //            try {
+        //                StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+        //                Staff staff = staffDAO.getStaff(email);
+        //                if (staff != null) {
+        //                    error = "User already exist";
+        //                    session.setAttribute("error", error);
+        //                    request.getRequestDispatcher("register.jsp").include(request, response);
+        //                } else {
+        //                    staffDAO.create(name, email, password, dob, phoneNumber);
+        //                    staff = staffDAO.getStaff(email);
+        //                    session.setAttribute("userType", "staff");
+        //                    session.setAttribute("user", staff);
+        //                    request.getRequestDispatcher("main.jsp").include(request, response);
+        //                }
+        //            } catch (SQLException ex) {
+        //                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        //            }
+        //        } 
+        else {
             session.setAttribute("error", error);
             request.getRequestDispatcher("register.jsp").include(request, response);
         }

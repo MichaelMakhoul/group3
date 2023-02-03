@@ -13,12 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
-              type='text/css'>
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/register.css" rel="stylesheet">
     </head>
@@ -26,7 +22,15 @@
     <body class="tm-gray-bg">
         <%
             String exist = (String) session.getAttribute("error");
+            String emailError = (String) session.getAttribute("emailError");
+            String passError = (String) session.getAttribute("passError");
+            String dobError = (String) session.getAttribute("dobError");
+            String phoneError = (String) session.getAttribute("phoneError");
             session.removeAttribute("error");
+            session.removeAttribute("emailError");
+            session.removeAttribute("passError");
+            session.removeAttribute("dobError");
+            session.removeAttribute("phoneError");
         %>
         <div class="tm-header">
             <div class="container1">
@@ -55,9 +59,9 @@
                 <div class="screen__content">
                     <form class="register" method="POST" action="RegisterServlet">
                         <label for="registerOptions">Register as:</label>
-                        <select name="registerOptions" id="registerOptions">                            
-                            <option value="staff">Staff</option>
+                        <select name="registerOptions" id="registerOptions">
                             <option value="customer">Customer</option>
+                            <option value="staff">Staff</option>                            
                         </select>
                         <div class="register__field">
                             <i class="register__icon fas fa-user"></i>
@@ -67,33 +71,29 @@
                         <div class="register__field">
                             <i class="register__icon fas fa-user"></i>
                             <input type="email" name="email" class="register__input" placeholder="Email">
+                            <span class="message"><%= (emailError != null) ? emailError : ""%></span>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
                             <input type="password" name="password" class="register__input" placeholder="Password">
+                            <span class="message"><%= (passError != null) ? passError : ""%></span>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
                             <input type="date" name="dob" class="register__input" placeholder="DOB">
+                            <span class="message"><%= (dobError != null) ? dobError : ""%></span>
                         </div>
 
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
                             <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
+                            <span class="message"><%= (phoneError != null) ? phoneError : ""%></span>
                         </div>
                         <button class="button register__submit">
                             <span class="button__text">Sign Up Now</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
                     </form>
-<!--                    <div class="social-register">
-                        <h3>sing up via</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-register__icon fab fa-instagram"></a>
-                            <a href="#" class="social-register__icon fab fa-facebook"></a>
-                            <a href="#" class="social-register__icon fab fa-twitter"></a>
-                        </div>
-                    </div>-->
                 </div>
                 <div class="screen__background">
                     <span class="screen__background__shape screen__background__shape4"></span>
