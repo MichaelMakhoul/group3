@@ -36,10 +36,6 @@ public class LoginServlet extends HttpServlet {
         String loginOptions = request.getParameter("loginOptions");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
-//        String loginOptions = "customer";
-//        String email = "jamess@gmail.com";
-//        String password = "Helloworld123";
 
         CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
         StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
@@ -58,8 +54,9 @@ public class LoginServlet extends HttpServlet {
 
             if (customer != null) {
                 user = true;
-                session.setAttribute("userType", customer);
-                request.getRequestDispatcher("customerMain.jsp").include(request, response);
+                session.setAttribute("userType", "customer");
+                session.setAttribute("user", customer);
+                request.getRequestDispatcher("main.jsp").include(request, response);
             }
 
         } else if (loginOptions.equals("staff")) {
@@ -72,9 +69,9 @@ public class LoginServlet extends HttpServlet {
 
             if (staff != null) {
                 user = true;
-                session.setAttribute("userType", staff);
-                session.setAttribute("staff", staff);
-                request.getRequestDispatcher("staffMain.jsp").include(request, response);
+                session.setAttribute("userType", "staff");
+                session.setAttribute("user", staff);
+                request.getRequestDispatcher("main.jsp").include(request, response);
             }
 
         } else if (loginOptions.equals("manager")) {
@@ -87,8 +84,9 @@ public class LoginServlet extends HttpServlet {
 
             if (manager != null) {
                 user = true;
-                session.setAttribute("userType", manager);
-                request.getRequestDispatcher("managerMain.jsp").include(request, response);
+                session.setAttribute("userType", "manager");
+                session.setAttribute("user", manager);
+                request.getRequestDispatcher("main.jsp").include(request, response);
             }
 
         } else {
