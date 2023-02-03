@@ -22,15 +22,7 @@
     <body class="tm-gray-bg">
         <%
             String exist = (String) session.getAttribute("error");
-            String emailError = (String) session.getAttribute("emailError");
-            String passError = (String) session.getAttribute("passError");
-            String dobError = (String) session.getAttribute("dobError");
-            String phoneError = (String) session.getAttribute("phoneError");
             session.removeAttribute("error");
-            session.removeAttribute("emailError");
-            session.removeAttribute("passError");
-            session.removeAttribute("dobError");
-            session.removeAttribute("phoneError");
         %>
         <div class="tm-header">
             <div class="container1">
@@ -71,23 +63,19 @@
                         <div class="register__field">
                             <i class="register__icon fas fa-user"></i>
                             <input type="email" name="email" class="register__input" placeholder="Email">
-                            <span class="message"><%= (emailError != null) ? emailError : ""%></span>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
                             <input type="password" name="password" class="register__input" placeholder="Password">
-                            <span class="message"><%= (passError != null) ? passError : ""%></span>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
                             <input type="date" name="dob" class="register__input" placeholder="DOB">
-                            <span class="message"><%= (dobError != null) ? dobError : ""%></span>
                         </div>
 
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
                             <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
-                            <span class="message"><%= (phoneError != null) ? phoneError : ""%></span>
                         </div>
                         <button class="button register__submit">
                             <span class="button__text">Sign Up Now</span>

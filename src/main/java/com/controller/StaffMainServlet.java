@@ -6,8 +6,7 @@
 package com.controller;
 
 import com.model.Customers;
-import com.model.Users;
-import com.model.dao.UserDAO;
+import com.model.dao.CustomerDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,11 +29,11 @@ public class StaffMainServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
 //        StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
-        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
         try {
-            Users customers = new Users();
-            customers.addAll(userDAO.getUsers("customer"));
-            session.setAttribute("users", customers);
+            Customers customers = new Customers();
+            customers.addAll(customerDAO.getCustomers());
+            session.setAttribute("customers", customers);
             request.getRequestDispatcher("customers.jsp").include(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(StaffMainServlet.class.getName()).log(Level.SEVERE, null, ex);
