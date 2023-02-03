@@ -5,10 +5,9 @@
  */
 package com.controller;
 
-import com.model.dao.CustomerDAO;
 import com.model.dao.ManagerDAO;
 import com.model.dao.SqlDBConnector;
-import com.model.dao.StaffDAO;
+import com.model.dao.UserDAO;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -28,20 +27,16 @@ import javax.servlet.http.HttpSession;
 public class InitServlet extends HttpServlet {
 private SqlDBConnector sqlDBConnector;
     private Connection connection;
-    private CustomerDAO customerDAO;
+    private UserDAO userDAO;
     private ManagerDAO managerDAO;
-    private StaffDAO staffDAO;
-
- 
 
     @Override
     public void init() {
         try {
             sqlDBConnector = new SqlDBConnector();
             connection = sqlDBConnector.connection();
-            customerDAO= new CustomerDAO(connection);
+            userDAO= new UserDAO(connection);
             managerDAO= new ManagerDAO(connection);
-            staffDAO= new StaffDAO(connection);
         } catch (IOException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -71,17 +66,11 @@ private SqlDBConnector sqlDBConnector;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.setAttribute("customerDAO", customerDAO);
         session.setAttribute("managerDAO", managerDAO);
-        session.setAttribute("staffDAO", staffDAO);
+        session.setAttribute("userDAO", userDAO);
         
     }
 
- 
-
-    /**
-     * 
-     */
     @Override
     public void destroy() {
         try {
