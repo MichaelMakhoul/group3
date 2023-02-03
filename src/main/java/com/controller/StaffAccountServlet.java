@@ -5,9 +5,9 @@
  */
 package com.controller;
 
-import com.model.dao.StaffDAO;
+
+import com.model.dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class StaffAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession session = request.getSession();
-            StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+            UserDAO staffDAO = (UserDAO) session.getAttribute("staffDAO");
             String submitted = request.getParameter("submitted");
             String staffEmail = request.getParameter("email");
             

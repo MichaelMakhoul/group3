@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.model.Customer;
-import com.model.dao.CustomerDAO;
+import com.model.User;
+import com.model.dao.UserDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,23 +19,27 @@ import javax.servlet.http.HttpSession;
 public class CustomerDeleteServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        int ID = Integer.parseInt(request.getParameter("ID"));
-        String userType = (String) session.getAttribute("userType");
+//        int ID = Integer.parseInt(request.getParameter("ID"));
+        User user = (User) session.getAttribute("user");
 
-        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+//        String userType = user.getType();
+        int ID = user.getID();
 
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+
+//        userDAO.delete("customer", ID)
         try {
-            customerDAO.delete(ID);
+            userDAO.delete("customer", ID);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (userType.equals("staff")) {
-            request.getRequestDispatcher("staffMain.jsp").include(request, response);
-        }
+
+//        if (userType.equals("staff")) {
+            request.getRequestDispatcher("index.jsp").include(request, response);
+//        }
     }
 }
