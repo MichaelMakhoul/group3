@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
 public class InitServlet extends HttpServlet {
 private SqlDBConnector sqlDBConnector;
     private Connection connection;
-    private CustomerDAO customerDAO;
+    private UserDAO userDAO;
     private ManagerDAO managerDAO;
     private BookingsDAO bookingsDAO;
 
@@ -37,7 +37,7 @@ private SqlDBConnector sqlDBConnector;
         try {
             sqlDBConnector = new SqlDBConnector();
             connection = sqlDBConnector.connection();
-            customerDAO= new CustomerDAO(connection);
+            userDAO= new UserDAO(connection);
             managerDAO= new ManagerDAO(connection);
             bookingsDAO = new BookingsDAO(connection);
         } catch (IOException ex) {
@@ -69,18 +69,12 @@ private SqlDBConnector sqlDBConnector;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.setAttribute("customerDAO", customerDAO);
         session.setAttribute("managerDAO", managerDAO);
         session.setAttribute("userDAO", userDAO);
         session.setAttribute("bookingsDAO", bookingsDAO);
         
     }
 
- 
-
-    /**
-     * 
-     */
     @Override
     public void destroy() {
         try {

@@ -1,9 +1,7 @@
 package com.controller;
 
-import com.model.Customer;
-import com.model.Staff;
-import com.model.dao.CustomerDAO;
-import com.model.dao.StaffDAO;
+import com.model.User;
+import com.model.dao.UserDAO;
 import com.utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,21 +37,20 @@ public class CreateAccountServlet extends HttpServlet {
 
         boolean validRegex = (email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx));
 
-        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
-        StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+        UserDAO customerDAO = (UserDAO) session.getAttribute("customerDAO");
 
         String userType = (String) session.getAttribute("userType");
 
         if (userType.equals("staff")) {
             if (validRegex) {
                 try {
-                    Customer customer = customerDAO.getCustomer(email);
+                    User customer = customerDAO.getUser(email, "customer");
                     if (customer != null) {
                         session.setAttribute("message", "Customer already exists");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     } else {
 
-                        customerDAO.create(name, email, password, dob, phoneNumber);
+                        customerDAO.create(userType, name, email, password, dob, phoneNumber);
                         session.setAttribute("message", "Customer created successfully");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     }
@@ -64,24 +61,6 @@ public class CreateAccountServlet extends HttpServlet {
                 request.getRequestDispatcher("createAccount.jsp").include(request, response);
             }
         } else if (userType.equals("manager")) {
-             if (validRegex) {
-                try {
-                    Staff staff = staffDAO.getStaff(email);
-                    if (staff != null) {
-                        session.setAttribute("message", "Staff already exists");
-                        request.getRequestDispatcher("createAccount.jsp").include(request, response);
-                    } else {
-
-                        staffDAO.create(name, email, password, dob, phoneNumber);
-                        session.setAttribute("message", "Staff added successfully");
-                        request.getRequestDispatcher("createAccount.jsp").include(request, response);
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(CreateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                request.getRequestDispatcher("createAccount.jsp").include(request, response);
-            }
 
         }
 
