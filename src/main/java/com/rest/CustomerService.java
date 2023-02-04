@@ -2,8 +2,9 @@ package com.rest;
 
 import com.model.Customer;
 import com.model.Customers;
-import com.model.dao.CustomerDAO;
+import com.model.User;
 import com.model.dao.SqlDBConnector;
+import com.model.dao.UserDAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,50 +20,39 @@ import javax.xml.bind.JAXBException;
  *
  * @author 236351
  */
-@Path("sqlapi")
+@Path("customerapi")
 public class CustomerService {
 
-<<<<<<< HEAD
-//    @GET
-//    @Path("customers") //http://localhost:8080/group3/rest/sqlapi/customers
-//    @Produces(MediaType.APPLICATION_XML)
-//    public Customers customers() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-//        UserDAO customerDAO = new UserDAO(new SqlDBConnector().connection());
-//        Customers customers = new Customers();
-//        customers.addAll(customerDAO.getUsers("customer"));
-//        return customers;
-//    }
-=======
     @GET
-    @Path("customers") //http://localhost:8080/group3/rest/sqlapi/customers
+    @Path("customers") //http://localhost:8080/group3/rest/customerapi/customers
     @Produces(MediaType.APPLICATION_XML)
     public Customers customers() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        CustomerDAO customerDAO = new CustomerDAO(new SqlDBConnector().connection());
+        UserDAO customerDAO = new UserDAO(new SqlDBConnector().connection());
         Customers customers = new Customers();
-        customers.addAll(customerDAO.getCustomers());
+        customers.addAll(customerDAO.getUsers("customer"));
         return customers;
     }
->>>>>>> 762683202dc16a9ee88361267411ae4d82b2ad39
 
     @GET
-    @Path("customer/{ID}") //http://localhost:8080/group3/rest/sqlapi/customer/1001
+    @Path("customer/{ID}") //http://localhost:8080/group3/rest/customerapi/customer/1001
     @Produces(MediaType.APPLICATION_XML)
-    public Customers Customer(@PathParam("ID") int ID) throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
-        CustomerDAO customerDAO = new CustomerDAO(new SqlDBConnector().connection());
-
-        Customer customer = customerDAO.getCustomer(ID);
-        Customers customers = new Customers();
-        customers.add(customer);
+    public Customers customer(@PathParam("ID") int ID) throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
+        UserDAO customerDAO = new UserDAO(new SqlDBConnector().connection());
+        Customers customers = new Customers();        
+        User user = customerDAO.getUser(ID, "customer");       
+        customers.add(user);
         return customers;
     }
 
     @GET
-    @Path("addcustomer") //http://localhost:8080/group3/rest/sqlapi/addcustomer
+    @Path("addcustomer") //http://localhost:8080/group3/rest/customerapi/addcustomer
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response Customer() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        CustomerDAO customerDAO = new CustomerDAO(new SqlDBConnector().connection());
-        customerDAO.create("Robert Michelakos", "rob.m@example.com", "Helloworld123", "1989-04-06", "0419364236");
-        Customer customer = customerDAO.login("rob.m@example.com", "Helloworld123");
-        return Response.status(200).entity(customer).build();
+    public Response addCustomer() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        UserDAO customerDAO = new UserDAO(new SqlDBConnector().connection());
+        Customers customers = new Customers(); 
+        customerDAO.create("customer", "Robert Michelakos", "rob.m@example.com", "Helloworld123", "1989-04-06", "0419364236");
+        User customer = customerDAO.login("rob.m@example.com", "Helloworld123","customer");
+        customers.add(customer);
+        return Response.status(200).entity(customers).build();
     }
 }

@@ -41,10 +41,13 @@
                 </div>
             </div>	  	
         </div>
-        <% String userType = (String) session.getAttribute("userType");
-            if (userType.equals("customer")) { %>
-        <% Customer customer = (Customer) session.getAttribute("user");%>
-        <h1 class="welcome_message">Welcome <%= (customer != null) ? customer.getCustomerName() : ""%></h1>
+
+        <% 
+            User user = (User) session.getAttribute("user");
+            String userType = (String) session.getAttribute("userType");
+            if (user.getType().equals("customer")) {
+        %>
+        <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
@@ -73,7 +76,6 @@
                     <img src="img/Prof.png" alt="image" class="img-responsive">
                     <a href="#">
                         <div class="tm-red-gradient-bg tm-city-price-container">
-                            <!--                        <span>User's Profile</span>-->
                             <span><li><a href="account.jsp">User's Profile</a></li></span>
                         </div>	
                     </a>					

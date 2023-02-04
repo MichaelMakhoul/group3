@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format enter \"+[Contry Code] [Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx) && email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx) && phoneNumber.matches(Utils.phoneRegEx));
 
@@ -56,10 +56,10 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("error", error);
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    customerDAO.create(name, email, password, dob, phoneNumber);
-                    customer = customerDAO.getCustomer(email);
-                    session.setAttribute("userType", "customer");
-                    session.setAttribute("user", customer);
+                    userDAO.create(registerOptions,name, email, password, dob, phoneNumber);
+                    user = userDAO.getUser(email, registerOptions);
+                    user.setType(registerOptions);
+                    session.setAttribute("user", user);
                     request.getRequestDispatcher("main.jsp").include(request, response);
                 }
             } catch (SQLException ex) {

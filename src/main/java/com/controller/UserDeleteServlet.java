@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.model.User;
+import com.model.dao.BookingsDAO;
 import com.model.dao.UserDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,28 +19,26 @@ import javax.servlet.http.HttpSession;
  */
 public class UserDeleteServlet extends HttpServlet {
 
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//
-////        int ID = Integer.parseInt(request.getParameter("ID"));
-//        User user = (User) session.getAttribute("user");
-//
-////        String userType = user.getType();
-//        int ID = user.getID();
-//
-//        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-//
-////        userDAO.delete("customer", ID)
-//        try {
-//            userDAO.delete(userType, ID);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UserDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-////        if (userType.equals("staff")) {
-//            request.getRequestDispatcher("index.jsp").include(request, response);
-////        }
-//    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+        User user = (User) session.getAttribute("user");
+        String userType = user.getType();
+        
+        
+        if(userType != null){
+            try {
+                BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
+                bookingsDAO.deleteBookingbyCustomerID(user.getID());
+                userDAO.delete(userType, user.getID());
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }            
+            session.invalidate();
+            request.getRequestDispatcher("index.jsp").include(request, response);
+        }
+    
+}
 }
