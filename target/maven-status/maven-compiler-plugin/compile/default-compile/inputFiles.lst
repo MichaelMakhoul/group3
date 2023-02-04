@@ -2,6 +2,7 @@ C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\con
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\StaffMainServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Staff.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Bookings.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\UserDeleteServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Rooms.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\rest\CustomerService.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\rest\client\UserServiceClient.java
@@ -20,10 +21,8 @@ C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\mod
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\RoomDAO.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Room.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\ManagerDAO.java
-C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\CustomerDAO.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\LoginServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Reports.java
-C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\StaffDAO.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\UserUpdateServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Booking.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Report.java
@@ -31,14 +30,11 @@ C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\con
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\rest\StaffService.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Staffs.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\CreateAccountServlet.java
-C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\StaffAccountServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\SqlDBConnector.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\UserDAO.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Customer.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\StaffViewServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\ReportSqlDAO.java
-C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\CustomerUpdate.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\rest\RoomsService.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\ManagerMainServlet.java
-C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\CustomerDeleteServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Managers.java

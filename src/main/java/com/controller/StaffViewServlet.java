@@ -4,9 +4,13 @@ import com.model.Customer;
 import com.model.Customers;
 import com.model.User;
 import com.model.Users;
+import com.model.dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +29,10 @@ public class StaffViewServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         try ( PrintWriter out = response.getWriter()) {
-            Users users = (Users) session.getAttribute("customers");
-            List<User> usersList = users.getUsers();
+//            Users users = (Users) session.getAttribute("customers");
+            UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+//            Users users = 
+            List<User> usersList = userDAO.getUsers("customer");
             for (User user : usersList) {
 
                 out.println("<style>\n"
@@ -47,12 +53,14 @@ public class StaffViewServlet extends HttpServlet {
 
                 out.println("<tr class=\"users_table_tr\">");
                 out.println("<td class=\"users_table_td\">" + user.getID() + "</td>");
-                out.println("<td class=\"users_table_td\">" + user.getName() + "</td>");
+                out.println("<td class=\"users_table_td\">" + user.getName() + "</td>");        
                 out.println("<td class=\"users_table_td\"> <a href=http://localhost:8080/group3/MainServlet?emailView="+ user.getEmail() + "/>" + user.getEmail() + "</a></td>");
                 out.println("<td class=\"users_table_td\">" + user.getPhone() + "</td>");
                 out.println("<td class=\"users_table_td\">" + user.getDOB() + "</td>");
                 out.println("</tr>");
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffViewServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
