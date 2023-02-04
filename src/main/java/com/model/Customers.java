@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "customers")
-public class Customers implements Serializable{
+public class Customers extends Users implements Serializable{
     @XmlElement(name = "customer")
     private List<Customer> customers = new ArrayList();
 
@@ -30,9 +30,9 @@ public class Customers implements Serializable{
         this.customers.add(customer);
     }
     
-    public void addAll(List<Customer> temp){
-        this.customers.addAll(temp);
-    }
+//    public void addAll(List<Customer> temp){
+//        this.customers.addAll(temp);
+//    }
 
     public List<Customer> getCustomers() {
         return customers;

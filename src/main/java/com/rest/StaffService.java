@@ -2,7 +2,6 @@ package com.rest;
 
 import com.model.Staffs;
 import com.model.dao.SqlDBConnector;
-import com.model.dao.StaffDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.ws.rs.GET;
@@ -17,13 +16,13 @@ import javax.ws.rs.core.MediaType;
 @Path("staffapi")
 public class StaffService {
     
-    @GET
-    @Path("staffs")  //http://localhost:8080/group3/rest/staffapi/staffs
-    @Produces(MediaType.APPLICATION_XML)
-    public Staffs staffs() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
-        StaffDAO staffDAO = new StaffDAO(new SqlDBConnector().connection());
-        Staffs staffs = new Staffs();
-        staffs.addAll(staffDAO.getStaffs());
-        return staffs;
-    }
+//    @GET
+//    @Path("staffs")  //http://localhost:8080/group3/rest/staffapi/staffs
+//    @Produces(MediaType.APPLICATION_XML)
+//    public Staffs staffs() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
+//        StaffDAO staffDAO = new StaffDAO(new SqlDBConnector().connection());
+//        Staffs staffs = new Staffs();
+//        staffs.addAll(staffDAO.getStaffs());
+//        return staffs;
+//    }
 }

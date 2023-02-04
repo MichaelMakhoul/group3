@@ -94,7 +94,7 @@ public class UserDAO {
         String query = "DELETE FROM tgsdb." + userType + " WHERE ID='" + ID + "'";
         st.execute("SET FOREIGN_KEY_CHECKS=0");
         st.executeUpdate(query);
-        
+        st.execute("SET FOREIGN_KEY_CHECKS=1");
 //        int row = deleteSt.executeUpdate();
         
 //        System.out.println("Row " + rs + " has been successflly deleted");

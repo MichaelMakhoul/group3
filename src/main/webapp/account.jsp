@@ -4,6 +4,8 @@
     Author     : 236336
 --%>
 
+<%@page import="com.model.dao.UserDAO"%>
+<%@page import="com.model.User"%>
 <%@page import="com.model.Customer"%>
 <%@page import="com.model.Staff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -41,14 +43,22 @@
                 </div>
             </div>	  	
         </div>
+
         <%
-            String userType = (String) session.getAttribute("userType");
-            if (userType.equals("customer")) { %>
-        <% Customer customer = (Customer) session.getAttribute("user");%>
+            String emailView = request.getParameter("emailView");
+            UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+            User user = (User) session.getAttribute("user");
+            String toUpdate = (user.getType().equals("staff")) ? "customer" : "staff";
+
+            if (emailView != null) {
+                user = userDAO.getUser(emailView, toUpdate);
+            }
+        %>
+
         <div>
             <div>
-                <h2>Name: <%= (customer != null) ? customer.getCustomerName() : ""%></h2>
-                <p><br>ID :<%= (customer != null) ? customer.getCustomerID() : ""%></p>                           
+                <h2>Name: <%= (user != null) ? user.getName() : ""%></h2>
+                <p><br>ID :<%= (user != null) ? user.getID() : ""%></p>                           
             </div>
             <div>
                 <div>
