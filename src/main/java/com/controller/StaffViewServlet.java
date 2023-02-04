@@ -36,13 +36,13 @@ public class StaffViewServlet extends HttpServlet {
             for (User user : usersList) {
 
                 out.println("<style>\n"
-                        + ".customers_table_tr {\n"
+                        + ".users_table_tr {\n"
                         + "    transition: background 0.25s ease;\n"
                         + "}"
-                        + ".customers_table_tr:hover {\n"
+                        + ".users_table_tr:hover {\n"
                         + "    background: #014055;\n"
                         + "}"
-                        + ".customers_table_td {\n"
+                        + ".users_table_td {\n"
                         + "    color: #fff;\n"
                         + "    font-weight: 400;\n"
                         + "    padding: 0.65em 1em;\n"

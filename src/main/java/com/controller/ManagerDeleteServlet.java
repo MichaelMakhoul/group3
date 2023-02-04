@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author 236333
  */
-public class ManagerDeleteServlet extends HttpServlet {
-
+public class ManagerDeleteServlet extends HttpServlet  {
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,10 +51,11 @@ public class ManagerDeleteServlet extends HttpServlet {
 
         if (emailView != null) {
             request.getRequestDispatcher("adminView.jsp").include(request, response);
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("index.jsp").include(request, response);
-        }
-    }
-
+      } else {
+           session.invalidate();
+          request.getRequestDispatcher("index.jsp").include(request, response);
+      }
+  }
+ 
+    
 }

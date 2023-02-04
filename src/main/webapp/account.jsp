@@ -66,47 +66,21 @@
                     <div>                        
                         <div>
                             <h4>Email</h4>
-                            <p><%= (customer != null) ? customer.getCustomerEmail() : ""%></p>
+                            <p><%= (user != null) ? user.getEmail() : ""%></p>
                         </div>
                         <div>
                             <h4>DOB</h4>
-                            <p><%= (customer != null) ? customer.getCustomerDOB() : ""%></p>
+                            <p><%= (user != null) ? user.getDOB() : ""%></p>
                         </div>
                         <div>
                             <h4>Phone Number</h4>
-                            <p><%= (customer != null) ? customer.getCustomerPhone() : ""%></p>
+                            <p><%= (user != null) ? user.getPhone() : ""%></p>
                         </div>
+                        <li><a href="UserUpdateServlet">Update</a></li>
+                        <li><a href="CustomerDeleteServlet">Delete</a></li>
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-            <% } else if (userType.equals("staff")) { %>
-            <% Staff staff = (Staff) session.getAttribute("user");%>
-            <div>
-                <h2>Name: <%= (staff != null) ? staff.getStaffName() : ""%></h2>
-                <p><br>ID :<%= (staff != null) ? staff.getStaffID() : ""%></p>                           
-            </div>
-            <div>
-                <div>
-                    <h3>Information</h3>
-                    <div>                        
-                        <div>
-                            <h4>Email</h4>
-                            <p><%= (staff != null) ? staff.getStaffEmail() : ""%></p>
-                        </div>
-                        <div>
-                            <h4>DOB</h4>
-                            <p><%= (staff != null) ? staff.getStaffDOB() : ""%></p>
-                        </div>
-                        <div>
-                            <h4>Phone Number</h4>
-                            <p><%= (staff != null) ? staff.getStaffPhone() : ""%></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <% }%>
     </body>
 </html>

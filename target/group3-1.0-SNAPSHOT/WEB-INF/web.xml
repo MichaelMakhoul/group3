@@ -18,6 +18,10 @@
         <servlet-class>com.controller.CreateAccountServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UserUpdateServlet</servlet-name>
+        <servlet-class>com.controller.UserUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CustomerDeleteServlet</servlet-name>
         <servlet-class>com.controller.UserDeleteServlet</servlet-class>
     </servlet>
@@ -94,6 +98,10 @@
     <servlet-mapping>
         <servlet-name>CreateAccountServlet</servlet-name>
         <url-pattern>/CreateAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserUpdateServlet</servlet-name>
+        <url-pattern>/UserUpdateServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerDeleteServlet</servlet-name>
