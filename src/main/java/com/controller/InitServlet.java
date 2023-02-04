@@ -27,16 +27,20 @@ import javax.servlet.http.HttpSession;
 public class InitServlet extends HttpServlet {
 private SqlDBConnector sqlDBConnector;
     private Connection connection;
-    private UserDAO userDAO;
+    private CustomerDAO customerDAO;
     private ManagerDAO managerDAO;
+    private StaffDAO staffDAO;
+
+ 
 
     @Override
     public void init() {
         try {
             sqlDBConnector = new SqlDBConnector();
             connection = sqlDBConnector.connection();
-            userDAO= new UserDAO(connection);
+            customerDAO= new CustomerDAO(connection);
             managerDAO= new ManagerDAO(connection);
+            staffDAO= new StaffDAO(connection);
         } catch (IOException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -66,11 +70,17 @@ private SqlDBConnector sqlDBConnector;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.setAttribute("customerDAO", customerDAO);
         session.setAttribute("managerDAO", managerDAO);
-        session.setAttribute("userDAO", userDAO);
+        session.setAttribute("staffDAO", staffDAO);
         
     }
 
+ 
+
+    /**
+     * 
+     */
     @Override
     public void destroy() {
         try {

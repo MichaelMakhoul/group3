@@ -3,7 +3,6 @@
     Created on : 28-Jan-2023, 10:31:34 AM
     Author     : 236336
 --%>
-<%@page import="com.model.User"%>
 <%@page import="com.model.Manager"%>
 <%@page import="com.model.Customer"%>
 <%@page import="com.model.Staff"%>
@@ -21,7 +20,7 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-<!--        <div class="tm-header">
+        <div class="tm-header">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
@@ -41,14 +40,11 @@
                     </div>				
                 </div>
             </div>	  	
-        </div>-->
-
-        <% 
-            User user = (User) session.getAttribute("user");
-            String userType = (String) session.getAttribute("userType");
-            if (user.getType().equals("customer")) {
-        %>
-        <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
+        </div>
+        <% String userType = (String) session.getAttribute("userType");
+            if (userType.equals("customer")) { %>
+        <% Customer customer = (Customer) session.getAttribute("user");%>
+        <h1 class="welcome_message">Welcome <%= (customer != null) ? customer.getCustomerName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
@@ -84,13 +80,14 @@
                 </div>				
             </div>
         </div>
-        <% } else if (user.getType().equals("staff")) { %>
-        <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
+        <% } else if (userType.equals("staff")) { %>
+        <% Staff staff = (Staff) session.getAttribute("user");%>
+        <h1 class="welcome_message">Welcome <%= (staff != null) ? staff.getStaffName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="createAccount.jsp">
+                    <a href="#">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>Create a New Customer Account</span>
                             <!--                        <span>$4,200</span>-->
@@ -101,7 +98,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="StaffMainServlet">
+                    <a href="#">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View the list of customers</span>
                             <!--                        <span>$4,200</span>-->
@@ -125,7 +122,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="addStaff.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>Create a New Staff Account</span>
                             <!--                        <span>$4,200</span>-->
@@ -136,7 +133,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="viewAllStaff.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View the list of staff</span>
                         </div>	

@@ -21,24 +21,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "customers")
 public class Customers implements Serializable{
     @XmlElement(name = "customer")
-    private List<User> customers = new ArrayList();
+    private List<Customer> customers = new ArrayList();
 
     public Customers() {
     }
     
-    public void add(User customer){
+    public void add(Customer customer){
         this.customers.add(customer);
     }
     
-    public void addAll(List<User> temp){
+    public void addAll(List<Customer> temp){
         this.customers.addAll(temp);
     }
 
-    public List<User> getCustomers() {
+    public List<Customer> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(List<User> customers) {
+    public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
     

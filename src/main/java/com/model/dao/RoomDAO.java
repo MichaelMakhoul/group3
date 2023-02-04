@@ -36,33 +36,6 @@ public class RoomDAO {
         this.deleteSt = connection.prepareStatement(deleteQy);
     }
     
-    /**
-     *
-     * @param roomID
-     * @return
-     */
-    public Room getRoombyID(int roomID) {
-        String qy = "SELECT * FROM tgsdb.room where `room_ID`=" + roomID;
-        try {
-            ResultSet rs = st.executeQuery(qy);
-            while (rs.next()) {
-                int id = Integer.parseInt(rs.getString(1));
-                if (id == roomID) {
-                    String roomNo = rs.getString(2);
-                    String roomType = rs.getString(3);
-                    String roomImageUrl = rs.getString(4);
-                    String roomDesc = rs.getString(5);
-                    int roomPrice = Integer.parseInt(rs.getString(6));
-                    return new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-        return null;
-    }
-
     public int getAvailableRoomsCountbyType(String checkIn, String checkOut, String roomType){
         List<Room> rooms = getAvailableRooms(checkIn, checkOut);
         return (int)rooms.stream().filter(room -> room.matchType(roomType)).count();

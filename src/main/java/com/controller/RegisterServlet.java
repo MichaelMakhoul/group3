@@ -5,9 +5,10 @@
  */
 package com.controller;
 
-import com.model.User;
-import com.model.dao.UserDAO;
-import com.utils.Utils;
+import com.model.Customer;
+import com.model.Staff;
+import com.model.dao.CustomerDAO;
+import com.model.dao.StaffDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -48,17 +49,17 @@ public class RegisterServlet extends HttpServlet {
 
           if (validRegex) {
             try {
-                UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-                User user = userDAO.getUser(email, registerOptions);
-                if (user != null) {
+                CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+                Customer customer = customerDAO.getCustomer(email);
+                if (customer != null) {
                     error = "User already exists";
                     session.setAttribute("error", error);
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    userDAO.create(name, email, password, dob, phoneNumber, registerOptions);
-                    user = userDAO.getUser(email, registerOptions);
-                    user.setType(registerOptions);
-                    session.setAttribute("user", user);
+                    customerDAO.create(name, email, password, dob, phoneNumber);
+                    customer = customerDAO.getCustomer(email);
+                    session.setAttribute("userType", "customer");
+                    session.setAttribute("user", customer);
                     request.getRequestDispatcher("main.jsp").include(request, response);
                 }
             } catch (SQLException ex) {
