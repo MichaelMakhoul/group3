@@ -5,6 +5,7 @@
  */
 package com.controller;
 
+import com.model.dao.BookingsDAO;
 import com.model.dao.ManagerDAO;
 import com.model.dao.SqlDBConnector;
 import com.model.dao.UserDAO;
@@ -29,6 +30,7 @@ private SqlDBConnector sqlDBConnector;
     private Connection connection;
     private UserDAO userDAO;
     private ManagerDAO managerDAO;
+    private BookingsDAO bookingsDAO;
 
     @Override
     public void init() {
@@ -37,6 +39,7 @@ private SqlDBConnector sqlDBConnector;
             connection = sqlDBConnector.connection();
             userDAO= new UserDAO(connection);
             managerDAO= new ManagerDAO(connection);
+            bookingsDAO = new BookingsDAO(connection);
         } catch (IOException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -68,6 +71,7 @@ private SqlDBConnector sqlDBConnector;
         HttpSession session = request.getSession();
         session.setAttribute("managerDAO", managerDAO);
         session.setAttribute("userDAO", userDAO);
+        session.setAttribute("bookingsDAO", bookingsDAO);
         
     }
 

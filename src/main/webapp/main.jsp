@@ -21,7 +21,7 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-<!--        <div class="tm-header">
+        <div class="tm-header">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
@@ -41,7 +41,7 @@
                     </div>				
                 </div>
             </div>	  	
-        </div>-->
+        </div>
 
         <% 
             User user = (User) session.getAttribute("user");
@@ -77,7 +77,6 @@
                     <img src="img/Prof.png" alt="image" class="img-responsive">
                     <a href="#">
                         <div class="tm-red-gradient-bg tm-city-price-container">
-                            <!--                        <span>User's Profile</span>-->
                             <span><li><a href="account.jsp">User's Profile</a></li></span>
                         </div>	
                     </a>					

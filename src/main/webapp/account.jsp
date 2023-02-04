@@ -4,9 +4,8 @@
     Author     : 236336
 --%>
 
+
 <%@page import="com.model.User"%>
-<%@page import="com.model.Customer"%>
-<%@page import="com.model.Staff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,13 +40,10 @@
                     </div>				
                 </div>
             </div>	  	
-        </div>
-        
+        </div>        
         <% 
             User user = (User) session.getAttribute("user");
-//            session.setAttribute("ID", user.getID());
-        %>
-        
+        %>        
         <div>
             <div>
                 <h2>Name: <%= (user != null) ? user.getName() : ""%></h2>
@@ -69,11 +65,12 @@
                             <h4>Phone Number</h4>
                             <p><%= (user != null) ? user.getPhone() : ""%></p>
                         </div>
-                        <li><a href="UserUpdateServlet">Update</a></li>
-                        <li><a href="UserDeleteServlet">Delete</a></li>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
+        <li><a href="userUpdate.jsp">Update</a></li>
+        <li><a href="UserDeleteServlet">Delete</a></li>
     </body>
 </html>

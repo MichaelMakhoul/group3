@@ -12,7 +12,7 @@ package com.utils;
 public class Utils {
 
     public static String nameRegEx = "\\b[A-Z][a-z]*( [A-Z][a-z]*)*\\b";
-    public static String emailRegEx = "[a-zA-Z0-9_%+-]+[.][a-zA-Z0-9_%+-]+@[a-zA-Z0-9-]+(.com)";
+    public static String emailRegEx = "[a-zA-Z0-9_%+-\\.]+@[a-zA-Z0-9-]+(.com)";
     public static String passRegEx = "[A-Z][A-Za-z]{5,}\\d{2,}";
     public static String dobRegEx = "\\d{4}-\\d{2}-\\d{2}";
     public static String phoneRegEx = "^\\+(?:[0-9] ?){6,14}[0-9]$";
