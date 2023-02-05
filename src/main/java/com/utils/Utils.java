@@ -5,6 +5,14 @@
  */
 package com.utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author 236351
@@ -23,6 +31,21 @@ public class Utils {
     // Check if the age is over 18
     public static String ageRegEx = "";
     
-    
+    public static int differenceInDays(String startDate, String endDate){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date firstDate = sdf.parse(startDate);
+            Date secondDate = sdf.parse(endDate);
+            
+            long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
+            long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+            
+            System.out.println("Diff : "+ diff);
+            return  (int)diff;
+        } catch (ParseException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
     
 }

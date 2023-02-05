@@ -5,8 +5,6 @@
 --%>
 <%@page import="com.model.User"%>
 <%@page import="com.model.Manager"%>
-<%@page import="com.model.Customer"%>
-<%@page import="com.model.Staff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -46,16 +44,27 @@
         <% 
             User user = (User) session.getAttribute("user");
             String userType = (String) session.getAttribute("userType");
-            if (user.getType().equals("customer")) {
+        //Attributes set during booking need to be reset
+           session.removeAttribute("available");
+           session.removeAttribute("drQty");
+           session.removeAttribute("frQty");
+           session.removeAttribute("esQty");
+           session.removeAttribute("checkInD");
+           session.removeAttribute("checkOutD");
+           session.removeAttribute("booking");           
+           session.removeAttribute("bookingsView");
+         //booking
+           
+           if (user.getType().equals("customer")) {
         %>
         <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="addBooking.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
-                            <span>Make your booking</span>
+                            <span>Add your booking</span>
                             <!--                        <span>$4,200</span>-->
                         </div>	
                     </a>					
@@ -64,7 +73,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="ShowBookingsServlet">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View your bookings</span>
                             <!--                        <span>$4,200</span>-->
@@ -114,6 +123,17 @@
                     <div class="tm-red-gradient-bg tm-city-price-container">
                         <span><li><a href="account.jsp">User's Profile</a></li></span>
                     </div>	
+                </div>				
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                    <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
+                    <a href="ShowBookingsServlet">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>View the list of Bookings</span>
+                            <!--                        <span>$4,200</span>-->
+                        </div>	
+                    </a>					
                 </div>				
             </div>
         </div>
