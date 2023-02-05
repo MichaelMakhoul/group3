@@ -25,6 +25,14 @@
         <servlet-name>CustomerDeleteServlet</servlet-name>
         <servlet-class>com.controller.UserDeleteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerUpdateServlet</servlet-name>
+        <servlet-class>com.controller.CustomerUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserAccountServlet</servlet-name>
+        <servlet-class>com.controller.UserAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InitServlet</servlet-name>
         <url-pattern>/InitServlet</url-pattern>
@@ -106,6 +114,14 @@
     <servlet-mapping>
         <servlet-name>CustomerDeleteServlet</servlet-name>
         <url-pattern>/CustomerDeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateServlet</servlet-name>
+        <url-pattern>/CustomerUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserAccountServlet</servlet-name>
+        <url-pattern>/UserAccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

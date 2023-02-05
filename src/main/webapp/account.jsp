@@ -21,6 +21,13 @@
         <link href="css/templatemo-style.css" rel="stylesheet">
     </head>
     <body>
+
+        <%
+            User userUpdate = (User) session.getAttribute("userUpdate");
+            User currentUser = (User) session.getAttribute("user");
+            User user = (userUpdate != null) ? userUpdate : currentUser;
+        %>
+
         <div class="tm-header">
             <div class="container">
                 <div class="row">
@@ -44,21 +51,10 @@
             </div>	  	
         </div>
 
-        <%
-            String emailView = request.getParameter("emailView");
-            UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-            User user = (User) session.getAttribute("user");
-            String toUpdate = (user.getType().equals("staff")) ? "customer" : "staff";
-
-            if (emailView != null) {
-                user = userDAO.getUser(emailView, toUpdate);
-            }
-        %>
-
         <div>
             <div>
                 <h2>Name: <%= (user != null) ? user.getName() : ""%></h2>
-                <p><br>ID :<%= (user != null) ? user.getID() : ""%></p>                           
+                <p><br>ID: <%= (user != null) ? user.getID() : ""%></p>                           
             </div>
             <div>
                 <div>
@@ -76,7 +72,7 @@
                             <h4>Phone Number</h4>
                             <p><%= (user != null) ? user.getPhone() : ""%></p>
                         </div>
-                        <li><a href="UserUpdateServlet">Update</a></li>
+                        <li><a href="userUpdate.jsp">Update</a></li>
                         <li><a href="CustomerDeleteServlet">Delete</a></li>
                     </div>
                 </div>

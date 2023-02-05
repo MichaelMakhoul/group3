@@ -50,6 +50,7 @@ public class LoginServlet extends HttpServlet {
 
             if (user != null) {
                 user.setType(loginOptions);
+                session.setAttribute("userType", loginOptions);
                 session.setAttribute("user", user);
                 request.getRequestDispatcher("main.jsp").include(request, response);
                 userExists = true;
