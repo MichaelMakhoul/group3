@@ -21,20 +21,20 @@ import java.util.List;
 public class UserDAO {
 
     private Statement st;
-    private PreparedStatement getUserByIDSt;
-    private PreparedStatement createSt;
+//    private PreparedStatement getUserByIDSt;
+//    private PreparedStatement createSt;
     private PreparedStatement updateSt;
 //    private PreparedStatement deleteSt;
 
-    private String getUserByIDQy = "SELECT * FROM tgsdb.? WHERE ID=?";
-    private String createQy = "INSERT INTO tgsdb.?(name, email, password, DOB, phone)" + "VALUES(?,?,?,?,?)";
+//    private String getUserByIDQy = "SELECT * FROM tgsdb.? WHERE ID=?";
+//    private String createQy = "INSERT INTO tgsdb.?(name, email, password, DOB, phone)" + "VALUES(?,?,?,?,?)";
     private String updateQy = "UPDATE tgsdb.? SET name=?, password=?, DOB=?, phone=? WHERE ID=?";
 //    private String deleteQy = "DELETE FROM ? WHERE ID=?";
 
     public UserDAO(Connection connection) throws SQLException {
         this.st = connection.createStatement();
-        this.getUserByIDSt = connection.prepareStatement(getUserByIDQy);
-        this.createSt = connection.prepareStatement(createQy);
+//        this.getUserByIDSt = connection.prepareStatement(getUserByIDQy);
+//        this.createSt = connection.prepareStatement(createQy);
         this.updateSt = connection.prepareStatement(updateQy);
 //        this.deleteSt = connection.prepareStatement(deleteQy);
     }
@@ -57,20 +57,11 @@ public class UserDAO {
         return temp;
     }
 
-    public void create(String userType, String name, String email, String password, String dob, String phone) throws SQLException {
-//        createSt.setString(1, userType);
-//        createSt.setString(2, name);
-//        createSt.setString(3, email);
-//        createSt.setString(4, password);
-//        createSt.setString(5, dob);
-//        createSt.setString(6, phone);
-//        createSt.executeUpdate();
-        String columns = "INSERT INTO tgsdb."+userType+"(name, email, password, DOB, phone)";
-        String values = "VALUES('" + name + "','" + email + "','" + password + "','" + dob + "','"+ phone +")";
+    public void create(String userType, String name, String email, String password, String dob, String phone) throws SQLException {       
+        String columns = "INSERT INTO tgsdb." + userType + "(name, email, password, DOB, phone)";
+        String values = "VALUES('" + name + "','" + email + "','" + password + "','" + dob + "','" + phone + "')";
         st.executeUpdate(columns + values);
 
-//        String query = "INSERT INTO tgsdb."+userType+"(name, email, password, DOB, phone)" + "VALUES(?,?,?,?,?)";
-//        st.executeUpdate(query);
     }
 
     public void update(String userType, String name, String password, String dob, String phone, int ID) throws SQLException {
@@ -94,10 +85,6 @@ public class UserDAO {
         String query = "DELETE FROM tgsdb." + userType + " WHERE ID='" + ID + "'";
         st.execute("SET FOREIGN_KEY_CHECKS=0");
         st.executeUpdate(query);
-        
-//        int row = deleteSt.executeUpdate();
-        
-//        System.out.println("Row " + rs + " has been successflly deleted");
     }
 
     public User login(String email, String password, String userType) throws SQLException {
@@ -119,9 +106,8 @@ public class UserDAO {
     }
 
     public User getUser(int ID, String userType) throws SQLException {
-        getUserByIDSt.setString(1, userType);
-        getUserByIDSt.setString(2, "" + ID);
-        ResultSet rs = getUserByIDSt.executeQuery();
+        String query = "SELECT * FROM tgsdb." + userType + " WHERE ID='" + ID + "'";
+        ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {
             ID = Integer.parseInt(rs.getString(1));

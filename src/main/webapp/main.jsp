@@ -3,9 +3,8 @@
     Created on : 28-Jan-2023, 10:31:34 AM
     Author     : 236336
 --%>
+<%@page import="com.model.User"%>
 <%@page import="com.model.Manager"%>
-<%@page import="com.model.Customer"%>
-<%@page import="com.model.Staff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,17 +40,31 @@
                 </div>
             </div>	  	
         </div>
-        <% String userType = (String) session.getAttribute("userType");
-            if (userType.equals("customer")) { %>
-        <% Customer customer = (Customer) session.getAttribute("user");%>
-        <h1 class="welcome_message">Welcome <%= (customer != null) ? customer.getCustomerName() : ""%></h1>
+
+        <% 
+            User user = (User) session.getAttribute("user");
+            String userType = (String) session.getAttribute("userType");
+        //Attributes set during booking need to be reset
+           session.removeAttribute("available");
+           session.removeAttribute("drQty");
+           session.removeAttribute("frQty");
+           session.removeAttribute("esQty");
+           session.removeAttribute("checkInD");
+           session.removeAttribute("checkOutD");
+           session.removeAttribute("booking");           
+           session.removeAttribute("bookingsView");
+         //booking
+           
+           if (user.getType().equals("customer")) {
+        %>
+        <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="addBooking.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
-                            <span>Make your booking</span>
+                            <span>Add your booking</span>
                             <!--                        <span>$4,200</span>-->
                         </div>	
                     </a>					
@@ -60,7 +73,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="ShowBookingsServlet">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View your bookings</span>
                             <!--                        <span>$4,200</span>-->
@@ -73,21 +86,19 @@
                     <img src="img/Prof.png" alt="image" class="img-responsive">
                     <a href="#">
                         <div class="tm-red-gradient-bg tm-city-price-container">
-                            <!--                        <span>User's Profile</span>-->
                             <span><li><a href="account.jsp">User's Profile</a></li></span>
                         </div>	
                     </a>					
                 </div>				
             </div>
         </div>
-        <% } else if (userType.equals("staff")) { %>
-        <% Staff staff = (Staff) session.getAttribute("user");%>
-        <h1 class="welcome_message">Welcome <%= (staff != null) ? staff.getStaffName() : ""%></h1>
+        <% } else if (user.getType().equals("staff")) { %>
+        <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="createAccount.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>Create a New Customer Account</span>
                             <!--                        <span>$4,200</span>-->
@@ -114,6 +125,17 @@
                     </div>	
                 </div>				
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                    <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
+                    <a href="ShowBookingsServlet">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>View the list of Bookings</span>
+                            <!--                        <span>$4,200</span>-->
+                        </div>	
+                    </a>					
+                </div>				
+            </div>
         </div>
         <% } else if (userType.equals("manager")) { %>
         <% Manager manager = (Manager) session.getAttribute("user");%>
@@ -122,7 +144,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="addStaff.jsp">
+                    <a href="#">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>Create a New Staff Account</span>
                             <!--                        <span>$4,200</span>-->
@@ -133,7 +155,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="viewAllStaff.jsp">
+                    <a href="#">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View the list of staff</span>
                         </div>	

@@ -31,7 +31,7 @@ public class RoomsService {
     }
     
     @GET
-    @Path("availRoomstype/{checkIn}/{checkOut}/{roomType}") //http://localhost:8080/group3/rest/api/customers
+    @Path("availRoomstype/{checkIn}/{checkOut}/{roomType}") //http://localhost:8080/group3/rest/roomapi/availRoomstype/{checkIn}/{checkOut}/{roomType}
     @Produces(MediaType.APPLICATION_XML)
     public Rooms availRoomstype(@PathParam("checkIn") String checkIn, @PathParam("checkOut") String checkOut, @PathParam("roomType") String roomType)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
@@ -42,7 +42,7 @@ public class RoomsService {
     }
     
     @GET
-    @Path("availRoomstypeCount/{checkIn}/{checkOut}/{roomType}") //http://localhost:8080/group3/rest/api/customers
+    @Path("availRoomstypeCount/{checkIn}/{checkOut}/{roomType}") //http://localhost:8080/group3/rest/roomapi/availRoomstypeCount/{checkIn}/{checkOut}/{roomType}
     @Produces(MediaType.TEXT_PLAIN)
     public String availRoomstypeCount(@PathParam("checkIn") String checkIn, @PathParam("checkOut") String checkOut, @PathParam("roomType") String roomType)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
@@ -52,7 +52,7 @@ public class RoomsService {
     }
     
     @GET
-    @Path("availrooms") //http://localhost:8080/group3/rest/api/customers
+    @Path("availRooms") //http://localhost:8080/group3/rest/roomapi/availRooms
     @Produces(MediaType.APPLICATION_XML)
     public Rooms availRooms()
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {

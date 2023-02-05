@@ -5,10 +5,8 @@
  */
 package com.controller;
 
-
-import com.model.Staff;
-
-import com.model.dao.StaffDAO;
+import com.model.Manager;
+import com.model.dao.ManagerDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -29,23 +27,23 @@ public class ManagerDeleteServlet extends HttpServlet  {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+        ManagerDAO managerDAO = (ManagerDAO) session.getAttribute("ManagerDAO");
         String emailView = (String) session.getAttribute("emailView");
 
-        Staff staff = null;
+        Manager manager = null;
         if (emailView != null) {
             try {
-                staff = staffDAO.getStaff(emailView);
+                manager = managerDAO.getManager(emailView);
             } catch (SQLException ex) {
                 Logger.getLogger(ManagerDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            staffDAO = (StaffDAO) session.getAttribute("user");
+            managerDAO = (ManagerDAO) session.getAttribute("user");
         }
 
-        if (staff != null) {
+        if (manager != null) {
             try {
-                staffDAO.delete(staff.getStaffID());
+                managerDAO.delete(manager.getManagerID());
             } catch (SQLException ex) {
                 Logger.getLogger(ManagerDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

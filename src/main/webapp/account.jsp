@@ -4,8 +4,8 @@
     Author     : 236336
 --%>
 
-<%@page import="com.model.Customer"%>
-<%@page import="com.model.Staff"%>
+
+<%@page import="com.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,15 +40,14 @@
                     </div>				
                 </div>
             </div>	  	
-        </div>
-        <%
-            String userType = (String) session.getAttribute("userType");
-            if (userType.equals("customer")) { %>
-        <% Customer customer = (Customer) session.getAttribute("user");%>
+        </div>        
+        <% 
+            User user = (User) session.getAttribute("user");
+        %>        
         <div>
             <div>
-                <h2>Name: <%= (customer != null) ? customer.getCustomerName() : ""%></h2>
-                <p><br>ID :<%= (customer != null) ? customer.getCustomerID() : ""%></p>                           
+                <h2>Name: <%= (user != null) ? user.getName() : ""%></h2>
+                <p><br>ID :<%= (user != null) ? user.getID() : "" %></p>                           
             </div>
             <div>
                 <div>
@@ -56,47 +55,22 @@
                     <div>                        
                         <div>
                             <h4>Email</h4>
-                            <p><%= (customer != null) ? customer.getCustomerEmail() : ""%></p>
+                            <p><%= (user != null) ? user.getEmail() : ""%></p>
                         </div>
                         <div>
                             <h4>DOB</h4>
-                            <p><%= (customer != null) ? customer.getCustomerDOB() : ""%></p>
+                            <p><%= (user != null) ? user.getDOB() : ""%></p>
                         </div>
                         <div>
                             <h4>Phone Number</h4>
-                            <p><%= (customer != null) ? customer.getCustomerPhone() : ""%></p>
+                            <p><%= (user != null) ? user.getPhone() : ""%></p>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
-        <div>
-            <% } else if (userType.equals("staff")) { %>
-            <% Staff staff = (Staff) session.getAttribute("user");%>
-            <div>
-                <h2>Name: <%= (staff != null) ? staff.getStaffName() : ""%></h2>
-                <p><br>ID :<%= (staff != null) ? staff.getStaffID() : ""%></p>                           
-            </div>
-            <div>
-                <div>
-                    <h3>Information</h3>
-                    <div>                        
-                        <div>
-                            <h4>Email</h4>
-                            <p><%= (staff != null) ? staff.getStaffEmail() : ""%></p>
-                        </div>
-                        <div>
-                            <h4>DOB</h4>
-                            <p><%= (staff != null) ? staff.getStaffDOB() : ""%></p>
-                        </div>
-                        <div>
-                            <h4>Phone Number</h4>
-                            <p><%= (staff != null) ? staff.getStaffPhone() : ""%></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <% }%>
+        <li><a href="userUpdate.jsp">Update</a></li>
+        <li><a href="UserDeleteServlet">Delete</a></li>
     </body>
 </html>
