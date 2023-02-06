@@ -18,6 +18,7 @@ com\model\Customer.class
 com\controller\ManagerDeleteServlet.class
 com\controller\StaffViewServlet.class
 com\controller\RegisterServlet.class
+com\controller\CustomerUpdateServlet.class
 com\model\dao\RoomDAO.class
 com\model\dao\UserDAO.class
 com\model\Reports.class
@@ -32,7 +33,7 @@ com\model\dao\SqlDBConnector.class
 com\controller\UserUpdateServlet.class
 com\utils\Utils.class
 com\controller\LogoutServlet.class
+com\controller\UserAccountServlet.class
 com\model\dao\XmlTransformer.class
 com\model\Report.class
 com\model\Rooms.class
-com\controller\StaffMainServlet.class

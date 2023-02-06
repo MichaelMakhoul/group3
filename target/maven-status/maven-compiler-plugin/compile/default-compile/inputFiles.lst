@@ -17,6 +17,7 @@ C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\res
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\InitServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Users.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\BookingsDAO.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\CustomerUpdateServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\User.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\RoomDAO.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Room.java
@@ -37,4 +38,5 @@ C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\con
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\dao\ReportSqlDAO.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\rest\RoomsService.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\ManagerMainServlet.java
+C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\controller\UserAccountServlet.java
 C:\Users\236351\Documents\NetBeansProjects\capstone\group3\src\main\java\com\model\Managers.java

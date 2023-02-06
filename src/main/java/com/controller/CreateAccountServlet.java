@@ -24,34 +24,42 @@ public class CreateAccountServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        String name = request.getParameter("create_name");
-        String email = request.getParameter("create_email");
-        String password = request.getParameter("create_password");
-        String dob = request.getParameter("create_dob");
-        String phoneNumber = request.getParameter("create_phoneNumber");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String dob = request.getParameter("dob");
+        String phoneNumber = request.getParameter("phoneNumber");
 
+        
+        session.setAttribute("nameError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
         session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-//        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
 
-        boolean validRegex = (email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx));
-
-        UserDAO customerDAO = (UserDAO) session.getAttribute("customerDAO");
+        boolean validRegex = (name.matches(Utils.nameRegEx)
+                && email.matches(Utils.emailRegEx)
+                && password.matches(Utils.passRegEx)
+                && dob.matches(Utils.dobRegEx)
+                && phoneNumber.matches(Utils.phoneRegEx));
+        
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
         String userType = (String) session.getAttribute("userType");
+        
+        System.out.println("usertype: " + userType);
 
         if (userType.equals("staff")) {
             if (validRegex) {
                 try {
-                    User customer = customerDAO.getUser(email, "customer");
+                    User customer = userDAO.getUser(email, "customer");
                     if (customer != null) {
-                        session.setAttribute("message", "Customer already exists");
+                        session.setAttribute("message", "User already exists");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     } else {
 
-                        customerDAO.create(userType, name, email, password, dob, phoneNumber);
-                        session.setAttribute("message", "Customer created successfully");
+                        userDAO.create("customer", name, email, password, dob, phoneNumber);
+                        session.setAttribute("message", "User created successfully");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     }
                 } catch (SQLException ex) {

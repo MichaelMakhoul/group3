@@ -18,9 +18,14 @@
         <link href="css/templatemo-style.css" rel="stylesheet">
     </head>
     <body class="tm-gray-bg">                
-        <% 
-            User user = (User) session.getAttribute("user");
-            String message = (String)session.getAttribute("message");
+        <%
+            User userUpdate = (User) session.getAttribute("userUpdate");
+            User currentUser = (User) session.getAttribute("user");
+            User user = (userUpdate != null) ? userUpdate : currentUser;
+
+            String emailView = (String) session.getAttribute("emailView");
+
+            String message = (String) session.getAttribute("message");
             String nameError = (String) session.getAttribute("nameError");
             String passError = (String) session.getAttribute("passError");
             String dobError = (String) session.getAttribute("dobError");
@@ -44,7 +49,11 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
+                                    <% if (userUpdate != null) { %>
+                                <li><a href="customers.jsp">Customers List</a></li>
+                                    <% } else { %>
                                 <li><a href="account.jsp">Account</a></li>
+                                    <% }%>
                                 <li><a href="" class="active">Edit Profile</a></li>                                
                                 <li><a href="LogoutServlet">Logout</a></li>                                 
                             </ul>
@@ -52,23 +61,21 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        
-           <div>
-            <form method="POST" action="UserUpdateServlet">
+        </div>        
+        <div>
+            <form method="POST" action=<%= (emailView != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
                 <table>
                     <caption>Edit User <p><%= (message != null) ? message : ""%></p></caption>
                     <tr><td>ID: </td><td><input type="text" name="ID" value="<%= user.getID()%>" readonly="true" /></td></tr>
                     <tr><td>Name: </td><td><input type="text" name="name" value="<%= user.getName()%>" />
-                    <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
+                            <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
                     <tr><td>Email: </td><td><input type="text" name="email" value="<%= user.getEmail()%>" readonly="true"/></td></tr>
                     <tr><td>Password: </td><td><input type="password" name="password" value="<%= user.getPassword()%>" />
-                    <p><%= (passError != null) ? passError : ""%></p></td></tr>
+                            <p><%= (passError != null) ? passError : ""%></p></td></tr>
                     <tr><td>DOB: </td><td><input type="date" name="dob" value="<%= user.getDOB()%>"/>
-                    <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
-                    <tr><td>Phon Number: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone() %>"/>
-                    <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
+                            <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
+                    <tr><td>Phon Number: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
+                            <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
                     <tr>
                         <td>
                             <input class="button" type="submit" value="Update"/> 

@@ -42,18 +42,18 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
         session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
 
-        boolean validRegex = (name.matches(Utils.nameRegEx) && 
-                            email.matches(Utils.emailRegEx) && 
-                            password.matches(Utils.passRegEx) && 
-                            dob.matches(Utils.dobRegEx) && 
-                            phoneNumber.matches(Utils.phoneRegEx));
+        boolean validRegex = (name.matches(Utils.nameRegEx)
+                && email.matches(Utils.emailRegEx)
+                && password.matches(Utils.passRegEx)
+                && dob.matches(Utils.dobRegEx)
+                && phoneNumber.matches(Utils.phoneRegEx));
 
 //        boolean nextPage = false;
         String error = "";
         //boolean user = false;        
 
 //        if (!email.matches(emailRegEx) || !password.matches(passRegEx)) {
-          if (validRegex) {
+        if (validRegex) {
             try {
                 UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
                 User user = userDAO.getUser(email, registerOptions);
@@ -62,36 +62,18 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("error", error);
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    userDAO.create(name, email, password, dob, phoneNumber, registerOptions);
+                    userDAO.create(registerOptions, name, email, password, dob, phoneNumber);
                     user = userDAO.getUser(email, registerOptions);
                     user.setType(registerOptions);
                     session.setAttribute("user", user);
+                    session.setAttribute("userType", registerOptions);
                     request.getRequestDispatcher("main.jsp").include(request, response);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
 
             }
-        } //        else if (registerOptions.equals("staff")) {
-        //            try {
-        //                StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
-        //                Staff staff = staffDAO.getStaff(email);
-        //                if (staff != null) {
-        //                    error = "User already exist";
-        //                    session.setAttribute("error", error);
-        //                    request.getRequestDispatcher("register.jsp").include(request, response);
-        //                } else {
-        //                    staffDAO.create(name, email, password, dob, phoneNumber);
-        //                    staff = staffDAO.getStaff(email);
-        //                    session.setAttribute("userType", "staff");
-        //                    session.setAttribute("user", staff);
-        //                    request.getRequestDispatcher("main.jsp").include(request, response);
-        //                }
-        //            } catch (SQLException ex) {
-        //                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
-        //            }
-        //        } 
-        else {
+        } else {
             session.setAttribute("error", error);
             request.getRequestDispatcher("register.jsp").include(request, response);
         }

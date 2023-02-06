@@ -54,7 +54,7 @@ public class StaffViewServlet extends HttpServlet {
                 out.println("<tr class=\"users_table_tr\">");
                 out.println("<td class=\"users_table_td\">" + user.getID() + "</td>");
                 out.println("<td class=\"users_table_td\">" + user.getName() + "</td>");        
-                out.println("<td class=\"users_table_td\"> <a href=http://localhost:8080/group3/MainServlet?emailView="+ user.getEmail() + "/>" + user.getEmail() + "</a></td>");
+                out.println("<td class=\"users_table_td\"> <a href=http://localhost:8080/group3/UserAccountServlet?emailView="+ user.getEmail() + ">" + user.getEmail() + "</a></td>");
                 out.println("<td class=\"users_table_td\">" + user.getPhone() + "</td>");
                 out.println("<td class=\"users_table_td\">" + user.getDOB() + "</td>");
                 out.println("</tr>");
@@ -64,7 +64,6 @@ public class StaffViewServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
