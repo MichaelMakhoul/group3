@@ -5,11 +5,12 @@
  */
 package com.controller;
 
-import com.model.dao.CustomerDAO;
+//import com.model.dao.CustomerDAO;
 import com.model.dao.ManagerDAO;
 import com.model.dao.ReportDAO;
 import com.model.dao.SqlDBConnector;
-import com.model.dao.StaffDAO;
+import com.model.dao.UserDAO;
+//import com.model.dao.StaffDAO;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,29 +22,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author 236351
  */
 public class InitServlet extends HttpServlet {
-private SqlDBConnector sqlDBConnector;
-    private Connection connection;
-    private CustomerDAO customerDAO;
-    private ManagerDAO managerDAO;
-    private StaffDAO staffDAO;
-    private ReportDAO reportDAO;
 
- 
+    private SqlDBConnector sqlDBConnector;
+    private Connection connection;
+    private UserDAO userDAO;
+    private ManagerDAO managerDAO;
+    private ReportDAO reportDAO;
 
     @Override
     public void init() {
         try {
             sqlDBConnector = new SqlDBConnector();
             connection = sqlDBConnector.connection();
-            customerDAO= new CustomerDAO(connection);
-            managerDAO= new ManagerDAO(connection);
-            staffDAO= new StaffDAO(connection);
+            userDAO = new UserDAO(connection);
+            managerDAO = new ManagerDAO(connection);
             reportDAO = new ReportDAO(connection);
         } catch (IOException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,11 +53,9 @@ private SqlDBConnector sqlDBConnector;
         } catch (IllegalAccessException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -74,18 +69,12 @@ private SqlDBConnector sqlDBConnector;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.setAttribute("customerDAO", customerDAO);
         session.setAttribute("managerDAO", managerDAO);
-        session.setAttribute("staffDAO", staffDAO);
+        session.setAttribute("userDAO", userDAO);
         session.setAttribute("reportDAO", reportDAO);
-        
+
     }
 
- 
-
-    /**
-     * 
-     */
     @Override
     public void destroy() {
         try {

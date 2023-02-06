@@ -1,19 +1,16 @@
 package com.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "reportlog")
 public class ReportLog implements Serializable {
-    
-    @XmlElement(name = "booking")
-    private List<Booking> bookings = new ArrayList<>();
+//    
+//    @XmlElement(name = "booking")
+    //private List<Booking> bookings = new ArrayList<>();
     private int reportLogID;
     private String reportFromDate;
     private String reportToDate;
@@ -33,13 +30,13 @@ public class ReportLog implements Serializable {
         this.createDate = createDate;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
+//    public List<Booking> getBookings() {
+//        return bookings;
+//    }
 
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+//    public void setBookings(List<Booking> bookings) {
+//        this.bookings = bookings;
+//    }
 
     public String getReportFromDate() {
         return reportFromDate;

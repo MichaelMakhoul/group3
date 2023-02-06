@@ -33,7 +33,7 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.html" class="active">Home</a></li>
+                                <li><a href="index.jsp" class="active">Home</a></li>
                                 <li><a href="register.jsp">Register</a></li>                                
                                 <li><a href="login.jsp">Login</a></li>
                                 <li><a href="contact.html">Contact</a></li>

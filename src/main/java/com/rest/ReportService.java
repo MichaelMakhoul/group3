@@ -19,18 +19,18 @@ import javax.ws.rs.core.Response;
 public class ReportService {
 
     @GET
-    @Path("addreportlog") //localhost:8080/rest/reportapi/addreportlog
+    @Path("addreportlog") //localhost:8080/group3/rest/reportapi/addreportlog
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response ReportLog() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
-        reportDAO.createReportLog("2022-12-01", "2023-01-15");
-        reportDAO.createReportSummary("2022-12-01", "2023-01-15");
-        ReportLog reportLog = reportDAO.showOne("2022-12-01", "2023-01-15");
+        reportDAO.createReportLog("2022-11-01", "2023-02-15");
+        //reportDAO.createReportSummary("2022-11-01", "2023-02-15");
+        ReportLog reportLog = reportDAO.showOne("2022-11-01", "2023-02-15");
         return Response.status(200).entity(reportLog).build();
     }
 
     @GET
-    @Path("reportlogs") //localhost:8080/rest/reportapi/reportlogs
+    @Path("reportlogs") //localhost:8080/group3/rest/reportapi/reportlogs
     @Produces(MediaType.APPLICATION_XML)
     public ReportLogs reportLogs() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
@@ -40,7 +40,7 @@ public class ReportService {
     }
 
     @GET
-    @Path("reportsummaries") //localhost:8080/rest/reportapi/reportsummaries
+    @Path("reportsummaries") //localhost:8080/group3/rest/reportapi/reportsummaries
     @Produces(MediaType.APPLICATION_XML)
     public ReportSummaries reportSummaries() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
@@ -50,7 +50,7 @@ public class ReportService {
     }
 
     @GET
-    @Path("removereport/{ID}") //localhost:8080/rest/reportapi/removereport/{ID}
+    @Path("removereport/{ID}") //localhost:8080/group3/rest/reportapi/removereport/{ID}
     public void reportDeleteByID(@PathParam("ID") int ID) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
         ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
         reportDAO.delete(ID);

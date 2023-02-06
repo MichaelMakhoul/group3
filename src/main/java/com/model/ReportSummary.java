@@ -19,6 +19,14 @@ public class ReportSummary implements Serializable {
     public ReportSummary() {
     }
 
+    public ReportSummary(int bookingID, String checkIn, String checkOut, int numberOfRooms, int totalPrice) {
+        this.bookingID = bookingID;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.numberOfRooms = numberOfRooms;
+        this.totalPrice = totalPrice;
+    }
+    
     public ReportSummary(int reportID, int bookingID, String checkIn, String checkOut, int numberOfRooms, int totalPrice) {
         this.reportID = reportID;
         this.bookingID = bookingID;

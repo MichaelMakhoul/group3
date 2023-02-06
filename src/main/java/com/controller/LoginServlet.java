@@ -5,14 +5,11 @@
  */
 package com.controller;
 
-import com.model.Customer;
 import com.model.Manager;
-import com.model.Staff;
-import com.model.dao.CustomerDAO;
+import com.model.User;
 import com.model.dao.ManagerDAO;
-import com.model.dao.StaffDAO;
+import com.model.dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,48 +29,30 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
+
         String loginOptions = request.getParameter("loginOptions");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
-        StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         ManagerDAO managerDAO = (ManagerDAO) session.getAttribute("managerDAO");
 
-        
-        boolean user = false;
-
-        if (loginOptions.equals("customer")) {
-            Customer customer = null;
+        boolean userExists = false;
+        if (loginOptions.equals("customer") || loginOptions.equals("staff")) {
+            User user = null;
             try {
-                customer = customerDAO.login(email, password);
+                user = userDAO.login(email, password, loginOptions);
             } catch (SQLException ex) {
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            if (customer != null) {
-                user = true;
-                session.setAttribute("userType", "customer");
-                session.setAttribute("user", customer);
+            if (user != null) {
+                user.setType(loginOptions);
+                session.setAttribute("user", user);
+                session.setAttribute("userType", loginOptions);
                 request.getRequestDispatcher("main.jsp").include(request, response);
+                userExists = true;
             }
-
-        } else if (loginOptions.equals("staff")) {
-            Staff staff = null;
-            try {
-                staff = staffDAO.login(email, password);
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            if (staff != null) {
-                user = true;
-                session.setAttribute("userType", "staff");
-                session.setAttribute("user", staff);
-                request.getRequestDispatcher("main.jsp").include(request, response);
-            }
-
         } else if (loginOptions.equals("manager")) {
             Manager manager = null;
             try {
@@ -83,18 +62,16 @@ public class LoginServlet extends HttpServlet {
             }
 
             if (manager != null) {
-                user = true;
                 session.setAttribute("userType", "manager");
-                session.setAttribute("user", manager);
+                session.setAttribute("manager", manager);
                 request.getRequestDispatcher("main.jsp").include(request, response);
+                userExists = true;
             }
-
-        } else {
-
         }
-        if(!user){
-                session.setAttribute("usernotexist", "User does not exist!");
-                request.getRequestDispatcher("login.jsp").include(request, response);
+
+        if (!userExists) {
+            session.setAttribute("usernotexist", "User does not exist!");
+            request.getRequestDispatcher("login.jsp").include(request, response);
         }
     }
 }

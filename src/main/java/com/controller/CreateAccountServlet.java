@@ -1,8 +1,7 @@
 package com.controller;
 
-import com.model.Customer;
-import com.model.dao.CustomerDAO;
-import com.model.dao.StaffDAO;
+import com.model.User;
+import com.model.dao.UserDAO;
 import com.utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,20 +37,20 @@ public class CreateAccountServlet extends HttpServlet {
 
         boolean validRegex = (email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx));
 
-        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+        UserDAO customerDAO = (UserDAO) session.getAttribute("customerDAO");
 
         String userType = (String) session.getAttribute("userType");
 
         if (userType.equals("staff")) {
             if (validRegex) {
                 try {
-                    Customer customer = customerDAO.getCustomer(email);
+                    User customer = customerDAO.getUser(email, "customer");
                     if (customer != null) {
                         session.setAttribute("message", "Customer already exists");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     } else {
 
-                        customerDAO.create(name, email, password, dob, phoneNumber);
+                        customerDAO.create(userType, name, email, password, dob, phoneNumber);
                         session.setAttribute("message", "Customer created successfully");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     }
