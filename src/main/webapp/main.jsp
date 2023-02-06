@@ -114,6 +114,17 @@
                     </a>					
                 </div>				
             </div>
+             <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                    <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
+                    <a href="ShowBookingsServlet">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>View the list of Bookings</span>
+                            <!--                        <span>$4,200</span>-->
+                        </div>	
+                    </a>					
+                </div>				
+            </div>
         </div>
         <% } else if (userType.equals("manager")) {
             Manager manager = (Manager) session.getAttribute("manager");%>
