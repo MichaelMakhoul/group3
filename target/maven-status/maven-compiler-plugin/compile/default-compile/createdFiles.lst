@@ -1,4 +1,5 @@
 com\rest\BookingService.class
+com\controller\ShowBookingsServlet.class
 com\model\Customers.class
 com\model\Manager.class
 com\controller\LoginServlet.class
@@ -11,6 +12,7 @@ com\controller\InitServlet.class
 com\rest\RoomsService.class
 com\model\dao\ReportSqlDAO.class
 com\model\Users.class
+com\controller\AddBookingServlet.class
 com\model\dao\BookingsDAO.class
 com\controller\UserDeleteServlet.class
 com\model\Staff.class
@@ -34,6 +36,7 @@ com\controller\UserUpdateServlet.class
 com\utils\Utils.class
 com\controller\LogoutServlet.class
 com\controller\UserAccountServlet.class
+com\controller\BookingsViewServlet.class
 com\model\dao\XmlTransformer.class
 com\model\Report.class
 com\model\Rooms.class

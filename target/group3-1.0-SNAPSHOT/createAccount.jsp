@@ -26,11 +26,13 @@
     <body class="tm-gray-bg">
         <%
             String message = (String) session.getAttribute("message");
+            String nameError = (String) session.getAttribute("nameError");
             String emailError = (String) session.getAttribute("emailError");
             String passError = (String) session.getAttribute("passError");
             String dobError = (String) session.getAttribute("dobError");
+            String phoneError = (String) session.getAttribute("phoneError");
 //            session.removeAttribute("message");
-        %>
+%>
         <div class="tm-header">
             <div class="container1">
                 <div class="row">
@@ -44,7 +46,7 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
-                                <li><a href="staffMain.jsp">Main</a></li>                                
+                                <li><a href="main.jsp">Main</a></li>                                
                                 <li><a href="LogoutServlet">Logout</a></li>                                 
                             </ul>
                         </nav>
@@ -62,32 +64,34 @@
                             <option value="staff">Staff</option>
                             <option value="customer">Customer</option>
                         </select> -->
-                        
+
                         <span class="message"><%= (message != null) ? message : ""%></span>
                         <div class="register__field">
                             <i class="register__icon fas fa-user"></i>
-                            <input type="text" name="create_name" class="register__input" placeholder="Name">
+                            <input type="text" name="name" class="register__input" placeholder="Name">
                         </div>
+                        <span class="message"><%= (nameError != null) ? nameError : ""%></span>
                         <div class="register__field">
                             <i class="register__icon fas fa-user"></i>
-                            <input type="email" name="create_email" class="register__input" placeholder="Email">
+                            <input type="email" name="email" class="register__input" placeholder="Email">
                         </div>
-                            <span class="message"><%= (emailError != null) ? emailError : ""%></span>
+                        <span class="message"><%= (emailError != null) ? emailError : ""%></span>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="password" name="create_password" class="register__input" placeholder="Password">
+                            <input type="password" name="password" class="register__input" placeholder="Password">
                         </div>
-                            <span class="message"><%= (passError != null) ? passError : ""%></span>
+                        <span class="message"><%= (passError != null) ? passError : ""%></span>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="date" name="create_dob" class="register__input" placeholder="DOB">
+                            <input type="date" name="dob" class="register__input" placeholder="DOB">
                         </div>
-                            <span class="message"><%= (dobError != null) ? dobError:  ""%></span>
+                        <span class="message"><%= (dobError != null) ? dobError : ""%></span>
 
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="create_phoneNumber" class="register__input" placeholder="Phone Number">
+                            <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
                         </div>
+                        <span class="message"><%= (phoneError != null) ? phoneError : ""%></span>
                         <button class="button register__submit">
                             <span class="button__text">Create</span>
                             <i class="button__icon fas fa-chevron-right"></i>
@@ -102,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <% 
+        <%
 //            String message = (String) session.getAttribute("message");
 //            String emailError = (String) session.getAttribute("emailError");
 //            String passError = (String) session.getAttribute("passError");

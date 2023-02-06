@@ -2,6 +2,7 @@ package com.model.dao;
 
 import com.model.Booking;
 import com.model.Room;
+import com.utils.Utils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -242,18 +244,24 @@ public class BookingsDAO {
      * @param noOfRooms 
      */
     public int addBooking(int customerID, String checkIn, String checkOut, String desc, int totalPrice, int []noOfRooms){
+        System.out.println("com.model.dao.BookingsDAO.addBooking()");
         List<Room> availRooms = roomDAO.getAvailableRooms(checkIn, checkOut);
         List<Room> rooms = new ArrayList<>();
         //String []roomType = {"DELUXE_ROOM","FAMILY_ROOM","EXECUTIVE_SUITE"};   
         if(noOfRooms[0]>0){
-            rooms.addAll(availRooms.stream().filter(r -> r.matchType("DELUXE_ROOM")).limit(noOfRooms[0]).collect(Collectors.toList()));    
+            rooms.addAll(availRooms.stream().filter(r -> r.matchType("DELUXE_ROOM")).limit(noOfRooms[0]).collect(Collectors.toList())); 
         }
         if(noOfRooms[1]>0){
-            rooms.addAll(availRooms.stream().filter(r -> r.matchType("FAMILY_ROOM")).limit(noOfRooms[1]).collect(Collectors.toList())); 
+            rooms.addAll(availRooms.stream().filter(r -> r.matchType("FAMILY_ROOM")).limit(noOfRooms[1]).collect(Collectors.toList()));
         }
         if(noOfRooms[2]>0){
             rooms.addAll(availRooms.stream().filter(r -> r.matchType("EXECUTIVE_SUITE")).limit(noOfRooms[2]).collect(Collectors.toList())); 
         }
+        System.out.println("checkIn "+ checkIn);
+        System.out.println("checkOut "+ checkIn);
+        System.out.println("noOfRooms "+ Arrays.toString(noOfRooms));
+        int diff = Utils.differenceInDays(checkIn, checkOut);
+        totalPrice = diff *((noOfRooms[0]* 150) + (noOfRooms[1]* 250) + (noOfRooms[2]* 500));
         return createBooking(customerID, checkIn, checkOut, desc, totalPrice, rooms);
     }
     
@@ -322,6 +330,48 @@ public class BookingsDAO {
         bookings.forEach(b -> deleteBooking(b.getBookingID()));        
     }
     
+    // access room details from roomDAO
+    /**
+     *
+     * @param roomID
+     * @return
+     */
+    public Room getRoombyID(int roomID) {
+        return roomDAO.getRoombyID(roomID);
+    }
+
+    /**
+     * 
+     * @param checkIn
+     * @param checkOut
+     * @param roomType
+     * @return 
+     */
+    public int getAvailableRoomsCountbyType(String checkIn, String checkOut, String roomType){
+        return roomDAO.getAvailableRoomsCountbyType(checkIn, checkOut, roomType);
+    }
+    
+    /**
+     * The function is used get the available rooms during the given period for particular type
+     * 
+     * @param checkIn
+     * @param checkOut
+     * @param roomType
+     * @return List of rooms 
+     */
+    public List<Room> getAvailableRoomsbyType(String checkIn, String checkOut, String roomType){
+        return roomDAO.getAvailableRoomsbyType(checkIn, checkOut, roomType);        
+    }
+    
+    /**
+     * 
+     * @param checkIn
+     * @param checkOut
+     * @return 
+     */
+    public List<Room> getAvailableRooms(String checkIn, String checkOut){
+        return roomDAO.getAvailableRooms(checkIn, checkOut);
+    }
     
 
 }
