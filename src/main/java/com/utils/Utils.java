@@ -12,7 +12,6 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
  * @author 236351
@@ -21,6 +20,7 @@ public class Utils {
 
     public static String nameRegEx = "\\b[A-Z][a-z]*( [A-Z][a-z]*)*\\b";
     public static String emailRegEx = "[a-zA-Z0-9_%+-\\.]+@[a-zA-Z0-9-]+(.com)";
+//    reg ex for staff email?
     public static String passRegEx = "[A-Z][A-Za-z]{5,}\\d{2,}";
     public static String dobRegEx = "\\d{4}-\\d{2}-\\d{2}";
     public static String phoneRegEx = "^\\+(?:[0-9] ?){6,14}[0-9]$";
@@ -31,7 +31,14 @@ public class Utils {
     // Check if the age is over 18
     public static String ageRegEx = "";
     
-    public static int differenceInDays(String startDate, String endDate){
+//    public static boolean isUser18Older (DateTime userDob, int minimumAge){
+//    DateTime minAge = new DateTime();
+//    Days days = Days.daysBetween(userDob, minAge.minusYears(minimumAge)); 
+//
+//    return days.getDays()>=0 ;
+//}
+    
+        public static int differenceInDays(String startDate, String endDate){
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             Date firstDate = sdf.parse(startDate);
@@ -47,5 +54,4 @@ public class Utils {
             return 0;
         }
     }
-    
 }

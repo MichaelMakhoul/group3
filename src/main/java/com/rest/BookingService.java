@@ -91,7 +91,7 @@ public class BookingService {
         BookingsDAO bookingsDAO = new BookingsDAO(new SqlDBConnector().connection());
         bookingsDAO.deleteBookingbyCustomerID(ID);
         return "<success> Bookings of Customer_"+ID+" deleted successfully</success>";
-    }
+        }
     
     @GET
     @Path("/booking/{bookingID}") //http://localhost:8080/group3/rest/bookingapi/booking/{bookingID}
