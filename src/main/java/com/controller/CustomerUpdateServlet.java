@@ -38,8 +38,6 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         String toUpdate = (String) session.getAttribute("toUpdate");
         
-        System.out.println("toUpdate: " + toUpdate);
-
         session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");

@@ -22,7 +22,7 @@
             User userUpdate = (User) session.getAttribute("userUpdate");
             User currentUser = (User) session.getAttribute("user");
             User user = (userUpdate != null) ? userUpdate : currentUser;
-            
+
             String emailView = (String) session.getAttribute("emailView");
 
             String message = (String) session.getAttribute("message");
@@ -49,7 +49,11 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
+                                    <% if (userUpdate != null) { %>
+                                <li><a href="customers.jsp">Customers List</a></li>
+                                    <% } else { %>
                                 <li><a href="account.jsp">Account</a></li>
+                                    <% }%>
                                 <li><a href="" class="active">Edit Profile</a></li>                                
                                 <li><a href="LogoutServlet">Logout</a></li>                                 
                             </ul>

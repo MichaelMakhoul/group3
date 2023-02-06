@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 
             if (manager != null) {
                 session.setAttribute("userType", "manager");
-                session.setAttribute("user", manager);
+                session.setAttribute("manager", manager);
                 request.getRequestDispatcher("main.jsp").include(request, response);
                 userExists = true;
             }
