@@ -5,7 +5,6 @@
 --%>
 <%@page import="com.model.User"%>
 <%@page import="com.model.Manager"%>
-<%@page import="com.model.Customer"%>
 <%@page import="com.model.Staff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +20,11 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+        <%
+            String userType = (String) session.getAttribute("userType");
+            User user = (User) session.getAttribute("user");
+            session.removeAttribute("userUpdate");
+        %>
         <div class="tm-header">
             <div class="container">
                 <div class="row">
@@ -33,29 +37,41 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.jsp">Home</a></li>
                                 <li><a href="main.jsp" class="active">Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
-                            </ul>
+                                <% if (!userType.equals("manager")) { %>
+                                <li class="tm-nav-right"><a href="account.jsp">User's Profile</a></li> 
+                                    <% } %>
+                            </ul>                    
+
                         </nav>		
                     </div>				
                 </div>
             </div>	  	
         </div>
 
-        <% 
-            User user = (User) session.getAttribute("user");
-            String userType = (String) session.getAttribute("userType");
-            if (user.getType().equals("customer")) {
+        <%                        
+           //Attributes set during booking need to be reset
+           session.removeAttribute("available");
+           session.removeAttribute("drQty");
+           session.removeAttribute("frQty");
+           session.removeAttribute("esQty");
+           session.removeAttribute("checkInD");
+           session.removeAttribute("checkOutD");
+           session.removeAttribute("booking");           
+           session.removeAttribute("bookingsView");
+         //booking
+         
+            if (userType.equals("customer")) {
         %>
         <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="addBooking.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
-                            <span>Make your booking</span>
+                            <span>Add your booking</span>
                             <!--                        <span>$4,200</span>-->
                         </div>	
                     </a>					
@@ -64,7 +80,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a  href="ShowBookingsServlet">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View your bookings</span>
                             <!--                        <span>$4,200</span>-->
@@ -72,18 +88,8 @@
                     </a>					
                 </div>				
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                    <img src="img/Prof.png" alt="image" class="img-responsive">
-                    <a href="#">
-                        <div class="tm-red-gradient-bg tm-city-price-container">
-                            <span><li><a href="account.jsp">User's Profile</a></li></span>
-                        </div>	
-                    </a>					
-                </div>				
-            </div>
         </div>
-        <% } else if (user.getType().equals("staff")) { %>
+        <% } else if (userType.equals("staff")) {%>
         <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
@@ -100,7 +106,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="StaffMainServlet">
+                    <a href="customers.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View the list of customers</span>
                             <!--                        <span>$4,200</span>-->
@@ -108,17 +114,9 @@
                     </a>					
                 </div>				
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                    <img src="img/Prof.png" alt="image" class="img-responsive">
-                    <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span><li><a href="account.jsp">User's Profile</a></li></span>
-                    </div>	
-                </div>				
-            </div>
         </div>
-        <% } else if (userType.equals("manager")) { %>
-        <% Manager manager = (Manager) session.getAttribute("user");%>
+        <% } else if (userType.equals("manager")) {
+            Manager manager = (Manager) session.getAttribute("manager");%>
         <h1 class="welcome_message">Welcome <%= (manager != null) ? manager.getManagerName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">

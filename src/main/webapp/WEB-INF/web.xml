@@ -25,6 +25,10 @@
         <servlet-name>UserDeleteServlet</servlet-name>
         <servlet-class>com.controller.UserDeleteServlet</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>BookingsViewServlet</servlet-name>
+        <servlet-class>com.controller.BookingsViewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InitServlet</servlet-name>
         <url-pattern>/InitServlet</url-pattern>
@@ -74,6 +78,32 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
+        <!--Booking Servlets-->
+    <servlet>
+        <servlet-name>AddBookingServlet</servlet-name>
+        <servlet-class>com.controller.AddBookingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddBookingServlet</servlet-name>
+        <url-pattern>/AddBookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BookingServlet</servlet-name>
+        <servlet-class>com.controller.BookingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookingServlet</servlet-name>
+        <url-pattern>/BookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowBookingsServlet</servlet-name>
+        <servlet-class>com.controller.ShowBookingsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowBookingsServlet</servlet-name>
+        <url-pattern>/ShowBookingsServlet</url-pattern>
+    </servlet-mapping>
+    <!--Rest Services Path-->
     <servlet>
         <servlet-name>group3</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
@@ -106,6 +136,10 @@
     <servlet-mapping>
         <servlet-name>UserDeleteServlet</servlet-name>
         <url-pattern>/UserDeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingsViewServlet</servlet-name>
+        <url-pattern>/BookingsViewServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
