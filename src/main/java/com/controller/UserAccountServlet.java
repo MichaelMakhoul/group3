@@ -54,6 +54,7 @@ public class UserAccountServlet extends HttpServlet {
                     request.getRequestDispatcher("index.jsp").include(request, response);
                 }
                 User userUpdate = userDAO.getUser(emailView, toUpdate);
+//                session.setAttribute("upda", this);
                 userUpdate.setType(toUpdate);
                 session.setAttribute("userUpdate", userUpdate);
             } catch (SQLException ex) {
