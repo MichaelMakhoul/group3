@@ -4,8 +4,10 @@
     Author     : 236336
 --%>
 
-
+<%@page import="com.model.dao.UserDAO"%>
 <%@page import="com.model.User"%>
+<%@page import="com.model.Customer"%>
+<%@page import="com.model.Staff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,12 +44,17 @@
                     </div>
 
                 </div>        
-                <%
-                    User user = (User) session.getAttribute("user");
-                %>
                 <div class = "w3-content w3-border w3-margin-top w3-white" >
                     <div class="w3-container w3-margin-top w3-border-bottom">
                         <h3><b>User Information</b></h3>                       
+                        <body>
+
+                            <%
+                                User userUpdate = (User) session.getAttribute("userUpdate");
+                                User currentUser = (User) session.getAttribute("user");
+                                User user = (userUpdate != null) ? userUpdate : currentUser;
+                                String userType = (String) session.getAttribute("userType");
+                            %>
                     </div>
                     <div class="container-fluid"  style="font-size: large" >
                         <div class="container py-3" style="margin-top: 80px" >
@@ -59,7 +66,12 @@
                                             <h5 class="my-3"><br>ID :<%= (user != null) ? user.getID() : ""%></h5>
                                             <div class="d-flex justify-content-center mb-2">
                                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="userUpdate.jsp">Update</a></button>
+                                                    <% if (userType == "manager") { %>
+                                                <button type="button" class="btn btn-outline-primary ms-1"><a href="StaffDeleteServlet">Delete</a></button>
+                                                <% } else { %>
                                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="UserDeleteServlet">Delete</a></button>
+                                                <% }%>
+
                                             </div>
                                             <br>
                                             <br>
@@ -121,8 +133,12 @@
                     </div> 
                 </div>
             </div>
-        </section>                    
-    </body>
+
+        </div>
+
+    </section>                    
+
+</body>
 </html>
 
 

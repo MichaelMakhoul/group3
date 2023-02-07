@@ -73,22 +73,18 @@
                         </div>
                         <span class="message"><%= (exist != null) ? exist : ""%></span>
                         <div class="register__field">
-                            <input type="email" name="email" class="register__input" placeholder="Email">
-                            <span class="message"><%= (emailError != null) ? emailError : ""%></span>
+                            <input type="email" name="email" class="register__input" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
                         </div>
                         <div class="register__field">
-                            <input type="password" name="password" class="register__input" placeholder="Password">
-                            <span class="message"><%= (passError != null) ? passError : ""%></span>
-                        </div>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="date" name="dob" class="register__input" placeholder="DOB">
-                            <span class="message"><%= (dobError != null) ? dobError : ""%></span>
+                            <input type="password" name="password" class="register__input" placeholder=<%= (passError != null) ? passError : "Password"%>>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
-                            <span class="message"><%= (phoneError != null) ? phoneError : ""%></span>
+                            <input type="date" name="dob" class="register__input" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+                        </div>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="text" name="phoneNumber" class="register__input" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
                         </div>
                     <button class="button register__submit">
                         <span class="button__text">Sign Up Now</span>

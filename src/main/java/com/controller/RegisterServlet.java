@@ -55,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
         
         String error = "";        
 
-          if (validRegex) {
+        if (validRegex) {
             try {
                 UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
                 User user = userDAO.getUser(email, registerOptions);
@@ -64,18 +64,19 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("error", error);
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    userDAO.create(registerOptions,name, email, password, dob, phoneNumber);
+                    userDAO.create(registerOptions, name, email, password, dob, phoneNumber);
                     user = userDAO.getUser(email, registerOptions);
                     user.setType(registerOptions);
                     session.setAttribute("userType", registerOptions);  
                     session.setAttribute("user", user);
+                    session.setAttribute("userType", registerOptions);
                     request.getRequestDispatcher("main.jsp").include(request, response);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
 
             }
-        }else {
+        } else {
             session.setAttribute("error", error);
             request.getRequestDispatcher("register.jsp").include(request, response);
         }

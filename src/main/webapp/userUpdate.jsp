@@ -20,7 +20,12 @@
     </head>
     <body class="tm-gray-bg">                
         <%
-            User user = (User) session.getAttribute("user");
+            User userUpdate = (User) session.getAttribute("userUpdate");
+            User currentUser = (User) session.getAttribute("user");
+            User user = (userUpdate != null) ? userUpdate : currentUser;
+
+            String userType = (String) session.getAttribute("userType");
+
             String message = (String) session.getAttribute("message");
             String nameError = (String) session.getAttribute("nameError");
             String passError = (String) session.getAttribute("passError");
@@ -31,6 +36,7 @@
             session.removeAttribute("dobError");
             session.removeAttribute("phoneError");
             session.removeAttribute("message");
+            session.removeAttribute("emailView");
         %>
         <section>
             <div class="tm-header">
@@ -45,18 +51,26 @@
                                     <div class="mobile-menu-icon">
                                         <i class="fa fa-bars"></i>
                                     </div>
-                                    <nav class="tm-nav">
-                                        <ul>
-                                            <li><a href="account.jsp">Account</a></li>
-                                            <li><a href="" class="active">Edit Profile</a></li>                                
-                                            <li><a href="LogoutServlet">Logout</a></li>                                 
-                                        </ul>
-                                    </nav>
+                      <nav class="tm-nav">
+                            <ul>
+                                    <% if (userType == "staff") { %>
+                                <li><a href="customers.jsp">Customers List</a></li>
+                                    <% } else if (userType == "manager") { %>
+                                <li><a href="viewAllStaff.jsp">Staff List</a></li>
+                                    <% } else { %>
+                                <li><a href="account.jsp">Account</a></li>
+                                    <% }%>
+                                <li><a href="userUpdate.jsp" class="active">Edit Profile</a></li>                                
+                                <li><a href="LogoutServlet">Logout</a></li>                                 
+                            </ul>
+                        </nav>
                                 </div>
                             </div>
                         </div>
+  
                     </div>
-
+                </div>
+            </div>
                 </div>
                 <div class = "w3-content w3-border w3-margin-top w3-white" >
                     <div class="w3-container w3-margin-top w3-border-bottom">
@@ -76,7 +90,7 @@
                                         <br>
                                     </div>
                                 </div>
-                                <form method="POST" action="UserUpdateServlet">
+                                <form method="POST" action=<%= (userUpdate != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
                                     <table>
                                         <caption><p><%= (message != null) ? message : ""%></p></caption>
 

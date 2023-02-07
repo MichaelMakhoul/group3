@@ -42,6 +42,24 @@ public class UserDAO {
         }
         return temp;
     }
+    
+    public List<User> getStaff() throws SQLException {
+        String query = "SELECT * FROM tgsdb.staff";
+        ResultSet rs = st.executeQuery(query);
+        List<User> temp = new ArrayList<>();
+
+        while (rs.next()) {
+            int ID = Integer.parseInt(rs.getString(1));
+            String name = rs.getString(2);
+            String email = rs.getString(3);
+            String password = rs.getString(4);
+            String dob = rs.getString(5);
+            String phone = rs.getString(6);
+            User user = new User(ID, name, email, password, dob, phone, "staff");
+            temp.add(user);
+        }
+        return temp;
+    }
 
     public void create(String userType, String name, String email, String password, String dob, String phone) throws SQLException {       
         String columns = "INSERT INTO tgsdb." + userType + "(name, email, password, DOB, phone)";
@@ -61,6 +79,8 @@ public class UserDAO {
         String query = "DELETE FROM tgsdb." + userType + " WHERE ID='" + ID + "'";
         st.execute("SET FOREIGN_KEY_CHECKS=0");
         st.executeUpdate(query);
+        st.execute("SET FOREIGN_KEY_CHECKS=1");
+        
     }
 
     public User login(String email, String password, String userType) throws SQLException {

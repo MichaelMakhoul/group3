@@ -86,6 +86,14 @@ body { overflow-x: hidden; }
 
 }
 
+/*.tm-nav-right{
+    width: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: #E4588E 1px solid;
+}*/
+
 /* Banner */
 .tm-banner-inner {
     height: auto;

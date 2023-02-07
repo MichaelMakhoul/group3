@@ -25,12 +25,13 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-//        User userUpdate = (User) session.getAttribute("userUpdate");
-//        User currentUser = (User) session.getAttribute("user");
-//        User user = (userUpdate != null) ? userUpdate : currentUser;
+        User userUpdate = (User) session.getAttribute("userUpdate");
+        User currentUser = (User) session.getAttribute("user");
+        User user = (userUpdate != null) ? userUpdate : currentUser;
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
-        int ID = Integer.parseInt(request.getParameter("ID"));
+//        int ID = Integer.parseInt(request.getParameter("ID"));
+        int ID = user.getID();
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
@@ -55,7 +56,7 @@ public class CustomerUpdateServlet extends HttpServlet {
         if (validRegex) {
             try {
                 userDAO.update(toUpdate, name, password, dob, phoneNumber, ID);
-                User userUpdate = userDAO.getUser(ID, toUpdate);
+                userUpdate = userDAO.getUser(ID, toUpdate);
                 session.setAttribute("userUpdate", userUpdate);
                 session.setAttribute("message", "User was updated successfully");
                 request.getRequestDispatcher("userUpdate.jsp").include(request, response);

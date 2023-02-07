@@ -26,7 +26,7 @@ public class BookingService {
     @Produces(MediaType.APPLICATION_XML)
     public Bookings bookings()
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
-        Bookings bookings = new Bookings();
+        Bookings bookings = new Bookings();        
         BookingsDAO bookingsDAO = new BookingsDAO(new SqlDBConnector().connection());
         bookings.setBookings(bookingsDAO.getBookings());
         return bookings;
