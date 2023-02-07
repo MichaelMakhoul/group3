@@ -7,7 +7,6 @@ package com.model.dao;
 
 import com.model.User;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,22 +20,9 @@ import java.util.List;
 public class UserDAO {
 
     private Statement st;
-//    private PreparedStatement getUserByIDSt;
-//    private PreparedStatement createSt;
-    private PreparedStatement updateSt;
-//    private PreparedStatement deleteSt;
-
-//    private String getUserByIDQy = "SELECT * FROM tgsdb.? WHERE ID=?";
-//    private String createQy = "INSERT INTO tgsdb.?(name, email, password, DOB, phone)" + "VALUES(?,?,?,?,?)";
-    private String updateQy = "UPDATE tgsdb.? SET name=?, password=?, DOB=?, phone=? WHERE ID=?";
-//    private String deleteQy = "DELETE FROM ? WHERE ID=?";
 
     public UserDAO(Connection connection) throws SQLException {
         this.st = connection.createStatement();
-//        this.getUserByIDSt = connection.prepareStatement(getUserByIDQy);
-//        this.createSt = connection.prepareStatement(createQy);
-        this.updateSt = connection.prepareStatement(updateQy);
-//        this.deleteSt = connection.prepareStatement(deleteQy);
     }
 
     public List<User> getUsers(String userType) throws SQLException {
@@ -70,16 +56,6 @@ public class UserDAO {
 
     }
 
-//    public void update(User user){
-//        updateSt.setString(1, user.getType());
-//        updateSt.setString(2, name);
-//        updateSt.setString(3, password);
-//        updateSt.setString(4, dob);
-//        updateSt.setString(5, phone);
-//        updateSt.setString(6, Integer.toString(ID));
-//        int row = updateSt.executeUpdate();
-//        System.out.println("Row " + row + " has been successflly updated");
-//    }
     
     public void delete(String userType, int ID) throws SQLException {
         String query = "DELETE FROM tgsdb." + userType + " WHERE ID='" + ID + "'";

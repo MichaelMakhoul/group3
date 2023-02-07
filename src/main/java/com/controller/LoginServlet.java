@@ -34,8 +34,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-//        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
-//        StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         ManagerDAO managerDAO = (ManagerDAO) session.getAttribute("managerDAO");
 

@@ -36,7 +36,7 @@
                                 <li><a href="index.html" class="active">Home</a></li>
                                 <li><a href="register.jsp">Register</a></li>                                
                                 <li><a href="login.jsp">Login</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="team.jsp">Our Team</a></li>
                             </ul>
                         </nav>		
                     </div>				

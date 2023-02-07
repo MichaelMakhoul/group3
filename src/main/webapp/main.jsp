@@ -40,7 +40,7 @@
                                 <li><a href="main.jsp" class="active">Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
                                 <% if (!userType.equals("manager")) { %>
-                                <li class="tm-nav-right"><a href="account.jsp">User's Profile</a></li> 
+                                <li><a href="account.jsp">User's Profile</a></li> 
                                     <% } %>
                             </ul>                    
 
@@ -109,6 +109,17 @@
                     <a href="customers.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View the list of customers</span>
+                            <!--                        <span>$4,200</span>-->
+                        </div>	
+                    </a>					
+                </div>				
+            </div>
+             <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                    <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
+                    <a href="ShowBookingsServlet">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>View the list of Bookings</span>
                             <!--                        <span>$4,200</span>-->
                         </div>	
                     </a>					

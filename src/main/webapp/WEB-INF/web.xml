@@ -6,10 +6,6 @@
         <servlet-class>com.controller.InitServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StaffMainServlet</servlet-name>
-        <servlet-class>com.controller.StaffMainServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>StaffViewServlet</servlet-name>
         <servlet-class>com.controller.StaffViewServlet</servlet-class>
     </servlet>
@@ -116,10 +112,6 @@
     <servlet-mapping>
         <servlet-name>group3</servlet-name>
         <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>StaffMainServlet</servlet-name>
-        <url-pattern>/StaffMainServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>StaffViewServlet</servlet-name>
