@@ -25,7 +25,11 @@
         <servlet-name>UserDeleteServlet</servlet-name>
         <servlet-class>com.controller.UserDeleteServlet</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
+=======
+        <servlet>
+>>>>>>> Antonella-Branch
         <servlet-name>BookingsViewServlet</servlet-name>
         <servlet-class>com.controller.BookingsViewServlet</servlet-class>
     </servlet>
@@ -86,15 +90,22 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <!--Booking Servlets-->
+=======
+        <!--Booking Servlets-->
+>>>>>>> Antonella-Branch
     <servlet>
         <servlet-name>AddBookingServlet</servlet-name>
         <servlet-class>com.controller.AddBookingServlet</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>CustomerUpdateServlet</servlet-name>
         <servlet-class>com.controller.CustomerUpdateServlet</servlet-class>
     </servlet>
+=======
+>>>>>>> Antonella-Branch
     <servlet-mapping>
         <servlet-name>AddBookingServlet</servlet-name>
         <url-pattern>/AddBookingServlet</url-pattern>
