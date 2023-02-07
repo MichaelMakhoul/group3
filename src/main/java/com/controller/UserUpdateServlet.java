@@ -32,7 +32,7 @@ public class UserUpdateServlet extends HttpServlet {
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         String submitted = request.getParameter("submitted");
         User user = (User) session.getAttribute("user");
-        String userType = user.getType();
+        String userType = (String)session.getAttribute("userType");
 
         int ID = Integer.parseInt(request.getParameter("ID"));
         String name = request.getParameter("name");

@@ -23,7 +23,7 @@
             User currentUser = (User) session.getAttribute("user");
             User user = (userUpdate != null) ? userUpdate : currentUser;
 
-            String emailView = (String) session.getAttribute("emailView");
+            String userType = (String) session.getAttribute("userType");
 
             String message = (String) session.getAttribute("message");
             String nameError = (String) session.getAttribute("nameError");
@@ -35,6 +35,7 @@
             session.removeAttribute("dobError");
             session.removeAttribute("phoneError");
             session.removeAttribute("message");
+            session.removeAttribute("emailView");
         %>
         <div class="tm-header">
             <div class="container1">
@@ -49,8 +50,10 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
-                                    <% if (userUpdate != null) { %>
+                                    <% if (userType == "staff") { %>
                                 <li><a href="customers.jsp">Customers List</a></li>
+                                    <% } else if (userType == "manager") { %>
+                                <li><a href="viewAllStaff.jsp">Staff List</a></li>
                                     <% } else { %>
                                 <li><a href="account.jsp">Account</a></li>
                                     <% }%>
@@ -63,7 +66,7 @@
             </div>
         </div>        
         <div>
-            <form method="POST" action=<%= (emailView != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
+            <form method="POST" action=<%= (userUpdate != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
                 <table>
                     <caption>Edit User <p><%= (message != null) ? message : ""%></p></caption>
                     <tr><td>ID: </td><td><input type="text" name="ID" value="<%= user.getID()%>" readonly="true" /></td></tr>
@@ -74,7 +77,7 @@
                             <p><%= (passError != null) ? passError : ""%></p></td></tr>
                     <tr><td>DOB: </td><td><input type="date" name="dob" value="<%= user.getDOB()%>"/>
                             <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
-                    <tr><td>Phon Number: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
+                    <tr><td>Phone Number: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
                             <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
                     <tr>
                         <td>

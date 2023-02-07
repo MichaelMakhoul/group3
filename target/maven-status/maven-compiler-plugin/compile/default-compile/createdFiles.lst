@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 com\rest\BookingService.class
 com\controller\ShowBookingsServlet.class
 com\model\Customers.class
@@ -40,3 +41,5 @@ com\controller\BookingsViewServlet.class
 com\model\dao\XmlTransformer.class
 com\model\Report.class
 com\model\Rooms.class
+=======
+>>>>>>> origin/Aiman_Branch

@@ -26,6 +26,7 @@
             User userUpdate = (User) session.getAttribute("userUpdate");
             User currentUser = (User) session.getAttribute("user");
             User user = (userUpdate != null) ? userUpdate : currentUser;
+            String userType = (String) session.getAttribute("userType");
         %>
 
         <div class="tm-header">
@@ -73,7 +74,13 @@
                             <p><%= (user != null) ? user.getPhone() : ""%></p>
                         </div>
                         <li><a href="userUpdate.jsp">Update</a></li>
+                            <% if (userType == "manager") { %>
+                        <li><a href="StaffDeleteServlet">Delete</a></li>
+                            <% } else { %>
                         <li><a href="UserDeleteServlet">Delete</a></li>
+                            <% }%> 
+
+
                     </div>
                 </div>
             </div>

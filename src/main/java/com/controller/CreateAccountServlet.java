@@ -30,8 +30,7 @@ public class CreateAccountServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
 
-        
-        session.setAttribute("nameError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
         session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
@@ -42,11 +41,11 @@ public class CreateAccountServlet extends HttpServlet {
                 && password.matches(Utils.passRegEx)
                 && dob.matches(Utils.dobRegEx)
                 && phoneNumber.matches(Utils.phoneRegEx));
-        
+
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
         String userType = (String) session.getAttribute("userType");
-        
+
         System.out.println("usertype: " + userType);
 
         if (userType.equals("staff")) {
@@ -70,7 +69,24 @@ public class CreateAccountServlet extends HttpServlet {
             }
         } else if (userType.equals("manager")) {
 
-        }
+            if (validRegex) {
+                try {
+                    User staff = userDAO.getUser(email, "staff");
+                    if (staff != null) {
+                        session.setAttribute("message", "User already exists");
+                        request.getRequestDispatcher("createAccount.jsp").include(request, response);
+                    } else {
 
+                        userDAO.create("staff", name, email, password, dob, phoneNumber);
+                        session.setAttribute("message", "User created successfully");
+                        request.getRequestDispatcher("createAccount.jsp").include(request, response);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CreateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                request.getRequestDispatcher("createAccount.jsp").include(request, response);
+            }
+        }
     }
 }
