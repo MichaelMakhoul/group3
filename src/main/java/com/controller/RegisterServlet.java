@@ -55,7 +55,6 @@ public class RegisterServlet extends HttpServlet {
         
         String error = "";        
 
-//        if (!email.matches(emailRegEx) || !password.matches(passRegEx)) {
         if (validRegex) {
             try {
                 UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");

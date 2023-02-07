@@ -40,7 +40,7 @@
                                 <li><a href="main.jsp" class="active">Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
                                 <% if (!userType.equals("manager")) { %>
-                                <li class="tm-nav-right"><a href="account.jsp">User's Profile</a></li> 
+                                <li><a href="account.jsp">User's Profile</a></li> 
                                     <% } %>
                             </ul>                    
 

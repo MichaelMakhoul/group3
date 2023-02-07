@@ -120,7 +120,7 @@ input {
 	margin-left: auto;
 	color: #7875B5;
 }
-/*
+
 .register {
 	width: 600px;
 	padding: 180px;
@@ -174,4 +174,5 @@ input {
 .register__submit:focus,
 .register__submit:hover {
 	border-color: #6A679E;
-	outline: none;*/
+	outline: none;
+}

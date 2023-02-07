@@ -35,7 +35,7 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
-                                <li><a href="main.jsp" class="active">Manager Main</a></li>                                                              
+                                <li><a href="main.jsp" class="active">Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
                             </ul>
                         </nav>		
