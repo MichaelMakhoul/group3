@@ -4,7 +4,7 @@
     Author     : 236333
 --%>
 
-<%@page import="com.model.Manager"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -45,15 +45,31 @@
         </div>
         
         <div>
-            <table  class="table">
+            <table class="customers_table">
+                <thead>
+                <th class="customers_table_th"> ID </th>
+                <th class="customers_table_th"> Name </th>
+                <th class="customers_table_th"> Email </th>
+                <th class="customers_table_th"> Phone </th>
+                <th class="customers_table_th"> DOB </th>
+                </thead>
+                <tbody class="customers_table_body">
+                    <jsp:include page="ManagerViewServlet" flush="true"/>
+                </tbody>
+            </table>
+
+<!--            <table  class="table">
                 <tr><td colspan="2"><h2>Staff list</h2></td></tr>
-                <tr><td>Staff member 1</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                <tr><td>Staff member 1</td><td><a href="userUpdate.jsp">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 2</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 3</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 4</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 5</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                
             </table>
+           -->
             
         </div> 
+       
     </body>
 </html>

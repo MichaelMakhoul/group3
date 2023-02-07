@@ -36,10 +36,52 @@ public class RoomDAO {
         this.deleteSt = connection.prepareStatement(deleteQy);
     }
     
+    /**
+     *
+     * @param roomID
+     * @return
+     */
+    public Room getRoombyID(int roomID) {
+        String qy = "SELECT * FROM tgsdb.room where `room_ID`=" + roomID;
+        try {
+            ResultSet rs = st.executeQuery(qy);
+            while (rs.next()) {
+                int id = Integer.parseInt(rs.getString(1));
+                if (id == roomID) {
+                    String roomNo = rs.getString(2);
+                    String roomType = rs.getString(3);
+                    String roomImageUrl = rs.getString(4);
+                    String roomDesc = rs.getString(5);
+                    int roomPrice = Integer.parseInt(rs.getString(6));
+                    return new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return null;
+    }
+
+  /**
+     * 
+     * @param checkIn
+     * @param checkOut
+     * @param roomType
+     * @return 
+     */
     public int getAvailableRoomsCountbyType(String checkIn, String checkOut, String roomType){
         List<Room> rooms = getAvailableRooms(checkIn, checkOut);
         return (int)rooms.stream().filter(room -> room.matchType(roomType)).count();
     }
+    
+    /**
+     * 
+     * @param checkIn
+     * @param checkOut
+     * @param roomType
+     * @return 
+     */
     public List<Room> getAvailableRoomsbyType(String checkIn, String checkOut, String roomType){
         System.out.println("com.model.dao.RoomDAO.getAvailableRoomsbyType()" );
         System.out.println("checkIn:"+ checkIn);
@@ -51,8 +93,14 @@ public class RoomDAO {
         return temp;
     }
     
+    /**
+     * 
+     * @param checkIn
+     * @param checkOut
+     * @return 
+     */
     public List<Room> getAvailableRooms(String checkIn, String checkOut){
-       List<Room> rooms = new ArrayList<>();
+        List<Room> rooms = new ArrayList<>();
         String query = "SELECT * FROM tgsdb.room\n" +
                         "WHERE room_ID NOT IN(\n" +
                         "SELECT room_ID FROM tgsdb.booking, tgsdb.booked_rooms\n" +
@@ -81,7 +129,13 @@ public class RoomDAO {
         rooms.forEach(r -> System.out.println(r));
         return rooms;  
     }
-    
+   
+    /**
+     * 
+     * @param checkIn
+     * @param checkOut
+     * @return 
+     */
    public List<Room> getBookedRooms(String checkIn, String checkOut)
    {
         List<Room> rooms = new ArrayList<>();
@@ -113,6 +167,10 @@ public class RoomDAO {
         return rooms;       
    }
    
+   /**
+    * 
+    * @return 
+    */
    public List<Room> getallRooms(){
        List<Room> rooms = new ArrayList<>();
        String query = "SELECT * FROM tgsdb.room";        
@@ -134,8 +192,14 @@ public class RoomDAO {
         return rooms; 
    }
    
-   
-   
+   /**
+    * 
+    * @param roomNo
+    * @param roomType
+    * @param roomImageUrl
+    * @param roomDesc
+    * @param roomPrice 
+    */   
    public void addRoom(String roomNo, String roomType, String roomImageUrl, String roomDesc, int roomPrice){
         try {
             createSt.setString(1, roomNo);
@@ -149,6 +213,14 @@ public class RoomDAO {
         }        
    }
 
+   /**
+    * 
+    * @param roomNo
+    * @param roomType
+    * @param roomImageUrl
+    * @param roomDesc
+    * @param roomPrice 
+    */
    public void updateRoom(String roomNo, String roomType, String roomImageUrl, String roomDesc, int roomPrice){
         try {
             updateSt.setString(1, roomNo);
@@ -163,6 +235,10 @@ public class RoomDAO {
         }        
    }
    
+   /**
+    * 
+    * @param roomID 
+    */
    public void delete(int roomID) {
         try {
             st.execute("SET FOREIGN_KEY_CHECKS=0");

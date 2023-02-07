@@ -1,9 +1,7 @@
 package com.controller;
 
-import com.model.Customer;
-import com.model.Staff;
-import com.model.dao.CustomerDAO;
-import com.model.dao.StaffDAO;
+import com.model.User;
+import com.model.dao.UserDAO;
 import com.utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,35 +24,41 @@ public class CreateAccountServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        String name = request.getParameter("create_name");
-        String email = request.getParameter("create_email");
-        String password = request.getParameter("create_password");
-        String dob = request.getParameter("create_dob");
-        String phoneNumber = request.getParameter("create_phoneNumber");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String dob = request.getParameter("dob");
+        String phoneNumber = request.getParameter("phoneNumber");
 
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
         session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-//        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
 
-        boolean validRegex = (email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && dob.matches(Utils.dobRegEx));
+        boolean validRegex = (name.matches(Utils.nameRegEx)
+                && email.matches(Utils.emailRegEx)
+                && password.matches(Utils.passRegEx)
+                && dob.matches(Utils.dobRegEx)
+                && phoneNumber.matches(Utils.phoneRegEx));
 
-        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
-        StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
         String userType = (String) session.getAttribute("userType");
+
+        System.out.println("usertype: " + userType);
 
         if (userType.equals("staff")) {
             if (validRegex) {
                 try {
-                    Customer customer = customerDAO.getCustomer(email);
+                    User customer = userDAO.getUser(email, "customer");
                     if (customer != null) {
-                        session.setAttribute("message", "Customer already exists");
+                        session.setAttribute("message", "User already exists");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     } else {
 
-                        customerDAO.create(name, email, password, dob, phoneNumber);
-                        session.setAttribute("message", "Customer created successfully");
+                        userDAO.create("customer", name, email, password, dob, phoneNumber);
+                        session.setAttribute("message", "User created successfully");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     }
                 } catch (SQLException ex) {
@@ -64,16 +68,17 @@ public class CreateAccountServlet extends HttpServlet {
                 request.getRequestDispatcher("createAccount.jsp").include(request, response);
             }
         } else if (userType.equals("manager")) {
-             if (validRegex) {
+
+            if (validRegex) {
                 try {
-                    Staff staff = staffDAO.getStaff(email);
+                    User staff = userDAO.getUser(email, "staff");
                     if (staff != null) {
-                        session.setAttribute("message", "Staff already exists");
+                        session.setAttribute("message", "User already exists");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     } else {
 
-                        staffDAO.create(name, email, password, dob, phoneNumber);
-                        session.setAttribute("message", "Staff added successfully");
+                        userDAO.create("staff", name, email, password, dob, phoneNumber);
+                        session.setAttribute("message", "User created successfully");
                         request.getRequestDispatcher("createAccount.jsp").include(request, response);
                     }
                 } catch (SQLException ex) {
@@ -82,8 +87,6 @@ public class CreateAccountServlet extends HttpServlet {
             } else {
                 request.getRequestDispatcher("createAccount.jsp").include(request, response);
             }
-
         }
-
     }
 }

@@ -3,8 +3,8 @@
     Created on : 28-Jan-2023, 10:31:34 AM
     Author     : 236336
 --%>
+<%@page import="com.model.User"%>
 <%@page import="com.model.Manager"%>
-<%@page import="com.model.Customer"%>
 <%@page import="com.model.Staff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,6 +20,11 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+        <%
+            String userType = (String) session.getAttribute("userType");
+            User user = (User) session.getAttribute("user");
+            session.removeAttribute("userUpdate");
+        %>
         <div class="tm-header">
             <div class="container">
                 <div class="row">
@@ -32,26 +37,41 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.jsp">Home</a></li>
                                 <li><a href="main.jsp" class="active">Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
-                            </ul>
+                                <% if (!userType.equals("manager")) { %>
+                                <li class="tm-nav-right"><a href="account.jsp">User's Profile</a></li> 
+                                    <% } %>
+                            </ul>                    
+
                         </nav>		
                     </div>				
                 </div>
             </div>	  	
         </div>
-        <% String userType = (String) session.getAttribute("userType");
-            if (userType.equals("customer")) { %>
-        <% Customer customer = (Customer) session.getAttribute("user");%>
-        <h1 class="welcome_message">Welcome <%= (customer != null) ? customer.getCustomerName() : ""%></h1>
+
+        <%                        
+           //Attributes set during booking need to be reset
+           session.removeAttribute("available");
+           session.removeAttribute("drQty");
+           session.removeAttribute("frQty");
+           session.removeAttribute("esQty");
+           session.removeAttribute("checkInD");
+           session.removeAttribute("checkOutD");
+           session.removeAttribute("booking");           
+           session.removeAttribute("bookingsView");
+         //booking
+         
+            if (userType.equals("customer")) {
+        %>
+        <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="addBooking.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
-                            <span>Make your booking</span>
+                            <span>Add your booking</span>
                             <!--                        <span>$4,200</span>-->
                         </div>	
                     </a>					
@@ -60,7 +80,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a  href="ShowBookingsServlet">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View your bookings</span>
                             <!--                        <span>$4,200</span>-->
@@ -68,26 +88,14 @@
                     </a>					
                 </div>				
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                    <img src="img/Prof.png" alt="image" class="img-responsive">
-                    <a href="#">
-                        <div class="tm-red-gradient-bg tm-city-price-container">
-                            <!--                        <span>User's Profile</span>-->
-                            <span><li><a href="account.jsp">User's Profile</a></li></span>
-                        </div>	
-                    </a>					
-                </div>				
-            </div>
         </div>
-        <% } else if (userType.equals("staff")) { %>
-        <% Staff staff = (Staff) session.getAttribute("user");%>
-        <h1 class="welcome_message">Welcome <%= (staff != null) ? staff.getStaffName() : ""%></h1>
+        <% } else if (userType.equals("staff")) {%>
+        <h1 class="welcome_message">Welcome <%= (user != null) ? user.getName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="createAccount.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>Create a New Customer Account</span>
                             <!--                        <span>$4,200</span>-->
@@ -98,7 +106,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="#">
+                    <a href="customers.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>View the list of customers</span>
                             <!--                        <span>$4,200</span>-->
@@ -106,23 +114,26 @@
                     </a>					
                 </div>				
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
+             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                    <img src="img/Prof.png" alt="image" class="img-responsive">
-                    <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span><li><a href="account.jsp">User's Profile</a></li></span>
-                    </div>	
+                    <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
+                    <a href="ShowBookingsServlet">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>View the list of Bookings</span>
+                            <!--                        <span>$4,200</span>-->
+                        </div>	
+                    </a>					
                 </div>				
             </div>
         </div>
-        <% } else if (userType.equals("manager")) { %>
-        <% Manager manager = (Manager) session.getAttribute("user");%>
+        <% } else if (userType.equals("manager")) {
+            Manager manager = (Manager) session.getAttribute("manager");%>
         <h1 class="welcome_message">Welcome <%= (manager != null) ? manager.getManagerName() : ""%></h1>
         <div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                     <!--<img src="img/index-02.jpg" alt="image" class="img-responsive">-->
-                    <a href="addStaff.jsp">
+                    <a href="createAccount.jsp">
                         <div class="tm-red-gradient-bg tm-city-price-container">
                             <span>Create a New Staff Account</span>
                             <!--                        <span>$4,200</span>-->
