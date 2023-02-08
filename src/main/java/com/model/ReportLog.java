@@ -89,4 +89,8 @@ public class ReportLog implements Serializable {
     public boolean matchReport(int ID){
         return this.reportLogID == ID;
     }
+    
+    public boolean matchReport(String createDate){
+        return this.createDate == createDate;
+    }
 }

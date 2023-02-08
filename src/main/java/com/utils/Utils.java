@@ -40,7 +40,7 @@ public class Utils {
             long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
             long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
             
-            System.out.println("Diff : "+ diff);
+            //System.out.println("Diff : "+ diff);
             return  (int)diff;
         } catch (ParseException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);

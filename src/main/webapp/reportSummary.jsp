@@ -18,6 +18,9 @@
     </head>
     <body>
         <% int reportLogID = Integer.parseInt(request.getParameter("reportLogID"));
+//            int reportLogID;
+//            if(reportID != null){
+//            reportLogID = Integer.parseInt(reportID);
             session.setAttribute("reportLogID", reportLogID);
         %>
         <div class="tm-header">
@@ -46,7 +49,7 @@
             <div class="customers_table_div">
                 <table class="customers_table">
                     <thead>
-                    <th class="customers_table_th"> Report Log ID </th>
+                    
                     <th class="customers_table_th"> Booking ID </th>
                     <th class="customers_table_th"> Customer Check In </th>
                     <th class="customers_table_th"> Customer Check Out </th>

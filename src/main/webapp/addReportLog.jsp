@@ -39,9 +39,11 @@
           String reportFromDate = (String) session.getAttribute("reportFromDate");
           String reportToDate = (String) session.getAttribute("reportToDate");
           String dateErr = (String) session.getAttribute("dateErr");
+          String existErr = (String) session.getAttribute("existErr");
           String createText = (String) session.getAttribute("createText");
           session.removeAttribute("dateErr");
           session.removeAttribute("createText");
+          session.removeAttribute("existErr");
       %>
     <div class="w3-content w3-border w3-margin-top" >
       <!--style="min-width: 25%;max-width:70%;"-->
@@ -53,6 +55,9 @@
           <%}%>
          <% if(dateErr != null){%> 
           <p><span class="w3-text-red"><b><%=dateErr%><b></span></p>
+          <%}%>
+          <% if(existErr != null){%> 
+          <p><span class="w3-text-red"><b><%=existErr%><b></span></p>
           <%}%>
       </div>
     
@@ -80,26 +85,21 @@
         </div>
         </form>
       </div>
-
-      <!-- End page content -->
     </div>
     <script>
-        Date.prototype.addDays = function (days) { return new Date(this.getTime() + days*24*60*60*1000); }
         Date.prototype.toYYYYMMDD = function() {
-                return this.getFullYear()+"-"+ (''+(this.getMonth()+1)).padStart(2,'0')+"-"+(''+(this.getDate())).padStart(2,'0'); }
+                return this.getFullYear()+"-"+ (''+(this.getMonth()+1)).padStart(2,'0')+"-"+(''+(this.getDate())).padStart(2,'0'); };
         
-        var minDate =  new Date();
-        minDate.setDate(minDate.getDate()+1);
         var maxDate = new Date();
         maxDate.setMonth(maxDate.getMonth()+3);
         
         var checkinElem = document.querySelector("#cIn");
         var checkoutElem = document.querySelector("#cOut");
 
-        checkinElem.setAttribute("min", minDate.toYYYYMMDD());
+        checkinElem.setAttribute("min", "2000-01-01");
         checkinElem.setAttribute("max", maxDate.toYYYYMMDD());
-        minDate.setDate(minDate.getDate()+1);
-        checkoutElem.setAttribute("min", minDate.toYYYYMMDD());
+        //minDate.setDate(minDate.getDate()+1);
+        checkoutElem.setAttribute("min", "2000-01-02");
         checkoutElem.setAttribute("max", maxDate.toYYYYMMDD());
 
         checkinElem.onchange = function () {

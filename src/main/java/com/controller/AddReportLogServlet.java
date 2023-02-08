@@ -5,6 +5,7 @@
  */
 package com.controller;
 
+import com.model.ReportLog;
 import com.model.dao.ReportDAO;
 import com.utils.Utils;
 import java.io.IOException;
@@ -32,17 +33,25 @@ public class AddReportLogServlet extends HttpServlet {
         if(diff > 0){
             ReportDAO reportDAO = (ReportDAO) session.getAttribute("reportDAO");
             try {
+                if(reportDAO.showOne(reportFromDate, reportToDate) == null){
                 reportDAO.createReportLog(reportFromDate, reportToDate);
                 session.setAttribute("createText", "Successfully created report.");
-                //reportDAO = (ReportDAO) session.getAttribute("reportDAO");
+                }else{
+                session.setAttribute("existErr", "Report exists already");
+//                reportDAO = (ReportDAO) session.getAttribute("reportDAO");
+                }
+//                
+//                ReportLog report = reportDAO.showOne(reportFromDate, reportToDate);
+//                request.setAttribute("reportLogID", report.getReportLogID());
+//                System.out.println("Add Report ID "+report.getReportLogID());
             } catch (SQLException ex) {
                 Logger.getLogger(AddReportLogServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
         }
-        
+       
         request.getRequestDispatcher("addReportLog.jsp").forward(request, response);
-        
+
     } 
 }

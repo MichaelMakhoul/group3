@@ -44,23 +44,23 @@ public class ReportDAO {
         return temp;
     }
 
-    //Read all Report Summaries
-    public List<ReportSummary> getReportSummaries() throws SQLException {
-        String fetch = "SELECT * FROM tgsdb.report_summary";
-        ResultSet rs = st.executeQuery(fetch);
-        List<ReportSummary> temp = new ArrayList<>();
-
-        while (rs.next()) {
-            int reportID = Integer.parseInt(rs.getString(1));
-            int bookingID = Integer.parseInt(rs.getString(2));
-            String checkIn = rs.getString(3);
-            String checkOut = rs.getString(4);
-            int numberOfRooms = Integer.parseInt(rs.getString(5));
-            int totalPrice = Integer.parseInt(rs.getString(6));
-            temp.add(new ReportSummary(reportID, bookingID, checkIn, checkOut, numberOfRooms, totalPrice));
-        }
-        return temp;
-    }
+//    Read all Report Summaries
+//    public List<ReportSummary> getReportSummaries() throws SQLException {
+//        String fetch = "SELECT * FROM tgsdb.report_summary";
+//        ResultSet rs = st.executeQuery(fetch);
+//        List<ReportSummary> temp = new ArrayList<>();
+//
+//        while (rs.next()) {
+//            int reportID = Integer.parseInt(rs.getString(1));
+//            int bookingID = Integer.parseInt(rs.getString(2));
+//            String checkIn = rs.getString(3);
+//            String checkOut = rs.getString(4);
+//            int numberOfRooms = Integer.parseInt(rs.getString(5));
+//            int totalPrice = Integer.parseInt(rs.getString(6));
+//            temp.add(new ReportSummary(reportID, bookingID, checkIn, checkOut, numberOfRooms, totalPrice));
+//        }
+//        return temp;
+//    }
 
     //Read a Report Log by report ID
     public List<ReportLog> getReportLogs(int ID) throws SQLException {

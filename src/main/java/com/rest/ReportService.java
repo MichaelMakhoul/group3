@@ -39,15 +39,15 @@ public class ReportService {
         return reportLogs;
     }
 
-    @GET
-    @Path("reportsummaries") //localhost:8080/group3/rest/reportapi/reportsummaries
-    @Produces(MediaType.APPLICATION_XML)
-    public ReportSummaries reportSummaries() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
-        ReportSummaries reportSummaries = new ReportSummaries();
-        reportSummaries.addAll(reportDAO.getReportSummaries());
-        return reportSummaries;
-    }
+//    @GET
+//    @Path("reportsummaries") //localhost:8080/group3/rest/reportapi/reportsummaries
+//    @Produces(MediaType.APPLICATION_XML)
+//    public ReportSummaries reportSummaries() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+//        ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
+//        ReportSummaries reportSummaries = new ReportSummaries();
+//        reportSummaries.addAll(reportDAO.getReportSummaries());
+//        return reportSummaries;
+//    }
 
     @GET
     @Path("removereport/{ID}") //localhost:8080/group3/rest/reportapi/removereport/{ID}

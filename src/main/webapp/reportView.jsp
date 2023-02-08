@@ -37,7 +37,16 @@
                 </div>
             </div>	  	
         </div>
-
+        <div>
+            <form class="login" method="POST" action="reportView.jsp">
+                <label for="searchOptions">Search By ID:</label>
+                <div class="login__field">
+                    <input type=number name="search_value">
+                </div>
+                <button class="button login__submit">Search</button>
+                <a href="reportView.jsp" style="color: #000;" class="button login__submit" >Cancel</a>
+            </form>
+        </div>
         <div class="customers_table_div">
             <table class="customers_table">
                 <thead>
