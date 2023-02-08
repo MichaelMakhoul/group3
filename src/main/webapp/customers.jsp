@@ -44,6 +44,24 @@
             </div>	  	
         </div>
 
+        <div>
+            <form class="login" method="POST" action="customers.jsp">
+                <label for="searchOptions">Search By:</label>
+                <select name="searchOptions" id="searchOptions">
+                    <option value="email">Email</option>
+                    <option value="ID">ID</option>                            
+                </select>
+
+                <div class="login__field">
+                    <input type="text" name="search_value">
+                </div>
+                <button class="button login__submit" onclick="showCancel()">Search</button>
+                <!--<button class="button button_cancel">-->
+                <a href="customers.jsp" style="color: #000;" class="button login__submit" >Cancel</a>
+                <!--</button>-->
+            </form>
+        </div>
+
         <div class="customers_table_div">
             <table class="customers_table">
                 <thead>

@@ -4,8 +4,10 @@
     Author     : 236361
 --%>
 
-<%@page import="com.model.Booking"%>
+
 <%@page import="com.model.Bookings"%>
+<%@page import="javax.xml.transform.stream.StreamResult"%>
+<%@page import="com.model.dao.XmlTransformer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,15 +15,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>View All Customers</title>
+    <title>Bookings View</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">        
     <link href="css/flexslider.css" rel="stylesheet">
     <link href="css/templatemo-style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/w3.css">      
+    <link rel="stylesheet" href="css/w3.css">  
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
   </head>
-  <body class="tm-gray-bg">
+  <body >
     <div class="tm-header">
       <div class="container">
         <div class="row">
@@ -43,47 +48,50 @@
       </div>	  	
     </div>
     <%
+        String xslPath = application.getRealPath("/xsl/bookings.xsl");
         Bookings bookings = (Bookings) session.getAttribute("bookings");        
         Boolean nobookings = false;
         if(bookings == null){ nobookings = true;}
         else if(bookings.getBookings() == null){nobookings = true;}
         else if(bookings.getBookings().isEmpty()){nobookings = true;}
     %>
-    <div class = "w3-content w3-border w3-margin-top w3-white" >
-      <div class="w3-container w3-margin-top w3-border-bottom" >
-        <h3><b>Bookings List</b></h3>
-        <p> Click on any Booking ID to check its details. </p>
+    <div class = "w3-container  w3-margin w3-white"  >
+      <div class="w3-row w3-border-bottom" >
+        <div class="w3-col w3-container m6 l6">
+            <h3><b>Bookings List</b></h3>
+            <p> Click on any Booking ID to check its details. </p>
+        </div>
+        <div class="w3-col w3-container m6 l6">         
+            <form class="example" action="#" >
+              <div class="w3-row " > 
+                <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >  
+                  <label for="searchOptions" style="padding: 13px;font-size: 17px">Search By:</label>
+                  <select name="searchOptions" id="searchOptions" 
+                          style="padding: 13px;font-size: 17px;border: 1px solid grey; border-radius: 5px;">
+                        <option value="bookingID">Booking ID</option>
+                        <option value="customerID">Customer ID</option>
+                        <option value="checkIn">Check IN Date</option>
+                        <option value="Check Out">Check Out Date</option>
+                   </select>
+                </div>
+                <div class="w3-col m6 l6" >
+                  <input type="text" placeholder="Search.." name="search2">
+                  <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+        </div>
       </div>
       
-      <div class="w3-container w3-margin">
+      <div class="w3-container w3-margin-top">
         <%
         if(nobookings){        
         %>
             <h3>No Bookings have been made</h3>
-        <% }else{%>
-        <table class="w3-table-all w3-hoverable">
-          <thead>
-            <tr class='w3-light-grey'>
-              <th>Booking ID</th>
-              <th>Customer ID</th>
-              <th>Check In</th>
-              <th>Check Out</th>
-              <th>Total Rooms</th>
-              <th>Total Price</th>
-            </tr>
-          </thead>
-          <% for (Booking booking : bookings.getBookings()) {%>
-          <tr>
-            <td> <a style="color:black; font-weight: bold;"  href="BookingServlet?ID=<%=booking.getBookingID()%>"> <%=booking.getBookingID()%></a></td>
-            <td> <%=booking.getCustomerID()%></td>
-            <td> <%=booking.getCheckIn()%></td>
-            <td> <%=booking.getCheckOut()%></td>
-            <td> <%=booking.getRooms().size()%></td>
-            <td> <%=booking.getTotalPrice()%></td>
-          </tr>
-          <%}%>
-        </table>
-        <%}%>
+        <% }else{
+                XmlTransformer transformer = new XmlTransformer();
+                transformer.transform(xslPath, bookings, new StreamResult(out));
+           }%>
       </div>
       
     </div>

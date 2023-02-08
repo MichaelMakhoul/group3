@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09-Feb-2023, 9:41:05 AM
+    Author     : 236361
+*/
+form.example input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-radius: 5px;
+      float: left;
+      width: 80%;
+      /*background: #f1f1f1;*/
+    }
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: darkgray;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
