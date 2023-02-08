@@ -25,10 +25,6 @@
         <servlet-name>UserDeleteServlet</servlet-name>
         <servlet-class>com.controller.UserDeleteServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>BookingsViewServlet</servlet-name>
-        <servlet-class>com.controller.BookingsViewServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>InitServlet</servlet-name>
         <url-pattern>/InitServlet</url-pattern>
@@ -86,6 +82,10 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CustomerUpdateServlet</servlet-name>
+        <servlet-class>com.controller.CustomerUpdateServlet</servlet-class>
+    </servlet>
     <!--Booking Servlets-->
     <servlet>
         <servlet-name>AddBookingServlet</servlet-name>
@@ -99,6 +99,7 @@
         <servlet-name>AddBookingServlet</servlet-name>
         <url-pattern>/AddBookingServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>BookingServlet</servlet-name>
         <servlet-class>com.controller.BookingServlet</servlet-class>
@@ -107,6 +108,7 @@
         <servlet-name>BookingServlet</servlet-name>
         <url-pattern>/BookingServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>ShowBookingsServlet</servlet-name>
         <servlet-class>com.controller.ShowBookingsServlet</servlet-class>
@@ -115,6 +117,42 @@
         <servlet-name>ShowBookingsServlet</servlet-name>
         <url-pattern>/ShowBookingsServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>BookingsViewServlet</servlet-name>
+        <servlet-class>com.controller.BookingsViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookingsViewServlet</servlet-name>
+        <url-pattern>/BookingsViewServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeleteBookingServlet</servlet-name>
+        <servlet-class>com.controller.DeleteBookingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteBookingServlet</servlet-name>
+        <url-pattern>/DeleteBookingServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LoadBookingUpdateServlet</servlet-name>
+        <servlet-class>com.controller.LoadBookingUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadBookingUpdateServlet</servlet-name>
+        <url-pattern>/LoadBookingUpdateServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateBookingServlet</servlet-name>
+        <servlet-class>com.controller.UpdateBookingServlet</servlet-class>
+    </servlet> <servlet-mapping>
+        <servlet-name>UpdateBookingServlet</servlet-name>
+        <url-pattern>/UpdateBookingServlet</url-pattern>
+    </servlet-mapping>
+    
     <!--Rest Services Path-->
     <servlet>
         <servlet-name>group3</servlet-name>
@@ -152,10 +190,6 @@
     <servlet-mapping>
         <servlet-name>UserDeleteServlet</servlet-name>
         <url-pattern>/UserDeleteServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>BookingsViewServlet</servlet-name>
-        <url-pattern>/BookingsViewServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

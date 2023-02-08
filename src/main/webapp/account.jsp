@@ -19,7 +19,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
+        <link rel="stylesheet" href="css/w3.css"> 
     </head>
     <body class="tm-gray-bg">
         <section>

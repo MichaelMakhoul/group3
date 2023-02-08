@@ -19,7 +19,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">        
     <link href="css/flexslider.css" rel="stylesheet">
     <link href="css/templatemo-style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">        
+    <link rel="stylesheet" href="css/w3.css">      
   </head>
   <body class="tm-gray-bg">
     <div class="tm-header">
@@ -50,9 +50,9 @@
         else if(bookings.getBookings().isEmpty()){nobookings = true;}
     %>
     <div class = "w3-content w3-border w3-margin-top w3-white" >
-      <div class="w3-container w3-margin-top w3-border-bottom">
+      <div class="w3-container w3-margin-top w3-border-bottom" >
         <h3><b>Bookings List</b></h3>
-        <p> </p>
+        <p> Click on any Booking ID to check its details. </p>
       </div>
       
       <div class="w3-container w3-margin">
@@ -74,8 +74,8 @@
           </thead>
           <% for (Booking booking : bookings.getBookings()) {%>
           <tr>
-            <td> <a style="text-decoration: underline;"  href="BookingServlet?ID=<%=booking.getBookingID()%>"> <%=booking.getBookingID()%></a></td>
-            <td> <%=booking.getCustomerID()%></a></td>
+            <td> <a style="color:black; font-weight: bold;"  href="BookingServlet?ID=<%=booking.getBookingID()%>"> <%=booking.getBookingID()%></a></td>
+            <td> <%=booking.getCustomerID()%></td>
             <td> <%=booking.getCheckIn()%></td>
             <td> <%=booking.getCheckOut()%></td>
             <td> <%=booking.getRooms().size()%></td>

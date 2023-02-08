@@ -14,7 +14,6 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
  * @author 236351
@@ -36,7 +35,7 @@ public class Utils {
         return  (diff.getYears() >= 18);
     }
 
-    public static int differenceInDays(String startDate, String endDate) {
+    public static int differenceInDays(String startDate, String endDate){
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             Date firstDate = sdf.parse(startDate);
@@ -52,4 +51,10 @@ public class Utils {
             return 0;
         }
     }
+    public static boolean startDtbefendDt(String startDate, String endDate){
+        LocalDate start = LocalDate.parse(startDate);
+        LocalDate end = LocalDate.parse(endDate);
+        return start.isBefore(end);
+    }
+    
 }
