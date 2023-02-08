@@ -6,7 +6,6 @@ com\controller\LoginServlet.class
 com\model\Booking.class
 com\model\Room.class
 com\rest\StaffService.class
-com\controller\ManagerViewServlet.class
 com\controller\CreateAccountServlet.class
 com\model\Bookings.class
 com\controller\ManagerMainServlet.class
@@ -19,10 +18,10 @@ com\model\dao\BookingsDAO.class
 com\controller\UserDeleteServlet.class
 com\model\Staff.class
 com\model\Customer.class
+com\controller\ManagerDeleteServlet.class
 com\controller\StaffViewServlet.class
 com\controller\RegisterServlet.class
 com\controller\CustomerUpdateServlet.class
-com\controller\StaffDeleteServlet.class
 com\model\dao\RoomDAO.class
 com\model\dao\UserDAO.class
 com\model\Reports.class

@@ -84,7 +84,7 @@ input {
 }
 
 .container {
-	display: flow;
+	display: flex;
 	align-items: center;
 	justify-content: center;
         
