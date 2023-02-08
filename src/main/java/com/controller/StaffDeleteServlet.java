@@ -5,8 +5,8 @@
  */
 package com.controller;
 
-import com.model.Customers;
-import com.model.Users;
+import com.model.User;
+
 import com.model.dao.UserDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,25 +20,28 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 236351
+ * @author 236333
  */
-public class StaffMainServlet extends HttpServlet {
+public class StaffDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
-//        StaffDAO staffDAO = (StaffDAO) session.getAttribute("staffDAO");
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-        try {
-            Users customers = new Users();
-            customers.addAll(userDAO.getUsers("customer"));
-            session.setAttribute("users", customers);
-            request.getRequestDispatcher("customers.jsp").include(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(StaffMainServlet.class.getName()).log(Level.SEVERE, null, ex);
+        String userType = (String) session.getAttribute("userType");
+        String toUpdate = (userType.equals("staff")) ? "customer" : (userType.equals("manager")) ? "staff" : "";
+
+        User user = (User) session.getAttribute("userUpdate");
+        if (user != null) {
+            try {
+                userDAO.delete(toUpdate, user.getID());
+            } catch (SQLException ex) {
+                Logger.getLogger(StaffDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
+
+        request.getRequestDispatcher("viewAllStaff.jsp").include(request, response);
+
     }
 }

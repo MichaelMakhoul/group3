@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author 236351
  */
-public class StaffViewServlet extends HttpServlet {
+public class ManagerViewServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,7 +32,7 @@ public class StaffViewServlet extends HttpServlet {
 //            Users users = (Users) session.getAttribute("customers");
             UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 //            Users users = 
-            List<User> usersList = userDAO.getUsers("customer");
+            List<User> usersList = userDAO.getStaff();
             for (User user : usersList) {
 
                 out.println("<style>\n"

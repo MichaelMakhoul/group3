@@ -20,13 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author 236351
  */
 public class InitServlet extends HttpServlet {
-private SqlDBConnector sqlDBConnector;
+
+    private SqlDBConnector sqlDBConnector;
     private Connection connection;
     private UserDAO userDAO;
     private ManagerDAO managerDAO;
@@ -37,8 +37,8 @@ private SqlDBConnector sqlDBConnector;
         try {
             sqlDBConnector = new SqlDBConnector();
             connection = sqlDBConnector.connection();
-            userDAO= new UserDAO(connection);
-            managerDAO= new ManagerDAO(connection);
+            userDAO = new UserDAO(connection);
+            managerDAO = new ManagerDAO(connection);
             bookingsDAO = new BookingsDAO(connection);
         } catch (IOException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,11 +51,9 @@ private SqlDBConnector sqlDBConnector;
         } catch (IllegalAccessException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -72,7 +70,7 @@ private SqlDBConnector sqlDBConnector;
         session.setAttribute("managerDAO", managerDAO);
         session.setAttribute("userDAO", userDAO);
         session.setAttribute("bookingsDAO", bookingsDAO);
-        
+
     }
 
     @Override

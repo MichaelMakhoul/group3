@@ -1,10 +1,9 @@
 <%-- 
-    Document   : customers
-    Created on : Jan 30, 2023, 9:55:01 PM
-    Author     : 236351
+    Document   : managerMain
+    Created on : 28-Jan-2023, 10:31:34 AM
+    Author     : 236333
 --%>
 
-<%@page import="com.model.Customers"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,14 +12,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>View All Customers</title>
+        <title>View All Staff</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
         <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/customer_form.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
         <div class="tm-header">
@@ -43,8 +42,8 @@
                 </div>
             </div>	  	
         </div>
-
-        <div class="customers_table_div">
+        
+        <div>
             <table class="customers_table">
                 <thead>
                 <th class="customers_table_th"> ID </th>
@@ -54,9 +53,22 @@
                 <th class="customers_table_th"> DOB </th>
                 </thead>
                 <tbody class="customers_table_body">
-                    <jsp:include page="StaffViewServlet" flush="true"/>
+                    <jsp:include page="ManagerViewServlet" flush="true"/>
                 </tbody>
             </table>
-        </div>
+
+<!--            <table  class="table">
+                <tr><td colspan="2"><h2>Staff list</h2></td></tr>
+                <tr><td>Staff member 1</td><td><a href="userUpdate.jsp">Update</a></td><td><a href="#">Delete</a></td></tr>
+                <tr><td>Staff member 2</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                <tr><td>Staff member 3</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                <tr><td>Staff member 4</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                <tr><td>Staff member 5</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                
+            </table>
+           -->
+            
+        </div> 
+       
     </body>
 </html>

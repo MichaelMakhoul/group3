@@ -24,7 +24,7 @@
     <servlet>
         <servlet-name>UserDeleteServlet</servlet-name>
         <servlet-class>com.controller.UserDeleteServlet</servlet-class>
-    </servlet>
+    </servlet>   
     <servlet-mapping>
         <servlet-name>InitServlet</servlet-name>
         <url-pattern>/InitServlet</url-pattern>

@@ -63,7 +63,7 @@ public class RoomDAO {
         return null;
     }
 
-    /**
+  /**
      * 
      * @param checkIn
      * @param checkOut
@@ -167,6 +167,15 @@ public class RoomDAO {
         return rooms;       
    }
    
+   /**
+    * 
+    * @param rooms
+    * @param roomType
+    * @return 
+    */
+   public int getRoomCountbyType(List<Room> rooms, String roomType){
+      return (int)rooms.stream().filter(room -> room.matchType(roomType)).count(); 
+   }
    /**
     * 
     * @return 
