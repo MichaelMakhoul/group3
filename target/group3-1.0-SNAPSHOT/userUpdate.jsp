@@ -16,6 +16,10 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
+        <link rel="stylesheet" href="css/w3.css"> 
+>>>>>>> 2df1cc4e102f5857d8c4204f3e9629ee54302f50
     </head>
     <body class="tm-gray-bg">                
         <%

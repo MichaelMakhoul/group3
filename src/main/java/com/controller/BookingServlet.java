@@ -3,6 +3,7 @@ package com.controller;
 import com.model.Booking;
 import com.model.User;
 import com.model.dao.BookingsDAO;
+import com.utils.Utils;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.servlet.ServletException;
@@ -38,7 +39,12 @@ public class BookingServlet extends HttpServlet {
         String drNo = request.getParameter("drQuantity");
         String frNo = request.getParameter("frQuantity");
         String esNo = request.getParameter("esQuantity");
-        if (drNo.isBlank() && frNo.isBlank() && esNo.isBlank()) {
+        
+        if(!Utils.startDtbefendDt(checkIn, checkOut)){
+            session.setAttribute("dateErr", "CheckOut should occur later than CheckIn");
+            request.getRequestDispatcher("addBooking.jsp").include(request, response);
+        }
+        else if (drNo.isBlank() && frNo.isBlank() && esNo.isBlank()) {
             session.setAttribute("roomsErr", "Please choose a room");
             request.getRequestDispatcher("addBooking.jsp").include(request, response);
         }else {            
@@ -56,9 +62,11 @@ public class BookingServlet extends HttpServlet {
                 noOfRooms[2] = es;
 
                 System.out.println("checkIn "+ checkIn);
-                System.out.println("checkOut "+ checkIn);
+                System.out.println("checkOut "+ checkOut);
                 System.out.println("noOfRooms "+ Arrays.toString(noOfRooms));
-                Integer bookingID = bookingsDAO.addBooking(customer.getID(), checkIn, checkOut, comments, 0, noOfRooms);
+                int diff = Utils.differenceInDays(checkIn, checkOut);
+                int totalPrice = diff *((noOfRooms[0]* 150) + (noOfRooms[1]* 250) + (noOfRooms[2]* 500));
+                Integer bookingID = bookingsDAO.addBooking(customer.getID(), checkIn, checkOut, comments, totalPrice, noOfRooms);
                 Booking booking = bookingsDAO.booking(bookingID);
                 session.setAttribute("booking", booking);
 
