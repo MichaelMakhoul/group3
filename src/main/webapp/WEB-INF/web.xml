@@ -90,11 +90,7 @@
     <servlet>
         <servlet-name>AddBookingServlet</servlet-name>
         <servlet-class>com.controller.AddBookingServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerUpdateServlet</servlet-name>
-        <servlet-class>com.controller.CustomerUpdateServlet</servlet-class>
-    </servlet>
+    </servlet>    
     <servlet-mapping>
         <servlet-name>AddBookingServlet</servlet-name>
         <url-pattern>/AddBookingServlet</url-pattern>
