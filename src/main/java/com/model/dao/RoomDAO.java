@@ -169,6 +169,15 @@ public class RoomDAO {
    
    /**
     * 
+    * @param rooms
+    * @param roomType
+    * @return 
+    */
+   public int getRoomCountbyType(List<Room> rooms, String roomType){
+      return (int)rooms.stream().filter(room -> room.matchType(roomType)).count(); 
+   }
+   /**
+    * 
     * @return 
     */
    public List<Room> getallRooms(){

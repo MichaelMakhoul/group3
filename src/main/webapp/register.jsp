@@ -14,9 +14,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/register.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/templatemo-style.css" rel="stylesheet">   
     </head>
 
     <body class="tm-gray-bg">
@@ -62,16 +62,16 @@
                 <form class="register" method="POST" action="RegisterServlet">
                     <h2><label for="registerOptions">Register as:</label></h2>
                     <label>
-                        <select name="registerOptions" id="registerOptions">
+                        <select class="dropmenu" name="registerOptions" id="registerOptions">
                             <option value="customer">Customer</option>
                             <option value="staff">Staff</option>                            
                         </select>
                     </label>
                     <label>
+                        <span class="message"><%= (exist != null) ? exist : ""%></span>
                         <div class="register__field">
                             <input type="text" name="name" class="register__input" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                            
-                        </div>
-                        <span class="message"><%= (exist != null) ? exist : ""%></span>
+                        </div>                        
                         <div class="register__field">
                             <input type="email" name="email" class="register__input" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
                         </div>
@@ -80,20 +80,19 @@
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="date" name="dob" class="register__input" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+                            <input type="text" name="dob" class="register__input" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
                             <input type="text" name="phoneNumber" class="register__input" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
                         </div>
                     <button class="button register__submit">
-                        <span class="button__text">Sign Up Now</span>
-                        <i class="button__icon fas fa-chevron-right"></i>
+                        <span>Sign Up Now</span>
                     </button>
                     </label>
                 </form>
-            </div>
-            <% exist = "";%>
+                <% exist = "";%>      
+            </div>           
         </div>
     </div>
 </div>

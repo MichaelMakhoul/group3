@@ -40,10 +40,11 @@ public class UserAccountServlet extends HttpServlet {
 
         String emailView = request.getParameter("emailView");
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-//        User user = (User) session.getAttribute("user");
-        String userType = (String) session.getAttribute("userType");
+        User user = (User) session.getAttribute("user");
         
         session.setAttribute("emailView", emailView);
+        
+        String userType = (String) session.getAttribute("userType");
         
         String toUpdate = (userType.equals("staff")) ? "customer" : (userType.equals("manager")) ? "staff" : "";
         session.setAttribute("toUpdate", toUpdate);
@@ -54,7 +55,6 @@ public class UserAccountServlet extends HttpServlet {
                     request.getRequestDispatcher("index.jsp").include(request, response);
                 }
                 User userUpdate = userDAO.getUser(emailView, toUpdate);
-//                session.setAttribute("upda", this);
                 userUpdate.setType(toUpdate);
                 session.setAttribute("userUpdate", userUpdate);
             } catch (SQLException ex) {

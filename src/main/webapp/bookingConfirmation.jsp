@@ -19,15 +19,17 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">         
     <link href="css/templatemo-style.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/w3.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body>
+  <body class="tm-gray-bg">
     <% 
-        User customer = (User) session.getAttribute("user");        
+        User user = (User) session.getAttribute("user");        
         Booking booking = (Booking)session.getAttribute("booking"); 
         String bookingsView = (String)session.getAttribute("bookingsView"); 
+        String updateBooking = (String)session.getAttribute("updateBooking");
+        session.removeAttribute("updateBooking");
     %>
     <div class="tm-header">
       <div class="container">
@@ -43,7 +45,7 @@
               <ul>                                
                 <li><a href="main.jsp" >Main</a></li>
                 <% if(bookingsView != null) { %>
-                <li><a href="showBookings.jsp" >Bookings</a></li>
+                <li><a href="ShowBookingsServlet" >Bookings</a></li>
                 <%}%>
                 <li><a href="LogoutServlet">Logout</a></li>
               </ul>
@@ -52,8 +54,17 @@
         </div>
       </div>	  	
     </div>
-    
-    <div class="w3-content w3-border w3-margin-top" style="min-width: 600px ;max-width:1200px;">
+    <% if(user.getType().equals("staff")){ %>
+    <!-- Sidebar -->
+<!--        <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">          
+          <a href="bookingConfirmation.jsp" class="w3-bar-item w3-button w3-right-align">Booking Details</a>
+          <a href="updateBooking.jsp" class="w3-bar-item w3-button w3-right-align">Update</a>
+          <a href="DeleteBookingServlet" class="w3-bar-item w3-button w3-right-align">Delete</a>
+        </div>
+
+        <div style="margin-left:25%">-->
+    <%} %>
+    <div class="w3-content w3-border w3-margin-top w3-white" style="min-width: 600px ;max-width:1200px;">
       <table class="w3-table" style = "font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "">
         <tr>
         <td>
@@ -63,16 +74,25 @@
               <td>
                 <% if(bookingsView == null) { %>
                   <h2 style="color: #404040; font-weight: 300; margin: 0 0 12px 0; font-size: 20px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
-                    Hi <%=customer.getName() %>,    
+                    Hi <%=user.getName() %>,    
                    </h2>
                    <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " class="">
                      Your booking request has been confirmed. Please review the details of your booking.
                    </p>
-                   <% }else{ %>
-                       <h2 style="color: #404040; font-weight:700; margin: 0 0 12px 0; font-size: 25px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
-                        Booking Details    
-                       </h2>
-                   <% }%>
+                <% }else{ %>
+                       <% if(updateBooking == null) { %>
+                        <h2 style="color: #404040; font-weight:700; margin: 0 0 12px 0; font-size: 25px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
+                         Booking Details    
+                        </h2>
+                        <% }else{ %>
+                            <h2 style="color: #404040; font-weight:700; margin: 0 0 12px 0; font-size: 25px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
+                                Updated Booking Details    
+                            </h2>
+                            <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " class="">
+                                Update has been successful.
+                            </p>
+                        <% }
+                    }%>
                    <table class="w3-border w3-text-dark-grey w3-margin-all" width ="100%">
                       <tr>
                         <td style="padding:20px 20px 0px ; font-weight:700; font-size: 25px; ">
@@ -148,7 +168,7 @@
                           </td>
                       </tr>
                    </table>
-                   <% if(bookingsView == null) { %>
+                   <% if(!(bookingsView != null || updateBooking != null)){ %>
                    <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " class="">
                      Hope you enjoyed the booking experience and will like the stay too.
                      <br>
@@ -159,6 +179,16 @@
                    <p style="color: #666666; font-weight: 400; font-size: 17px;  font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 10px;">
                      The Grand Serene Team</p>
                    <% } %>
+                    <% if(user.getType().equals("staff")){ %>
+                        <div class="w3-row-padding w3-margin-top"> 
+                           <div class="w3-third w3-margin ">
+                             <a href="LoadBookingUpdateServlet" class="w3-button w3-black w3-block"> Update Booking</a>
+                           </div>
+                           <div class="w3-third w3-margin ">
+                             <a href="DeleteBookingServlet" class="w3-button w3-black w3-block"> Delete Booking</a>
+                           </div>          
+                         </div>
+                    <%} %>
               </td>
             </tr>              
           </table>              

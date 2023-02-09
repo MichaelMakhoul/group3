@@ -30,8 +30,11 @@ public class AddBookingServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String checkIn = request.getParameter("checkIn");
         String checkOut = request.getParameter("checkOut");
-        int diff= Utils.differenceInDays(checkIn, checkOut);
-        if(diff > 0){
+        session.setAttribute("checkInD", checkIn);
+        session.setAttribute("checkOutD", checkOut);
+        if(checkIn == null || checkOut == null){
+            session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
+        }else if(Utils.startDtbefendDt(checkIn, checkOut)){
             BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
             session.setAttribute("available", true);       
 
@@ -44,8 +47,7 @@ public class AddBookingServlet extends HttpServlet {
             session.setAttribute("drQty", drQty);
             session.setAttribute("frQty", frQty);
             session.setAttribute("esQty", esQty);
-            session.setAttribute("checkInD", checkIn);
-            session.setAttribute("checkOutD", checkOut);
+            
         }else{
             session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
         }
