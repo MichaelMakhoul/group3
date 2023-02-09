@@ -11,6 +11,7 @@
 ul,p {
     margin: 0; 
     padding: 0;
+    
 }
 h1,h2,h3 {
     margin: 0;
@@ -53,18 +54,17 @@ body { overflow-x: hidden; }
     display: table;
     width: 700px;
     text-align: center;
-
-
 }
-/*.tm-nav li:last-child {
-    list-style: none;
-    float: right;
-    
+/*
+.tm-nav ul{
+        margin: auto;
+    width: 60%;
 }*/
+
 .tm-nav li {
     list-style: none;
     float: left;
-/*    background-color: red;*/
+
 }
 .tm-nav li a {
     color: #838383;
@@ -86,15 +86,7 @@ body { overflow-x: hidden; }
 
 }
 
-/*.tm-nav-right{
-    width: 200px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: #E4588E 1px solid;
-}*/
 
-/* Banner */
 .tm-banner-inner {
     height: auto;
     margin: auto;

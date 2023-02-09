@@ -101,7 +101,7 @@
                                                 <p><%= (passError != null) ? passError : ""%></p></td></tr>
                                         <tr><td>DOB: </td><td><input type="date" name="dob" value="<%= user.getDOB()%>"/>
                                                 <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
-                                        <tr><td>Phon Number: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
+                                        <tr><td>Phone: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
                                                 <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
                                         <tr>
 
