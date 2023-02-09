@@ -151,6 +151,24 @@
                     </a>					
                 </div>				
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">      
+                          <a href="addReportLog.jsp">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>Create A Report Log</span>
+                        </div>	
+                    </a>					
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                          <a href="reportView.jsp">
+                        <div class="tm-red-gradient-bg tm-city-price-container">
+                            <span>View All Report Logs</span>
+                        </div>	
+                    </a>					
+                </div>
+            </div>
         </div>
         <% }%>
     </body>
