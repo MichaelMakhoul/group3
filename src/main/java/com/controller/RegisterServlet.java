@@ -32,27 +32,29 @@ public class RegisterServlet extends HttpServlet {
         String registerOptions = request.getParameter("registerOptions");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
+        String staffEmail = request.getParameter("email");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
+        
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "\"[First] [Middle] [Last]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "\"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "\"[dd] [mm] [yyyy] or age <18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "\"[+Contry Code] [Number]\"");
+        
+        boolean validRegex= false;
+        
+ 
+        if(registerOptions.equals("customer")){
+            session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "\"[example@example.com]\"");
+            validRegex = (name.matches(Utils.nameRegEx) && email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && Utils.isOlderThen18(dob) && phoneNumber.matches(Utils.phoneRegEx));
+        }else{
+            session.setAttribute("emailError", staffEmail.matches(Utils.staffEmailRegEx) ? "" : "\"[example@tgsstaff.com]\"");
+            validRegex = (name.matches(Utils.nameRegEx) && staffEmail.matches(Utils.staffEmailRegEx) && password.matches(Utils.passRegEx) && Utils.isOlderThen18(dob)&& phoneNumber.matches(Utils.phoneRegEx));
+        }
+        
+        String error = "";        
 
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
-        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
-
-        boolean validRegex = (name.matches(Utils.nameRegEx)
-                && email.matches(Utils.emailRegEx)
-                && password.matches(Utils.passRegEx)
-                && dob.matches(Utils.dobRegEx)
-                && phoneNumber.matches(Utils.phoneRegEx));
-
-//        boolean nextPage = false;
-        String error = "";
-        //boolean user = false;        
-
-//        if (!email.matches(emailRegEx) || !password.matches(passRegEx)) {
         if (validRegex) {
             try {
                 UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");

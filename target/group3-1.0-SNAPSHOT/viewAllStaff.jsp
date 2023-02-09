@@ -4,7 +4,7 @@
     Author     : 236333
 --%>
 
-<%@page import="com.model.Manager"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Manager Main</title>
+        <title>View All Staff</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -34,8 +34,7 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.jsp">Home</a></li>
-                                <li><a href="main.jsp" class="active">Manager Main</a></li>                                                              
+                                <li><a href="main.jsp">Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
                             </ul>
                         </nav>		
@@ -45,15 +44,31 @@
         </div>
         
         <div>
-            <table  class="table">
+            <table class="customers_table">
+                <thead>
+                <th class="customers_table_th"> ID </th>
+                <th class="customers_table_th"> Name </th>
+                <th class="customers_table_th"> Email </th>
+                <th class="customers_table_th"> Phone </th>
+                <th class="customers_table_th"> DOB </th>
+                </thead>
+                <tbody class="customers_table_body">
+                    <jsp:include page="ManagerViewServlet" flush="true"/>
+                </tbody>
+            </table>
+
+<!--            <table  class="table">
                 <tr><td colspan="2"><h2>Staff list</h2></td></tr>
-                <tr><td>Staff member 1</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                <tr><td>Staff member 1</td><td><a href="userUpdate.jsp">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 2</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 3</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 4</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
                 <tr><td>Staff member 5</td><td><a href="#">Update</a></td><td><a href="#">Delete</a></td></tr>
+                
             </table>
+           -->
             
         </div> 
+       
     </body>
 </html>
