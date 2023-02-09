@@ -18,9 +18,7 @@
         <link href="css/login.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
-<!--        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                <link href="css/flexslider.css" rel="stylesheet">-->
+        <link href="css/login.css" rel="stylesheet">
     </head>
 
     <body class="tm-gray-bg">
@@ -71,7 +69,7 @@
                             <input type="password" name="password" class="login__input" placeholder="Password">
                         </div>
                         <button class="button login__submit">
-                            <span>Log In Now</span>
+                            <span>Sign In Now</span>
                         </button>
                         </label>
                     </form>

@@ -60,7 +60,6 @@ body { overflow-x: hidden; }
         margin: auto;
     width: 60%;
 }*/
-
 .tm-nav li {
     list-style: none;
     float: left;
@@ -79,9 +78,10 @@ body { overflow-x: hidden; }
 .tm-nav li a:focus,
 .tm-nav li a:hover {
     text-decoration-line: underline;
+    text-underline-offset: 6px;
     text-decoration-color: #565656;
     text-decoration-thickness: 2px;        
-    transition: transform 0.25s ease-out;
+    transition: transform 0.40s ease-out;
 
 
 }
