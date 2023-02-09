@@ -53,13 +53,12 @@
           String roomsFull = (String) session.getAttribute("roomsFull");
           session.removeAttribute("dateErr");
           session.removeAttribute("roomsErr");
-          session.removeAttribute("roomsFull");
-          
+          session.removeAttribute("roomsFull");         
           
 //          out.println("checkInD : " + checkInD + " request: " + request.getParameter("checkIn"));
 //          out.println("checkOutD : " + checkOutD + " request: " + request.getParameter("checkOut"));
       %>
-    <div class="w3-content w3-border w3-margin-top" >
+    <div class="w3-content  w3-margin-top" >
       <!--style="min-width: 25%;max-width:70%;"-->
 
       <div class="w3-container w3-margin-top w3-border-bottom" id="rooms">
@@ -114,7 +113,7 @@
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
               <br>
               <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
-              <label class="w3-blue-grey" for="drQuantity"><%=drQty%> Rooms Available</label>
+              <label class="w3-text-blue-grey" for="drQuantity"><%=drQty%> Rooms Available</label>
               <input class="w3-input w3-border w3-light-grey" type="number" onkeydown="return false" id="quantity" name="drQuantity" min="0" max="<%=drQty%>"  maxlength="2" placeholder="No of rooms">
             </div>
           </div>
@@ -128,7 +127,7 @@
               <br>
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
               <br>
-              <label class="w3-blue-grey" for="frQuantity"><%=frQty%> Rooms Available</label>
+              <label class="w3-text-blue-grey" for="frQuantity"><%=frQty%> Rooms Available</label>
               <input class="w3-input w3-border w3-light-grey" type="number" onkeydown="return false" id="quantity" name="frQuantity" min="0" max="<%=frQty%>" maxlength="2" placeholder="No of rooms">
               <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
             </div>

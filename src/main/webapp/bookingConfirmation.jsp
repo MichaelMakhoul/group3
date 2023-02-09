@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body class="tm-gray-bg">
+  <body >
     <% 
         User user = (User) session.getAttribute("user");        
         Booking booking = (Booking)session.getAttribute("booking"); 
@@ -64,7 +64,7 @@
 
         <div style="margin-left:25%">-->
     <%} %>
-    <div class="w3-content w3-border w3-margin-top w3-white" style="min-width: 600px ;max-width:1200px;">
+    <div class="w3-content w3-margin-top w3-white" style="min-width: 600px ;max-width:1200px;">
       <table class="w3-table" style = "font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "">
         <tr>
         <td>

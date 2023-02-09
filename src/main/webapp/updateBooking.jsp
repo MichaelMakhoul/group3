@@ -65,11 +65,14 @@
             session.removeAttribute("dateErr");
             session.removeAttribute("roomsErr");
             session.removeAttribute("roomsFull");
-            //int rooms = booking.getRooms().size();
-            //out.println("rooms : " + rooms );
+            
             out.println("drRooms : " + drRooms );
             out.println("frRooms : " + frRooms );
             out.println("esRooms : " + esRooms );
+            out.println("drAvail : " + drAvail );
+            out.println("frAvail : " + frAvail );
+            out.println("esAvail : " + esAvail );
+            out.println("comments : " + comments );
           
           
 //          out.println("checkInD : " + checkInD + " request: " + request.getParameter("checkIn"));
@@ -172,7 +175,7 @@
         <div class="w3-row-padding w3-margin-bottom">        
           <label for="comments"><b>Comments</b></label>
             <input class="w3-input w3-border" type="text" name="comments" 
-                   value=""<%= (comments != null) ? comments : ""%>"">        
+                   value="<%= (comments != null) ? comments : ""%>">        
         </div>
         
         <div class="w3-row-padding w3-margin-bottom">        
@@ -214,9 +217,11 @@
             var currentDate = new Date(this.value);
             currentDate.setDate(currentDate.getDate()+1);
             checkoutElem.setAttribute("min", currentDate.toYYYYMMDD());
+            <% request.getSession().setAttribute("change", "true");%>
             this.form.submit();            
         };
         checkoutElem.onchange = function(){
+            <% request.getSession().setAttribute("change", "true");%>
             this.form.submit();
         };
         

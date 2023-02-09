@@ -36,7 +36,7 @@ public class LoadBookingUpdateServlet extends HttpServlet {
         BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
         String checkIn = request.getParameter("checkIn");
         String checkOut = request.getParameter("checkOut");
-        Integer drNo, frNo, esNo;
+        int drNo, frNo, esNo;
         boolean isdateChanged = false;
         
         
@@ -46,6 +46,7 @@ public class LoadBookingUpdateServlet extends HttpServlet {
             drNo = bookingsDAO.getRoomCountbyType(booking.getRooms(), "DELUXE_ROOM");
             frNo = bookingsDAO.getRoomCountbyType(booking.getRooms(), "FAMILY_ROOM");
             esNo = bookingsDAO.getRoomCountbyType(booking.getRooms(), "EXECUTIVE_SUITE");
+            session.setAttribute("change","true");
         }else{
             drNo = Integer.parseInt(request.getParameter("drQuantity"));
             frNo = Integer.parseInt(request.getParameter("frQuantity"));
@@ -66,14 +67,16 @@ public class LoadBookingUpdateServlet extends HttpServlet {
         session.setAttribute("checkOutD", checkOut);
         if(Utils.startDtbefendDt(checkIn, checkOut)){    
 
-            Integer drQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "DELUXE_ROOM");
-            Integer frQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "FAMILY_ROOM");
-            Integer esQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "EXECUTIVE_SUITE");
-            Integer drAvail, frAvail, esAvail;
-            if(!isdateChanged){               
-                drQty += drNo;
-                frQty += frNo;
-                esQty += esNo;                
+            int drQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "DELUXE_ROOM");
+            int frQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "FAMILY_ROOM");
+            int esQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "EXECUTIVE_SUITE");
+            int drAvail, frAvail, esAvail;
+            String change = (String) session.getAttribute("change");
+            if(!isdateChanged && change != null){ 
+                session.removeAttribute("change");
+                drQty = drQty + bookingsDAO.getRoomCountbyType(booking.getRooms(), "DELUXE_ROOM");
+                frQty = frQty + bookingsDAO.getRoomCountbyType(booking.getRooms(), "FAMILY_ROOM");
+                esQty = esQty + bookingsDAO.getRoomCountbyType(booking.getRooms(), "EXECUTIVE_SUITE");                
             }
             drAvail = drQty - drNo;
             frAvail = frQty - frNo;

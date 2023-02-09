@@ -43,8 +43,7 @@ public class BookingServlet extends HttpServlet {
         if(!Utils.startDtbefendDt(checkIn, checkOut)){
             session.setAttribute("dateErr", "CheckOut should occur later than CheckIn");
             request.getRequestDispatcher("addBooking.jsp").include(request, response);
-        }
-        else if (drNo.isBlank() && frNo.isBlank() && esNo.isBlank()) {
+        }else if (drNo.isBlank() && frNo.isBlank() && esNo.isBlank()) {
             session.setAttribute("roomsErr", "Please choose a room");
             request.getRequestDispatcher("addBooking.jsp").include(request, response);
         }else {            

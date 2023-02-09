@@ -1,5 +1,6 @@
 package com.model.dao;
 
+import com.model.Bookings;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.util.JAXBSource;
@@ -17,21 +18,14 @@ import javax.xml.transform.stream.StreamSource;
 public class XmlTransformer {
     public XmlTransformer(){}
     
-//          --- Uncomment if needed to be used for (Customer, Staff, ...) ---  
-//    public void transform(String xslPath, Customers users, StreamResult result) throws JAXBException, TransformerConfigurationException, TransformerException{
-//        TransformerFactory tf = TransformerFactory.newInstance();
-//        StreamSource xslSource = new StreamSource(xslPath);
-//        JAXBContext jc = JAXBContext.newInstance(Customers.class);
-//        JAXBSource xmlSource = new JAXBSource(jc, users);
-//        Transformer transformer = tf.newTransformer(xslSource);
-//        transformer.transform(xmlSource, result);
-//    }
-    
-    public void transform(String xslPath, String xmlPath, StreamResult result) throws TransformerConfigurationException, TransformerException{
+       
+    public void transform(String xslPath, Bookings bookings, StreamResult result) throws JAXBException, TransformerConfigurationException, TransformerException{
         TransformerFactory tf = TransformerFactory.newInstance();
         StreamSource xslSource = new StreamSource(xslPath);
-        StreamSource xmlSource = new StreamSource(xmlPath);
+        JAXBContext jc = JAXBContext.newInstance(Bookings.class);
+        JAXBSource xmlSource = new JAXBSource(jc, bookings);
         Transformer transformer = tf.newTransformer(xslSource);
         transformer.transform(xmlSource, result);
     }
+
 }
