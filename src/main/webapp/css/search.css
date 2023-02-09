@@ -7,17 +7,21 @@ and open the template in the editor.
     Created on : 09-Feb-2023, 9:41:05 AM
     Author     : 236361
 */
-form.example input[type=text] {
+.search{
+    align-content: center;
+}
+
+form.searchList input[type=text] {
       padding: 10px;
       font-size: 17px;
       border: 1px solid grey;
       border-radius: 5px;
       float: left;
-      width: 80%;
+      width: 60%;
       /*background: #f1f1f1;*/
     }
 
-form.example button {
+form.searchList button {
   float: left;
   width: 20%;
   padding: 10px;
@@ -29,11 +33,12 @@ form.example button {
   cursor: pointer;
 }
 
-form.example button:hover {
-  background: #0b7dda;
+form.searchList button:hover {
+  /*background: #0b7dda;*/
+  background: lightgray;
 }
 
-form.example::after {
+form.searchList::after {
   content: "";
   clear: both;
   display: table;

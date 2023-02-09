@@ -51,18 +51,20 @@
         String xslPath = application.getRealPath("/xsl/bookings.xsl");
         Bookings bookings = (Bookings) session.getAttribute("bookings");        
         Boolean nobookings = false;
+        String searchErr = (String) session.getAttribute("searchErr");
+        session.removeAttribute("searchErr");
         if(bookings == null){ nobookings = true;}
         else if(bookings.getBookings() == null){nobookings = true;}
         else if(bookings.getBookings().isEmpty()){nobookings = true;}
     %>
     <div class = "w3-container  w3-margin w3-white"  >
       <div class="w3-row w3-border-bottom" >
-        <div class="w3-col w3-container m6 l6">
+        <div class="w3-col w3-container m6 l6 w3-margin-bottom">
             <h3><b>Bookings List</b></h3>
             <p> Click on any Booking ID to check its details. </p>
         </div>
-        <div class="w3-col w3-container m6 l6">         
-            <form class="example" action="#" >
+        <div class="w3-col w3-container m6 l6 search">         
+            <form class="searchList" action="ShowBookingsServlet" method="POST">
               <div class="w3-row " > 
                 <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >  
                   <label for="searchOptions" style="padding: 13px;font-size: 17px">Search By:</label>
@@ -71,12 +73,13 @@
                         <option value="bookingID">Booking ID</option>
                         <option value="customerID">Customer ID</option>
                         <option value="checkIn">Check IN Date</option>
-                        <option value="Check Out">Check Out Date</option>
+                        <option value="checkOut">Check Out Date</option>
                    </select>
                 </div>
-                <div class="w3-col m6 l6" >
-                  <input type="text" placeholder="Search.." name="search2">
+                <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >                                    
+                  <input type="text" placeholder="<%=searchErr !=null ? searchErr: "Search.."%>" name="search_value">
                   <button type="submit"><i class="fa fa-search"></i></button>
+                  <button type="button" onclick="window.location='ShowBookingsServlet';" ><i class="fa fa-retweet"></i></button>
                 </div>
               </div>
             </form>
