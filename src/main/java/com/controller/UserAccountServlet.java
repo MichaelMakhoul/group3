@@ -44,7 +44,9 @@ public class UserAccountServlet extends HttpServlet {
         
         session.setAttribute("emailView", emailView);
         
-        String toUpdate = (user.getType().equals("staff")) ? "customer" : (user.getType().equals("manager")) ? "staff" : "";
+        String userType = (String) session.getAttribute("userType");
+        
+        String toUpdate = (userType.equals("staff")) ? "customer" : (userType.equals("manager")) ? "staff" : "";
         session.setAttribute("toUpdate", toUpdate);
         
         if (emailView != null) {

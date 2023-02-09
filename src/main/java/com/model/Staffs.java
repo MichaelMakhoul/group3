@@ -21,21 +21,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "staffs")
 public class Staffs implements Serializable{
     @XmlElement(name = "staff")
-    private List<Staff> staffs = new ArrayList();
+    private List<User> staffs = new ArrayList();
 
     public Staffs() {
     }
 
-    public List<Staff> getStaffs() {
+    public List<User> getStaffs() {
         return staffs;
     }
 
-    public void setStaffs(List<Staff> staffs) {
+    public void setStaffs(List<User> staffs) {
         this.staffs = staffs;
     }
     
-    public void addAll(List<Staff> temp){
+    public void addAll(List<User> temp){
         this.staffs.addAll(temp);
+    }
+    
+    public void add(User customer){
+        this.staffs.add(customer);
     }
       
 }

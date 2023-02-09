@@ -65,6 +65,7 @@ public class RegisterServlet extends HttpServlet {
                     userDAO.create(registerOptions, name, email, password, dob, phoneNumber);
                     user = userDAO.getUser(email, registerOptions);
                     user.setType(registerOptions);
+                    session.setAttribute("userType", registerOptions);  
                     session.setAttribute("user", user);
                     session.setAttribute("userType", registerOptions);
                     request.getRequestDispatcher("main.jsp").include(request, response);

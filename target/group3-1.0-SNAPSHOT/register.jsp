@@ -28,11 +28,13 @@
             String dobError = (String) session.getAttribute("dobError");
             String phoneError = (String) session.getAttribute("phoneError");
             session.removeAttribute("error");
+            session.removeAttribute("nameError");
             session.removeAttribute("emailError");
             session.removeAttribute("passError");
             session.removeAttribute("dobError");
             session.removeAttribute("phoneError");
         %>
+
         <div class="tm-header">
             <div class="container1">
                 <div class="row">
@@ -46,7 +48,7 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
-                                <li><a href="" class="active">Register</a></li>                                
+                                <li><a href="register.jsp" class="active">Register</a></li>                                
                                 <li><a href="login.jsp">Login</a></li>                                 
                             </ul>
                         </nav>
@@ -54,56 +56,47 @@
                 </div>
             </div>
         </div>
-
         <div class="container">
-            <div class="screen">
-                <div class="screen__content">
-                    <form class="register" method="POST" action="RegisterServlet">
-                        <label for="registerOptions">Register as:</label>
+            <p class="tip"></p>
+            <div class="cont">
+                <form class="register" method="POST" action="RegisterServlet">
+                    <h2><label for="registerOptions">Register as:</label></h2>
+                    <label>
                         <select name="registerOptions" id="registerOptions">
                             <option value="customer">Customer</option>
                             <option value="staff">Staff</option>                            
                         </select>
+                    </label>
+                    <label>
                         <div class="register__field">
-                            <i class="register__icon fas fa-user"></i>
-                            <input type="text" name="name" class="register__input" placeholder="Name">
+                            <input type="text" name="name" class="register__input" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                            
                         </div>
                         <span class="message"><%= (exist != null) ? exist : ""%></span>
                         <div class="register__field">
-                            <i class="register__icon fas fa-user"></i>
-                            <input type="email" name="email" class="register__input" placeholder="Email">
-                            <span class="message"><%= (emailError != null) ? emailError : ""%></span>
+                            <input type="email" name="email" class="register__input" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
+                        </div>
+                        <div class="register__field">
+                            <input type="password" name="password" class="register__input" placeholder=<%= (passError != null) ? passError : "Password"%>>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="password" name="password" class="register__input" placeholder="Password">
-                            <span class="message"><%= (passError != null) ? passError : ""%></span>
+                            <input type="text" name="dob" class="register__input" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="date" name="dob" class="register__input" placeholder="DOB">
-                            <span class="message"><%= (dobError != null) ? dobError : ""%></span>
-                        </div>
-
-                        <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
-                            <span class="message"><%= (phoneError != null) ? phoneError : ""%></span>
+                            <input type="text" name="phoneNumber" class="register__input" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
                         </div>
                         <button class="button register__submit">
                             <span class="button__text">Sign Up Now</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
-                    </form>
-                </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
-                </div>
+                    </label>
+                </form>
             </div>
+            <% exist = "";%>
         </div>
-        <% exist = "";%>
-    </body>
+    </div>
+</div>
+</body>
 </html>
+

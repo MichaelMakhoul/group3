@@ -1,6 +1,7 @@
 
 package com.rest;
 
+import com.model.Booking;
 import com.model.Bookings;
 import com.model.dao.BookingsDAO;
 import com.model.dao.SqlDBConnector;
@@ -25,7 +26,7 @@ public class BookingService {
     @Produces(MediaType.APPLICATION_XML)
     public Bookings bookings()
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
-        Bookings bookings = new Bookings();
+        Bookings bookings = new Bookings();        
         BookingsDAO bookingsDAO = new BookingsDAO(new SqlDBConnector().connection());
         bookings.setBookings(bookingsDAO.getBookings());
         return bookings;
@@ -57,7 +58,7 @@ public class BookingService {
     @Path("/add/{customerID}/{checkIn}/{checkOut}/{DR}-{FR}-{ES}") //http://localhost:8080/group3/rest/bookingapi/add/{customerID}/{checkIn}/{checkOut}/{DR}-{FR}-{ES}
     @Produces(MediaType.APPLICATION_XML)
     public Response addBooking(@PathParam("customerID") int ID,@PathParam("checkIn") String checkIn, @PathParam("checkOut") String checkOut,
-            @PathParam("DR") int dr, @PathParam("DR") int fr,@PathParam("ES") int es)
+            @PathParam("DR") int dr, @PathParam("FR") int fr,@PathParam("ES") int es)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
         int []noOfRooms = new int[3];
         
@@ -90,6 +91,17 @@ public class BookingService {
         BookingsDAO bookingsDAO = new BookingsDAO(new SqlDBConnector().connection());
         bookingsDAO.deleteBookingbyCustomerID(ID);
         return "<success> Bookings of Customer_"+ID+" deleted successfully</success>";
+        }
+    
+    @GET
+    @Path("/booking/{bookingID}") //http://localhost:8080/group3/rest/bookingapi/booking/{bookingID}
+    @Produces(MediaType.APPLICATION_XML)
+    public Booking booking(@PathParam("bookingID") int ID)
+            throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
+                
+        BookingsDAO bookingsDAO = new BookingsDAO(new SqlDBConnector().connection());
+        
+        return bookingsDAO.booking(ID);
     }
     
 }

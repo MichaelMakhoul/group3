@@ -25,19 +25,20 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-//        User userUpdate = (User) session.getAttribute("userUpdate");
-//        User currentUser = (User) session.getAttribute("user");
-//        User user = (userUpdate != null) ? userUpdate : currentUser;
+        User userUpdate = (User) session.getAttribute("userUpdate");
+        User currentUser = (User) session.getAttribute("user");
+        User user = (userUpdate != null) ? userUpdate : currentUser;
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
-        int ID = Integer.parseInt(request.getParameter("ID"));
+//        int ID = Integer.parseInt(request.getParameter("ID"));
+        int ID = user.getID();
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
 
         String toUpdate = (String) session.getAttribute("toUpdate");
-        
+
         session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
@@ -55,7 +56,8 @@ public class CustomerUpdateServlet extends HttpServlet {
         if (validRegex) {
             try {
                 userDAO.update(toUpdate, name, password, dob, phoneNumber, ID);
-
+                userUpdate = userDAO.getUser(ID, toUpdate);
+                session.setAttribute("userUpdate", userUpdate);
                 session.setAttribute("message", "User was updated successfully");
                 request.getRequestDispatcher("userUpdate.jsp").include(request, response);
 

@@ -51,15 +51,20 @@ body { overflow-x: hidden; }
     padding: 0; 
     list-style: none; 
     display: table;
-    width: 600px;
+    width: 700px;
     text-align: center;
 
 
 }
+/*.tm-nav li:last-child {
+    list-style: none;
+    float: right;
+    
+}*/
 .tm-nav li {
     list-style: none;
     float: left;
-    
+/*    background-color: red;*/
 }
 .tm-nav li a {
     color: #838383;
@@ -81,13 +86,13 @@ body { overflow-x: hidden; }
 
 }
 
-.tm-nav-right{
+/*.tm-nav-right{
     width: 200px;
     position: absolute;
     top: 0;
     right: 0;
     border: #E4588E 1px solid;
-}
+}*/
 
 /* Banner */
 .tm-banner-inner {
