@@ -15,12 +15,12 @@
         <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/customer_form.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/w3.css">  
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <% int reportLogID = Integer.parseInt(request.getParameter("reportLogID"));
-//            int reportLogID;
-//            if(reportID != null){
-//            reportLogID = Integer.parseInt(reportID);
             session.setAttribute("reportLogID", reportLogID);
         %>
         <div class="tm-header">
@@ -36,30 +36,43 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="reportView.jsp">Report Logs</a></li>
-                                <li><a href="main.jsp" >Manager Main</a></li>
+                                <li><a href="main.jsp" >Main</a></li>
                                 <li><a href="LogoutServlet">Logout</a></li>
-                                <li><a href="ReportDeleteServlet">Delete</a></li>
                             </ul>
                         </nav>		
                     </div>				
                 </div>
             </div>	  	
         </div>
-        <div>
-            <div class="customers_table_div">
-                <table class="customers_table">
+
+        <div class = "w3-container  w3-margin-top w3-white">
+            <div class="w3-row w3-border-bottom" style="display: flex; align-content: center">
+                <div class="w3-col w3-container m6 l6 w3-margin-bottom">
+                    <h3><b>Report Summary List</b></h3>
+                    <p> Viewing Report Summary of selected Report Log. </p>
+                </div>
+                 
+                <div class="w3-col w3-container m6 l6 search" style="width: 50%; display: flex; justify-content: space-around; margin-top: 20px; margin-bottom: 20px;" >
+                    <button style="min-width: 40px; border-radius: 3px;" type="button" onclick="window.location = 'ReportDeleteServlet';"><i class="fa fa-trash-o"></i> Delete</button>
+                </div>
+                </div>
+                    <div class="w3-container w3-margin-top ">
+                <table class="w3-table-all w3-hoverable">
                     <thead>
-                    
-                    <th class="customers_table_th"> Booking ID </th>
-                    <th class="customers_table_th"> Customer Check In </th>
-                    <th class="customers_table_th"> Customer Check Out </th>
-                    <th class="customers_table_th"> Number Of Rooms Booked </th>
-                    <th class="customers_table_th"> Booking Total Price </th>
+                        <tr class='w3-light-grey'>
+                            <th class=""> Booking ID </th>
+                            <th class=""> Customer Check In </th>
+                            <th class=""> Customer Check Out </th>
+                            <th class=""> Number Of Rooms Booked </th>
+                            <th class=""> Booking Total Price </th>
+                        </tr>
                     </thead>
                     <tbody class="customers_table_body">                   
                         <jsp:include page="ReportSummaryViewServlet" flush="true"/>                    
                     </tbody>
                 </table>
             </div>
+        </div>
+                   
     </body>
 </html>

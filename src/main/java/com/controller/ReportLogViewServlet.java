@@ -23,29 +23,13 @@ public class ReportLogViewServlet extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             for (ReportLog reportLog : reportLogList) {
 
-                out.println("<style>\n"
-                        + ".users_table_tr {\n"
-                        + "    transition: background 0.25s ease;\n"
-                        + "}"
-                        + ".users_table_tr:hover {\n"
-                        + "    background: #014055;\n"
-                        + "}"
-                        + ".users_table_td {\n"
-                        + "    color: #fff;\n"
-                        + "    font-weight: 400;\n"
-                        + "    padding: 0.65em 1em;\n"
-                        + "    width: 20%;"
-                        + "    text-align: center;"
-                        + "}"
-                        + "</style>");
-
-                out.println("<tr class=\"users_table_tr\">");
-                out.println("<td class=\"users_table_td\"> <a href=http://localhost:8080/group3/reportSummary.jsp?reportLogID=" + reportLog.getReportLogID() + ">" + reportLog.getReportLogID() + "</a></td>");
-                out.println("<td class=\"users_table_td\">" + reportLog.getReportFromDate() + "</td>");
-                out.println("<td class=\"users_table_td\">" + reportLog.getReportToDate() + "</td>");
-                out.println("<td class=\"users_table_td\">" + reportLog.getNumberOfBookings() + "</td>");
-                out.println("<td class=\"users_table_td\">" + reportLog.getRevenue() + "</td>");
-                out.println("<td class=\"users_table_td\">" + reportLog.getCreateDate() + "</td>");
+                out.println("<tr>");
+                out.println("<td style=\" font-weight:bold;\"> <a href=http://localhost:8080/group3/reportSummary.jsp?reportLogID=" + reportLog.getReportLogID() + ">" + reportLog.getReportLogID() + "</a></td>");
+                out.println("<td>" + reportLog.getReportFromDate() + "</td>");
+                out.println("<td>" + reportLog.getReportToDate() + "</td>");
+                out.println("<td>" + reportLog.getNumberOfBookings() + "</td>");
+                out.println("<td>" + reportLog.getRevenue() + "</td>");
+                out.println("<td>" + reportLog.getCreateDate() + "</td>");
                 out.println("</tr>");
             }
         } catch (IOException ex) {
@@ -58,8 +42,6 @@ public class ReportLogViewServlet extends HttpServlet {
         try {
             response.setContentType("text/html;charset=UTF-8");
             HttpSession session = request.getSession();
-
-            //try ( PrintWriter out = response.getWriter()) {
             ReportDAO reportDAO = (ReportDAO) session.getAttribute("reportDAO");
             List<ReportLog> reportLogList = reportDAO.getReportLogs();
             fetchList(reportLogList, response);

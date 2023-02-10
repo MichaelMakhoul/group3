@@ -11,6 +11,7 @@
 ul,p {
     margin: 0; 
     padding: 0;
+    
 }
 h1,h2,h3 {
     margin: 0;
@@ -51,15 +52,18 @@ body { overflow-x: hidden; }
     padding: 0; 
     list-style: none; 
     display: table;
-    width: 600px;
+    width: 700px;
     text-align: center;
-
-
 }
+/*
+.tm-nav ul{
+        margin: auto;
+    width: 60%;
+}*/
 .tm-nav li {
     list-style: none;
     float: left;
-    
+
 }
 .tm-nav li a {
     color: #838383;
@@ -74,14 +78,15 @@ body { overflow-x: hidden; }
 .tm-nav li a:focus,
 .tm-nav li a:hover {
     text-decoration-line: underline;
+    text-underline-offset: 6px;
     text-decoration-color: #565656;
     text-decoration-thickness: 2px;        
-    transition: transform 0.25s ease-out;
+    transition: transform 0.40s ease-out;
 
 
 }
 
-/* Banner */
+
 .tm-banner-inner {
     height: auto;
     margin: auto;

@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.model.User;
+import com.model.dao.BookingsDAO;
 import com.model.dao.UserDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,24 +23,30 @@ public class UserDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-//        int ID = Integer.parseInt(request.getParameter("ID"));
-        User user = (User) session.getAttribute("user");
-
-//        String userType = user.getType();
-        int ID = user.getID();
-
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+        
+        User userUpdate = (User) session.getAttribute("userUpdate");
+        User currentUser = (User) session.getAttribute("user");
+        User user = (userUpdate != null) ? userUpdate : currentUser;
+        
+        String userType = user.getType();
 
-//        userDAO.delete("customer", ID)
-        try {
-            userDAO.delete("customer", ID);
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
+        if (userType != null) {
+            try {
+                BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
+                bookingsDAO.deleteBookingbyCustomerID(user.getID());
+                userDAO.delete(userType, user.getID());
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(userUpdate != null) {
+                session.removeAttribute("userUpdate");
+                request.getRequestDispatcher("customers.jsp").include(request, response);
+            }else {
+                session.invalidate();
+                request.getRequestDispatcher("index.jsp").include(request, response);
+            }
         }
 
-//        if (userType.equals("staff")) {
-            request.getRequestDispatcher("index.jsp").include(request, response);
-//        }
     }
 }

@@ -15,6 +15,9 @@
         <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/customer_form.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/w3.css">  
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="tm-header">
@@ -29,7 +32,7 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="main.jsp" >Manager Main</a></li>                                                              
+                                <li><a href="main.jsp" >Main</a></li>                                                              
                                 <li><a href="LogoutServlet">Logout</a></li>
                             </ul>
                         </nav>		
@@ -37,30 +40,38 @@
                 </div>
             </div>	  	
         </div>
-        <div>
-            <form class="login" method="POST" action="reportView.jsp">
-                <label for="searchOptions">Search By ID:</label>
-                <div class="login__field">
-                    <input type=number name="search_value">
+        <div class = "w3-container  w3-margin-top w3-white">
+            <div class="w3-row w3-border-bottom" style="display: flex; align-content: center">
+                <div class="w3-col w3-container m6 l6 w3-margin-bottom">
+                    <h3><b>Report Log List</b></h3>
+                    <p> Click on any Report ID to check Report Summary. </p>
                 </div>
-                <button class="button login__submit">Search</button>
-                <a href="reportView.jsp" style="color: #000;" class="button login__submit" >Cancel</a>
-            </form>
-        </div>
-        <div class="customers_table_div">
-            <table class="customers_table">
+                <div class="w3-col w3-container m6 l6 search" style="width: 50%; display: flex; justify-content: space-around; margin-top: 5px; " >
+                    <label for="search_value" style="padding: 7px;font-size: 17px">Search By ID:</label>
+                    <form  style="display: flex; height: 60%;" class="searchList" method="POST" action="reportView.jsp">
+                        <input type="number" name="search_value" autofocus class="search_field" placeholder="Search..">
+                        <button style="margin: 0 3px; min-width: 60px; background: #1eb860; border-radius: 5px;" type="submit"><i class="fa fa-search"></i></button>
+                        <button style="min-width: 60px; border-radius: 5px;" type="button" onclick="window.location = 'reportView.jsp';"><i class="fa fa-retweet"></i></button>
+                    </form>
+                </div>
+            </div>
+        <div class="w3-container w3-margin-top ">
+            <table class="w3-table-all w3-hoverable">
                 <thead>
-                <th class="customers_table_th"> ID </th>
-                <th class="customers_table_th"> Report Start Date </th>
-                <th class="customers_table_th"> Report End Date </th>
-                <th class="customers_table_th"> Number Of Rooms Booked </th>
-                <th class="customers_table_th"> Revenue </th>
-                <th class="customers_table_th"> Created Date Of Report </th>
+                    <tr class='w3-light-grey'>
+                        <th class=""> ID </th>
+                        <th class=""> Report Start Date </th>
+                        <th class=""> Report End Date </th>
+                        <th class=""> Number Of Rooms Booked </th>
+                        <th class=""> Revenue </th>
+                        <th class=""> Created Date Of Report </th>
+                    </tr> 
                 </thead>
-                <tbody class="customers_table_body">
+                <tbody>
                     <jsp:include page="ReportLogViewServlet" flush="true"/>
                 </tbody>
             </table>
         </div>
-    </body>
+    </div>
+</body>
 </html>

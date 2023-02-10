@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         ManagerDAO managerDAO = (ManagerDAO) session.getAttribute("managerDAO");
 
@@ -48,8 +49,8 @@ public class LoginServlet extends HttpServlet {
 
             if (user != null) {
                 user.setType(loginOptions);
-                session.setAttribute("user", user);
                 session.setAttribute("userType", loginOptions);
+                session.setAttribute("user", user);
                 request.getRequestDispatcher("main.jsp").include(request, response);
                 userExists = true;
             }

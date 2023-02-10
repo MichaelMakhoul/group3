@@ -2,7 +2,6 @@ package com.rest;
 
 import com.model.ReportLog;
 import com.model.ReportLogs;
-import com.model.ReportSummaries;
 import com.model.dao.ReportDAO;
 import com.model.dao.SqlDBConnector;
 import java.io.FileNotFoundException;
@@ -38,16 +37,6 @@ public class ReportService {
         reportLogs.addAll(reportDAO.getReportLogs());
         return reportLogs;
     }
-
-//    @GET
-//    @Path("reportsummaries") //localhost:8080/group3/rest/reportapi/reportsummaries
-//    @Produces(MediaType.APPLICATION_XML)
-//    public ReportSummaries reportSummaries() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-//        ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
-//        ReportSummaries reportSummaries = new ReportSummaries();
-//        reportSummaries.addAll(reportDAO.getReportSummaries());
-//        return reportSummaries;
-//    }
 
     @GET
     @Path("removereport/{ID}") //localhost:8080/group3/rest/reportapi/removereport/{ID}
