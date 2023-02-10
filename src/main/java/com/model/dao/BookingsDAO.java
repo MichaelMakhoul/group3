@@ -3,6 +3,7 @@ package com.model.dao;
 import com.model.Booking;
 import com.model.Room;
 import com.utils.Utils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,11 +67,10 @@ public class BookingsDAO {
             }
             booking.setRooms(getBookedRooms(bookingID));  
         } catch (SQLException ex) {
-            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
-        }finally{
-            return booking;
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return booking;            
         }
-        
+        return booking; 
     }
 
     /**
@@ -100,11 +100,10 @@ public class BookingsDAO {
                     b.setRooms(getBookedRooms(b.getBookingID()));
             }  
         } catch (SQLException ex) {
-            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
-        }finally{
-            return bookings;
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return bookings;            
         }
-        
+        return bookings;
     }
     
     /**
@@ -112,28 +111,11 @@ public class BookingsDAO {
      * @param bookingID
      * @return 
      */
-    public List<Room> getBookedRooms(int bookingID) {
-        List<Room> rooms = new ArrayList<>();
-        try {
-            String qy = "SELECT tgsdb.room.* from tgsdb.room,tgsdb.booked_rooms\n"
+    public List<Room> getBookedRooms(int bookingID) {        
+        String qy = "SELECT tgsdb.room.* from tgsdb.room,tgsdb.booked_rooms\n"
                     + "WHERE tgsdb.booked_rooms.room_ID=tgsdb.room.room_ID\n"
                     + "and tgsdb.booked_rooms.booking_ID=" + bookingID;
-            ResultSet rs = st.executeQuery(qy);
-            while (rs.next()) {
-                int roomID = Integer.parseInt(rs.getString(1));
-                String roomNo = rs.getString(2);
-                String roomType = rs.getString(3);
-                String roomImageUrl = rs.getString(4);
-                String roomDesc = rs.getString(5);
-                int roomPrice = Integer.parseInt(rs.getString(6));
-                rooms.add(new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
-        }finally{
-            return rooms;
-        }
-        
+        return roomDAO.executeQuery(qy);    
     }
 
     
@@ -163,10 +145,10 @@ public class BookingsDAO {
                 b.setRooms(getBookedRooms(b.getBookingID()));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);            
-        }finally{
+            Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex); 
             return bookings;
-        }        
+        }
+        return bookings;             
     }
 
     /**
@@ -196,9 +178,9 @@ public class BookingsDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(BookingsDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
             return bookings;
-        } 
+        }
+        return bookings;        
     }
     
     /**
@@ -244,16 +226,19 @@ public class BookingsDAO {
      * @param totalPrice
      * @param noOfRooms 
      */
-    public int addBooking(int customerID, String checkIn, String checkOut, String desc, int totalPrice, int []noOfRooms){
+    public int addBooking(int customerID, String checkIn, String checkOut, String desc, int []noOfRooms){
         System.out.println("com.model.dao.BookingsDAO.addBooking()");
         List<Room> rooms = generateRooms(checkIn, checkOut, noOfRooms);        
+        int diff = Utils.differenceInDays(checkIn, checkOut);        
+        int totalPrice = diff *((getRoomCountbyType(rooms,"DELUXE_ROOM")* 150) +
+                            (getRoomCountbyType(rooms,"FAMILY_ROOM")* 250) + 
+                            (getRoomCountbyType(rooms,"EXECUTIVE_SUITE")* 500));
         return createBooking(customerID, checkIn, checkOut, desc, totalPrice, rooms);
     }
     
     private List<Room> generateRooms(String checkIn, String checkOut,int []noOfRooms){
         List<Room> availRooms = roomDAO.getAvailableRooms(checkIn, checkOut);
-        List<Room> rooms = new ArrayList<>();
-        //String []roomType = {"DELUXE_ROOM","FAMILY_ROOM","EXECUTIVE_SUITE"}; 
+        List<Room> rooms = new ArrayList<>(); 
         System.out.println("checkIn "+ checkIn);
         System.out.println("checkOut "+ checkOut);
         System.out.println("noOfRooms "+ Arrays.toString(noOfRooms));

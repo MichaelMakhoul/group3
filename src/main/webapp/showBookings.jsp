@@ -52,6 +52,7 @@
         Bookings bookings = (Bookings) session.getAttribute("bookings");        
         Boolean nobookings = false;
         String searchErr = (String) session.getAttribute("searchErr");
+
         session.removeAttribute("searchErr");
         if(bookings == null){ nobookings = true;}
         else if(bookings.getBookings() == null){nobookings = true;}
@@ -74,12 +75,12 @@
                         <option value="customerID">Customer ID</option>
                         <option value="checkIn">Check IN Date</option>
                         <option value="checkOut">Check Out Date</option>
-                   </select>
+                   </select>                    
                 </div>
                 <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >                                    
                   <input type="text" placeholder="<%=searchErr !=null ? searchErr: "Search.."%>" name="search_value">
-                  <button type="submit"><i class="fa fa-search"></i></button>
-                  <button type="button" onclick="window.location='ShowBookingsServlet';" ><i class="fa fa-retweet"></i></button>
+                  <button type="submit" class="w3-dark-gray"><i class="fa fa-search"></i></button>
+                  <button type="button" class="w3-dark-gray" onclick="window.location='ShowBookingsServlet';" ><i class="fa fa-refresh"></i></button>
                 </div>
               </div>
             </form>
