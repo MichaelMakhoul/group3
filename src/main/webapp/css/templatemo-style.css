@@ -11,7 +11,7 @@
 ul,p {
     margin: 0; 
     padding: 0;
-    
+
 }
 h1,h2,h3 {
     margin: 0;
@@ -21,6 +21,7 @@ h1,h2,h3,a,p { font-family: 'Open Sans', sans-serif; }
 a:hover,
 a:focus {
     text-decoration: none;
+    color: white;
 }
 
 /* Header & Nav */
@@ -33,15 +34,16 @@ body { overflow-x: hidden; }
 }
 .tm-site-name-container { padding-top: 20px; }
 .tm-site-name {
-    color: #FCDD44;
-    font-size: 27px;
-    font-weight: 600;
-    text-transform: uppercase;
-
+    /*    color: #FCDD44;
+        font-size: 27px;
+        font-weight: 600;
+        text-transform: uppercase;*/
+    font-family: 'Cinzel', serif;font-size:230%; 
+    color: #565656
 }
 .tm-site-name:hover,
 .tm-site-name:focus {
-    color: #FF720B;
+    /*color: #FF720B;*/
 }
 .mobile-menu-icon { display: none; }
 .tm-nav {
@@ -72,7 +74,7 @@ body { overflow-x: hidden; }
     text-transform: uppercase;
     font-size: 15px;
     color: #565656;
-    
+
 }
 .tm-nav li a.active,
 .tm-nav li a:focus,

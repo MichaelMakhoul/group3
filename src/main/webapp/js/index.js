@@ -4,8 +4,4 @@
  * and open the template in the editor.
  */
 
-function showLogoutMessage() {
-  var getInput = ("You have been logged out");
-  localStorage.setItem("storageName", getInput);
-}
-
+/* global element */

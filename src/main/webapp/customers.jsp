@@ -48,6 +48,24 @@
             </div>	  	
         </div>
 
+        <% 
+            String deleteMessage = (String) (session.getAttribute("deletedUser"));
+            session.removeAttribute("deletedUser");
+        %>
+        <div id="id01" class="w3-modal" style="display: <%= (deleteMessage != null) ? "flex" : "none"%>;">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" >
+                <div class="w3-center"><br>
+                    <span onclick="document.getElementById('id01').style.display = 'none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>      
+                </div>
+                <div class="popup-div w3-container">
+                    <div class="w3-section">
+                        <h2 class="popup-h2"> <%= (deleteMessage != null) ? deleteMessage : ""%> </h2>
+                        <button class="w3-button w3-red w3-right w3-margin w3-round" onclick="document.getElementById('id01').style.display = 'none'">close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class = "w3-container  w3-margin-top w3-white">
             <div class="w3-row w3-border-bottom" >
                 <div class="w3-col w3-container m6 l6 w3-margin-bottom">
@@ -61,8 +79,8 @@
                             <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >  
                                 <label for="searchOptions" style="padding: 13px;font-size: 17px">Search By:</label>
                                 <select name="searchOptions" id="searchOptions" style="padding: 15px;font-size: 17px;border: 1px solid grey; border-radius: 5px;">
-                                    <option value="text">Email</option>
-                                    <option value="number">ID</option>                            
+                                    <option value="email">Email</option>
+                                    <option value="ID">ID</option>                            
                                 </select>
                             </div>
                             <div class="w3-col m6 l6 search_by" style="margin: 5px 0; display: flex; justify-content: space-around">

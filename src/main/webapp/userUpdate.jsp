@@ -43,7 +43,7 @@
             <div class="tm-header">
                 <div class="container py-5">
                     <div class="tm-header">
-                        <div class="container1">
+                        <div class="nav-container">
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
                                     <a href="#" class="tm-site-name">The Grand Serene</a>	

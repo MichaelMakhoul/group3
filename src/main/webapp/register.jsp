@@ -14,10 +14,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
-        <link href="css/style.css" rel="stylesheet">   
         <link href="css/register.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">   
+        <link href="css/style.css" rel="stylesheet">   
     </head>
 
     <body class="tm-gray-bg">
@@ -37,10 +37,10 @@
         %>
 
         <div class="tm-header">
-            <div class="container1">
+            <div class="nav-container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
-                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                        <p class="tm-site-name" style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">

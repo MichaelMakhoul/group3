@@ -11,6 +11,7 @@
 ul,p {
     margin: 0; 
     padding: 0;
+
 }
 h1,h2,h3 {
     margin: 0;
@@ -20,6 +21,7 @@ h1,h2,h3,a,p { font-family: 'Open Sans', sans-serif; }
 a:hover,
 a:focus {
     text-decoration: none;
+    color: white;
 }
 
 /* Header & Nav */
@@ -32,15 +34,16 @@ body { overflow-x: hidden; }
 }
 .tm-site-name-container { padding-top: 20px; }
 .tm-site-name {
-    color: #FCDD44;
-    font-size: 27px;
-    font-weight: 600;
-    text-transform: uppercase;
-
+    /*    color: #FCDD44;
+        font-size: 27px;
+        font-weight: 600;
+        text-transform: uppercase;*/
+    font-family: 'Cinzel', serif;font-size:230%; 
+    color: #565656
 }
 .tm-site-name:hover,
 .tm-site-name:focus {
-    color: #FF720B;
+    /*color: #FF720B;*/
 }
 .mobile-menu-icon { display: none; }
 .tm-nav {
@@ -53,18 +56,16 @@ body { overflow-x: hidden; }
     display: table;
     width: 700px;
     text-align: center;
-
-
 }
-/*.tm-nav li:last-child {
-    list-style: none;
-    float: right;
-    
+/*
+.tm-nav ul{
+        margin: auto;
+    width: 60%;
 }*/
 .tm-nav li {
     list-style: none;
     float: left;
-/*    background-color: red;*/
+
 }
 .tm-nav li a {
     color: #838383;
@@ -73,28 +74,21 @@ body { overflow-x: hidden; }
     text-transform: uppercase;
     font-size: 15px;
     color: #565656;
-    
+
 }
 .tm-nav li a.active,
 .tm-nav li a:focus,
 .tm-nav li a:hover {
     text-decoration-line: underline;
+    text-underline-offset: 6px;
     text-decoration-color: #565656;
     text-decoration-thickness: 2px;        
-    transition: transform 0.25s ease-out;
+    transition: transform 0.40s ease-out;
 
 
 }
 
-/*.tm-nav-right{
-    width: 200px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: #E4588E 1px solid;
-}*/
 
-/* Banner */
 .tm-banner-inner {
     height: auto;
     margin: auto;

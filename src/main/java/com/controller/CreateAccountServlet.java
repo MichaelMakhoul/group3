@@ -46,8 +46,6 @@ public class CreateAccountServlet extends HttpServlet {
 
         String userType = (String) session.getAttribute("userType");
 
-        System.out.println("usertype: " + userType);
-
         if (userType.equals("staff")) {
             if (validRegex) {
                 try {

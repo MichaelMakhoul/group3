@@ -15,9 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
-    <link href="css/bootstrap.min.css" rel="stylesheet">         
     <link href="css/templatemo-style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">         
     <link href="css/style.css" rel="stylesheet">
+    
   </head>
   <body>
     <%
@@ -26,10 +27,10 @@
       session.removeAttribute("userUpdate");
     %>
     <div class="tm-header">
-      <div class="container">
+      <div class="nav-container">
         <div class="row">
           <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-            <a href="#" class="tm-site-name">The Grand Serene</a>	
+            <a href="#" class="tm-site-name"> The Grand Serene</a>	
           </div>
           <div class="col-lg-6 col-md-8 col-sm-9">
             <div class="mobile-menu-icon">
@@ -41,7 +42,7 @@
                   <% if (!userType.equals("manager")) { %>
                 <li><a href="account.jsp">User's Profile</a></li> 
                   <% } %>
-                <li><a href="LogoutServlet" onclick="showLogoutMessage();">Logout</a></li>
+                <li><a href="LogoutServlet">Logout</a></li>
               </ul>                    
 
             </nav>		
@@ -61,6 +62,13 @@
       session.removeAttribute("booking");
       session.removeAttribute("bookingsView");
       //booking
+      
+      
+      //Removing the error Attributes after registering
+      session.removeAttribute("nameError");
+      session.removeAttribute("passError");
+      session.removeAttribute("dobError");
+      session.removeAttribute("phoneError");
 
       if (userType.equals("customer")) {
     %>
@@ -172,5 +180,6 @@
     </div>
     <% }%>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
   </body>
 </html>

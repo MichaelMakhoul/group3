@@ -37,7 +37,7 @@
                 <ul>
                   <li><a href="main.jsp">Main</a></li>
                   <li><a href="account.jsp" class="active">Account</a></li>                                
-                  <li><a href="LogoutServlet" onclick="showLogoutMessage();" >Logout</a></li>
+                  <li><a href="LogoutServlet">Logout</a></li>
                 </ul>
               </nav>		
             </div>				
