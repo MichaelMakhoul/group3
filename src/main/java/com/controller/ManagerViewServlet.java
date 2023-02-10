@@ -35,26 +35,27 @@ public class ManagerViewServlet extends HttpServlet {
             List<User> usersList = userDAO.getStaff();
             for (User user : usersList) {
 
-                out.println("<style>\n"
-                        + ".users_table_tr {\n"
-                        + "    transition: background 0.25s ease;\n"
-                        + "}"
-                        + ".users_table_tr:hover {\n"
-                        + "    background: #014055;\n"
-                        + "}"
-                        + ".users_table_td {\n"
-                        + "    color: #fff;\n"
-                        + "    font-weight: 400;\n"
-                        + "    padding: 0.65em 1em;\n"
-                        + "    width: 20%;"
-                        + "    text-align: center;"
-                        + "}"
-                        + "</style>");
+//                out.println("<style>\n"
+//                        + ".users_table_tr {\n"
+//                        + "    transition: background 0.25s ease;\n"
+//                        + "}"
+//                        + ".users_table_tr:hover {\n"
+//                        + "    background: #014055;\n"
+//                        + "}"
+//                        + ".users_table_td {\n"
+//                        + "    color: #fff;\n"
+//                        + "    font-weight: 400;\n"
+//                        + "    padding: 0.65em 1em;\n"
+//                        + "    width: 20%;"
+//                        + "    text-align: center;"
+//                        + "}"
+//                        + "</style>");
+                out.println("<link rel=\"stylesheet\" href=\"css/w3.css\">");
 
                 out.println("<tr class=\"users_table_tr\">");
                 out.println("<td class=\"users_table_td\">" + user.getID() + "</td>");
-                out.println("<td class=\"users_table_td\">" + user.getName() + "</td>");        
-                out.println("<td class=\"users_table_td\"> <a href=http://localhost:8080/group3/UserAccountServlet?emailView="+ user.getEmail() + ">" + user.getEmail() + "</a></td>");
+                out.println("<td class=\"users_table_td\">" + user.getName() + "</td>");
+                out.println("<td class=\"users_table_td\"> <a href=http://localhost:8080/group3/UserAccountServlet?emailView=" + user.getEmail() + ">" + user.getEmail() + "</a></td>");
                 out.println("<td class=\"users_table_td\">" + user.getPhone() + "</td>");
                 out.println("<td class=\"users_table_td\">" + user.getDOB() + "</td>");
                 out.println("</tr>");

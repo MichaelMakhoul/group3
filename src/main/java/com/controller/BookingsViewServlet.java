@@ -36,7 +36,7 @@ public class BookingsViewServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Bookings bookings = (Bookings) session.getAttribute("bookings");
         try ( PrintWriter out = response.getWriter()) {
-            out.println("<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">");
+            out.println("<link rel=\"stylesheet\" href=\"css/w3.css\">");
             out.println("<table class='w3-table-all w3-hoverable'>");
             out.println("<thead>");
             out.println("<tr class='w3-light-grey'>");

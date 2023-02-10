@@ -26,23 +26,6 @@ public class StaffViewServlet extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             out.println("<link rel=\"stylesheet\" href=\"css/w3.css\">");
             for (User user : usersList) {
-
-//                out.println("<style>\n"
-//                        + ".users_table_tr {\n"
-//                        + "    transition: background 0.25s ease;\n"
-//                        + "}"
-//                        + ".users_table_tr:hover {\n"
-//                        + "    background: #014055;\n"
-//                        + "}"
-//                        + ".users_table_td {\n"
-//                        + "    color: #fff;\n"
-//                        + "    font-weight: 400;\n"
-//                        + "    padding: 0.65em 1em;\n"
-//                        + "    width: 20%;"
-//                        + "    text-align: center;"
-//                        + "}"
-//                        + "</style>");
-
                 out.println("<tr>");
                 out.println("<td>" + user.getID() + "</td>");
                 out.println("<td>" + user.getName() + "</td>");
@@ -81,9 +64,9 @@ public class StaffViewServlet extends HttpServlet {
 
             String searchValue = request.getParameter("search_value");
             String searchOptions = request.getParameter("searchOptions");
-            
+
             session.setAttribute("search_value", searchValue);
-            
+
             UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
             List<User> usersList = userDAO.getUsers("customer");
@@ -95,7 +78,6 @@ public class StaffViewServlet extends HttpServlet {
                     searchList.addAll(usersList.stream().filter(s -> s.match(searchID)).collect(Collectors.toList()));
                 } else {
                     searchList.addAll(usersList.stream().filter(s -> s.getEmail().contains(searchValue)).collect(Collectors.toList()));
-//                            match(searchValue)).collect(Collectors.toList()));
                 }
             }
 

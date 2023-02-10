@@ -12,11 +12,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/login.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css" >
+        <link href="css/templatemo-style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/login.css" >
     </head>
 
     <body class="tm-gray-bg">
@@ -47,38 +50,32 @@
         </div>
 
         <div class="container">
-            <div class="screen">
-                <div class="screen__content">
+            <p class="tip"></p>
+            <div class="cont">
                     <form class="login" method="POST" action="LoginServlet">
-                        <label for="loginOptions">Login as:</label>
-                        <select name="loginOptions" id="loginOptions">
+                        <h2><label for="loginOptions">Login as:</label></h2>
+                        <label>
+                        <select class="dropmenu" name="loginOptions" id="loginOptions">
                             <option value="customer">Customer</option>
                             <option value="manager">Manager</option>
                             <option value="staff">Staff</option>                            
                         </select>
-                        <span class="message"><%= (exist != null) ? exist : ""%></span>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="text" name="email" class="login__input" placeholder="User name / Email">
+                        </label>
+                        <label>
+                        <p class="message" style="color: red;" ><%= (exist != null) ? exist : ""%></p>
+                        <div class="login__field">                            
+                            <input type="email" name="email" class="login__input" placeholder="Email">
                         </div>
                         <div class="login__field">
-                            <i class="login__icon fas fa-lock"></i>
                             <input type="password" name="password" class="login__input" placeholder="Password">
                         </div>
                         <button class="button login__submit">
-                            <span class="button__text">Log In Now</span>
-                            <i class="button__icon fas fa-chevron-right"></i>
+                            <span>Sign In Now</span>
                         </button>
+                        </label>
                     </form>
+                    <% exist = ""; %>
                 </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
-                </div>
-            </div>
-        </div>
-    <% exist = ""; %>
+            </div>    
     </body>
 </html>

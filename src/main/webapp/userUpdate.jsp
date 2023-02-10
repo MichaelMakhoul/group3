@@ -17,6 +17,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link rel="stylesheet" href="css/w3.css"> 
+        <link rel="stylesheet" href="css/style.css"> 
     </head>
     <body class="tm-gray-bg">                
         <%
@@ -53,9 +54,9 @@
                                     </div>
                       <nav class="tm-nav">
                             <ul>
-                                    <% if (userType == "staff") { %>
+                                <% if (userType.equals("staff")) { %>
                                 <li><a href="customers.jsp">Customers List</a></li>
-                                    <% } else if (userType == "manager") { %>
+                                <% } else if (userType.equals("manager")) { %>
                                 <li><a href="viewAllStaff.jsp">Staff List</a></li>
                                     <% } else { %>
                                 <li><a href="account.jsp">Account</a></li>
@@ -92,17 +93,16 @@
                                 </div>
                                 <form method="POST" action=<%= (userUpdate != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
                                     <table>
-                                        <caption><p><%= (message != null) ? message : ""%></p></caption>
+                                        <caption><p class="green_error_message" ><%= (message != null) ? message : ""%></p></caption>
 
                                         <tr><td>Name: </td><td><input type="text" name="name" value="<%= user.getName()%>" />
-                                                <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
-
+                                                <p class="error_message"><%= (nameError != null) ? nameError : ""%></p></td></tr>
                                         <tr><td>Password: </td><td><input type="password" name="password" value="<%= user.getPassword()%>" />
-                                                <p><%= (passError != null) ? passError : ""%></p></td></tr>
+                                                <p class="error_message"><%= (passError != null) ? passError : ""%></p></td></tr>
                                         <tr><td>DOB: </td><td><input type="date" name="dob" value="<%= user.getDOB()%>"/>
-                                                <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
-                                        <tr><td>Phon Number: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
-                                                <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
+                                                <p class="error_message"><%= (dobError != null) ? dobError : ""%></p></td></tr>
+                                        <tr><td>Phone: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
+                                                <p class="error_message"><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
                                         <tr>
 
                                         <td>

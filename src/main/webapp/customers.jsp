@@ -19,9 +19,12 @@
         <link href="css/customer_form.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
-        <!--<link href="css/flexslider.css" rel="stylesheet">-->
+        <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/w3.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <body>
         <div class="tm-header">
@@ -45,31 +48,43 @@
             </div>	  	
         </div>
 
-        <div class="list_form_wrapper">
-            <div class="search_form">
-                <form class="form" method="POST" action="customers.jsp">
-                    <label for="searchOptions">Search By:</label>
-                    <select name="searchOptions" id="searchOptions">
-                        <option value="email">Email</option>
-                        <option value="ID">ID</option>                            
-                    </select>
+        <div class = "w3-container  w3-margin-top w3-white">
+            <div class="w3-row w3-border-bottom" >
+                <div class="w3-col w3-container m6 l6 w3-margin-bottom">
+                    <h3><b>Customers List</b></h3>
+                    <p> Click on any Customer's Email to check their details. </p>
+                </div>
 
-                    <div class="search_by">
-                        <input type="text" name="search_value" autofocus>
-                    </div>
-                    <button class="button search_submit">Search</button>
-                    <a href="customers.jsp" style="color: #000;" class="button search_submit" >Cancel</a>
-                </form>
+                <div class="w3-col w3-container m6 l6 search"> 
+                    <form class="searchList example" method="POST" action="customers.jsp">
+                        <div class="w3-row"> 
+                            <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >  
+                                <label for="searchOptions" style="padding: 13px;font-size: 17px">Search By:</label>
+                                <select name="searchOptions" id="searchOptions" style="padding: 15px;font-size: 17px;border: 1px solid grey; border-radius: 5px;">
+                                    <option value="text">Email</option>
+                                    <option value="number">ID</option>                            
+                                </select>
+                            </div>
+                            <div class="w3-col m6 l6 search_by" style="margin: 5px 0; display: flex; justify-content: space-around">
+                                <input type="text" name="search_value" autofocus class="search_field m6" placeholder="Search..">
+                                <button style="background: #1eb860; border-radius: 5px; margin: 0 2px;" type="submit"><i class="fa fa-search"></i></button>
+                                <button style="border-radius: 5px; margin: 0 2px;" type="button" onclick="window.location = 'customers.jsp';" ><i class="fa fa-refresh"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
 
-            <div class="w3-content w3-border w3-margin-top w3-white users_list" >
+            <div class="w3-container w3-margin-top ">
                 <table class="w3-table-all w3-hoverable">
-                    <thead><tr class='w3-light-grey'>
-                            <th class="w3-container w3-margin"> ID </th>
-                            <th class="w3-container w3-margin"> Name </th>
-                            <th class="w3-container w3-margin"> Email </th>
-                            <th class="w3-container w3-margin"> Phone </th>
-                            <th class="w3-container w3-margin"> DOB </th>
+                    <thead>
+                        <tr class='w3-light-grey'>
+                            <th class=""> ID </th>
+                            <th class=""> Name </th>
+                            <th class=""> Email </th>
+                            <th class=""> Phone </th>
+                            <th class=""> DOB </th>
+                        </tr>
                     </thead>
                     <tbody>
                         <jsp:include page="StaffViewServlet" flush="true"/>

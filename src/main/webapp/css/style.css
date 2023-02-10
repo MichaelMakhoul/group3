@@ -10,5 +10,12 @@ and open the template in the editor.
 
 .welcome_message{
     text-align: center;
-    
+}
+
+.error_message{
+    color: red;
+}
+
+.green_error_message{
+    color: green;
 }

@@ -26,15 +26,46 @@ and open the template in the editor.
 }*/
 .customers_table_div {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
+    margin: 5px auto;
 }
 
-.search_form {
-    
-    max-width: 25%;
+.customers_table {
+    background: #012B39;
+    border-radius: 0.25em;
+    border-collapse: collapse;
+    margin: auto;
 }
 
-.users_list {
-    width: 70%;
+.customers_table_th {
+    width: 20%;
+    border-bottom: 1px solid #364043;
+    color: #E2B842;
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+.customers_table_td {
+    color: #fff;
+    font-weight: 400;
+    padding: 0.65em 1em;
+}
+
+/*.disabled td {
+    color: #4F5F64;
+}*/
+
+.customers_table_tr {
+    transition: background 0.25s ease;
+}
+
+.customers_table_tr:hover {
+    background: #014055;
 }

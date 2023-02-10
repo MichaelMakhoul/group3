@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +27,7 @@ public class Utils {
     public static String passRegEx = "[A-Z][A-Za-z]{5,}\\d{2,}";
     public static String dobRegEx = "\\d{4}-\\d{2}-\\d{2}";
     public static String phoneRegEx = "^\\+(?:[0-9] ?){6,14}[0-9]$";
+         
 
     public static boolean isOlderThen18(String dob) {
         LocalDate startDate = LocalDate.parse(dob);
@@ -43,7 +45,7 @@ public class Utils {
 
             long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
             long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-            
+
             System.out.println("Diff : " + diff);
             return (int) diff;
         } catch (ParseException ex) {
@@ -55,6 +57,14 @@ public class Utils {
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);
         return start.isBefore(end);
+    }
+    
+    public static LocalDate validateDate(String date){
+        try {
+          return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+          return null;
+        }       
     }
     
 }

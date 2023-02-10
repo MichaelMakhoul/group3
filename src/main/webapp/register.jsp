@@ -14,9 +14,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">   
         <link href="css/register.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/templatemo-style.css" rel="stylesheet">   
     </head>
 
     <body class="tm-gray-bg">
@@ -62,38 +63,37 @@
                 <form class="register" method="POST" action="RegisterServlet">
                     <h2><label for="registerOptions">Register as:</label></h2>
                     <label>
-                        <select name="registerOptions" id="registerOptions">
+                        <select class="dropmenu" name="registerOptions" id="registerOptions">
                             <option value="customer">Customer</option>
                             <option value="staff">Staff</option>                            
                         </select>
                     </label>
                     <label>
+                        <span style="color: red;"><p class="error_message"><%= (exist != null) ? exist : ""%></p></span>
                         <div class="register__field">
-                            <input type="text" name="name" class="register__input" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                            
-                        </div>
-                        <span class="message"><%= (exist != null) ? exist : ""%></span>
+                            <input type="text" name="name" class="register__input" value="<%= (nameError != null) ? nameError : "" %>" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                            
+                        </div>                        
                         <div class="register__field">
-                            <input type="email" name="email" class="register__input" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
+                            <input type="email" name="email" class="register__input" value="<%= (emailError != null) ? emailError : "" %>" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
                         </div>
                         <div class="register__field">
                             <input type="password" name="password" class="register__input" placeholder=<%= (passError != null) ? passError : "Password"%>>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="dob" class="register__input" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+                            <input type="text" name="dob" class="register__input" value="<%= (dobError != null) ? dobError : "" %>" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
                         </div>
                         <div class="register__field">
                             <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="phoneNumber" class="register__input" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
+                            <input type="text" name="phoneNumber" class="register__input" value="<%= (phoneError != null) ? phoneError : "" %>" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
                         </div>
-                        <button class="button register__submit">
-                            <span class="button__text">Sign Up Now</span>
-                            <i class="button__icon fas fa-chevron-right"></i>
-                        </button>
+                    <button class="button register__submit">
+                        <span>Sign Up Now</span>
+                    </button>
                     </label>
                 </form>
-            </div>
-            <% exist = "";%>
+                <% exist = "";%>      
+            </div>           
         </div>
     </div>
 </div>

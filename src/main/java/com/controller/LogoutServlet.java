@@ -15,5 +15,5 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
         request.getRequestDispatcher("index.jsp").include(request, response);
-    }   
+    }
 }
