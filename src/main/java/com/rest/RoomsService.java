@@ -52,13 +52,13 @@ public class RoomsService {
     }
     
     @GET
-    @Path("availRooms") //http://localhost:8080/group3/rest/roomapi/availRooms
+    @Path("availRooms/{checkIn}/{checkOut}") //http://localhost:8080/group3/rest/roomapi/availRooms
     @Produces(MediaType.APPLICATION_XML)
-    public Rooms availRooms()
+    public Rooms availRooms(@PathParam("checkIn") String checkIn, @PathParam("checkOut") String checkOut)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
         RoomDAO roomDAO = new RoomDAO(new SqlDBConnector().connection());
         Rooms rooms = new Rooms();
-        rooms.setRooms(roomDAO.getAvailableRooms(null, null));        
+        rooms.setRooms(roomDAO.getAvailableRooms(checkIn, checkOut));        
         return rooms;
     }
 

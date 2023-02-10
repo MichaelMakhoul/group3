@@ -35,7 +35,9 @@ public class DeleteBookingServlet extends HttpServlet {
         BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
         Booking booking = (Booking)session.getAttribute("booking");
         session.removeAttribute("booking");
-        bookingsDAO.deleteBooking(booking.getBookingID());
+        if(booking !=null){
+            bookingsDAO.deleteBooking(booking.getBookingID());
+        }
         request.getRequestDispatcher("ShowBookingsServlet").forward(request, response);
     }
 
