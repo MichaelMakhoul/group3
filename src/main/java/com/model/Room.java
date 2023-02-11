@@ -7,8 +7,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author 236361
+ * Class contains the Bean for Booking Management with following fields
+ *     - 'roomID' unique Room ID, auto generated in Database
+ *     - 'roomNo' unique room No for identification for the Users 
+ *     - 'roomType' Deluxe Room , Family Room or Executive Suite
+ *     - 'roomDesc' any comments to be added while booking 
+ *     - 'roomPrice' Cost of Booking 
+ * 
+ * Getter and setter for every field
+ * Match function for fields
+ * matchID - roomID
+ * matchType - roomType
+ * 
+ * @author Shilpa
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name ="room")

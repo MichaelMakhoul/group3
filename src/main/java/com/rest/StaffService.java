@@ -16,11 +16,30 @@ import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
 
 /**
+ * This rest web gives the output for
+ * - view the list of staff
+ * - view a staff member searching by ID
+ * - add a staff to the database
  *
- * @author 236336
+ * @author Antonella and Aiman
  */
+
 @Path("staffapi")
 public class StaffService {
+    
+    /**
+     * Web service Module: Staff Management
+     * By: Aiman
+     * 
+     * @return
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws SQLException 
+     */
+    
     @GET
     @Path("staffs") //http://localhost:8080/group3/rest/staffapi/staffs
     @Produces(MediaType.APPLICATION_XML)
@@ -30,6 +49,21 @@ public class StaffService {
         staffs.addAll(userDAO.getUsers("staff"));
         return staffs;
     }
+    
+    /**
+     * Web service Module: User Registration
+     * By: Antonella
+     * 
+     * @param ID
+     * @return
+     * @throws JAXBException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws IOException 
+     */
 
     @GET
     @Path("staff/{ID}") //http://localhost:8080/group3/rest/staffapi/staff/10001
@@ -41,6 +75,19 @@ public class StaffService {
         staffs.add(user);
         return staffs;
     }
+    
+    /**
+     * Web service Module: User Registration and Staff Management
+     * By: Aiman and Antonella
+     * 
+     * @return
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws SQLException 
+     */
 
     @GET
     @Path("addstaff") //http://localhost:8080/group3/rest/staffapi/addstaff

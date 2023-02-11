@@ -1,7 +1,7 @@
 <%-- 
     Document   : addBooking
     Created on : 03-Feb-2023, 6:26:55 PM
-    Author     : 236361
+    Author     : Shilpa 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -53,10 +53,9 @@
           String roomsFull = (String) session.getAttribute("roomsFull");
           session.removeAttribute("dateErr");
           session.removeAttribute("roomsErr");
-          session.removeAttribute("roomsFull");         
+          session.removeAttribute("roomsFull");       
           
-//          out.println("checkInD : " + checkInD + " request: " + request.getParameter("checkIn"));
-//          out.println("checkOutD : " + checkOutD + " request: " + request.getParameter("checkOut"));
+
       %>
     <div class="w3-content  w3-margin-top" >
       <div class="w3-container w3-margin-top w3-border-bottom" id="rooms">
@@ -90,8 +89,7 @@
 
           <div class="w3-col m3 w3-margin-left">
             <label><i class="fa fa-search"></i> Check Availability</label>
-            <button class="w3-button w3-block w3-dark-gray w3-round" >Check Availability</button>
-            <!--<button type="submit" class="btn btn-outline-primary ms-1">Check Availability</button>-->
+            <button class="w3-button w3-block w3-black w3-round" >Check Availability</button>
           </div>          
         </form>
       </div>
@@ -150,13 +148,13 @@
         <div class="w3-row-padding w3-margin-bottom">        
           <div class="w3-third w3-margin-right ">
             <% if(roomsErr != null ||dateErr != null ||roomsFull != null ){%> 
-            <button class="w3-button w3-dark-gray w3-block w3-round" type="submit" disabled> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
+            <button class="w3-button w3-black w3-block w3-round" type="submit" disabled> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
             <%} else{%>
-            <button class="w3-button w3-dark-gray w3-block w3-round" type="submit"> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
+            <button class="w3-button w3-black w3-block w3-round" type="submit"> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
             <%}%>
           </div>
           <div class="w3-third m2 w3-margin-right">
-            <a href="main.jsp" class="w3-button w3-dark-gray w3-block w3-round"> <i class="fa fa-close"></i> Cancel</a>
+            <a href="main.jsp" class="w3-button w3-black w3-block w3-round"> <i class="fa fa-close"></i> Cancel</a>
           </div>          
         </div>
       </form>

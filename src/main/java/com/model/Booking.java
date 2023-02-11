@@ -11,8 +11,25 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author 236361
+ * Class contains the Bean for Booking Management with following fields
+ *     - 'bookingID' unique Booking ID, auto generated in Database
+ *     - 'customerID' ID of the Customer doing the booking 
+ *     - 'checkIn' Date of Check In
+ *     - 'checkOut' Date of Check Out 
+ *     - 'bookingDesc' any comments to be added while booking 
+ *     - 'totalPrice' Total Cost of Booking 
+ *     - 'bookingDate' Date Time of Booking, auto generated in Database
+ *     - 'bookingModifiedDate' Date Time of Booking Modification, auto generated in Database
+ *     - 'List<Room> rooms' is the list of Rooms associated with a booking
+ * 
+ * Getter and setter for every field
+ * Match function for fields
+ * matchID - Booking ID
+ * matchCustomerID - customerID
+ * matchCheckIn - checkIn
+ * matchCheckOut - checkOut
+ * 
+ * @author Shilpa
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "booking")
@@ -35,7 +52,21 @@ public class Booking implements Serializable{
     public Booking() {
         this.rooms = new ArrayList<>();
     }
-
+    
+    /**
+     * This constructor is used to construct the Booking Data
+     * from database for Booking bean
+     * 
+     * @param bookingID
+     * @param customerID
+     * @param checkIn
+     * @param checkOut
+     * @param bookingDesc
+     * @param totalPrice
+     * @param bookingDate
+     * @param bookingModifiedDate
+     * @param rooms 
+     */
     public Booking(int bookingID, int customerID, String checkIn, String checkOut, String bookingDesc, int totalPrice, String bookingDate, String bookingModifiedDate, List<Room> rooms) {
         this.bookingID = bookingID;
         this.customerID = customerID;
@@ -47,7 +78,6 @@ public class Booking implements Serializable{
         this.bookingModifiedDate = bookingModifiedDate;
         this.rooms = rooms;
     }
-
     
 
     public Booking(int customerID, String checkIn, String checkOut, String bookingDesc, int totalPrice, List<Room> rooms) {

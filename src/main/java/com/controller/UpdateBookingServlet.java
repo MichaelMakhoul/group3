@@ -19,8 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 236361
+ *  Posts the update data of a Booking to DB by calling the BookingsDAO
+ * - Validation for dates and No.of Rooms are done before Updating
+ * 
+ * @author Shilpa
  */
 public class UpdateBookingServlet extends HttpServlet {
 
@@ -41,21 +43,21 @@ public class UpdateBookingServlet extends HttpServlet {
         int id = booking.getBookingID();
         String checkIn = (String) session.getAttribute("checkInD");
         String checkOut = (String) session.getAttribute("checkOutD");
-//        
-//        String drNo = request.getParameter("drQuantity");
-//        String frNo = request.getParameter("frQuantity");
-//        String esNo = request.getParameter("esQuantity");
         
         if(!Utils.startDtbefendDt(checkIn, checkOut)){
             session.setAttribute("dateErr", "CheckOut should occur later than CheckIn");
+            request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response);
+        }else if(Utils.morethanThreeMonths(checkIn) || 
+                Utils.morethanThreeMonths(checkOut)){
+            session.setAttribute("dateErr", "Date entries need to be less than three months from today. Please re-enter.");
             request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response);
         }else {            
             Integer dr = (Integer) session.getAttribute("drRooms");
             Integer fr = (Integer) session.getAttribute("frRooms");
             Integer es = (Integer) session.getAttribute("esRooms");
             if(dr==0 && fr==0 && es==0){
-            session.setAttribute("roomsErr", "Please choose a room");
-            request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response);
+                session.setAttribute("roomsErr", "Please choose a room");
+                request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response);
             }else{
                 String comments = request.getParameter("comments");
                 int[] noOfRooms = new int[3];
@@ -72,6 +74,7 @@ public class UpdateBookingServlet extends HttpServlet {
                 booking = bookingsDAO.booking(id);
                 session.setAttribute("booking", booking);
                 
+                // attributes for the "updateBooking.jsp" are removed here
                 session.removeAttribute("drRooms");
                 session.removeAttribute("frRooms");
                 session.removeAttribute("esRooms");
@@ -87,7 +90,7 @@ public class UpdateBookingServlet extends HttpServlet {
                 session.removeAttribute("comments");
                 session.removeAttribute("bookingID");
                 
-                request.getRequestDispatcher("bookingConfirmation.jsp").forward(request, response);
+                request.getRequestDispatcher("bookingDetails.jsp").forward(request, response);
             }
         }
     }

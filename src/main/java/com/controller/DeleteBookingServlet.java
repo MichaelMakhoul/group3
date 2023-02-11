@@ -8,7 +8,6 @@ package com.controller;
 import com.model.Booking;
 import com.model.dao.BookingsDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 236361
+ * Deletes a Booking using booking ID
+ * After deleting it redirects to Bookings List page
+ *  
+ * @author Shilpa
  */
 public class DeleteBookingServlet extends HttpServlet {
 

@@ -16,8 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 236361
+ * This Servlet loads the bookings bean to show data in
+ * "showBookings.jsp" page
+ * Bookings bean is loaded in following scenario
+ * - Called from main page of Customer, loads all the customer's bookings (old and new)
+ * - Called from main page of Staff, it loads all the current bookings.
+ * - Called from Search bar of the "showBookings.jsp" loads the bean based on
+ *      - Booking Id
+ *      - Customer Id
+ *      - Check In date
+ *      - Checkout date
+ * 
+ * @author Shilpa
  */
 public class ShowBookingsServlet extends HttpServlet {
 
@@ -53,7 +63,14 @@ public class ShowBookingsServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
+     * Called from the search bar of "showBookings.jsp" page
+     * to set the Bookings bean based on the user requirement
+     * - Booking Id
+     * - Customer Id
+     * - Check In date
+     * - Checkout date 
+     * The entries are validated for number and dates
+     * 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -81,7 +98,6 @@ public class ShowBookingsServlet extends HttpServlet {
             }
             
             if(searchValue != null|| tempBookings != null || !searchValue.isBlank()){
-//                searchValue = searchValue.strip();
                 switch (searchOptions) {
                     case "bookingID":
                         {
@@ -107,22 +123,19 @@ public class ShowBookingsServlet extends HttpServlet {
                         }
                     case "checkIn":
                         if(Utils.validateDate(searchValue.strip())!= null){
-                            bookings.setBookings(tempBookings.stream().filter(b -> b.matchCheckIn(searchValue)).collect(Collectors.toList()));                           
+                            tempBookings =tempBookings.stream().filter(b -> b.matchCheckIn(searchValue.strip())).collect(Collectors.toList());                           
                         }else{
                             session.setAttribute("searchErr", "yyyy-mm-dd");
                         }
                         break;
                     default:
                         if(Utils.validateDate(searchValue.strip())!= null){
-                            bookings.setBookings(tempBookings.stream().filter(b -> b.matchCheckOut(searchValue)).collect(Collectors.toList()));
+                             tempBookings = tempBookings.stream().filter(b -> b.matchCheckOut(searchValue.strip())).collect(Collectors.toList());
                         }else{
                             session.setAttribute("searchErr", "yyyy-mm-dd");
                         }                        
                         break;
-                }
-                if(tempBookings == null || tempBookings.size() ==0){
-                    session.setAttribute("searchUnsuccessfull", "No Entry Found");
-                }
+                }                
             }
             if(tempBookings != null){                
                 bookings.setBookings(tempBookings);

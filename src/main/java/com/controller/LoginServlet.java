@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.Manager;
@@ -20,9 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Class allows a user (Customer, Staff or Manager) 
+ * - to login and access the hotel main page
+ * - to read data from the database to validate if user already exist
  *
- * @author 236336
+ * @author Aiman, Antonella, Micheal, Monte, Shilpa
  */
+
 public class LoginServlet extends HttpServlet {
 
     @Override
@@ -71,7 +70,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (!userExists) {
-            session.setAttribute("usernotexist", "User does not exist!");
+            session.setAttribute("usernotexist", "User does not exist");
             request.getRequestDispatcher("login.jsp").include(request, response);
         }
     }

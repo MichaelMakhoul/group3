@@ -12,8 +12,9 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- *
- * @author 236351
+ * Used to Bookings bean using xsl and load the Bookings List View
+ * 
+ * @author Shilpa
  */
 public class XmlTransformer {
     public XmlTransformer(){}

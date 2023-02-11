@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.User;
@@ -19,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Class allows a user (Customer or Staff) 
+ * - to register a new profile (previous validation of each insert data with Reg Ex)
+ * - to save the information in the database
+ * - to access the hotel main page
  *
- * @author 236336
+ * @author Antonella
  */
 public class RegisterServlet extends HttpServlet {
 
@@ -37,19 +36,20 @@ public class RegisterServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
         
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "\"[First] [Middle] [Last]\"");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "\"[Example123]\"");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "\"[dd] [mm] [yyyy] or age <18\"");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "\"[+Contry Code] [Number]\"");
+        //checking the RegEx for Customer and Staff
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? name : "\"[First] [Middle] [Last]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "Password" : "\"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "\"[dd] [mm] [yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? phoneNumber : "\"[+Contry Code] [Number]\"");
         
         boolean validRegex= false;
         
  
         if(registerOptions.equals("customer")){
-            session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "\"[example@example.com]\"");
+            session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? email : "\"[example@example.com]\"");
             validRegex = (name.matches(Utils.nameRegEx) && email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && Utils.isOlderThen18(dob) && phoneNumber.matches(Utils.phoneRegEx));
         }else{
-            session.setAttribute("emailError", staffEmail.matches(Utils.staffEmailRegEx) ? "" : "\"[example@tgsstaff.com]\"");
+            session.setAttribute("emailError", staffEmail.matches(Utils.staffEmailRegEx) ? staffEmail : "\"[example@tgsstaff.com]\"");
             validRegex = (name.matches(Utils.nameRegEx) && staffEmail.matches(Utils.staffEmailRegEx) && password.matches(Utils.passRegEx) && Utils.isOlderThen18(dob)&& phoneNumber.matches(Utils.phoneRegEx));
         }
         

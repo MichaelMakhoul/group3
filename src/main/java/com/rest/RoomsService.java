@@ -13,8 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
- * @author 236361
+ * Web Service for Room Bean accessed from Room Database table 
+ * 
+ * @author Shilpa
  */
 @Path("roomapi")
 public class RoomsService {

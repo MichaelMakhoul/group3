@@ -14,8 +14,12 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
- *
- * @author 236361
+ * Accesses the room Table in DB
+ * Can perform CRUD operations on the table
+ * Only read functions are used in this project
+ * Can be used in future for Room Management
+ * 
+ * @author Shilpa
  */
 public class RoomDAO {
     

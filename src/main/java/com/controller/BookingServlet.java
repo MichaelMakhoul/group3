@@ -17,6 +17,11 @@ import javax.servlet.http.HttpSession;
  * - Posting data to the Database by adding a booking
  * - Retrieves the Booking ID for the added booking in
  *   DB and stores it in an attribute for usage
+ * - Checks the validity of Booking entries - No. of Room\s 
+ *   Date validated in AddBooking 
+ * - Redirects to
+ *  "addBooking.jsp" in case of any error
+ *  "bookingDetails.jsp" for confirmation of Booking
  * 
  * @author Shilpa Guruswamy
  */
@@ -96,7 +101,7 @@ public class BookingServlet extends HttpServlet {
         if(error){
             request.getRequestDispatcher("addBooking.jsp").include(request, response);
         }else{
-            request.getRequestDispatcher("bookingConfirmation.jsp").forward(request, response);
+            request.getRequestDispatcher("bookingDetails.jsp").forward(request, response);
         }
     }
      

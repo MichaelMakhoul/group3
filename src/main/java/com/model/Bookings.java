@@ -10,8 +10,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author 236361
+ * Class contains list of Booking Objects the Bean for Booking Management
+ * Used by Booking WebService
+ * Getters and Setters for list of Booking Objects
+ * 
+ * @author Shilpa
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "bookings")

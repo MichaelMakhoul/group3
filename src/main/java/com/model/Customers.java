@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.model;
 
 import java.io.Serializable;
@@ -14,9 +9,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author 236336
+ * Class that contains the list of Users as field
+ * A function to add a Customer to the bean
+ * A function to add a List of Customers to the bean
+ * Contains getter and setter of the list
+ * 
+ * @author Antonella, Micheal
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "customers")
 public class Customers implements Serializable{
@@ -26,10 +26,12 @@ public class Customers implements Serializable{
     public Customers() {
     }
     
+    //use for web service
     public void add(User customer){
         this.customers.add(customer);
     }
     
+    //use for web service
     public void addAll(List<User> temp){
         this.customers.addAll(temp);
     }
