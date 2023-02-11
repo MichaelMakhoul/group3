@@ -26,7 +26,6 @@ public class Utils {
     public static String passRegEx = "[A-Z][A-Za-z]{5,}\\d{2,}";
     public static String dobRegEx = "\\d{4}-\\d{2}-\\d{2}";
     public static String phoneRegEx = "^\\+(?:[0-9] ?){6,14}[0-9]$";
-         
 
     /**
      * Method returns

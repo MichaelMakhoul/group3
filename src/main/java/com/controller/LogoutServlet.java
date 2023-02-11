@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
  * Class allows a user (Customer, Staff or Manager) 
  * - to logout
  * - to end the session
+ * - to redirect the User to the index page
  *
  * @author Aiman, Antonella, Micheal, Monte, Shilpa
  */

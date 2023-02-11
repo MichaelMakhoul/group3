@@ -1,7 +1,7 @@
 <%-- 
     Document   : userUpdate
     Created on : 04-Feb-2023, 2:32:01 PM
-    Author     : 236336
+    Author     : Aiman, Antonella, Micheal
 --%>
 <%@page import="com.model.dao.UserDAO"%>
 <%@page import="com.model.User"%>

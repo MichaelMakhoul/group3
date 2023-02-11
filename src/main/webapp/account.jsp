@@ -1,7 +1,7 @@
 <%-- 
     Document   : account
     Created on : 31-Jan-2023, 5:50:15 PM
-    Author     : 236336
+    Author     : Aiman, Antonella, Micheal
 --%>
 
 <%@page import="com.model.dao.UserDAO"%>
@@ -40,7 +40,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+<!--        </div>-->
         <section>
             <div class="tm-header">
                 <div class="container py-5">

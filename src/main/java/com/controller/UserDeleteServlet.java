@@ -17,7 +17,9 @@ import javax.servlet.http.HttpSession;
  * Class allows a user (Customer or Staff)
  * - to delete his own profile
  * - to delete the information in the database
- * - to keep the data of the completed bookings 
+ * - to keep the data of the completed bookings
+ * - to delete the future Customer bookings
+ * - to redirect the User to the index page
  *
  * @author Antonella
  */

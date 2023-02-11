@@ -36,6 +36,7 @@ public class RegisterServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
         
+        //checking the RegEx for Customer and Staff
         session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? name : "\"[First] [Middle] [Last]\"");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "Password" : "\"[Example123]\"");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "\"[dd] [mm] [yyyy] or age >18\"");
