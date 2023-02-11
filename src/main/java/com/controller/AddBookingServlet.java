@@ -32,7 +32,9 @@ public class AddBookingServlet extends HttpServlet {
         String checkOut = request.getParameter("checkOut");
         session.setAttribute("checkInD", checkIn);
         session.setAttribute("checkOutD", checkOut);
-        if(checkIn == null || checkOut == null){
+        if(checkIn == null || checkOut == null || 
+                Utils.validateDate(checkIn) == null ||
+                Utils.validateDate(checkOut) == null){
             session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
         }else if(Utils.startDtbefendDt(checkIn, checkOut)){
             BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
@@ -49,7 +51,7 @@ public class AddBookingServlet extends HttpServlet {
             session.setAttribute("esQty", esQty);
             
         }else{
-            session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
+            session.setAttribute("dateErr", "Checkin date cannot be later than CheckOut. Please re-enter.");
         }
         
         request.getRequestDispatcher("addBooking.jsp").forward(request, response);

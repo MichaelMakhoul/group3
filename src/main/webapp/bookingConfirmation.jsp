@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body class="tm-gray-bg">
+  <body >
     <% 
         User user = (User) session.getAttribute("user");        
         Booking booking = (Booking)session.getAttribute("booking"); 
@@ -54,17 +54,7 @@
         </div>
       </div>	  	
     </div>
-    <% if(user.getType().equals("staff")){ %>
-    <!-- Sidebar -->
-<!--        <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">          
-          <a href="bookingConfirmation.jsp" class="w3-bar-item w3-button w3-right-align">Booking Details</a>
-          <a href="updateBooking.jsp" class="w3-bar-item w3-button w3-right-align">Update</a>
-          <a href="DeleteBookingServlet" class="w3-bar-item w3-button w3-right-align">Delete</a>
-        </div>
-
-        <div style="margin-left:25%">-->
-    <%} %>
-    <div class="w3-content w3-border w3-margin-top w3-white" style="min-width: 600px ;max-width:1200px;">
+    <div class="w3-content w3-margin-top w3-white" style="min-width: 600px ;max-width:1200px;">
       <table class="w3-table" style = "font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "">
         <tr>
         <td>
@@ -73,48 +63,48 @@
             <tr>
               <td>
                 <% if(bookingsView == null) { %>
-                  <h2 style="color: #404040; font-weight: 300; margin: 0 0 12px 0; font-size: 20px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
-                    Hi <%=user.getName() %>,    
+                  <h2 style="color: #404040; font-weight: 300; margin: 0 0 12px 0; font-size: 20px; line-height: 30px;">
+                    <b>Hi <%=user.getName() %>,</b>    
                    </h2>
-                   <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " class="">
+                   <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; margin-bottom: 10px">
                      Your booking request has been confirmed. Please review the details of your booking.
                    </p>
                 <% }else{ %>
                        <% if(updateBooking == null) { %>
-                        <h2 style="color: #404040; font-weight:700; margin: 0 0 12px 0; font-size: 25px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
+                        <h2 style="color: #404040; font-weight:700; margin: 0 0 12px 0; font-size: 25px; line-height: 30px; ">
                          Booking Details    
                         </h2>
                         <% }else{ %>
-                            <h2 style="color: #404040; font-weight:700; margin: 0 0 12px 0; font-size: 25px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
+                            <h2 style="color: #404040; font-weight:700; margin: 0 0 12px 0; font-size: 25px; line-height: 30px; ">
                                 Updated Booking Details    
                             </h2>
-                            <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " class="">
+                            <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; " >
                                 Update has been successful.
                             </p>
                         <% }
                     }%>
                    <table class="w3-border w3-text-dark-grey w3-margin-all" width ="100%">
-                      <tr>
+                      <tr class="w3-dark-gray">
                         <td style="padding:20px 20px 0px ; font-weight:700; font-size: 25px; ">
-                          Booking Code: <%=booking.getBookingID() %><br>                         
+                          <i class="fa fa-braille" aria-hidden="true"></i> Booking Code: <%=booking.getBookingID() %><br>                         
                         </td>
                       </tr>
                       <tr> 
                         <td class="w3-border" style="padding:20px 20px 10px ; font-weight:700; font-size: 18px; ">
-                          Rooms 
+                          <i class="fa fa-bed" aria-hidden="true"></i> Rooms 
                           <p style="padding-top:0px; font-weight:700; font-size: 12px; ">
-                            <table style="width: 100%;">
+                            <table class="w3-table-all w3-border-white" style="width: 100%;">
                             <tbody>
-                              <tr>
-                                <td style=" column-span: 2; padding:20px 20px 0px 20px ;font-weight:700; font-size: 12px;">Room Number</td>
+                              <tr class="w3-dark-gray">
+                                <td style=" column-span: 2; padding:20px 20px 0px 20px ;font-weight:700; font-size: 14px;">Room Number</td>
                                 <td></td>
-                                <td style="  padding:20px 20px 0px 30px ;font-weight:700; font-size: 12px; ">Room Type</td>
+                                <td style="  padding:20px 20px 0px 30px ;font-weight:700; font-size: 14px; ">Room Type</td>
                               </tr>
                               <% for(Room room : booking.getRooms()){%>
-                              <tr>
-                                <td style=" column-span: 2; padding: 0px 20px 20px 20px ;font-weight:700; font-size: 12px; ">
+                              <tr class="">
+                                <td style=" column-span: 2; padding: 10px 10px 10px 10px ;font-weight:700; font-size: 14px; ">
                                   <%=room.getRoomNo()%></td><td>&gt;</td>
-                                <td style="padding: 0px 20px 20px 30px ;font-weight:700; font-size: 12px; ">
+                                <td style="padding: 10px 10px 10px 10px ;font-weight:700; font-size: 14px; ">
                                   <%=room.getRoomType()%></td>
                               </tr>
                               <% } %>
@@ -125,18 +115,19 @@
                       </tr>
                       <tr>
                         <td class="w3-border"style="padding:20px 20px 10px ; font-weight:700; font-size: 18px; ">
-                          Arrival
-                          <table style="width: 100%;">                            
+                          <i class="fa fa-suitcase" aria-hidden="true"></i> Arrival
+                          <table class="w3-table-all" style="width: 100%;">                            
                             <tbody>
-                              <tr>
-                                <td style=" column-span: 2; padding:20px 20px 0px 20px ; font-weight:700; font-size: 14px;">Check In</td>
+                              <tr class="w3-dark-gray">
+                                <td style=" column-span: 2; padding:20px 20px 0px 20px ; font-weight:700; font-size: 14px;">
+                                  Check In</td>
                                 <td></td>
                                 <td style="  padding:20px 20px 0px 30px ; font-weight:700; font-size: 14px;">Check Out</td>
                               </tr>
                               <tr>
-                                <td style=" column-span: 2; padding: 0px 20px 20px 20px ; font-weight:700; font-size: 18px;">
+                                <td style=" column-span: 2; padding: 10px 10px 10px 10px ; font-weight:700; font-size: 18px;">
                                   <%=booking.getCheckIn()%></td><td>&gt;</td>
-                                <td style="padding: 0px 20px 20px 30px ; font-weight:700; font-size: 18px; ">
+                                <td style="padding: 10px 10px 10px 30px ; font-weight:700; font-size: 18px; ">
                                   <%=booking.getCheckOut()%></td>
                               </tr>
                             </tbody>
@@ -145,7 +136,8 @@
                       </tr>
                       <tr>
                         <td class="w3-border">
-                          <table style="width: 100%;">
+                          <i class="fa fa-credit-card-alt" aria-hidden="true"></i> Payments
+                          <table class="w3-table-all" style="width: 100%;">
                             <tbody>
                               <tr><td style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">
                                   Total Cost 
@@ -163,29 +155,30 @@
                           </table>                          
                         </td>
                       </tr>
-                      <tr> <td style="padding:20px 20px 10px ; font-weight:700; font-size: 18px; ">Comments
+                      <tr> <td style="padding:20px 20px 10px ; font-weight:700; font-size: 18px; ">
+                          <i class="fa fa-comments" aria-hidden="true"></i> Comments
                           <p style="padding-top:0px; font-weight:700; font-size: 12px; "> <%=booking.getBookingDesc()%> </p>
                           </td>
                       </tr>
                    </table>
                    <% if(!(bookingsView != null || updateBooking != null)){ %>
-                   <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " class="">
+                   <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; margin-top: 10px" >
                      Hope you enjoyed the booking experience and will like the stay too.
                      <br>
                      Please contact the hotel for any changes to the booking.
                    </p>
-                   <p style="color: #666666; font-weight: 400; font-size: 17px; line-height: 24px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 24px;" class="">
+                   <p style="color: #666666; font-weight: 400; font-size: 17px; line-height: 24px; margin-bottom: 6px; margin-top: 24px;" >
                      Cheers,</p>
-                   <p style="color: #666666; font-weight: 400; font-size: 17px;  font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 10px;">
+                   <p style="color: #666666; font-weight: 400; font-size: 17px; margin-bottom: 6px; margin-top: 10px;">
                      The Grand Serene Team</p>
                    <% } %>
                     <% if(user.getType().equals("staff")){ %>
                         <div class="w3-row-padding w3-margin-top"> 
                            <div class="w3-third w3-margin ">
-                             <a href="LoadBookingUpdateServlet" class="w3-button w3-black w3-block"> Update Booking</a>
+                             <a href="LoadBookingUpdateServlet" class="w3-button w3-black w3-block w3-round"> Update Booking</a>
                            </div>
                            <div class="w3-third w3-margin ">
-                             <a href="DeleteBookingServlet" class="w3-button w3-black w3-block"> Delete Booking</a>
+                             <a href="DeleteBookingServlet" class="w3-button w3-black w3-block w3-round"> Delete Booking</a>
                            </div>          
                          </div>
                     <%} %>

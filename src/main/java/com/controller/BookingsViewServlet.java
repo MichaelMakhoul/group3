@@ -7,6 +7,7 @@ package com.controller;
 
 import com.model.Booking;
 import com.model.Bookings;
+import com.model.dao.BookingsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -22,9 +23,46 @@ import javax.servlet.http.HttpSession;
  */
 public class BookingsViewServlet extends HttpServlet {
 
+    
+//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        response.setContentType("text/html;charset=UTF-8");
+//        HttpSession session = request.getSession();
+//        Bookings bookings = (Bookings) session.getAttribute("bookings");
+//        try ( PrintWriter out = response.getWriter()) {
+//            out.println("<link rel=\"stylesheet\" href=\"css/w3.css\">");
+//            out.println("<table class='w3-table-all w3-hoverable'>");
+//            out.println("<thead>");
+//            out.println("<tr class='w3-light-grey'>");
+//            out.println("<th>Booking ID</th>");
+//            out.println("<th>Customer ID</th>");
+//            out.println("<th>Check In</th>");
+//            out.println("<th>Check Out</th>");
+//            out.println("<th>Total Rooms</th>");
+//            out.println("<th>Total Price</th>");
+//            out.println("</tr>");
+//            out.println("</thead>");
+//            for (Booking booking : bookings.getBookings()){
+//                out.println("<tr>");
+//                out.println("<td> <a href='#'>"+booking.getBookingID()+"</a></td>");                
+//                out.println("<td>"+booking.getCustomerID()+"</a></td>");
+//                out.println("<td>"+booking.getCheckIn()+"</td>");
+//                out.println("<td>"+booking.getCheckOut()+"</td>");
+//                out.println("<td>"+booking.getRooms().size()+"</td>");
+//                out.println("<td>"+booking.getTotalPrice()+"</td>");                
+//                out.println("</tr>");
+//            }
+//            out.println("</table>"); 
+//        }
+//    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
+     * This get method is called by bookings list page.
+     * This take the input of Booking Id and derives the detail of the 
+     * Booking from DAO. 
+     * Then this calls to show the booking details page
+     * 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -34,31 +72,18 @@ public class BookingsViewServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        Bookings bookings = (Bookings) session.getAttribute("bookings");
-        try ( PrintWriter out = response.getWriter()) {
-            out.println("<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">");
-            out.println("<table class='w3-table-all w3-hoverable'>");
-            out.println("<thead>");
-            out.println("<tr class='w3-light-grey'>");
-            out.println("<th>Booking ID</th>");
-            out.println("<th>Customer ID</th>");
-            out.println("<th>Check In</th>");
-            out.println("<th>Check Out</th>");
-            out.println("<th>Total Rooms</th>");
-            out.println("<th>Total Price</th>");
-            out.println("</tr>");
-            out.println("</thead>");
-            for (Booking booking : bookings.getBookings()){
-                out.println("<tr>");
-                out.println("<td> <a href='#'>"+booking.getBookingID()+"</a></td>");                
-                out.println("<td>"+booking.getCustomerID()+"</a></td>");
-                out.println("<td>"+booking.getCheckIn()+"</td>");
-                out.println("<td>"+booking.getCheckOut()+"</td>");
-                out.println("<td>"+booking.getRooms().size()+"</td>");
-                out.println("<td>"+booking.getTotalPrice()+"</td>");                
-                out.println("</tr>");
-            }
-            out.println("</table>"); 
+        session.removeAttribute("booking");
+        BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
+        String id = (request.getParameter("ID"));
+        if(id == null){
+            session.setAttribute("bookingIDErr", "Unable to access booking details. Please retry!!");
+            request.getRequestDispatcher("showBookings.jsp").include(request, response);
+        }
+        else{
+            int bookingID = Integer.parseInt(id);
+            Booking booking = bookingsDAO.booking(bookingID);
+            session.setAttribute("booking", booking);
+            request.getRequestDispatcher("bookingConfirmation.jsp").include(request, response);
         }
     }
 

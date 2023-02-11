@@ -66,7 +66,7 @@ public class BookingService {
         noOfRooms[0]=dr;
         noOfRooms[1]=fr;
         noOfRooms[2]=es;
-        int bookingID = bookingsDAO.addBooking(ID, checkIn, checkOut, null, 0, noOfRooms);        
+        int bookingID = bookingsDAO.addBooking(ID, checkIn, checkOut, null,noOfRooms);        
         
         return Response.status(200).entity(bookingsDAO.booking(bookingID)).build();
     }

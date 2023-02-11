@@ -13,13 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 236361
+ * This servlet is used by addBooking.jsp page.
+ * - Posting data to the Database by adding a booking
+ * - Retrieves the Booking ID for the added booking in
+ *   DB and stores it in an attribute for usage
+ * 
+ * @author Shilpa Guruswamy
  */
 
 public class BookingServlet extends HttpServlet {
 
     /**
+     * This POST request is called when a Booking is added.
+     * It validates the entries and then calls the DAO to 
+     * add an entry to Database.
+     * It then dispatches to Booking confirmation page
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
@@ -39,21 +47,30 @@ public class BookingServlet extends HttpServlet {
         String drNo = request.getParameter("drQuantity");
         String frNo = request.getParameter("frQuantity");
         String esNo = request.getParameter("esQuantity");
+        boolean error = false;
         
+        //Checks whether checkin date occurs before checkout
         if(!Utils.startDtbefendDt(checkIn, checkOut)){
-            session.setAttribute("dateErr", "CheckOut should occur later than CheckIn");
-            request.getRequestDispatcher("addBooking.jsp").include(request, response);
-        }
-        else if (drNo.isBlank() && frNo.isBlank() && esNo.isBlank()) {
+            session.setAttribute("dateErr", "CheckOut should occur later than CheckIn. Please re-enter");
+            error = true;            
+        }else if (drNo.isBlank() && frNo.isBlank() && esNo.isBlank()) {
+            // checks if atleast 1 room is chosen
             session.setAttribute("roomsErr", "Please choose a room");
-            request.getRequestDispatcher("addBooking.jsp").include(request, response);
+            error = true;            
+        }else if((!drNo.isBlank() &&!drNo.matches("([0-9]|10)")) ||
+               (!frNo.isBlank() && !frNo.matches("[0-7]") )||
+               (!esNo.isBlank() && !esNo.matches("[0-3]"))){
+            //checks for the validity of the room entry
+            session.setAttribute("roomsErr", "Room required are more than available rooms. Please re-enter.");
+            error = true;            
         }else {            
             Integer dr = Integer.parseInt((drNo.isBlank()) ? "0" : drNo );
             Integer fr = Integer.parseInt((frNo.isBlank()) ? "0" : frNo );
             Integer es = Integer.parseInt((esNo.isBlank()) ? "0" : esNo );
             if(dr==0 && fr==0 && es==0){
-            session.setAttribute("roomsErr", "Please choose a room");
-            request.getRequestDispatcher("addBooking.jsp").include(request, response);
+                // checks if atleast 1 room is chosen
+                session.setAttribute("roomsErr", "Please choose a room");                
+                error = true;
             }else{
                 String comments = request.getParameter("comments");
                 int[] noOfRooms = new int[3];
@@ -64,26 +81,28 @@ public class BookingServlet extends HttpServlet {
                 System.out.println("checkIn "+ checkIn);
                 System.out.println("checkOut "+ checkOut);
                 System.out.println("noOfRooms "+ Arrays.toString(noOfRooms));
-                int diff = Utils.differenceInDays(checkIn, checkOut);
-                int totalPrice = diff *((noOfRooms[0]* 150) + (noOfRooms[1]* 250) + (noOfRooms[2]* 500));
-                Integer bookingID = bookingsDAO.addBooking(customer.getID(), checkIn, checkOut, comments, totalPrice, noOfRooms);
+                
+                Integer bookingID = bookingsDAO.addBooking(customer.getID(), checkIn, checkOut, comments, noOfRooms);
                 Booking booking = bookingsDAO.booking(bookingID);
                 session.setAttribute("booking", booking);
 
                 session.removeAttribute("available");
                 session.removeAttribute("drQty");
                 session.removeAttribute("frQty");
-                session.removeAttribute("esQty");
-                session.removeAttribute("checkInD");
-                session.removeAttribute("checkOutD");
-                request.getRequestDispatcher("bookingConfirmation.jsp").forward(request, response);
+                session.removeAttribute("esQty");                
+                
             }
+        }
+        if(error){
+            request.getRequestDispatcher("addBooking.jsp").include(request, response);
+        }else{
+            request.getRequestDispatcher("bookingConfirmation.jsp").forward(request, response);
         }
     }
      
     /**
      * Handles the HTTP <code>GET</code> method.
-     *
+     *  
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -93,20 +112,7 @@ public class BookingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("com.controller.BookingServlet.doGet()");
-        HttpSession session = request.getSession();
-        session.removeAttribute("booking");
-        BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
-        String id = (request.getParameter("ID"));
-        if(id == null){
-            session.setAttribute("bookingIDErr", "Unable to access booking details. Please retry!!");
-            request.getRequestDispatcher("showBookings.jsp").include(request, response);
-        }
-        else{
-            int bookingID = Integer.parseInt(id);
-            Booking booking = bookingsDAO.booking(bookingID);
-            session.setAttribute("booking", booking);
-            request.getRequestDispatcher("bookingConfirmation.jsp").include(request, response);
-        }
+        
     }
 
 }

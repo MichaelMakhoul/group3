@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AddBooking</title>
+    <title>Add Booking</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.min.css" rel="stylesheet">         
     <link href="css/templatemo-style.css" rel="stylesheet">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body>
+  <body style=>
 
     <div class="tm-header">
       <div class="container">
@@ -32,7 +32,7 @@
               <i class="fa fa-bars"></i>
             </div>
             <nav class="tm-nav">
-              <ul>                                
+              <ul style="float:right">                                
                 <li><a href="main.jsp" >Main</a></li>                                                              
                 <li><a href="LogoutServlet">Logout</a></li>
               </ul>
@@ -53,15 +53,12 @@
           String roomsFull = (String) session.getAttribute("roomsFull");
           session.removeAttribute("dateErr");
           session.removeAttribute("roomsErr");
-          session.removeAttribute("roomsFull");
-          
+          session.removeAttribute("roomsFull");         
           
 //          out.println("checkInD : " + checkInD + " request: " + request.getParameter("checkIn"));
 //          out.println("checkOutD : " + checkOutD + " request: " + request.getParameter("checkOut"));
       %>
-    <div class="w3-content w3-border w3-margin-top" >
-      <!--style="min-width: 25%;max-width:70%;"-->
-
+    <div class="w3-content  w3-margin-top" >
       <div class="w3-container w3-margin-top w3-border-bottom" id="rooms">
         <h3><b>Add Booking</b></h3>
         <p>Make yourself at home is our slogan. We offer the best beds in the industry. Sleep well and rest well.</p>
@@ -79,13 +76,13 @@
       
       <div class="w3-row-padding w3-padding-16 w3-border-bottom">
         <form  method="POST" action="AddBookingServlet">          
-          <div class="w3-col m3 w3-margin-left">
+          <div class="w3-col m4 w3-margin-left">
             <label><i class="fa fa-calendar-o"></i> Check In</label>
             <input class="w3-input w3-border" type="date" name="checkIn" id ="cIn"
                    value="<%= (checkInD != null) ? checkInD : "DD MM YYYY"%>" >
             
           </div>
-          <div class="w3-col m3 w3-margin-left">
+          <div class="w3-col m4 w3-margin-left">
             <label><i class="fa fa-calendar-o"></i> Check Out</label>
             <input class="w3-input w3-border" type="date" name="checkOut" id ="cOut"
                    value="<%= (checkOutD != null) ? checkOutD : "DD MM YYYY"%>" >            
@@ -93,7 +90,8 @@
 
           <div class="w3-col m3 w3-margin-left">
             <label><i class="fa fa-search"></i> Check Availability</label>
-            <button class="w3-button w3-block w3-dark-gray">Check Availability</button>
+            <button class="w3-button w3-block w3-dark-gray w3-round" >Check Availability</button>
+            <!--<button type="submit" class="btn btn-outline-primary ms-1">Check Availability</button>-->
           </div>          
         </form>
       </div>
@@ -113,9 +111,8 @@
               <br>
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
               <br>
-              <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
-              <label class="w3-blue-grey" for="drQuantity"><%=drQty%> Rooms Available</label>
-              <input class="w3-input w3-border w3-light-grey" type="number" onkeydown="return false" id="quantity" name="drQuantity" min="0" max="<%=drQty%>"  maxlength="2" placeholder="No of rooms">
+              <label class="w3-text-blue-grey" for="drQuantity"><%=drQty%> Rooms Available</label>
+              <input class="w3-input w3-border w3-light-grey" type="number" id="quantity" name="drQuantity" min="0" max="<%=drQty%>"  maxlength="2" placeholder="No of rooms">
             </div>
           </div>
           <div class="w3-third w3-margin-bottom">
@@ -128,9 +125,8 @@
               <br>
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
               <br>
-              <label class="w3-blue-grey" for="frQuantity"><%=frQty%> Rooms Available</label>
-              <input class="w3-input w3-border w3-light-grey" type="number" onkeydown="return false" id="quantity" name="frQuantity" min="0" max="<%=frQty%>" maxlength="2" placeholder="No of rooms">
-              <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
+              <label class="w3-text-blue-grey" for="frQuantity"><%=frQty%> Rooms Available</label>
+              <input class="w3-input w3-border w3-light-grey" type="number" id="quantity" name="frQuantity" min="0" max="<%=frQty%>" maxlength="2" placeholder="No of rooms">              
             </div>
           </div>
           <div class="w3-third w3-margin-bottom">
@@ -141,10 +137,9 @@
               <p>'Room can accommodate up to 6 adults. Contains 3 bedrooms with a queen bed in each.</p>
               <p>40m<sup>2</sup></p>
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
-              <br>
-              <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
-              <label class="w3-blue-grey" for="esQuantity"><%=(esQty >1 ) ? esQty +" Rooms" : esQty +" Room"%> Available</label>
-              <input class="w3-input w3-border w3-light-grey" type="number" onkeydown="return false" id="quantity" name="esQuantity" min="0" max="<%=esQty%>"  maxlength="2" placeholder="No of rooms">
+              <br>              
+              <label class="w3-text-blue-grey" for="esQuantity"><%=(esQty >1 ) ? esQty +" Rooms" : esQty +" Room"%> Available</label>
+              <input class="w3-input w3-border w3-light-grey" type="number" id="quantity" name="esQuantity" min="0" max="<%=esQty%>"  maxlength="2" placeholder="No of rooms">
             </div>
           </div>              
         </div> 
@@ -155,13 +150,13 @@
         <div class="w3-row-padding w3-margin-bottom">        
           <div class="w3-third w3-margin-right ">
             <% if(roomsErr != null ||dateErr != null ||roomsFull != null ){%> 
-            <button class="w3-button w3-black w3-block" type="submit" disabled> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
+            <button class="w3-button w3-dark-gray w3-block w3-round" type="submit" disabled> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
             <%} else{%>
-            <button class="w3-button w3-black w3-block" type="submit"> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
+            <button class="w3-button w3-dark-gray w3-block w3-round" type="submit"> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
             <%}%>
           </div>
           <div class="w3-third m2 w3-margin-right">
-            <a href="main.jsp" class="w3-button w3-black w3-block"> <i class="fa fa-close"></i> Cancel</a>
+            <a href="main.jsp" class="w3-button w3-dark-gray w3-block w3-round"> <i class="fa fa-close"></i> Cancel</a>
           </div>          
         </div>
       </form>

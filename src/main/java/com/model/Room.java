@@ -16,26 +16,23 @@ public class Room implements Serializable{
     private int roomID;
     private String roomNo;
     private String roomType;
-    private String roomImageUrl;
     private String roomDesc;
     private int roomPrice;    
 
     public Room() {
     }
 
-    public Room(int roomID, String roomNo, String roomType, String roomImageUrl, String roomDesc, int roomPrice) {
+    public Room(int roomID, String roomNo, String roomType, String roomDesc, int roomPrice) {
         this.roomID = roomID;
         this.roomNo = roomNo;
         this.roomType = roomType;
-        this.roomImageUrl = roomImageUrl;
         this.roomDesc = roomDesc;
         this.roomPrice = roomPrice;
     }
 
-    public Room(String roomType, String roomNo, String roomImageUrl, String roomDesc, int roomPrice) {
+    public Room(String roomType, String roomNo, String roomDesc, int roomPrice) {
         this.roomType = roomType;
         this.roomNo = roomNo;
-        this.roomImageUrl = roomImageUrl;
         this.roomDesc = roomDesc;
         this.roomPrice = roomPrice;
     }
@@ -56,10 +53,6 @@ public class Room implements Serializable{
         return roomType;
     }
 
-    public String getRoomImageUrl() {
-        return roomImageUrl;
-    }
-
     public String getRoomDesc() {
         return roomDesc;
     }
@@ -78,10 +71,6 @@ public class Room implements Serializable{
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
-    }
-
-    public void setRoomImageUrl(String roomImageUrl) {
-        this.roomImageUrl = roomImageUrl;
     }
 
     public void setRoomDesc(String roomDesc) {
