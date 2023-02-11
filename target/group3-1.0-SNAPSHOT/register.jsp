@@ -41,7 +41,7 @@
             <div class="nav-container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
-                        <p class="tm-site-name" style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                        <p class="tm-site-name">The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -70,25 +70,29 @@
                         </select>
                     </label>
                     <label>
-                        <span style="color: red;"><p class="error_message"><%= (exist != null) ? exist : ""%></p></span>
+                        <span class="message" style="color: red; font-weight: bold"><%= (exist != null) ? exist : ""%></span>
                         <div class="register__field">
-                            <input type="text" name="name" class="register__input" value="<%= (nameError != null) ? nameError : "" %>" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                            
+                            <label><i class="fa fa-user-o" aria-hidden="true"></i></label>
+                            <input type="text" name="name" class="register__input" value="<%= (nameError != null) ? nameError : "" %>" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                             
                         </div>                        
-                        <div class="register__field">
+                        <div class="register__field">                            
+                            <label><i class="fa fa-envelope" aria-hidden="true"></i></label>
                             <input type="email" name="email" class="register__input" value="<%= (emailError != null) ? emailError : "" %>" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
                         </div>
                         <div class="register__field">
-                            <input type="password" name="password" class="register__input" placeholder=<%= (passError != null) ? passError : "Password"%>>
+                            <label><i class="fa fa-key" aria-hidden="true"></i></label>
+                            <input type="password" name="password" class="register__input" placeholder= <%= (passError != null) ? passError : "Password"%>>
                         </div>
                         <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="dob" class="register__input" value="<%= (dobError != null) ? dobError : "" %>" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+                            <label><i class="fa fa-calendar" aria-hidden="true"></i></label>
+                            <input type="text" name="dob" class="register__input"  onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+
                         </div>
                         <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
+                            <label><i class="fa fa-phone-square" aria-hidden="true"></i></label>
                             <input type="text" name="phoneNumber" class="register__input" value="<%= (phoneError != null) ? phoneError : "" %>" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
                         </div>
-                    <button class="button register__submit">
+                    <button class="button register__submit" style="background: #B18E72; color: white">
                         <span>Sign Up Now</span>
                     </button>
                     </label>

@@ -62,14 +62,16 @@
                         </select>
                         </label>
                         <label>
-                        <p class="message" style="color: red;" ><%= (exist != null) ? exist : ""%></p>
-                        <div class="login__field">                            
+                        <span class="message" style="color: red; font-weight: bold"><%= (exist != null) ? exist : ""%></span>
+                        <div class="login__field">
+                            <label><i class="fa fa-envelope" aria-hidden="true"></i></label>
                             <input type="email" name="email" class="login__input" placeholder="Email">
                         </div>
                         <div class="login__field">
+                            <label><i class="fa fa-key" aria-hidden="true"></i></label>
                             <input type="password" name="password" class="login__input" placeholder="Password">
                         </div>
-                        <button class="button login__submit">
+                        <button class="button login__submit" style="background: #B18E72; color: white">
                             <span>Sign In Now</span>
                         </button>
                         </label>

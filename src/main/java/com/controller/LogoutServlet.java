@@ -7,6 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Class allows a user (Customer, Staff or Manager) 
+ * - to logout
+ * - to end the session
+ *
+ * @author Aiman, Antonella, Micheal, Monte, Shilpa
+ */
+
 public class LogoutServlet extends HttpServlet {
 
     @Override
@@ -15,5 +23,5 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
         request.getRequestDispatcher("index.jsp").include(request, response);
-    }
+    }   
 }

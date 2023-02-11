@@ -8,6 +8,7 @@ package com.controller;
 import com.model.Booking;
 import com.model.dao.BookingsDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,9 @@ public class DeleteBookingServlet extends HttpServlet {
         BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
         Booking booking = (Booking)session.getAttribute("booking");
         session.removeAttribute("booking");
-        bookingsDAO.deleteBooking(booking.getBookingID());
+        if(booking !=null){
+            bookingsDAO.deleteBooking(booking.getBookingID());
+        }
         request.getRequestDispatcher("ShowBookingsServlet").forward(request, response);
     }
 

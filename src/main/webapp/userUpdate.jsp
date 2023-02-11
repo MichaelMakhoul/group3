@@ -60,7 +60,7 @@
                                 <% } else if (userType.equals("manager")) { %>
                                 <li><a href="viewAllStaff.jsp">Staff List</a></li>
                                     <% } else { %>
-                                <li><a href="account.jsp">Account</a></li>
+                                <li><a href="main.jsp">Main</a></li>
                                     <% }%>
                                 <li><a href="userUpdate.jsp" class="active">Edit Profile</a></li>                                
                                 <li><a href="LogoutServlet">Logout</a></li>                                 
@@ -72,7 +72,7 @@
   
                     </div>
                 </div>
-            </div>
+      
                 </div>
                 <div class = "w3-content w3-border w3-margin-top w3-white" >
                     <div class="w3-container w3-margin-top w3-border-bottom">
@@ -93,22 +93,21 @@
                                     </div>
                                 </div>
                                 <form method="POST" action=<%= (userUpdate != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
-                                    <table>
-                                        <caption><p class="green_error_message" ><%= (message != null) ? message : ""%></p></caption>
-
-                                        <tr><td>Name: </td><td><input type="text" name="name" value="<%= user.getName()%>" />
-                                                <p class="error_message"><%= (nameError != null) ? nameError : ""%></p></td></tr>
-                                        <tr><td>Password: </td><td><input type="password" name="password" value="<%= user.getPassword()%>" />
-                                                <p class="error_message"><%= (passError != null) ? passError : ""%></p></td></tr>
-                                        <tr><td>DOB: </td><td><input type="date" name="dob" value="<%= user.getDOB()%>"/>
-                                                <p class="error_message"><%= (dobError != null) ? dobError : ""%></p></td></tr>
-                                        <tr><td>Phone: </td><td><input type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
-                                                <p class="error_message"><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
+                                    <table style="margin-bottom: 40px">
+                                        <caption><p style="color: green; font-weight: bold"><%= (message != null) ? message : ""%></p></caption>
+                                        <tr><td>Name: </td><td><input style="margin: 7px 0;" type="text" name="name" value="<%= user.getName()%>" />
+                                                <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
+                                        <tr><td>Password: </td><td><input style="margin: 7px 0;" type="password" name="password" value="<%= user.getPassword()%>" />
+                                                <p><%= (passError != null) ? passError : ""%></p></td></tr>
+                                        <tr><td>DOB: </td><td><input style="margin: 7px 0;" type="date" name="dob" value="<%= user.getDOB()%>"/>
+                                                <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
+                                        <tr><td>Phone: </td><td><input style="margin: 7px 0;" type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
+                                                <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
                                         <tr>
-
                                         <td>
                                             <br>
-                                            <input class="button" type="submit" value="Update"/> 
+                                            <button type="submit" class="btn btn-primary ms-1" style="background: #519ECE; color: white">Update</button>
+                                            <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white" onclick="window.location='account.jsp';">Cancel</button>
                                         </td>
                                         </tr>
                                     </table>
@@ -116,9 +115,7 @@
                             </div>
                         </div>
                     </div>
-                </div>                   
-            </div>
-
+                </div>
         </section>
     </body>
 </html>

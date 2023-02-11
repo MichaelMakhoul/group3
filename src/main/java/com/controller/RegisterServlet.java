@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.User;
@@ -19,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Class allows a user (Customer or Staff) 
+ * - to register a new profile (previous validation of each insert data with Reg Ex)
+ * - to save the information in the database
+ * - to access the hotel main page
  *
- * @author 236336
+ * @author Antonella
  */
 public class RegisterServlet extends HttpServlet {
 
@@ -38,8 +37,8 @@ public class RegisterServlet extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         
         session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? name : "\"[First] [Middle] [Last]\"");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "\"[Example123]\"");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "\"[dd] [mm] [yyyy] or age <18\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "Password" : "\"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "\"[dd] [mm] [yyyy] or age >18\"");
         session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? phoneNumber : "\"[+Contry Code] [Number]\"");
         
         boolean validRegex= false;

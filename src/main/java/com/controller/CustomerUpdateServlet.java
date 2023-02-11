@@ -39,10 +39,10 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         String toUpdate = (String) session.getAttribute("toUpdate");
 
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format enter \"[First] [Middle] [Last]\"");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format enter \"[Example123]\"");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "Incorrect format enter \"[dd] [mm] [yyyy] or age <18\"");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format enter \"[+Contry Code] [Number]\"");
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format. Use: \"[First] [Middle] [Last]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format. Use: \"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect format. Use: \"[dd] [mm] [yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format. Use: \"[+Contry Code][Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx)
                 && password.matches(Utils.passRegEx)

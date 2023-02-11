@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.controller;
 
 import com.utils.Utils;
@@ -44,7 +40,7 @@ public class ShowBookingsServlet extends HttpServlet {
         
         BookingsDAO bookingsDAO = (BookingsDAO) session.getAttribute("bookingsDAO");
         Bookings bookings = new Bookings();
-        if(user.getType().equals("customer")){            
+        if(user != null &&user.getType().equals("customer")){            
             bookings.setBookings(bookingsDAO.getBookingsbyCustomer(user.getID()));
         }else{
             bookings.setBookings(bookingsDAO.getCurrentBookings());
@@ -83,14 +79,15 @@ public class ShowBookingsServlet extends HttpServlet {
             }else{
                 tempBookings = bookingsDAO.getCurrentBookings();
             }
-            bookings.setBookings(tempBookings);
-            if(searchValue != null || !searchValue.isBlank()){
+            
+            if(searchValue != null|| tempBookings != null || !searchValue.isBlank()){
+//                searchValue = searchValue.strip();
                 switch (searchOptions) {
                     case "bookingID":
                         {
                             if(searchValue.strip().matches("[0-9]+")){
-                               int searchID = Integer.parseInt(searchValue);
-                               bookings.setBookings(tempBookings.stream().filter(b -> b.matchID(searchID)).collect(Collectors.toList())); 
+                               int searchID = Integer.parseInt(searchValue.strip());
+                               tempBookings = tempBookings.stream().filter(b -> b.matchID(searchID)).collect(Collectors.toList());                               
                             }else{
                                session.setAttribute("searchErr", "Enter only numbers");                               
                             }
@@ -100,8 +97,8 @@ public class ShowBookingsServlet extends HttpServlet {
                     case "customerID":
                         {
                             if(searchValue.strip().matches("[0-9]+")){
-                               int searchID = Integer.parseInt(searchValue);
-                               bookings.setBookings(tempBookings.stream().filter(b -> b.matchCustomerID(searchID)).collect(Collectors.toList()));
+                               int searchID = Integer.parseInt(searchValue.strip());
+                               tempBookings =tempBookings.stream().filter(b -> b.matchCustomerID(searchID)).collect(Collectors.toList());                                
                             }else{
                                session.setAttribute("searchErr", "Enter only numbers");
                                bookings.setBookings(tempBookings);
@@ -109,21 +106,28 @@ public class ShowBookingsServlet extends HttpServlet {
                             break;
                         }
                     case "checkIn":
-                        if(Utils.validateDate(searchValue)!= null){
+                        if(Utils.validateDate(searchValue.strip())!= null){
                             bookings.setBookings(tempBookings.stream().filter(b -> b.matchCheckIn(searchValue)).collect(Collectors.toList()));                           
                         }else{
-                            session.setAttribute("searchErr", "Enter date in yyyy-mm-dd format");
+                            session.setAttribute("searchErr", "yyyy-mm-dd");
                         }
                         break;
                     default:
-                        if(Utils.validateDate(searchValue)!= null){
+                        if(Utils.validateDate(searchValue.strip())!= null){
                             bookings.setBookings(tempBookings.stream().filter(b -> b.matchCheckOut(searchValue)).collect(Collectors.toList()));
                         }else{
-                            session.setAttribute("searchErr", "Enter date in yyyy-mm-dd format");
+                            session.setAttribute("searchErr", "yyyy-mm-dd");
                         }                        
                         break;
                 }
+                if(tempBookings == null || tempBookings.size() ==0){
+                    session.setAttribute("searchUnsuccessfull", "No Entry Found");
+                }
             }
+            if(tempBookings != null){                
+                bookings.setBookings(tempBookings);
+            }
+            
             session.setAttribute("bookings", bookings);
             session.setAttribute("bookingsView","true");
             request.getRequestDispatcher("showBookings.jsp").forward(request, response);            

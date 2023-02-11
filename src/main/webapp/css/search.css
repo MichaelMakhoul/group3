@@ -12,34 +12,34 @@ and open the template in the editor.
 }
 
 form.searchList input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    float: left;
-    width: 60%;
-    /*background: #f1f1f1;*/
-}
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-radius: 5px;
+      float: left;
+      width: 60%;
+      /*background: #f1f1f1;*/
+    }
 
 form.searchList button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: darkgray;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none;
-    cursor: pointer;
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #333333;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
 }
 
 form.searchList button:hover {
-    /*background: #0b7dda;*/
-    background: lightgray;
+  /*background: #0b7dda;*/
+  background: lightgray;
 }
 
 form.searchList::after {
-    content: "";
-    clear: both;
-    display: table;
+  content: "";
+  clear: both;
+  display: table;
 }

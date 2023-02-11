@@ -51,7 +51,7 @@ public class AddBookingServlet extends HttpServlet {
             session.setAttribute("esQty", esQty);
             
         }else{
-            session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
+            session.setAttribute("dateErr", "Checkin date cannot be later than CheckOut. Please re-enter.");
         }
         
         request.getRequestDispatcher("addBooking.jsp").forward(request, response);

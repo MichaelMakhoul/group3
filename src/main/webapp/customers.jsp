@@ -49,7 +49,7 @@
             </div>	  	
         </div>
 
-        <%
+        <% 
             String deleteMessage = (String) (session.getAttribute("deletedUser"));
             session.removeAttribute("deletedUser");
         %>

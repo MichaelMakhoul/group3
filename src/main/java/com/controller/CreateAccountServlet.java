@@ -29,23 +29,16 @@ public class CreateAccountServlet extends HttpServlet {
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
-
-//        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
-//        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
-//        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
-//        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-//        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
         
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? name : "\"[First] [Middle] [Last]\"");
-        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? email : "\"[example@example.com]\"");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "\"[Example123]\"");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "\"[dd] [mm] [yyyy] or age <18\"");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? phoneNumber : "\"[+Contry Code] [Number]\"");
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? name : "\"Incorrect format. Use: [First] [Middle] [Last]\"");
+        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? email : "\"Incorrect format. Use: [example@example.com]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "\"Incorrect format. Use: [Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "Incorrect format. Use: \"[dd][mm][yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? phoneNumber : "\"Incorrect format. Use: [+Contry Code] [Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx)
                 && email.matches(Utils.emailRegEx)
                 && password.matches(Utils.passRegEx)
-                && dob.matches(Utils.dobRegEx)
                 && Utils.isOlderThen18(dob)
                 && phoneNumber.matches(Utils.phoneRegEx));
 
@@ -89,7 +82,9 @@ public class CreateAccountServlet extends HttpServlet {
                 } catch (SQLException ex) {
                     Logger.getLogger(CreateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
+             } else {
+                 session.setAttribute("emailError", email.matches(Utils.staffEmailRegEx) ? "" : "Incorrect format. Use: \"[example@tgsstaff.com]\"");
+
                 request.getRequestDispatcher("createAccount.jsp").include(request, response);
             }
         }

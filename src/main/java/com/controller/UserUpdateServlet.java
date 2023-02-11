@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.User;
@@ -19,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Class allows a user (Customer or Staff)
+ * - to update his own profile
+ * - to update the information in the database
+ * (previous validation of each insert data with Reg Ex)
  *
- * @author 236351
+ * @author Antonella
  */
 public class UserUpdateServlet extends HttpServlet {
 
@@ -41,7 +40,7 @@ public class UserUpdateServlet extends HttpServlet {
 
         session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format enter \"[First] [Middle] [Last]\"");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format enter \"[Example123]\"");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "Incorrect format enter \"[dd] [mm] [yyyy] or age <18\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "Incorrect format enter \"[dd] [mm] [yyyy] or age >18\"");
         session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format enter \"[+Contry Code] [Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx) &&  

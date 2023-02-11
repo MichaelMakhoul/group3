@@ -15,7 +15,7 @@
     <xsl:template match="bookings">
         <table class="w3-table-all w3-hoverable">
             <thead>
-                <tr class='w3-light-grey'>
+                <tr class='w3-dark-gray'>
                   <th>Booking ID</th>
                   <th>Customer ID</th>
                   <th>Check In</th>
@@ -33,7 +33,7 @@
         <tr>
             <td>
                 <xsl:variable name="ID" select="bookingID"></xsl:variable>
-                <a style="color:black; font-weight: bold;" href="http://localhost:8080/group3/BookingServlet?ID={$ID}">
+                <a style="color:black; font-weight: bold;" href="http://localhost:8080/group3/BookingsViewServlet?ID={$ID}">
                 <xsl:value-of select="bookingID"/>
                 </a>
             </td>
