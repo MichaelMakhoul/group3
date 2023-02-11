@@ -1,16 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.model;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- *
- * @author 236351
+ * Class has field variables of a User 
+ *     - 'ID' is unique User ID self generated 
+ *     - 'name' is User Firstname, Middle and Lastname 
+ *     - 'email' is User email address to register and login 
+ *     - 'password' is User password to register and login 
+ *     - 'DOB' is User dob to register
+ *     - 'phone' is User Phone Number to register 
+ *     - 'type' is User type to access the correct session
+ *     -  
+ *     -  getters and setters of every field
+ *     - 
+ * @author 
  */
 public class User implements Serializable {
 

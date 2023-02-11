@@ -16,7 +16,8 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
         <link href="css/register.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet">   
+        <link href="css/templatemo-style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body class="tm-gray-bg">
@@ -68,25 +69,29 @@
                         </select>
                     </label>
                     <label>
-                        <span class="message"><%= (exist != null) ? exist : ""%></span>
+                        <span class="message" style="color: red; font-weight: bold"><%= (exist != null) ? exist : ""%></span>
                         <div class="register__field">
-                            <input type="text" name="name" class="register__input" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                            
+                            <label><i class="fa fa-user-o" aria-hidden="true"></i></label>
+                            <input type="text" name="name" class="register__input" value="<%= (nameError != null) ? nameError : "" %>" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                             
                         </div>                        
-                        <div class="register__field">
-                            <input type="email" name="email" class="register__input" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
+                        <div class="register__field">                            
+                            <label><i class="fa fa-envelope" aria-hidden="true"></i></label>
+                            <input type="email" name="email" class="register__input" value="<%= (emailError != null) ? emailError : "" %>" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
                         </div>
                         <div class="register__field">
-                            <input type="password" name="password" class="register__input" placeholder=<%= (passError != null) ? passError : "Password"%>>
+                            <label><i class="fa fa-key" aria-hidden="true"></i></label>
+                            <input type="password" name="password" class="register__input" placeholder= <%= (passError != null) ? passError : "Password"%>>
                         </div>
                         <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="dob" class="register__input" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+                            <label><i class="fa fa-calendar" aria-hidden="true"></i></label>
+                            <input type="text" name="dob" class="register__input"  onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+
                         </div>
                         <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="phoneNumber" class="register__input" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
+                            <label><i class="fa fa-phone-square" aria-hidden="true"></i></label>
+                            <input type="text" name="phoneNumber" class="register__input" value="<%= (phoneError != null) ? phoneError : "" %>" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
                         </div>
-                    <button class="button register__submit">
+                    <button class="button register__submit" style="background: #B18E72; color: white">
                         <span>Sign Up Now</span>
                     </button>
                     </label>

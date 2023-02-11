@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.dao.BookingsDAO;
@@ -22,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Class 
  *
- * @author 236351
+ * @author Aiman, Antonella, Micheal, Monte, Shilpa
  */
+
 public class InitServlet extends HttpServlet {
 
     private SqlDBConnector sqlDBConnector;

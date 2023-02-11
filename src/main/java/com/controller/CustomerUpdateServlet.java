@@ -39,10 +39,10 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         String toUpdate = (String) session.getAttribute("toUpdate");
 
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format. Use: \"[First] [Middle] [Last]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format. Use: \"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect format. Use: \"[dd] [mm] [yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format. Use: \"[+Contry Code][Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx)
                 && password.matches(Utils.passRegEx)

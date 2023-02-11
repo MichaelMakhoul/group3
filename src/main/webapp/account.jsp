@@ -16,12 +16,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Account</title>
+        <link rel="stylesheet" href="css/w3.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/w3.css"> 
     </head>
     <body class="tm-gray-bg">
+        <%
+            User userUpdate = (User) session.getAttribute("userUpdate");
+            User currentUser = (User) session.getAttribute("user");
+            User user = (userUpdate != null) ? userUpdate : currentUser;
+            String userType = (String) session.getAttribute("userType");
+        %>
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+                <div class="w3-center"><br><span onclick="document.getElementById('id01').style.display = 'none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                </div>
+                <form class="w3-container" action=<%=  (userType.equals("manager")) ? "StaffDeleteServlet" : "UserDeleteServlet"%>> 
+                    <div class="w3-section"> 
+                        <h2>Do you want to delete the user</h2>
+                        <button class="w3-button w3-red w3-right w3-margin w3-round" type="submit">Delete</button>
+                        <button onclick="document.getElementById('id01').style.display = 'none'" type="button" class="w3-button w3-dark-gray w3-round w3-right w3-margin">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <section>
             <div class="tm-header">
                 <div class="container py-5">
@@ -46,15 +65,7 @@
                 </div>        
                 <div class = "w3-content w3-border w3-margin-top w3-white" >
                     <div class="w3-container w3-margin-top w3-border-bottom">
-                        <h3><b>User Information</b></h3>                       
-                        <body>
-
-                            <%
-                                User userUpdate = (User) session.getAttribute("userUpdate");
-                                User currentUser = (User) session.getAttribute("user");
-                                User user = (userUpdate != null) ? userUpdate : currentUser;
-                                String userType = (String) session.getAttribute("userType");
-                            %>
+                        <h3><b>User Information</b></h3>                     
                     </div>
                     <div class="container-fluid"  style="font-size: large" >
                         <div class="container py-3" style="margin-top: 80px" >
@@ -65,13 +76,8 @@
                                             <img src="img/Prof.png"class="rounded-circle img-fluid" style="width: 150px;">
                                             <h5 class="my-3"><br>ID :<%= (user != null) ? user.getID() : ""%></h5>
                                             <div class="d-flex justify-content-center mb-2">
-                                                <button type="button" class="btn btn-outline-primary ms-1"><a href="userUpdate.jsp">Update</a></button>
-                                                    <% if (userType == "manager") { %>
-                                                <button type="button" class="btn btn-outline-primary ms-1"><a href="StaffDeleteServlet">Delete</a></button>
-                                                <% } else { %>
-                                                <button type="button" class="btn btn-outline-primary ms-1"><a href="UserDeleteServlet">Delete</a></button>
-                                                <% }%>
-
+                                                <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white" onclick="window.location='userUpdate.jsp';" >Update</button>
+                                                <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white" onclick="document.getElementById('id01').style.display = 'flex'">Delete</button>
                                             </div>
                                             <br>
                                             <br>
@@ -133,12 +139,9 @@
                     </div> 
                 </div>
             </div>
-
-        </div>
-
-    </section>                    
-
-</body>
+        </section>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
 </html>
 
 

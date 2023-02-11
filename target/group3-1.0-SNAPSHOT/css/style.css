@@ -10,5 +10,32 @@ and open the template in the editor.
 
 .welcome_message{
     text-align: center;
-    
+}
+
+.error_message{
+    color: red;
+}
+
+.green_error_message{
+    color: green;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.popup-div {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    text-align: center;
+}
+
+.popup-h2 {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    text-align: center;
 }

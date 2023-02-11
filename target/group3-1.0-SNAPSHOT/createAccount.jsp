@@ -15,12 +15,9 @@
         <title>Create Account</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
               type='text/css'>
-        <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/register.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/w3.css"> 
     </head>
 
     <body class="tm-gray-bg">
@@ -31,90 +28,89 @@
             String passError = (String) session.getAttribute("passError");
             String dobError = (String) session.getAttribute("dobError");
             String phoneError = (String) session.getAttribute("phoneError");
-//            session.removeAttribute("message");
-%>
-        <div class="tm-header">
-            <div class="container1">
-                <div class="row">
-                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
-                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
-                    </div>
-                    <div class="col-lg-6 col-md-8 col-sm-9">
-                        <div class="mobile-menu-icon">
-                            <i class="fa fa-bars"></i>
+        %>
+        <section>
+            <div class="tm-header">
+                <div class="container py-5">
+                    <div class="container1">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
+                                <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                            </div>
+                            <div class="col-lg-6 col-md-8 col-sm-9">
+                                <div class="mobile-menu-icon">
+                                    <i class="fa fa-bars"></i>
+                                </div>
+                                <nav class="tm-nav">
+                                    <ul>
+                                        <li><a href="main.jsp">Main</a></li>                                
+                                        <li><a href="LogoutServlet">Logout</a></li>                                 
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
-                        <nav class="tm-nav">
-                            <ul>
-                                <li><a href="index.jsp">Home</a></li>
-                                <li><a href="main.jsp">Main</a></li>                                
-                                <li><a href="LogoutServlet">Logout</a></li>                                 
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>
         </div>
+        <div class = "w3-content w3-border w3-margin-top w3-white" >
+            <div class="w3-container w3-margin-top w3-border-bottom">
+                <h3><b>Create New User Account</b></h3>                       
+            </div>
 
-        <div class="container">
-            <div class="screen">
-                <div class="screen__content">
-                    <form class="register" method="POST" action="CreateAccountServlet">
-                        <!-- <label for="registerOptions">Register as:</label>
-                        <select name="registerOptions" id="registerOptions">                            
-                            <option value="staff">Staff</option>
-                            <option value="customer">Customer</option>
-                        </select> -->
 
-                        <span class="message"><%= (message != null) ? message : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-user"></i>
-                            <input type="text" name="name" class="register__input" placeholder="Name">
+            <div class="container-fluid"  style="font-size: large" >
+                <div class="container py-3" style="margin-top: 80px" >
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card mb-4">
+                                <div class="card-body text-center">
+                                    <img src="img/Prof.png"class="rounded-circle img-fluid" style="width: 150px;">
+                                </div>
+                                <br>
+                                <br>
+                            </div>
                         </div>
-                        <span class="message"><%= (nameError != null) ? nameError : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-user"></i>
-                            <input type="email" name="email" class="register__input" placeholder="Email">
-                        </div>
-                        <span class="message"><%= (emailError != null) ? emailError : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="password" name="password" class="register__input" placeholder="Password">
-                        </div>
-                        <span class="message"><%= (passError != null) ? passError : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="date" name="dob" class="register__input" placeholder="DOB">
-                        </div>
-                        <span class="message"><%= (dobError != null) ? dobError : ""%></span>
+                        <form method="POST" action="CreateAccountServlet">
+                            <table style="margin-bottom: 40px; margin-top: -15px">
+                                <% String color = (message != null && message.equals("User already exists")) ? "red" : "green"; %>
+                                <caption><p style="color: <%= color %>; font-weight: bold"><%= (message != null) ? message : ""%></p></caption>
+                                <tr><td>Name: </td><td><input style="margin: 7px 0;" type="text" name="name" placeholder="Name">
+                                <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
 
-                        <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
-                        </div>
-                        <span class="message"><%= (phoneError != null) ? phoneError : ""%></span>
-                        <button class="button register__submit">
-                            <span class="button__text">Create</span>
-                            <i class="button__icon fas fa-chevron-right"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
+                                <tr><td>Email: </td><td><input style="margin: 7px 0;" type="email" name="email" placeholder="Email">
+                                <p><%= (emailError != null) ? emailError : ""%></p></td></tr>
+
+                                <tr><td>Password: </td><td><input style="margin: 7px 0;"type="password" name="password" placeholder="Password">
+                                <p><%= (passError != null) ? passError : ""%></p></td></tr>
+
+                                <tr><td>DOB: </td><td><input style="margin: 7px 0;" type="date" name="dob" placeholder="DOB">
+                                <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
+
+                                <tr><td>Phone: </td><td><input style="margin: 7px 0;" type="text" name="phoneNumber" placeholder="Phone Number">
+                                <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary ms-1" style="background: #519ECE; color: white">Create</button>
+                                        <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white"><a href="main.jsp">Cancel</a></button>
+                                        <br>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div>              
         <%
-//            String message = (String) session.getAttribute("message");
-//            String emailError = (String) session.getAttribute("emailError");
-//            String passError = (String) session.getAttribute("passError");
-//            String dobError = (String) session.getAttribute("dobError");
             session.removeAttribute("message");
+            session.removeAttribute("nameError");
             session.removeAttribute("emailError");
             session.removeAttribute("passError");
             session.removeAttribute("dobError");
+            session.removeAttribute("phoneError");
         %>
-    </body>
+         </section>
+</body>
 </html>

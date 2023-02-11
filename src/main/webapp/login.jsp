@@ -18,6 +18,7 @@
         <link href="css/login.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="css/login.css" rel="stylesheet">
     </head>
 
@@ -27,10 +28,10 @@
             session.removeAttribute("usernotexist");
         %>
         <div class="tm-header">
-            <div class="container1">
+            <div class="nav-container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
-                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                        <p class="tm-site-name">The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -61,14 +62,16 @@
                         </select>
                         </label>
                         <label>
-                        <span class="message"><%= (exist != null) ? exist : ""%></span>
-                        <div class="login__field">                            
+                        <span class="message" style="color: red; font-weight: bold"><%= (exist != null) ? exist : ""%></span>
+                        <div class="login__field">
+                            <label><i class="fa fa-envelope" aria-hidden="true"></i></label>
                             <input type="email" name="email" class="login__input" placeholder="Email">
                         </div>
                         <div class="login__field">
+                            <label><i class="fa fa-key" aria-hidden="true"></i></label>
                             <input type="password" name="password" class="login__input" placeholder="Password">
                         </div>
-                        <button class="button login__submit">
+                        <button class="button login__submit" style="background: #B18E72; color: white">
                             <span>Sign In Now</span>
                         </button>
                         </label>
