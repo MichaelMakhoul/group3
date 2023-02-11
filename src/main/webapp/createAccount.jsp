@@ -21,6 +21,8 @@
         <link href="css/flexslider.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link href="css/register.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
     </head>
 
     <body class="tm-gray-bg">
@@ -31,8 +33,7 @@
             String passError = (String) session.getAttribute("passError");
             String dobError = (String) session.getAttribute("dobError");
             String phoneError = (String) session.getAttribute("phoneError");
-//            session.removeAttribute("message");
-%>
+        %>
         <div class="tm-header">
             <div class="container1">
                 <div class="row">
@@ -59,62 +60,42 @@
             <div class="screen">
                 <div class="screen__content">
                     <form class="register" method="POST" action="CreateAccountServlet">
-                        <!-- <label for="registerOptions">Register as:</label>
-                        <select name="registerOptions" id="registerOptions">                            
-                            <option value="staff">Staff</option>
-                            <option value="customer">Customer</option>
-                        </select> -->
-
                         <span class="message"><%= (message != null) ? message : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-user"></i>
-                            <input type="text" name="name" class="register__input" placeholder="Name">
-                        </div>
-                        <span class="message"><%= (nameError != null) ? nameError : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-user"></i>
-                            <input type="email" name="email" class="register__input" placeholder="Email">
-                        </div>
-                        <span class="message"><%= (emailError != null) ? emailError : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="password" name="password" class="register__input" placeholder="Password">
-                        </div>
-                        <span class="message"><%= (passError != null) ? passError : ""%></span>
-                        <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="date" name="dob" class="register__input" placeholder="DOB">
-                        </div>
-                        <span class="message"><%= (dobError != null) ? dobError : ""%></span>
 
                         <div class="register__field">
-                            <i class="register__icon fas fa-lock"></i>
-                            <input type="text" name="phoneNumber" class="register__input" placeholder="Phone Number">
+                            <input type="text" name="name" class="register__input" value="<%= (nameError != null) ? nameError : "" %>" placeholder= <%= (nameError != null) ? nameError : "Name"%>>                            
+                        </div>                        
+                        <div class="register__field">
+                            <input type="email" name="email" class="register__input" value="<%= (emailError != null) ? emailError : "" %>" placeholder=<%= (emailError != null) ? emailError : "Email"%>>
                         </div>
-                        <span class="message"><%= (phoneError != null) ? phoneError : ""%></span>
+                        <div class="register__field">
+                            <input type="password" name="password" class="register__input" placeholder=<%= (passError != null) ? passError : "Password"%>>
+                        </div>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="text" name="dob" class="register__input" value="<%= (dobError != null) ? dobError : "" %>" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
+                        </div>
+                        <div class="register__field">
+                            <i class="register__icon fas fa-lock"></i>
+                            <input type="text" name="phoneNumber" class="register__input" value="<%= (phoneError != null) ? phoneError : "" %>" placeholder=<%= (phoneError != null) ? phoneError : "Phone Number"%>>
+                        </div>
+                        
+                        
                         <button class="button register__submit">
                             <span class="button__text">Create</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
                     </form>
                 </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
-                </div>
             </div>
         </div>
         <%
-//            String message = (String) session.getAttribute("message");
-//            String emailError = (String) session.getAttribute("emailError");
-//            String passError = (String) session.getAttribute("passError");
-//            String dobError = (String) session.getAttribute("dobError");
             session.removeAttribute("message");
+            session.removeAttribute("nameError");
             session.removeAttribute("emailError");
             session.removeAttribute("passError");
             session.removeAttribute("dobError");
+            session.removeAttribute("phoneError");
         %>
     </body>
 </html>

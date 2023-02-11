@@ -12,7 +12,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">        
         <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
         <link href="css/w3.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
@@ -20,11 +19,14 @@
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="css/style.css" rel="stylesheet">
     </head>
     <body class="tm-gray-bg">
         <div class="tm-header">
-            <div class="container">
+            <div class="nav-container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
                         <p class="tm-site-name" >The Grand Serene</p>
@@ -86,7 +88,8 @@
                 </div>
                 <div class="popup-div w3-container">
                     <div class="w3-section">
-                        <h2 class="popup-h2">You have been logged out</h2>
+                        <h2 id="popup-h2" class="popup-h2">You have successfully logged out</h2>
+                        <h4 id="popup-h3" style="margin-top: 20px; margin-bottom: -5px;" class="popup-h2">Hope you enjoyed your experience, see you soon</h4>
                         <button class="w3-button w3-red w3-right w3-margin w3-round" onclick="document.getElementById('id01').style.display = 'none'">close</button>
                     </div>
                 </div>
@@ -432,6 +435,10 @@
                                 let prev = window.history.state.prevUrl;
                                 if (prev == "http://localhost:8080/group3/LogoutServlet") {
                                     document.getElementById('id01').style.display = 'flex';
+                                } else if (prev == "http://localhost:8080/group3/UserDeleteServlet") {
+                                    document.getElementById('id01').style.display = 'flex';
+                                    document.getElementById('popup-h2').innerHTML = 'Your account has been successfully deleted';
+                                    document.getElementById('popup-h3').innerHTML = 'Arrivederci from the TGS team';
                                 }
                             }
                             showLogoutMessage();

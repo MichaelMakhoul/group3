@@ -14,7 +14,6 @@ com\controller\InitServlet.class
 com\controller\UserDeleteServlet.class
 com\controller\ReportSummaryViewServlet.class
 com\model\Customer.class
-com\controller\ManagerDeleteServlet.class
 com\controller\RegisterServlet.class
 com\controller\StaffDeleteServlet.class
 com\model\dao\UserDAO.class

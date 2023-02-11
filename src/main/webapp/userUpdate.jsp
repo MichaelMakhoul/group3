@@ -18,6 +18,7 @@
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link rel="stylesheet" href="css/w3.css"> 
         <link rel="stylesheet" href="css/style.css"> 
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
     </head>
     <body class="tm-gray-bg">                
         <%

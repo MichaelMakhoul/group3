@@ -18,6 +18,7 @@
     <link href="css/templatemo-style.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">         
     <link href="css/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
     
   </head>
   <body>
@@ -66,6 +67,7 @@
       
       //Removing the error Attributes after registering
       session.removeAttribute("nameError");
+      session.removeAttribute("emailError");
       session.removeAttribute("passError");
       session.removeAttribute("dobError");
       session.removeAttribute("phoneError");

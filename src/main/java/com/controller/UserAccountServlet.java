@@ -8,7 +8,6 @@ package com.controller;
 import com.model.User;
 import com.model.dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +39,6 @@ public class UserAccountServlet extends HttpServlet {
 
         String emailView = request.getParameter("emailView");
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-        User user = (User) session.getAttribute("user");
         
         session.setAttribute("emailView", emailView);
         

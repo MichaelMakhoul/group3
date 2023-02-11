@@ -41,12 +41,13 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format enter \"[First] [Middle] [Last]\"");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format enter \"[Example123]\"");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect format enter \"[dd] [mm] [yyyy] or age <18\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "Incorrect format enter \"[dd] [mm] [yyyy] or age <18\"");
         session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format enter \"[+Contry Code] [Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx)
                 && password.matches(Utils.passRegEx)
                 && dob.matches(Utils.dobRegEx)
+                && Utils.isOlderThen18(dob)
                 && phoneNumber.matches(Utils.phoneRegEx));
 
         if (!(toUpdate.equals("staff") || toUpdate.equals("customer"))) {
