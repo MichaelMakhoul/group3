@@ -1,7 +1,7 @@
 <%-- 
-    Document   : customerMain
+    Document   : main
     Created on : 28-Jan-2023, 10:31:34 AM
-    Author     : 236336
+    Author     : Aiman, Antonella, Micheal, Monte, Shilpa
 --%>
 <%@page import="com.model.User"%>
 <%@page import="com.model.Manager"%>

@@ -10,8 +10,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author 236361
+ * Class contains list of Room Objects the Room Bean 
+ * Used by Rooms WebService
+ * Getters and Setters for list of Room Objects
+ * 
+ * @author Shilpa
  */
 
 @XmlAccessorType(XmlAccessType.FIELD)

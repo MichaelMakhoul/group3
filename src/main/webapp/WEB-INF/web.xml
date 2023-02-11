@@ -183,6 +183,43 @@
         <url-pattern>/UpdateBookingServlet</url-pattern>
     </servlet-mapping>
     
+    <!--Report-->
+    <servlet>
+        <servlet-name>AddReportLogServlet</servlet-name>
+        <servlet-class>com.controller.AddReportLogServlet</servlet-class>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>AddReportLogServlet</servlet-name>
+        <url-pattern>/AddReportLogServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReportLogViewServlet</servlet-name>
+        <servlet-class>com.controller.ReportLogViewServlet</servlet-class>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>ReportLogViewServlet</servlet-name>
+        <url-pattern>/ReportLogViewServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReportSummaryViewServlet</servlet-name>
+        <servlet-class>com.controller.ReportSummaryViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportSummaryViewServlet</servlet-name>
+        <url-pattern>/ReportSummaryViewServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReportDeleteServlet</servlet-name>
+        <servlet-class>com.controller.ReportDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportDeleteServlet</servlet-name>
+        <url-pattern>/ReportDeleteServlet</url-pattern>
+    </servlet-mapping>
+    
     <!--Rest Services Path-->
     <servlet>
         <servlet-name>group3</servlet-name>

@@ -18,8 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 236361
+ * This Servlet is called from bookings.xsl to retrieve the 
+ * booking entry based the booking id passed as a parameter
+ * -Redirects to 
+ * "showBookings.jsp" on failure
+ * "bookingDetails.jsp" on success
+ * 
+ * @author Shilpa
  */
 public class BookingsViewServlet extends HttpServlet {
 
@@ -83,7 +88,7 @@ public class BookingsViewServlet extends HttpServlet {
             int bookingID = Integer.parseInt(id);
             Booking booking = bookingsDAO.booking(bookingID);
             session.setAttribute("booking", booking);
-            request.getRequestDispatcher("bookingConfirmation.jsp").include(request, response);
+            request.getRequestDispatcher("bookingDetails.jsp").include(request, response);
         }
     }
 

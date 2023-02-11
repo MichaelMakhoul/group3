@@ -1,3 +1,4 @@
+
 package com.utils;
 
 import java.text.ParseException;
@@ -28,11 +29,11 @@ public class Utils {
     public static String phoneRegEx = "^\\+(?:[0-9] ?){6,14}[0-9]$";
 
     /**
-     * Method returns
+     * Checks whether a person is older than 18 on the present day  
      *
      * @param String dob
      *
-     * @return
+     * @return true or false
      */
     public static boolean isOlderThen18(String dob) {
         try {
@@ -47,11 +48,12 @@ public class Utils {
     }
 
     /**
-     * Method returns
+     * Checks the difference in number of days between two dates 
+     * and returns the absolute value of the that.
      *
      * @param String start date and String end date
      *
-     * @return
+     * @return Number of days
      */
     public static int differenceInDays(String startDate, String endDate) {
         try {
@@ -71,24 +73,47 @@ public class Utils {
     }
 
     /**
-     * Method returns
+     * Checks whether the parameter date is occurring later than three months 
+     * from present date This is to put a limit of the max booking date
      *
-     * @param String start date and String end date
-     *
-     * @return
+     * @param date
+     * @return true or false
      */
-    public static boolean startDtbefendDt(String startDate, String endDate) {
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.parse(endDate);
-        return start.isBefore(end);
+    public static boolean morethanThreeMonths(String date) {
+        try {
+            LocalDate dDate = LocalDate.parse(date);
+            LocalDate today = LocalDate.now();
+            Period diff = Period.between(today, dDate);
+            System.out.println("months" + diff.getMonths());
+            return (diff.getMonths() >= 3);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     /**
-     * Method returns
+     * Checks whether the start date occurs before end date
+     *
+     * @param String start date and String end date
+     *
+     * @return true or false
+     */
+    public static boolean startDtbefendDt(String startDate, String endDate) {
+        try {
+            LocalDate start = LocalDate.parse(startDate);
+            LocalDate end = LocalDate.parse(endDate);
+            return start.isBefore(end);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks whether the format of the Date is Valid
      *
      * @param String date
      *
-     * @return
+     * @return true or false
      */
     public static LocalDate validateDate(String date) {
         try {
@@ -97,5 +122,4 @@ public class Utils {
             return null;
         }
     }
-
 }

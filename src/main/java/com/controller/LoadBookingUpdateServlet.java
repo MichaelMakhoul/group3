@@ -16,8 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * This gets the value the Booking to load updateBooking.jsp
+ * - Validates Dates
+ * - Validates number of Rooms
+ * - Also gets the correct value of available rooms
  *
- * @author 236361
+ * @author Shilpa
  */
 public class LoadBookingUpdateServlet extends HttpServlet {
 
@@ -41,6 +45,7 @@ public class LoadBookingUpdateServlet extends HttpServlet {
         
         
         if(checkIn == null || checkOut == null){
+            //Gets the value from the bean
             checkIn = booking.getCheckIn();
             checkOut = booking.getCheckOut();
             drNo = bookingsDAO.getRoomCountbyType(booking.getRooms(), "DELUXE_ROOM");
@@ -48,6 +53,7 @@ public class LoadBookingUpdateServlet extends HttpServlet {
             esNo = bookingsDAO.getRoomCountbyType(booking.getRooms(), "EXECUTIVE_SUITE");
             session.setAttribute("change","true");
         }else{
+            //When date changes the value of available rooms also change
             drNo = Integer.parseInt(request.getParameter("drQuantity"));
             frNo = Integer.parseInt(request.getParameter("frQuantity"));
             esNo = Integer.parseInt(request.getParameter("esQuantity"));
@@ -67,6 +73,7 @@ public class LoadBookingUpdateServlet extends HttpServlet {
         session.setAttribute("checkOutD", checkOut);
         if(Utils.startDtbefendDt(checkIn, checkOut)){    
 
+            // the below logic updates rooms data for available room when any change in the Update page occurs
             int drQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "DELUXE_ROOM");
             int frQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "FAMILY_ROOM");
             int esQty = bookingsDAO.getAvailableRoomsCountbyType(checkIn, checkOut, "EXECUTIVE_SUITE");
