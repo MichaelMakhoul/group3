@@ -22,7 +22,7 @@ public class ReportService {
 
     //To Add a Report Log
     @GET
-    @Path("addreportlog") //localhost:8080/group3/rest/reportapi/addreportlog
+    @Path("addreportlog") //http://localhost:8080/group3/rest/reportapi/addreportlog
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response ReportLog() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
@@ -33,7 +33,7 @@ public class ReportService {
 
     //To view all Report Logs
     @GET
-    @Path("reportlogs") //localhost:8080/group3/rest/reportapi/reportlogs
+    @Path("reportlogs") //http://localhost:8080/group3/rest/reportapi/reportlogs
     @Produces(MediaType.APPLICATION_XML)
     public ReportLogs reportLogs() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
@@ -44,9 +44,11 @@ public class ReportService {
 
     //To remove a Report Log by ID
     @GET
-    @Path("removereport/{ID}") //localhost:8080/group3/rest/reportapi/removereport/{ID}
-    public void reportDeleteByID(@PathParam("ID") int ID) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
+    @Path("removereport/{ID}") //http://localhost:8080/group3/rest/reportapi/removereport/103
+    @Produces(MediaType.TEXT_PLAIN)
+    public String reportDeleteByID(@PathParam("ID") int ID) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
         ReportDAO reportDAO = new ReportDAO(new SqlDBConnector().connection());
         reportDAO.delete(ID);
+        return "<success> Report_"+ID+" deleted successfully</success>";
     }
 }

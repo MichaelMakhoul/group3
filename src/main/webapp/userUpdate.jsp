@@ -55,14 +55,13 @@
                             </div>
                             <nav class="tm-nav">
                                 <ul>
-                                    <% if (userType.equals("staff")) { %>
+                                    <li><a href="main.jsp">Main</a></li> 
+                                     <% if (userType.equals("staff") && (userUpdate != null)) { %>                                    
                                     <li><a href="customers.jsp">Customers List</a></li>
-                                        <% } else if (userType.equals("manager")) { %>
+                                        <% } else if (userType.equals("manager")){ %>                                    
                                     <li><a href="viewAllStaff.jsp">Staff List</a></li>
-                                        <% } else { %>
-                                    <li><a href="main.jsp">Main</a></li>
-                                        <% }%>
-                                    <li><a href="userUpdate.jsp" class="active">Edit Profile</a></li>                                
+                                    <% }%>   
+                                                                                                        
                                     <li><a href="LogoutServlet">Logout</a></li>                                 
                                 </ul>
                             </nav>

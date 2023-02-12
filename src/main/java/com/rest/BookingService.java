@@ -63,7 +63,7 @@ public class BookingService {
      * @throws IOException 
      */
     @GET
-    @Path("/add/{customerID}/{checkIn}/{checkOut}/{DR}-{FR}-{ES}") //http://localhost:8080/group3/rest/bookingapi/add/{customerID}/{checkIn}/{checkOut}/{DR}-{FR}-{ES}
+    @Path("/add/{customerID}/{checkIn}/{checkOut}/{DR}-{FR}-{ES}") //http://localhost:8080/group3/rest/bookingapi/add/1005/2023-03-09/2023-03-12/1-1-1
     @Produces(MediaType.APPLICATION_XML)
     public Response addBooking(@PathParam("customerID") int ID,@PathParam("checkIn") String checkIn, @PathParam("checkOut") String checkOut,
             @PathParam("DR") int dr, @PathParam("FR") int fr,@PathParam("ES") int es)
@@ -91,7 +91,7 @@ public class BookingService {
      * @throws IOException 
      */
     @GET
-    @Path("/customer/{ID}") //http://localhost:8080/group3/rest/bookingapi/customer/{ID}
+    @Path("/customer/{ID}") //http://localhost:8080/group3/rest/bookingapi/customer/1001
     @Produces(MediaType.APPLICATION_XML)
     public Bookings customerBookings(@PathParam("ID") int ID)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
@@ -136,7 +136,7 @@ public class BookingService {
      */
     
     @GET
-    @Path("/delete/{bookingID}") //http://localhost:8080/group3/rest/bookingapi/delete/{ID}
+    @Path("/delete/{bookingID}") //http://localhost:8080/group3/rest/bookingapi/delete/3000
     @Produces(MediaType.TEXT_PLAIN)
     public String deleteBooking(@PathParam("bookingID") int ID)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
@@ -159,7 +159,7 @@ public class BookingService {
      */
     
     @GET
-    @Path("/deletebyCustomer/{customerID}") //http://localhost:8080/group3/rest/bookingapi/deletebyCustomer/{ID}
+    @Path("/deletebyCustomer/{customerID}") //http://localhost:8080/group3/rest/bookingapi/deletebyCustomer/1001
     @Produces(MediaType.TEXT_PLAIN)
     public String deleteBookingbyCustomer(@PathParam("customerID") int ID)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{
@@ -181,7 +181,7 @@ public class BookingService {
      * @throws IOException 
      */
     @GET
-    @Path("/booking/{bookingID}") //http://localhost:8080/group3/rest/bookingapi/booking/{bookingID}
+    @Path("/booking/{bookingID}") //http://localhost:8080/group3/rest/bookingapi/booking/3001
     @Produces(MediaType.APPLICATION_XML)
     public Booking booking(@PathParam("bookingID") int ID)
             throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException{

@@ -45,7 +45,6 @@
                 </form>
             </div>
         </div>
-        <!--<section>-->
         <div class="tm-header">
             <div class="nav-container">
                 <div class="row">
@@ -59,7 +58,11 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="main.jsp">Main</a></li>
-                                <li><a href="account.jsp" class="active">Account</a></li>                                
+                                    <% if (userType.equals("staff") && (userUpdate != null)) { %>
+                                <li><a href="customers.jsp">Customers List</a></li>
+                                    <% } else if (userType.equals("manager")){%>
+                                <li><a href="viewAllStaff.jsp">Staff List</a></li>
+                                    <% }%>                               
                                 <li><a href="LogoutServlet">Logout</a></li>
                             </ul>
                         </nav>		
@@ -142,10 +145,8 @@
                 </div>
             </div> 
         </div>
-    </div>
-    <!--</section>-->
-    <script type="text/javascript" src="js/index.js"></script>
-</body>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
 </html>
 
 
