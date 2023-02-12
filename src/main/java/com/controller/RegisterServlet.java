@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.User;
@@ -19,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Class allows a user (Customer or Staff) 
+ * - to register a new profile (previous validation of each insert data with Reg Ex)
+ * - to save the information in the database
+ * - to access the hotel main page
  *
- * @author 236336
+ * @author Antonella
  */
 public class RegisterServlet extends HttpServlet {
 
@@ -32,27 +31,30 @@ public class RegisterServlet extends HttpServlet {
         String registerOptions = request.getParameter("registerOptions");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
+        String staffEmail = request.getParameter("email");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
+        
+        //checking the RegEx for Customer and Staff
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? name : "\"[First] [Middle] [Last]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "Password" : "\"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "\"[dd] [mm] [yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? phoneNumber : "\"[+Contry Code] [Number]\"");
+        
+        boolean validRegex= false;
+        
+ 
+        if(registerOptions.equals("customer")){
+            session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? email : "\"[example@example.com]\"");
+            validRegex = (name.matches(Utils.nameRegEx) && email.matches(Utils.emailRegEx) && password.matches(Utils.passRegEx) && Utils.isOlderThen18(dob) && phoneNumber.matches(Utils.phoneRegEx));
+        }else{
+            session.setAttribute("emailError", staffEmail.matches(Utils.staffEmailRegEx) ? staffEmail : "\"[example@tgsstaff.com]\"");
+            validRegex = (name.matches(Utils.nameRegEx) && staffEmail.matches(Utils.staffEmailRegEx) && password.matches(Utils.passRegEx) && Utils.isOlderThen18(dob)&& phoneNumber.matches(Utils.phoneRegEx));
+        }
+        
+        String error = "";        
 
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
-        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "Incorrect email format");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
-
-        boolean validRegex = (name.matches(Utils.nameRegEx)
-                && email.matches(Utils.emailRegEx)
-                && password.matches(Utils.passRegEx)
-                && dob.matches(Utils.dobRegEx)
-                && phoneNumber.matches(Utils.phoneRegEx));
-
-//        boolean nextPage = false;
-        String error = "";
-        //boolean user = false;        
-
-//        if (!email.matches(emailRegEx) || !password.matches(passRegEx)) {
         if (validRegex) {
             try {
                 UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
@@ -65,6 +67,7 @@ public class RegisterServlet extends HttpServlet {
                     userDAO.create(registerOptions, name, email, password, dob, phoneNumber);
                     user = userDAO.getUser(email, registerOptions);
                     user.setType(registerOptions);
+                    session.setAttribute("userType", registerOptions);  
                     session.setAttribute("user", user);
                     session.setAttribute("userType", registerOptions);
                     request.getRequestDispatcher("main.jsp").include(request, response);

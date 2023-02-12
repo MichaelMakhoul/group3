@@ -18,11 +18,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
+/** This servlet allows the manager to delete a staff member as well as their details in the database
  *
- * @author 236333
+ * @author Aiman 
  */
 public class StaffDeleteServlet extends HttpServlet {
+    /**
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

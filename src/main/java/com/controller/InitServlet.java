@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.dao.BookingsDAO;
 import com.model.dao.ManagerDAO;
+import com.model.dao.ReportDAO;
 import com.model.dao.SqlDBConnector;
 import com.model.dao.UserDAO;
 import java.io.IOException;
@@ -21,15 +17,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * - Class initializes the connection to the database 
+ * - Connect the database to all the DAO
+ * - Closes the connection
  *
- * @author 236351
+ * @author Aiman, Antonella, Micheal, Monte, Shilpa
  */
+
 public class InitServlet extends HttpServlet {
 
     private SqlDBConnector sqlDBConnector;
     private Connection connection;
     private UserDAO userDAO;
     private ManagerDAO managerDAO;
+    private ReportDAO reportDAO;
     private BookingsDAO bookingsDAO;
 
     @Override
@@ -39,6 +40,7 @@ public class InitServlet extends HttpServlet {
             connection = sqlDBConnector.connection();
             userDAO = new UserDAO(connection);
             managerDAO = new ManagerDAO(connection);
+            reportDAO = new ReportDAO(connection);
             bookingsDAO = new BookingsDAO(connection);
         } catch (IOException ex) {
             Logger.getLogger(InitServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,21 +56,13 @@ public class InitServlet extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("managerDAO", managerDAO);
         session.setAttribute("userDAO", userDAO);
+        session.setAttribute("reportDAO", reportDAO);
         session.setAttribute("bookingsDAO", bookingsDAO);
 
     }

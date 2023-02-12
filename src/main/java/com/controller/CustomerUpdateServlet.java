@@ -25,12 +25,13 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-//        User userUpdate = (User) session.getAttribute("userUpdate");
-//        User currentUser = (User) session.getAttribute("user");
-//        User user = (userUpdate != null) ? userUpdate : currentUser;
+        User userUpdate = (User) session.getAttribute("userUpdate");
+        User currentUser = (User) session.getAttribute("user");
+        User user = (userUpdate != null) ? userUpdate : currentUser;
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
-        int ID = Integer.parseInt(request.getParameter("ID"));
+//        int ID = Integer.parseInt(request.getParameter("ID"));
+        int ID = user.getID();
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
@@ -38,10 +39,10 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         String toUpdate = (String) session.getAttribute("toUpdate");
 
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format. Use: \"[First] [Middle] [Last]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format. Use: \"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect format. Use: \"[dd] [mm] [yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format. Use: \"[+Contry Code][Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx)
                 && password.matches(Utils.passRegEx)
@@ -55,7 +56,7 @@ public class CustomerUpdateServlet extends HttpServlet {
         if (validRegex) {
             try {
                 userDAO.update(toUpdate, name, password, dob, phoneNumber, ID);
-                User userUpdate = userDAO.getUser(ID, toUpdate);
+                userUpdate = userDAO.getUser(ID, toUpdate);
                 session.setAttribute("userUpdate", userUpdate);
                 session.setAttribute("message", "User was updated successfully");
                 request.getRequestDispatcher("userUpdate.jsp").include(request, response);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.User;
@@ -19,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Class allows a user (Customer or Staff)
+ * - to update his own profile
+ * - to update the information in the database
+ * (previous validation of each insert data with Reg Ex)
  *
- * @author 236351
+ * @author Antonella
  */
 public class UserUpdateServlet extends HttpServlet {
 
@@ -34,21 +33,21 @@ public class UserUpdateServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         String userType = (String)session.getAttribute("userType");
 
-        int ID = Integer.parseInt(request.getParameter("ID"));
+        int ID = user.getID();
         String name = request.getParameter("name");
-        String email = request.getParameter("email");
+        String staffEmail = request.getParameter("email");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phoneNumber");
 
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect name format");
-        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect password format");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect DOB format");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect phone number format");
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format. Use: \"[First] [Middle] [Last]\"");
+        session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format. Use: \"[Example123]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "Incorrect format. Use: \"[dd][mm][yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format. Use:\"[+Contry Code][Number]\"");
 
         boolean validRegex = (name.matches(Utils.nameRegEx) &&  
                             password.matches(Utils.passRegEx) && 
-                            dob.matches(Utils.dobRegEx) && 
+                            Utils.isOlderThen18(dob) && 
                             phoneNumber.matches(Utils.phoneRegEx));       
         
 

@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : Jan 27, 2023, 10:03:44 AM
-    Author     : 236351
+    Author     : Aiman, Antonella, Micheal, Monte, Shilpa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,11 +12,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
+        <link href="css/login.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/login.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body class="tm-gray-bg">
@@ -25,10 +27,10 @@
             session.removeAttribute("usernotexist");
         %>
         <div class="tm-header">
-            <div class="container1">
+            <div class="nav-container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
-                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                        <p class="tm-site-name">The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -47,38 +49,34 @@
         </div>
 
         <div class="container">
-            <div class="screen">
-                <div class="screen__content">
+            <p class="tip"></p>
+            <div class="cont">
                     <form class="login" method="POST" action="LoginServlet">
-                        <label for="loginOptions">Login as:</label>
-                        <select name="loginOptions" id="loginOptions">
+                        <h2><label for="loginOptions">Login as:</label></h2>
+                        <label>
+                        <select class="dropmenu" name="loginOptions" id="loginOptions">
                             <option value="customer">Customer</option>
                             <option value="manager">Manager</option>
                             <option value="staff">Staff</option>                            
                         </select>
-                        <span class="message"><%= (exist != null) ? exist : ""%></span>
+                        </label>
+                        <label>
+                        <span class="message" style="color: red; font-weight: bold"><%= (exist != null) ? exist : ""%></span>
                         <div class="login__field">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="text" name="email" class="login__input" placeholder="User name / Email">
+                            <label><i class="fa fa-envelope" aria-hidden="true"></i></label>
+                            <input type="email" name="email" class="login__input" placeholder="Email">
                         </div>
                         <div class="login__field">
-                            <i class="login__icon fas fa-lock"></i>
+                            <label><i class="fa fa-key" aria-hidden="true"></i></label>
                             <input type="password" name="password" class="login__input" placeholder="Password">
                         </div>
-                        <button class="button login__submit">
-                            <span class="button__text">Log In Now</span>
-                            <i class="button__icon fas fa-chevron-right"></i>
+                        <button class="button login__submit" style="background: #B18E72; color: white">
+                            <span>Sign In Now</span>
                         </button>
+                        </label>
                     </form>
+                    <% exist = ""; %>
                 </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
-                </div>
-            </div>
-        </div>
-    <% exist = ""; %>
+            </div>    
     </body>
 </html>

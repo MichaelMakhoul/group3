@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.model.dao;
 
 import com.model.User;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,30 +9,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author 236351
+ * DAO is use to do all the CRUD operation with the database
+ * for Customer and Staff tables
+ * 
+ * @author Aiman, Antonella, Micheal
  */
 public class UserDAO {
 
     private Statement st;
-//    private PreparedStatement getUserByIDSt;
-//    private PreparedStatement createSt;
-//    private PreparedStatement updateSt;
-//    private PreparedStatement deleteSt;
-
-//    private String getUserByIDQy = "SELECT * FROM tgsdb.? WHERE ID=?";
-//    private String createQy = "INSERT INTO tgsdb.?(name, email, password, DOB, phone)" + "VALUES(?,?,?,?,?)";
-//    private String updateQy = "UPDATE tgsdb.? SET name=?, password=?, DOB=?, phone=? WHERE ID=?";
-//    private String deleteQy = "DELETE FROM ? WHERE ID=?";
-
+    
     public UserDAO(Connection connection) throws SQLException {
         this.st = connection.createStatement();
-//        this.getUserByIDSt = connection.prepareStatement(getUserByIDQy);
-//        this.createSt = connection.prepareStatement(createQy);
-//        this.updateSt = connection.prepareStatement(updateQy);
-//        this.deleteSt = connection.prepareStatement(deleteQy);
     }
-
+    
+    /**
+     * This returns the list of Customer or Staff based on the user type
+     * from the db
+     * 
+     * @param userType
+     * @return
+     * @throws SQLException 
+     */
+    
     public List<User> getUsers(String userType) throws SQLException {
         String query = "SELECT * FROM tgsdb." + userType;
         ResultSet rs = st.executeQuery(query);
@@ -57,6 +49,14 @@ public class UserDAO {
         return temp;
     }
     
+    /**
+     * This returns the list Staff
+     * from the db
+     * 
+     * @return
+     * @throws SQLException 
+     */
+    
     public List<User> getStaff() throws SQLException {
         String query = "SELECT * FROM tgsdb.staff";
         ResultSet rs = st.executeQuery(query);
@@ -74,7 +74,20 @@ public class UserDAO {
         }
         return temp;
     }
-
+    
+    /**
+     * This function is used to create a new User(Staff or Customer)
+     * in the db
+     * 
+     * @param userType
+     * @param name
+     * @param email
+     * @param password
+     * @param dob
+     * @param phone
+     * @throws SQLException 
+     */    
+    
     public void create(String userType, String name, String email, String password, String dob, String phone) throws SQLException {       
         String columns = "INSERT INTO tgsdb." + userType + "(name, email, password, DOB, phone)";
         String values = "VALUES('" + name + "','" + email + "','" + password + "','" + dob + "','" + phone + "')";
@@ -82,23 +95,32 @@ public class UserDAO {
 
     }
 
+    /**
+     * This function is used to update a User(Staff or Customer)
+     * in the db
+     * 
+     * @param userType
+     * @param name
+     * @param password
+     * @param dob
+     * @param phone
+     * @param ID
+     * @throws SQLException 
+     */
     public void update(String userType, String name, String password, String dob, String phone, int ID) throws SQLException {
         String columns = "UPDATE tgsdb."+userType+" SET name='"+ name +"', password= '"+ password +"', DOB='"+dob+"', phone='"+phone+"' WHERE ID='"+ID+"'";
         st.executeUpdate(columns);
 
     }
 
-//    public void update(User user){
-//        updateSt.setString(1, user.getType());
-//        updateSt.setString(2, name);
-//        updateSt.setString(3, password);
-//        updateSt.setString(4, dob);
-//        updateSt.setString(5, phone);
-//        updateSt.setString(6, Integer.toString(ID));
-//        int row = updateSt.executeUpdate();
-//        System.out.println("Row " + row + " has been successflly updated");
-//    }
-    
+    /**
+     * This function is used to delete a User(Staff or Customer)
+     * from the db
+     * 
+     * @param userType
+     * @param ID
+     * @throws SQLException 
+     */
     public void delete(String userType, int ID) throws SQLException {
         String query = "DELETE FROM tgsdb." + userType + " WHERE ID='" + ID + "'";
         st.execute("SET FOREIGN_KEY_CHECKS=0");
@@ -106,7 +128,17 @@ public class UserDAO {
         st.execute("SET FOREIGN_KEY_CHECKS=1");
         
     }
-
+    
+    /**
+     * This function is used to get the User(Staff, Manager or Customer)
+     * based on email and password
+     * 
+     * @param email
+     * @param password
+     * @param userType
+     * @return
+     * @throws SQLException 
+     */
     public User login(String email, String password, String userType) throws SQLException {
         String query = "SELECT * FROM tgsdb." + userType + " WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
         ResultSet rs = st.executeQuery(query);
@@ -124,7 +156,18 @@ public class UserDAO {
         }
         return null;
     }
+    
 
+    /**
+     * This returns a User (Customer or Staff) based on the user type and ID
+     * from the db
+     * 
+     * @param ID
+     * @param userType
+     * @return
+     * @throws SQLException 
+     */
+    
     public User getUser(int ID, String userType) throws SQLException {
         String query = "SELECT * FROM tgsdb." + userType + " WHERE ID='" + ID + "'";
         ResultSet rs = st.executeQuery(query);
@@ -141,7 +184,17 @@ public class UserDAO {
         }
         return null;
     }
-
+    
+    /**
+     * This returns a User (Customer or Staff) based on the user type and email
+     * from the db
+     * 
+     * @param email
+     * @param userType
+     * @return
+     * @throws SQLException 
+     */
+    
     public User getUser(String email, String userType) throws SQLException {
         String query = "SELECT * FROM tgsdb." + userType + " WHERE EMAIL='" + email + "'";
         ResultSet rs = st.executeQuery(query);

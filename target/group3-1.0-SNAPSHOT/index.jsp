@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 24-Jan-2023, 4:48:40 PM
-    Author     : 236333
+    Author     : Aiman, Antonella, Micheal, Monte, Shilpa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">        
         <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/w3.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
         <link href="css/flexslider.css" rel="stylesheet">
@@ -24,8 +26,8 @@
         <div class="tm-header">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
-                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
+                        <p class="tm-site-name" >The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -33,10 +35,10 @@
                         </div>
                         <nav class="tm-nav">
                             <ul>
-                                <li><a href="index.html" class="active">Home</a></li>
+                                <li><a href="index.jsp" class="active">Home</a></li>
                                 <li><a href="register.jsp">Register</a></li>                                
                                 <li><a href="login.jsp">Login</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="team.jsp">Our Team</a></li>
                             </ul>
                         </nav>		
                     </div>				
@@ -76,6 +78,20 @@
                 </ul>
             </div>	
         </section>
+
+        <div id="id01" class="w3-modal" style="display: none;">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" >
+                <div class="w3-center"><br>
+                    <span onclick="document.getElementById('id01').style.display = 'none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>      
+                </div>
+                <div class="popup-div w3-container">
+                    <div class="w3-section">
+                        <h2 class="popup-h2">You have been logged out</h2>
+                        <button class="w3-button w3-red w3-right w3-margin w3-round" onclick="document.getElementById('id01').style.display = 'none'">close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- gray bg -->	
         <section class="container tm-home-section-1" id="more">
@@ -357,7 +373,10 @@
 
                         | Designed by templatemo</p>
                 </div>
-            </div>		
+            </div>
+
+
+
         </footer>
         <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      		<!-- jQuery -->
         <script type="text/javascript" src="js/moment.js"></script>							<!-- moment.js -->
@@ -369,91 +388,53 @@
                 <script src="js/jquery.fitvid.js"></script>
         -->
         <script type="text/javascript" src="js/templatemo-script.js"></script>      		<!-- Templatemo Script -->
+        <script type="text/javascript" src="js/index.js"></script>
         <script>
-            // HTML document is loaded. DOM is ready.
-            $(function () {
+                            // HTML document is loaded. DOM is ready.
+                            $(function () {
 
-                $('#hotelCarTabs a').click(function (e) {
-                    e.preventDefault()
-                    $(this).tab('show')
-                })
+                                $('#hotelCarTabs a').click(function (e) {
+                                    e.preventDefault()
+                                    $(this).tab('show')
+                                })
 
-                $('.date').datetimepicker({
-                    format: 'MM/DD/YYYY'
-                });
-                $('.date-time').datetimepicker();
+                                $('.date').datetimepicker({
+                                    format: 'MM/DD/YYYY'
+                                });
+                                $('.date-time').datetimepicker();
 
-                // https://css-tricks.com/snippets/jquery/smooth-scrolling/
-                $('a[href*=#]:not([href=#])').click(function () {
-                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-                        var target = $(this.hash);
-                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                        if (target.length) {
-                            $('html,body').animate({
-                                scrollTop: target.offset().top
-                            }, 1000);
-                            return false;
-                        }
-                    }
-                });
-            });
-
-            // Load Flexslider when everything is loaded.
-            $(window).load(function () {
-                // Vimeo API nonsense
-
-                /*
-                 var player = document.getElementById('player_1');
-                 $f(player).addEvent('ready', ready);
-                 
-                 function addEvent(element, eventName, callback) {
-                 if (element.addEventListener) {
-                 element.addEventListener(eventName, callback, false)
-                 } else {
-                 element.attachEvent(eventName, callback, false);
-                 }
-                 }
-                 
-                 function ready(player_id) {
-                 var froogaloop = $f(player_id);
-                 froogaloop.addEvent('play', function(data) {
-                 $('.flexslider').flexslider("pause");
-                 });
-                 froogaloop.addEvent('pause', function(data) {
-                 $('.flexslider').flexslider("play");
-                 });
-                 }
-                 */
+                                // https://css-tricks.com/snippets/jquery/smooth-scrolling/
+                                $('a[href*=#]:not([href=#])').click(function () {
+                                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                                        var target = $(this.hash);
+                                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                                        if (target.length) {
+                                            $('html,body').animate({
+                                                scrollTop: target.offset().top
+                                            }, 1000);
+                                            return false;
+                                        }
+                                    }
+                                });
+                            });
 
 
+                            // Load Flexslider when everything is loaded.
+                            $(window).load(function () {
 
-                // Call fitVid before FlexSlider initializes, so the proper initial height can be retrieved.
-                /*
-                 
-                 $(".flexslider")
-                 .fitVids()
-                 .flexslider({
-                 animation: "slide",
-                 useCSS: false,
-                 animationLoop: false,
-                 smoothHeight: true,
-                 controlNav: false,
-                 before: function(slider){
-                 $f(player).api('pause');
-                 }
-                 });
-                 */
+                                $('.flexslider').flexslider({
+                                    controlNav: false
+                                });
 
-
-
-
-//	For images only
-                $('.flexslider').flexslider({
-                    controlNav: false
-                });
-
-
-            });
+                            });
+                            function showLogoutMessage() {
+                                window.history.pushState({prevUrl: window.location.href}, null, "index.jsp");
+                                let prev = window.history.state.prevUrl;
+                                if (prev == "http://localhost:8080/group3/LogoutServlet") {
+                                    document.getElementById('id01').style.display = 'flex';
+                                }
+                            }
+                            showLogoutMessage();
         </script>
     </body>
     <jsp:include page="/InitServlet" flush="true"/>

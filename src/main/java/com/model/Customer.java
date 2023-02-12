@@ -6,9 +6,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Used for Customer bean
+ * Class has a default Constructor
+ * Inherits the User class 
  *
- * @author 236336
+ * @author Antonella, Micheal
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "customer")
 public class Customer extends User implements Serializable {

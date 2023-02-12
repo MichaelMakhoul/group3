@@ -40,10 +40,11 @@ public class UserAccountServlet extends HttpServlet {
 
         String emailView = request.getParameter("emailView");
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-//        User user = (User) session.getAttribute("user");
-        String userType = (String) session.getAttribute("userType");
+        User user = (User) session.getAttribute("user");
         
         session.setAttribute("emailView", emailView);
+        
+        String userType = (String) session.getAttribute("userType");
         
         String toUpdate = (userType.equals("staff")) ? "customer" : (userType.equals("manager")) ? "staff" : "";
         session.setAttribute("toUpdate", toUpdate);

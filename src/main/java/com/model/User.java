@@ -1,17 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.model;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- *
- * @author 236351
+ * Class contains the Bean for User Registration and Customer Management
+ *     - 'ID' unique User ID self generated 
+ *     - 'name' is User First name, Middle and Last name 
+ *     - 'email' is User email address to register and login 
+ *     - 'password' is User password to register and login 
+ *     - 'DOB' is User dob to register
+ *     - 'phone' is User Phone Number to register 
+ *     - 'type' is User type to distinguish the type of user
+ * 
+ *  Contains getters and setters of every field
+ *  Contains function to match the User by ID, email and password
+ * 
+ * @author Antonella, Micheal 
  */
+
 public class User implements Serializable {
 
     private int ID;
@@ -21,9 +28,9 @@ public class User implements Serializable {
     private String DOB;
     private String phone;
     private String type;
-
+    
     public User() {}
-
+    
     public User(int ID, String name, String email, String password, String DOB, String phone) {
         this.ID = ID;
         this.name = name;
@@ -33,6 +40,19 @@ public class User implements Serializable {
         this.phone = phone;
     }
     
+     /**
+     * This constructor is used to construct the data 
+     * from the database
+     * to populate the respective beans (Customer and Staff)
+     * 
+     * @param ID
+     * @param name
+     * @param email
+     * @param password
+     * @param DOB
+     * @param phone 
+     */
+    
     public User(int ID, String name, String email, String password, String DOB, String phone, String type) {
         this.ID = ID;
         this.name = name;
@@ -41,7 +61,7 @@ public class User implements Serializable {
         this.DOB = DOB;
         this.phone = phone;
         this.type = type;
-    }
+    }    
 
     public User(String name, String email, String password, String DOB, String phone) {
         this.name = name;
@@ -114,7 +134,8 @@ public class User implements Serializable {
     public boolean match(String email) {
         return this.email.equals(email);
     }
-
+    
+    //This is use fot the validation of the login
     public boolean match(String email, String password) {
         return this.email.equals(email) && this.password.equals(password);
     }

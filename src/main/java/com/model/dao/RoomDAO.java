@@ -14,8 +14,12 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
- *
- * @author 236361
+ * Accesses the room Table in DB
+ * Can perform CRUD operations on the table
+ * Only read functions are used in this project
+ * Can be used in future for Room Management
+ * 
+ * @author Shilpa
  */
 public class RoomDAO {
     
@@ -24,9 +28,9 @@ public class RoomDAO {
     private PreparedStatement updateSt;
     private PreparedStatement deleteSt;
     
-    private String createQy = "INSERT INTO tgsdb.room (room_No,type,image,description, price)"
-                               +"VALUES(?,?,?,?,?)";
-    private String updateQy = "UPDATE tgsdb.room SET ROOM_NO=?, TYPE=?, IMAGE=?,DESCRIPTION=?, PRICE=? WHERE ROOM_ID=?";
+    private String createQy = "INSERT INTO tgsdb.room (room_No,type,description, price)"
+                               +"VALUES(?,?,?,?)";
+    private String updateQy = "UPDATE tgsdb.room SET ROOM_NO=?, TYPE=?, DESCRIPTION=?, PRICE=? WHERE ROOM_ID=?";
     private String deleteQy = "DELETE FROM tgsdb.room WHERE ROOM_ID=?";
 
     public RoomDAO(Connection connection) throws SQLException {
@@ -49,11 +53,10 @@ public class RoomDAO {
                 int id = Integer.parseInt(rs.getString(1));
                 if (id == roomID) {
                     String roomNo = rs.getString(2);
-                    String roomType = rs.getString(3);
-                    String roomImageUrl = rs.getString(4);
-                    String roomDesc = rs.getString(5);
-                    int roomPrice = Integer.parseInt(rs.getString(6));
-                    return new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice);
+                    String roomType = rs.getString(3);                 
+                    String roomDesc = rs.getString(4);
+                    int roomPrice = Integer.parseInt(rs.getString(5));
+                    return new Room(roomID, roomNo, roomType, roomDesc, roomPrice);
                 }
             }
         } catch (SQLException ex) {
@@ -84,13 +87,34 @@ public class RoomDAO {
      */
     public List<Room> getAvailableRoomsbyType(String checkIn, String checkOut, String roomType){
         System.out.println("com.model.dao.RoomDAO.getAvailableRoomsbyType()" );
-        System.out.println("checkIn:"+ checkIn);
-        System.out.println("checkOut:"+ checkOut);
-        System.out.println("roomType:"+ roomType);
+//        System.out.println("checkIn:"+ checkIn);
+//        System.out.println("checkOut:"+ checkOut);
+//        System.out.println("roomType:"+ roomType);
         List<Room> rooms = getAvailableRooms(checkIn, checkOut);
         List<Room> temp = rooms.stream().filter(room -> room.matchType(roomType)).collect(Collectors.toList());
         temp.forEach(r -> System.out.println(r));
         return temp;
+    }
+    
+    public List<Room> executeQuery(String query){
+        List<Room> rooms = new ArrayList<>();
+        try {
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                int roomID = Integer.parseInt(rs.getString(1));
+                String roomNo = rs.getString(2);
+                String roomType = rs.getString(3);                
+                String roomDesc = rs.getString(4); 
+                int roomPrice = Integer.parseInt(rs.getString(5));
+                rooms.add(new Room(roomID, roomNo, roomType, roomDesc, roomPrice));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return rooms;
+        } 
+        System.out.println("com.model.dao.RoomDAO.getAvailableRooms()");
+        rooms.forEach(r -> System.out.println(r));
+        return rooms;          
     }
     
     /**
@@ -99,8 +123,7 @@ public class RoomDAO {
      * @param checkOut
      * @return 
      */
-    public List<Room> getAvailableRooms(String checkIn, String checkOut){
-        List<Room> rooms = new ArrayList<>();
+    public List<Room> getAvailableRooms(String checkIn, String checkOut){        
         String query = "SELECT * FROM tgsdb.room\n" +
                         "WHERE room_ID NOT IN(\n" +
                         "SELECT room_ID FROM tgsdb.booking, tgsdb.booked_rooms\n" +
@@ -110,24 +133,7 @@ public class RoomDAO {
                         "(tgsdb.booking.check_in between '"+checkIn+"' and '"+checkOut+"' \n" +
                         "OR tgsdb.booking.check_out between '"+checkIn+"' and '"+checkOut+"' ))";
         
-        try {
-            ResultSet rs = st.executeQuery(query);
-            while(rs.next()){
-                int roomID = Integer.parseInt(rs.getString(1));
-                String roomNo = rs.getString(2);
-                String roomType = rs.getString(3);
-                String roomImageUrl = rs.getString(4);
-                String roomDesc = rs.getString(5); 
-                int roomPrice = Integer.parseInt(rs.getString(6));
-                rooms.add(new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return rooms;
-        } 
-        System.out.println("com.model.dao.RoomDAO.getAvailableRooms()");
-        rooms.forEach(r -> System.out.println(r));
-        return rooms;  
+        return executeQuery(query);
     }
    
     /**
@@ -138,7 +144,6 @@ public class RoomDAO {
      */
    public List<Room> getBookedRooms(String checkIn, String checkOut)
    {
-        List<Room> rooms = new ArrayList<>();
         String query = "SELECT * FROM tgsdb.room" +
                         "WHERE room_ID "
                         + "IN"
@@ -149,47 +154,25 @@ public class RoomDAO {
                         "(tgsdb.booking.check_in between '"+checkIn+"' and '"+checkOut+"' " +
                         "OR tgsdb.booking.check_out between '"+checkIn+"' and '"+checkOut+"' ))";
         
-        try {
-            ResultSet rs = st.executeQuery(query);
-            while(rs.next()){
-                int roomID = Integer.parseInt(rs.getString(1));
-                String roomNo = rs.getString(2);
-                String roomType = rs.getString(3);
-                String roomImageUrl = rs.getString(4);
-                String roomDesc = rs.getString(5); 
-                int roomPrice = Integer.parseInt(rs.getString(6));
-                rooms.add(new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return rooms;
-        }        
-        return rooms;       
+        return executeQuery(query);
    }
    
    /**
     * 
+    * @param rooms
+    * @param roomType
     * @return 
     */
-   public List<Room> getallRooms(){
-       List<Room> rooms = new ArrayList<>();
+   public int getRoomCountbyType(List<Room> rooms, String roomType){
+      return (int)rooms.stream().filter(room -> room.matchType(roomType)).count(); 
+   }
+   /**
+    * 
+    * @return 
+    */
+   public List<Room> getallRooms(){      
        String query = "SELECT * FROM tgsdb.room";        
-        try {
-            ResultSet rs = st.executeQuery(query);
-            while(rs.next()){
-                int roomID = Integer.parseInt(rs.getString(1));
-                String roomNo = rs.getString(2);
-                String roomType = rs.getString(3);
-                String roomImageUrl = rs.getString(4);
-                String roomDesc = rs.getString(5); 
-                int roomPrice = Integer.parseInt(rs.getString(6));
-                rooms.add(new Room(roomID, roomNo, roomType, roomImageUrl, roomDesc, roomPrice));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return rooms;
-        }        
-        return rooms; 
+       return executeQuery(query);
    }
    
    /**
@@ -200,13 +183,12 @@ public class RoomDAO {
     * @param roomDesc
     * @param roomPrice 
     */   
-   public void addRoom(String roomNo, String roomType, String roomImageUrl, String roomDesc, int roomPrice){
+   public void addRoom(String roomNo, String roomType, String roomDesc, int roomPrice){
         try {
             createSt.setString(1, roomNo);
             createSt.setString(2, roomType);
-            createSt.setString(3, roomImageUrl);
-            createSt.setString(4, roomDesc);
-            createSt.setString(5, ""+roomPrice);
+            createSt.setString(3, roomDesc);
+            createSt.setString(4, ""+roomPrice);
             createSt.executeUpdate();             
         } catch (SQLException ex) {
             Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,13 +203,12 @@ public class RoomDAO {
     * @param roomDesc
     * @param roomPrice 
     */
-   public void updateRoom(String roomNo, String roomType, String roomImageUrl, String roomDesc, int roomPrice){
+   public void updateRoom(String roomNo, String roomType, String roomDesc, int roomPrice){
         try {
             updateSt.setString(1, roomNo);
             updateSt.setString(2, roomType);
-            updateSt.setString(3, roomImageUrl);
-            updateSt.setString(4, roomDesc);
-            updateSt.setString(5, ""+roomPrice);
+            updateSt.setString(3, roomDesc);
+            updateSt.setString(4, ""+roomPrice);
             int row = updateSt.executeUpdate();
             System.out.println("Row "+row+" has been successflly updated");           
         } catch (SQLException ex) {

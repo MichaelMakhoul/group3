@@ -14,9 +14,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/** The ManagerDAO helps to perform all the CRUD operations on the manager account .  
+ * Although it is not being using currently , but it can be used int future.
  *
- * @author 236333
+ * @author Aiman
  */
 public class ManagerDAO {
     private Statement st;

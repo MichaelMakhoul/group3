@@ -16,12 +16,30 @@ import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
 
 /**
+ * This rest web gives the output for
+ * - view the list of customers
+ * - view a customer searching by ID
+ * - add a customer to the database
  *
- * @author 236351
+ * @author Antonella and Micheal
  */
+
 @Path("customerapi")
 public class CustomerService {
-
+    
+    /**
+     * Web service Module: Customer Management
+     * By: Micheal
+     * 
+     * @return
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws SQLException 
+     */
+    
     @GET
     @Path("customers") //http://localhost:8080/group3/rest/customerapi/customers
     @Produces(MediaType.APPLICATION_XML)
@@ -31,6 +49,21 @@ public class CustomerService {
         customers.addAll(userDAO.getUsers("customer"));
         return customers;
     }
+    
+    /**
+     * Web service Module: User Registration
+     * By: Antonella
+     * 
+     * @param ID
+     * @return
+     * @throws JAXBException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws IOException 
+     */
 
     @GET
     @Path("customer/{ID}") //http://localhost:8080/group3/rest/customerapi/customer/1001
@@ -42,6 +75,19 @@ public class CustomerService {
         customers.add(user);
         return customers;
     }
+    
+    /**
+     * Web service Module: User Registration and Customer Management
+     * By: Antonella and Micheal
+     * 
+     * @return
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws SQLException 
+     */
 
     @GET
     @Path("addcustomer") //http://localhost:8080/group3/rest/customerapi/addcustomer
