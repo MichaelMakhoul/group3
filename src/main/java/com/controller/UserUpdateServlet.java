@@ -48,7 +48,7 @@ public class UserUpdateServlet extends HttpServlet {
 
         boolean validRegex = (name.matches(Utils.nameRegEx) &&  
                             password.matches(Utils.passRegEx) && 
-                            Utils.isOlderThen18(dob) && 
+                            Utils.isOlderThen18(dob) &&
                             phoneNumber.matches(Utils.phoneRegEx));       
         
 
