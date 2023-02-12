@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class = "w3-container  w3-margin-top w3-white">
+        <div class = "w3-container  w3-margin-top ">
             <div class="w3-row w3-border-bottom" >
                 <div class="w3-col w3-container m6 l6 w3-margin-bottom">
                     <h3><b>Customers List</b></h3>

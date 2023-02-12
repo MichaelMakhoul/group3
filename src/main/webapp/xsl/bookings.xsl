@@ -5,7 +5,7 @@
         <html>
             <head>
                 <title>Bookings View</title>
-                <link href="css/w3.css" rel="stylesheet" type="text/css"></link>
+                <link href="css/w3.css" rel="stylesheet" type="text/css"></link>                
             </head>
             <body>            
                 <xsl:apply-templates/>
@@ -13,15 +13,15 @@
         </html>
     </xsl:template>
     <xsl:template match="bookings">
-        <table class="w3-table-all w3-hoverable">
+        <table class="w3-table-all w3-hoverable" style="font_family:'Nunito Sans';">
             <thead>
-                <tr class='w3-dark-gray'>
-                  <th>Booking ID</th>
-                  <th>Customer ID</th>
-                  <th>Check In</th>
-                  <th>Check Out</th>
-                  <th>Total Price</th>
-                  <th>Total Rooms</th>                  
+                <tr class="w3-light-grey w3-text-dark-grey">
+                  <th>BOOKING ID</th>
+                  <th>CUSTOMER ID</th>
+                  <th>CHECK IN</th>
+                  <th>CHECK OUT</th>
+                  <th>TOTAL PRICE</th>
+                  <th>TOTAL ROOMS</th>                  
                 </tr>
             </thead>
             <tbody>

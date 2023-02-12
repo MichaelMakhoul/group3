@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/search.css">
     <link href="css/style.css" rel="stylesheet">
   </head>
-  <body >
+  <body class="tm-gray-bg">
     <div class="tm-header">
       <div class="nav-container">
         <div class="row">
@@ -59,7 +59,7 @@
         else if(bookings.getBookings() == null){nobookings = true;}
         else if(bookings.getBookings().isEmpty()){nobookings = true;}
     %>
-    <div class = "w3-container  w3-margin w3-white"  >
+    <div class = "w3-container  w3-margin "  >
       <div class="w3-row w3-border-bottom" >
         <div class="w3-col w3-container m6 l6 w3-margin-bottom">
             <h3><b>Bookings List</b></h3>
@@ -71,17 +71,17 @@
                 <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >  
                   <label for="searchOptions" style="padding: 13px;font-size: 17px">Search By:</label>
                   <select name="searchOptions" id="searchOptions" 
-                          style="padding: 13px;font-size: 17px;border: 1px solid grey; border-radius: 5px;">
+                          style="padding: 13px;font-size: 17px;border: 1px solid grey; border-radius: 5px;font-family: 'Nunito Sans';">
                         <option value="bookingID">Booking ID</option>
                         <option value="customerID">Customer ID</option>
                         <option value="checkIn">Check IN Date</option>
                         <option value="checkOut">Check Out Date</option>
                    </select>                    
                 </div>
-                <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px;" >                                    
+                <div class="w3-col m6 l6" style="margin-top: 5px; margin-bottom: 5px; font-family: 'Nunito Sans'; font-weight: 500" >                                    
                   <input type="text" placeholder="<%=searchErr !=null ? searchErr: "Search.."%>" name="search_value">
-                  <button type="submit" class="w3-dark-gray"><i class="fa fa-search"></i></button>
-                  <button type="button" class="w3-dark-gray" onclick="window.location='ShowBookingsServlet';" ><i class="fa fa-refresh"></i></button>
+                  <button type="submit" class="w3-button" style="background-color: #C8C2B9; width: 15%; border-radius:5px; margin:2px"><i class="fa fa-search"></i></button>
+                  <button type="button" class="w3-button" style="background-color: #C8C2B9; width: 15%; border-radius:5px; margin:2px" onclick="window.location='ShowBookingsServlet';" ><i class="fa fa-refresh"></i></button>
                 </div>
               </div>
             </form>

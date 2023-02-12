@@ -43,51 +43,53 @@
             </div>	  	
         </div>
         <br>
-  
-        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12" style="margin-left: 45px ">
-            <div class="tm-home-box-2 tm-home-box-2-right">						
-                <img src="img/aiman.jpg" alt="image" class="img-responsive">
-                <h2 style="text-align: center; "><b>Aiman</b></h2>
-                <h2 style="text-align: center; "><b>Khan</b></h2>
-                <p style="text-align: center" class="tm-date">Developer</p>
-                <p style="text-align: center" class="tm-date">TGS MANAGER</p>
+
+        <div style="width: 100%; margin-left: 5%; margin-top: 3%;">
+            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12" style="margin-left: 45px ">
+                <div class="tm-home-box-2 tm-home-box-2-right">						
+                    <img src="img/aiman.jpg" alt="image" class="img-responsive">
+                    <h2 style="text-align: center; "><b>Aiman</b></h2>
+                    <h2 style="text-align: center; "><b>Khan</b></h2>
+                    <p style="text-align: center" class="tm-date">Developer</p>
+                    <p style="text-align: center" class="tm-date">STAFF MANAGEMENT</p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
-            <div class="tm-home-box-2 tm-home-box-2-right">						
-                <img src="img/anto.jpg" alt="image" class="img-responsive">
-                <h2 style="text-align: center; "><b>Antonella</b></h2>
-                <h2 style="text-align: center; "><b>Papapietro</b></h2>
-                <p style="text-align: center" class="tm-date">Developer</p>
-                <p style="text-align: center" class="tm-date">TGS CUSTOMER</p>
+            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
+                <div class="tm-home-box-2 tm-home-box-2-right">						
+                    <img src="img/anto.jpg" alt="image" class="img-responsive">
+                    <h2 style="text-align: center; "><b>Antonella</b></h2>
+                    <h2 style="text-align: center; "><b>Papapietro</b></h2>
+                    <p style="text-align: center" class="tm-date">Developer</p>
+                    <p style="text-align: center" class="tm-date">USER REGISTRATION</p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
-            <div class="tm-home-box-2 tm-home-box-2-right">						
-                <img src="img/mich.png" alt="image" class="img-responsive">
-                <h2 style="text-align: center; "><b>Micheal</b></h2>
-                <h2 style="text-align: center; "><b>Makhoul</b></h2>
-                <p style="text-align: center" class="tm-date">Developer</p>
-                <p style="text-align: center" class="tm-date">TGS STAFF</p>
+            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
+                <div class="tm-home-box-2 tm-home-box-2-right">						
+                    <img src="img/mich.png" alt="image" class="img-responsive">
+                    <h2 style="text-align: center; "><b>Micheal</b></h2>
+                    <h2 style="text-align: center; "><b>Makhoul</b></h2>
+                    <p style="text-align: center" class="tm-date">Developer</p>
+                    <p style="text-align: center" class="tm-date">CUSTOMER MANAGEMENT</p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
-            <div class="tm-home-box-2 tm-home-box-2-right">						
-                <img src="img/mont.jpg" alt="image" class="img-responsive">
-                <h2 style="text-align: center; "><b>Muhunthan</b></h2>
-                <h2 style="text-align: center; "><b>Muralitharan</b></h2>
-                <p style="text-align: center" class="tm-date">Developer</p>
-                <p style="text-align: center" class="tm-date">TGS REPORTS</p>
+            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
+                <div class="tm-home-box-2 tm-home-box-2-right">						
+                    <img src="img/mont.jpg" alt="image" class="img-responsive">
+                    <h2 style="text-align: center; "><b>Muhunthan</b></h2>
+                    <h2 style="text-align: center; "><b>Muralitharan</b></h2>
+                    <p style="text-align: center" class="tm-date">Developer</p>
+                    <p style="text-align: center" class="tm-date">HOTEL MANAGEMENT</p>
+                </div>
             </div>
-             </div>
             <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
                 <div class="tm-home-box-2 tm-home-box-2-right">						
                     <img src="img/shilp.jpg" alt="image" class="img-responsive">
                     <h2 style="text-align: center; "><b>Shilpa</b></h2>
                     <h2 style="text-align: center; "><b>Guruswamy</b></h2>
                     <p style="text-align: center" class="tm-date">Developer</p>
-                    <p style="text-align: center" class="tm-date">TGS BOOKINGS</p>
+                    <p style="text-align: center" class="tm-date">BOOKING MANAGEMENT</p>
                 </div>
             </div>
-        </body>
+        </div>
+    </body>
 </html>

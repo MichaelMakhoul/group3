@@ -72,9 +72,15 @@ public class BookingServlet extends HttpServlet {
             Integer dr = Integer.parseInt((drNo.isBlank()) ? "0" : drNo );
             Integer fr = Integer.parseInt((frNo.isBlank()) ? "0" : frNo );
             Integer es = Integer.parseInt((esNo.isBlank()) ? "0" : esNo );
+            Integer drQty = (Integer) session.getAttribute("drQty");
+            Integer frQty = (Integer) session.getAttribute("frQty");
+            Integer esQty = (Integer) session.getAttribute("esQty");
             if(dr==0 && fr==0 && es==0){
                 // checks if atleast 1 room is chosen
                 session.setAttribute("roomsErr", "Please choose a room");                
+                error = true;
+            }else if(dr> drQty || fr >frQty || es>esQty){
+                session.setAttribute("roomsErr", "Room entries are invalid. Please re-enter.");
                 error = true;
             }else{
                 String comments = request.getParameter("comments");

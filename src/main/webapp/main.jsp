@@ -140,7 +140,7 @@
                                     <h3></h3>
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4>Create User Account</h4>
+                                <h4>CREATE USER ACCOUNT</h4>
                             </div>
                         </a>
                     </div>
@@ -154,7 +154,7 @@
                                     <h3></h3>
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4>View Customers List</h4>
+                                <h4>VIEW CUSTOMERS LIST</h4>
                             </div>
                         </a>
                     </div>
@@ -168,7 +168,7 @@
                                     <h3></h3>
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4>View Bookings List</h4>
+                                <h4>VIEW BOOKINGS LIST</h4>
                             </div>
                         </a>
                     </div>
@@ -188,7 +188,6 @@
             
 
             <div class= "w3-container w3-third w3-cell ">
-                <!--<div class="w3-row-padding w3-padding-64 w3-margin w3-theme">--> 
                 <div class="w3-container w3-padding-16 w3-margin">
                 <p style="font-weight:bold; float: right;  justify-content: flex-end;font-family: 'Nunito Sans'; font-size: 22px; color: #565656">Welcome <%= (manager != null) ? manager.getManagerName() : ""%></p>
                 </div>
@@ -201,7 +200,7 @@
                                     <h3></h3>
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4>Create New Staff Account</h4>
+                                <h4>CREATE NEW STAFF ACCOUNT</h4>
                             </div>
                         </a>
                     </div>
@@ -215,7 +214,7 @@
                                     <h3></h3>
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4>View the List of Staff</h4>
+                                <h4>VIEW STAFF LIST</h4>
                             </div>
                         </a>
                     </div>
@@ -230,7 +229,7 @@
                                     <h3></h3>
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4>Create Report Log</h4>
+                                <h4>CREATE REPORT LOG</h4>
                             </div>
                         </a>
                     </div>
@@ -244,7 +243,7 @@
                                     <h3></h3>
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4>View All Report Logs</h4>
+                                <h4>VIEW REPORT LOGS</h4>
                             </div>
                         </a>
                     </div>

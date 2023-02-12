@@ -137,7 +137,7 @@
             <div class="w3-container w3-white">
               <h3>Executive Suite</h3>
               <h6 class="w3-opacity">$500</h6>
-              <p>'Room can accommodate up to 6 adults. Contains 3 bedrooms with a queen bed in each.</p>
+              <p>'Room can accommodate up to 6 adults. Has 3 rooms with a queen bed in each.</p>
               <p>40m<sup>2</sup></p>
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
               <br>              

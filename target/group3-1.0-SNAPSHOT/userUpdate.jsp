@@ -89,10 +89,8 @@
                                         <br>
                                     </div>
                                 </div>
-                                <br>
-                                <br>
                                 <form method="POST" action=<%= (userUpdate != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
-		                            <table style="margin-bottom: 40px">
+		                            <table style="margin-top:-50px; margin-bottom: 40px">
 		                                <caption><p style="color: green; font-weight: bold"><%= (message != null) ? message : ""%></p></caption>
 		                                <tr><td>Name: </td><td><input style="margin: 7px 0;" type="text" name="name" value="<%= user.getName()%>" />
 		                                        <p><%= (nameError != null) ? nameError : ""%></p></td></tr>

@@ -4,6 +4,7 @@ package com.controller;
 import com.model.dao.BookingsDAO;
 import com.utils.Utils;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +44,8 @@ public class AddBookingServlet extends HttpServlet {
                 Utils.validateDate(checkIn) == null ||
                 Utils.validateDate(checkOut) == null){
             session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
+        }else if(Utils.startDtbefendDt(checkIn,LocalDate.now().toString())){
+            session.setAttribute("dateErr", "CheckIn date cannot occur before today. Please re-enter."); 
         }else if(Utils.morethanThreeMonths(checkIn) || 
                 Utils.morethanThreeMonths(checkOut)){
             //Checks whether the date is less than three months
@@ -69,5 +72,6 @@ public class AddBookingServlet extends HttpServlet {
         }
         
         request.getRequestDispatcher("addBooking.jsp").forward(request, response);
-    } 
+    }     
+  
 }

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.controller;
 
 import com.model.Booking;
@@ -6,6 +11,7 @@ import com.model.dao.BookingsDAO;
 import com.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,22 +43,23 @@ public class UpdateBookingServlet extends HttpServlet {
         session.setAttribute("updateBooking", "true");
         int id = booking.getBookingID();
         String checkIn = (String) session.getAttribute("checkInD");
-        String checkOut = (String) session.getAttribute("checkOutD");
+        String checkOut = (String) session.getAttribute("checkOutD");        
         
-        if(!Utils.startDtbefendDt(checkIn, checkOut)){
-            session.setAttribute("dateErr", "CheckOut should occur later than CheckIn");
-            request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response);
-        }else if(Utils.morethanThreeMonths(checkIn) || 
-                Utils.morethanThreeMonths(checkOut)){
-            session.setAttribute("dateErr", "Date entries need to be less than three months from today. Please re-enter.");
+        if(!validateDates(checkIn,checkOut,session)){
             request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response);
         }else {            
             Integer dr = (Integer) session.getAttribute("drRooms");
             Integer fr = (Integer) session.getAttribute("frRooms");
             Integer es = (Integer) session.getAttribute("esRooms");
+            Integer drQty = (Integer) session.getAttribute("drQty");
+            Integer frQty = (Integer) session.getAttribute("frQty");
+            Integer esQty = (Integer) session.getAttribute("esQty");
             if(dr==0 && fr==0 && es==0){
                 session.setAttribute("roomsErr", "Please choose a room");
                 request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response);
+            }else if(dr> drQty || fr >frQty || es>esQty){
+                session.setAttribute("roomsErr", "Room entries are invalid. Please re-enter.");
+                request.getRequestDispatcher("LoadBookingUpdateServlet").include(request, response); 
             }else{
                 String comments = request.getParameter("comments");
                 int[] noOfRooms = new int[3];
@@ -89,6 +96,27 @@ public class UpdateBookingServlet extends HttpServlet {
             }
         }
     }
+    
+    
+    private boolean validateDates(String checkIn, String checkOut, HttpSession session){
+        boolean isValid = false;
+        if(checkIn == null || checkOut == null){
+            session.setAttribute("dateErr", "Date entries are invalid. Please re-enter."); 
+        }else if( Utils.validateDate(checkIn) == null || Utils.validateDate(checkIn) == null){
+            session.setAttribute("dateErr", "Date entries are invalid. Please re-enter."); 
+        }else if(Utils.startDtbefendDt(checkIn,LocalDate.now().toString())){
+            session.setAttribute("dateErr", "CheckIn date cannot occur before today. Please re-enter."); 
+        }else if(!Utils.startDtbefendDt(checkIn, checkOut)){
+            session.setAttribute("dateErr", "CheckOut should occur later than CheckIn");            
+        }else if(Utils.morethanThreeMonths(checkIn) || 
+                Utils.morethanThreeMonths(checkOut)){
+            session.setAttribute("dateErr", "Date entries need to be less than three months from today. Please re-enter.");            
+        }else{
+            isValid = true;
+        }
+        return isValid;        
+    }   
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

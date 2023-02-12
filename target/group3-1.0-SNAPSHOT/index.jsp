@@ -103,7 +103,7 @@
                             <a href="login.jsp">
                                 <div class="tm-green-gradient-bg tm-city-price-container">
                                     <span>Deluxe Room</span>
-                                    <span>$150</span>
+                                    <span><b>$150</b></span>
                                 </div>	
                             </a>			
                         </div>		
@@ -115,7 +115,7 @@
                         <a href="login.jsp">
                             <div class="tm-green-gradient-bg tm-city-price-container">
                                 <span>Family Room</span>
-                                <span>$250</span>
+                                <span><b>$250</b></span>
                             </div>	
                         </a>			
                     </div>				
@@ -124,9 +124,9 @@
                     <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                         <img src="img/suite.jpg" alt="image" class="img-responsive">
                         <a href="login.jsp">
-                            <div class="tm-red-gradient-bg tm-city-price-container">
+                            <div class="tm-green-gradient-bg tm-city-price-container">
                                 <span>Executive Suite</span>
-                                <span>$500</span>
+                                <span><b>$500</b></span>
                             </div>	
                         </a>					
                     </div>				

@@ -41,7 +41,7 @@ public class StaffViewServlet extends HttpServlet {
                 out.println("<tr>");
                 out.println("<td>" + user.getID() + "</td>");
                 out.println("<td>" + user.getName() + "</td>");
-                out.println("<td> <a href=http://localhost:8080/group3/UserAccountServlet?emailView=" + user.getEmail() + ">" + user.getEmail() + "</a></td>");
+                out.println("<td> <a style=\"color:black; font-weight: bold;\" href=http://localhost:8080/group3/UserAccountServlet?emailView=" + user.getEmail() + ">" + user.getEmail() + "</a></td>");
                 out.println("<td>" + user.getPhone() + "</td>");
                 out.println("<td>" + user.getDOB() + "</td>");
                 out.println("</tr>");
