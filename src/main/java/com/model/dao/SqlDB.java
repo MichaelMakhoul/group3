@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.model.dao;
 
 import java.io.FileNotFoundException;
@@ -15,13 +10,26 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- *
- * @author 236351
+ * SqlDB Class establishes the connection with the database
+ *     - 'connection' a Connection class instance
+ *     -  
+ * @author 
  */
 public class SqlDB {
 
     protected Connection connection;
 
+    /**
+     * Opens the connection with the database
+     * 
+     * @return a Connection type object
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws SQLException
+     * @throws IOException 
+     */
     protected Connection openConnection() throws FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException {
         Map<String, String> variables = System.getenv();
         String password = variables.get("dbpassword");

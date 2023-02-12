@@ -1,43 +1,48 @@
 <%-- 
     Document   : addBooking
     Created on : 03-Feb-2023, 6:26:55 PM
-    Author     : 236361
+    Author     : Shilpa 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Booking</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
-    <link href="css/bootstrap.min.css" rel="stylesheet">         
-    <link href="css/templatemo-style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/w3.css"> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body style=>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Add Booking</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="css/templatemo-style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/w3.css">
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
 
-    <div class="tm-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-            <a href="#" class="tm-site-name">The Grand Serene</a>	
-          </div>
-          <div class="col-lg-6 col-md-8 col-sm-9">
-            <div class="mobile-menu-icon">
-              <i class="fa fa-bars"></i>
-            </div>
-            <nav class="tm-nav">
-              <ul style="float:right">                                
-                <li><a href="main.jsp" >Main</a></li>                                                              
-                <li><a href="LogoutServlet">Logout</a></li>
-              </ul>
-            </nav>		
-          </div>				
+        <div class="tm-header">
+            <div class="nav-container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
+                        <p class="tm-site-name">The Grand Serene</p>	
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-sm-9">
+                        <div class="mobile-menu-icon">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <nav class="tm-nav">
+                            <ul>                                
+                                <li><a href="main.jsp" >Main</a></li>                                                              
+                                <li><a href="LogoutServlet">Logout</a></li>
+                            </ul>
+                        </nav>		
+                    </div>				
+                </div>
+            </div>	  	
         </div>
       </div>	  	
     </div>
@@ -53,10 +58,9 @@
           String roomsFull = (String) session.getAttribute("roomsFull");
           session.removeAttribute("dateErr");
           session.removeAttribute("roomsErr");
-          session.removeAttribute("roomsFull");         
+          session.removeAttribute("roomsFull");       
           
-//          out.println("checkInD : " + checkInD + " request: " + request.getParameter("checkIn"));
-//          out.println("checkOutD : " + checkOutD + " request: " + request.getParameter("checkOut"));
+
       %>
     <div class="w3-content  w3-margin-top" >
       <div class="w3-container w3-margin-top w3-border-bottom" id="rooms">
@@ -90,8 +94,7 @@
 
           <div class="w3-col m3 w3-margin-left">
             <label><i class="fa fa-search"></i> Check Availability</label>
-            <button class="w3-button w3-block w3-dark-gray w3-round" >Check Availability</button>
-            <!--<button type="submit" class="btn btn-outline-primary ms-1">Check Availability</button>-->
+            <button class="w3-button w3-block w3-black w3-round" >Check Availability</button>
           </div>          
         </form>
       </div>
@@ -150,13 +153,13 @@
         <div class="w3-row-padding w3-margin-bottom">        
           <div class="w3-third w3-margin-right ">
             <% if(roomsErr != null ||dateErr != null ||roomsFull != null ){%> 
-            <button class="w3-button w3-dark-gray w3-block w3-round" type="submit" disabled> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
+            <button class="w3-button w3-black w3-block w3-round" type="submit" disabled> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
             <%} else{%>
-            <button class="w3-button w3-dark-gray w3-block w3-round" type="submit"> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
+            <button class="w3-button w3-black w3-block w3-round" type="submit"> <i class="fa fa-calendar-plus-o"></i> Book Now</button>
             <%}%>
           </div>
           <div class="w3-third m2 w3-margin-right">
-            <a href="main.jsp" class="w3-button w3-dark-gray w3-block w3-round"> <i class="fa fa-close"></i> Cancel</a>
+            <a href="main.jsp" class="w3-button w3-black w3-block w3-round"> <i class="fa fa-close"></i> Cancel</a>
           </div>          
         </div>
       </form>

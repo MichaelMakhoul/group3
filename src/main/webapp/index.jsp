@@ -12,7 +12,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">        
         <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
         <link href="css/w3.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
@@ -20,14 +19,17 @@
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="css/style.css" rel="stylesheet">
     </head>
     <body class="tm-gray-bg">
         <div class="tm-header">
-            <div class="container">
+            <div class="nav-container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
-                        <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>
+                    <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
+                        <p class="tm-site-name" >The Grand Serene</p>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -78,20 +80,34 @@
                 </ul>
             </div>	
         </section>	
+        <div id="id01" class="w3-modal" style="display: none;">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" >
+                <div class="w3-center"><br>
+                    <span onclick="document.getElementById('id01').style.display = 'none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>      
+                </div>
+                <div class="popup-div w3-container">
+                    <div class="w3-section">
+                        <h2 id="popup-h2" class="popup-h2">You have successfully logged out</h2>
+                        <h4 id="popup-h3" style="margin-top: 20px; margin-bottom: -5px;" class="popup-h2">Hope you enjoyed your experience, see you soon</h4>
+                        <button class="w3-button w3-red w3-right w3-margin w3-round" onclick="document.getElementById('id01').style.display = 'none'">close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="container tm-home-section-1" id="more">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6">
-             <div class="tm-home-box-1">
-                    <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
-                        <img src="img/deluxe.jpg" alt="image" class="img-responsive">
-                        <a href="login.jsp">
-                            <div class="tm-green-gradient-bg tm-city-price-container">
-                                <span>Deluxe Room</span>
-                                <span>$150</span>
-                            </div>	
-                        </a>			
-                    </div>		
-                </div>
+                    <div class="tm-home-box-1">
+                        <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
+                            <img src="img/deluxe.jpg" alt="image" class="img-responsive">
+                            <a href="login.jsp">
+                                <div class="tm-green-gradient-bg tm-city-price-container">
+                                    <span>Deluxe Room</span>
+                                    <span>$150</span>
+                                </div>	
+                            </a>			
+                        </div>		
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
@@ -228,42 +244,55 @@
         <script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="js/templatemo-script.js"></script>
         <script>
-            // HTML document is loaded. DOM is ready.
-            $(function () {
+                            // HTML document is loaded. DOM is ready.
+                            $(function () {
 
-                $('#hotelCarTabs a').click(function (e) {
-                    e.preventDefault()
-                    $(this).tab('show')
-                })
+                                $('#hotelCarTabs a').click(function (e) {
+                                    e.preventDefault()
+                                    $(this).tab('show')
+                                })
 
-                $('.date').datetimepicker({
-                    format: 'MM/DD/YYYY'
-                });
-                $('.date-time').datetimepicker();
+                                $('.date').datetimepicker({
+                                    format: 'MM/DD/YYYY'
+                                });
+                                $('.date-time').datetimepicker();
 
-                // https://css-tricks.com/snippets/jquery/smooth-scrolling/
-                $('a[href*=#]:not([href=#])').click(function () {
-                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-                        var target = $(this.hash);
-                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                        if (target.length) {
-                            $('html,body').animate({
-                                scrollTop: target.offset().top
-                            }, 1000);
-                            return false;
-                        }
-                    }
-                });
-            });
+                                // https://css-tricks.com/snippets/jquery/smooth-scrolling/
+                                $('a[href*=#]:not([href=#])').click(function () {
+                                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                                        var target = $(this.hash);
+                                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                                        if (target.length) {
+                                            $('html,body').animate({
+                                                scrollTop: target.offset().top
+                                            }, 1000);
+                                            return false;
+                                        }
+                                    }
+                                });
+                            });
 
-            // Load Flexslider when everything is loaded.
-            $(window).load(function () {
+                            // Load Flexslider when everything is loaded.
+                            $(window).load(function () {
 
 //	For images only
-                $('.flexslider').flexslider({
-                    controlNav: false
-                });
-            });
+                                $('.flexslider').flexslider({
+                                    controlNav: false
+                                });
+                            });
+                            
+                            function showLogoutMessage() {
+                                window.history.pushState({prevUrl: window.location.href}, null, "index.jsp");
+                                let prev = window.history.state.prevUrl;
+                                if (prev === "http://localhost:8080/group3/LogoutServlet") {
+                                    document.getElementById('id01').style.display = 'flex';
+                                } else if (prev === "http://localhost:8080/group3/UserDeleteServlet" || prev === "http://localhost:8080/group3/UserDeleteServlet?") {
+                                    document.getElementById('id01').style.display = 'flex';
+                                    document.getElementById('popup-h2').innerHTML = 'Your account has been successfully deleted';
+                                    document.getElementById('popup-h3').innerHTML = 'Arrivederci from the TGS team';
+                                }
+                            }
+                            showLogoutMessage();
         </script>
     </body>
     <jsp:include page="/InitServlet" flush="true"/>

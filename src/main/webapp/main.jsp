@@ -15,14 +15,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Main</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
-        <link href="css/bootstrap.min.css" rel="stylesheet">         
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
         <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
         <link href="css/w3.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">         
+        <link href="css/style.css" rel="stylesheet">
+
     </head>
     <body style="background-color: #EODDD7" >
         <%
@@ -34,7 +32,7 @@
       <div class="nav-container">
         <div class="row">
           <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container tm-site-name">
-			<p style="font-family: 'Cinzel', serif; color: #565656">The Grand Serene</p>
+			<p style="font-family: 'Cinzel', serif; color: #565656"> The Grand Serene</p>
           </div>
           <div class="col-lg-6 col-md-8 col-sm-9">
             <div class="mobile-menu-icon">

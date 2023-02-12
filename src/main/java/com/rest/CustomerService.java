@@ -95,7 +95,7 @@ public class CustomerService {
     public Response addCustomer() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         UserDAO userDAO = new UserDAO(new SqlDBConnector().connection());
         Customers customers = new Customers(); 
-       userDAO.create("customer", "Robert Michelakos", "rob.m@example.com", "Helloworld123", "1989-04-06", "0419364236");
+       userDAO.create("customer", "Robert Michelakos", "rob.s@example.com", "Helloworld123", "1989-04-06", "+61419364236");
         User customer = userDAO.login("rob.m@example.com", "Helloworld123","customer");
         customers.add(customer);
         return Response.status(200).entity(customers).build();

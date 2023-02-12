@@ -1,7 +1,7 @@
 <%-- 
-    Document   : addBooking
+    Document   : updateBooking
     Created on : 03-Feb-2023, 6:26:55 PM
-    Author     : 236361
+    Author     : Shilpa
 --%>
 
 <%@page import="com.model.Booking"%>
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/w3.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
   </head>
   <body>
 
@@ -65,21 +66,9 @@
             session.removeAttribute("dateErr");
             session.removeAttribute("roomsErr");
             session.removeAttribute("roomsFull");
-            
-            out.println("drRooms : " + drRooms );
-            out.println("frRooms : " + frRooms );
-            out.println("esRooms : " + esRooms );
-            out.println("drAvail : " + drAvail );
-            out.println("frAvail : " + frAvail );
-            out.println("esAvail : " + esAvail );
-            out.println("comments : " + comments );
-          
-          
-//          out.println("checkInD : " + checkInD + " request: " + request.getParameter("checkIn"));
-//          out.println("checkOutD : " + checkOutD + " request: " + request.getParameter("checkOut"));
+
       %>
-    <div class="w3-content w3-border w3-margin-top" >
-      <!--style="min-width: 25%;max-width:70%;"-->
+    <div class="w3-content w3-margin-top" >
 
       <div class="w3-container w3-margin-top w3-border-bottom" id="rooms">
         <h3><b>Update Booking : <%=bookingID%></b></h3>        
@@ -97,13 +86,13 @@
       <form  method="POST" action="#"> 
       <div class="w3-row-padding w3-padding-16 w3-border-bottom">
                  
-          <div class="w3-col m3 w3-margin-left">
+          <div class="w3-col m5 w3-margin-left">
             <label><i class="fa fa-calendar-o"></i> Check In</label>
             <input class="w3-input w3-border" type="date" name="checkIn" id ="cIn"
                    value="<%= (checkInD != null) ? checkInD : "DD MM YYYY"%>" >
             
           </div>
-          <div class="w3-col m3 w3-margin-left">
+          <div class="w3-col m5 w3-margin-left">
             <label><i class="fa fa-calendar-o"></i> Check Out</label>
             <input class="w3-input w3-border" type="date" name="checkOut" id ="cOut"
                    value="<%= (checkOutD != null) ? checkOutD : "DD MM YYYY"%>" >            
@@ -129,8 +118,8 @@
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
               <br>
               <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
-              <label class="w3-blue-grey" for="drQuantity"><%=drAvail%> more Room\s more Available</label>
-              <input class="w3-input w3-border w3-light-grey" type="number" onkeydown="return false" 
+              <label class="w3-text-blue-grey" for="drQuantity"><%=drAvail%> more Room\s more Available</label>
+              <input class="w3-input w3-border w3-light-grey" type="number" 
                      id="drQuantity" name="drQuantity" min="0" max="<%=drQty%>"  maxlength="2" placeholder="No of rooms"
                      value="<%=drRooms%>">
             </div>
@@ -145,8 +134,8 @@
               <br>
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
               <br>
-              <label class="w3-blue-grey" for="frQuantity"><%=frAvail%> more Room\s Available</label>
-              <input class="w3-input w3-border w3-light-grey" type="number" onkeydown= "return false"
+              <label class="w3-text-blue-grey" for="frQuantity"><%=frAvail%> more Room\s Available</label>
+              <input class="w3-input w3-border w3-light-grey" type="number" 
                      id="frQuantity"  name="frQuantity" min="0" max="<%=frQty%>" maxlength="2" placeholder="No of rooms"
                      value="<%=frRooms%>" >
               <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
@@ -162,8 +151,8 @@
               <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
               <br>
               <!--<button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>-->
-              <label class="w3-blue-grey" for="esQuantity"><%=esAvail%> more Room\s Available</label>
-              <input class="w3-input w3-border w3-light-grey" type="number" onkeydown="return false" 
+              <label class="w3-text-blue-grey" for="esQuantity"><%=esAvail%> more Room\s Available</label>
+              <input class="w3-input w3-border w3-light-grey" type="number" 
                      id="esQuantity" name="esQuantity" min="0" max="<%=esQty%>"  maxlength="2" 
                      value="<%=esRooms%>">
             </div>
@@ -181,13 +170,13 @@
         <div class="w3-row-padding w3-margin-bottom">        
           <div class="w3-third w3-margin-right ">
             <% if(roomsErr != null ||dateErr != null ||roomsFull != null ){%> 
-            <button class="w3-button w3-black w3-block" type="submit" disabled=""> Update Now</button>
+            <button class="w3-button w3-block w3-round" type="submit" disabled=""> Update Now</button>
             <%} else{%>
-            <button class="w3-button w3-black w3-block" type="submit"> Update Now</button>
+            <button class="w3-button w3-black w3-block w3-round" type="submit"> Update Now</button>
             <%}%>
           </div>
           <div class="w3-third w3-margin-right">
-            <a href="bookingConfirmation.jsp" class="w3-button w3-black w3-block"> <i class="fa fa-close"></i> Cancel</a>
+            <a href="bookingDetails.jsp" class="w3-button w3-black w3-block w3-round"> <i class="fa fa-close"></i> Cancel</a>
           </div>          
         </div>
       </form>    

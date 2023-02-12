@@ -95,7 +95,7 @@ public class StaffService {
     public Response addStaff() throws IOException, FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         UserDAO userDAO = new UserDAO(new SqlDBConnector().connection());
         Staffs staffs = new Staffs(); 
-        userDAO.create("staff", "Robert Michelakos", "rob.m@example.com", "Helloworld123", "1989-04-06", "0419364236");
+        userDAO.create("staff", "Robert Michelakos", "rob.m@example.com", "Helloworld123", "1989-04-06", "+61419364236");
         User staff = userDAO.login("rob.m@example.com", "Helloworld123","staff");
         staffs.add(staff);
         return Response.status(200).entity(staffs).build();

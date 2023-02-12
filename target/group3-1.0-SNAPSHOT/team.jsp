@@ -1,9 +1,8 @@
 <%-- 
     Document   : index
     Created on : 24-Jan-2023, 4:48:40 PM
-    Author     : 236333
+    Author     : Antonella, Aiman, Monte, Shilpa, Micheal
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +17,9 @@
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
     </head>
-<section style="background-color: #eee;">
-  <div class="container py-5">
+    <body class="tm-gray-bg">
         <div class="tm-header">
             <div class="container">
                 <div class="row">
@@ -35,79 +33,61 @@
                         <nav class="tm-nav">
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
-                                 <li><a href="register.jsp">Register</a></li>                                
+                                <li><a href="register.jsp">Register</a></li>                                
                                 <li><a href="login.jsp">Login</a></li>
-                                <li><a href="" class="active">Our team</a></li>                    
+                                <li><a href="team.jsp" class="active">Our Team</a></li>
                             </ul>
                         </nav>		
                     </div>				
                 </div>
             </div>	  	
         </div>
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="img/Prof.png"
-              class="rounded-circle img-fluid" style="width: 100px;">
-            <h5 class="my-3">Aiman Khan</h5>
-            <p class="text-muted mb-1">Developer</p>
-            <p class="text-muted mb-4">UST</p>
-          </div>
+        <br>
+  
+        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12" style="margin-left: 45px ">
+            <div class="tm-home-box-2 tm-home-box-2-right">						
+                <img src="img/aiman.jpg" alt="image" class="img-responsive">
+                <h2 style="text-align: center; "><b>Aiman</b></h2>
+                <h2 style="text-align: center; "><b>Khan</b></h2>
+                <p style="text-align: center" class="tm-date">Developer</p>
+                <p style="text-align: center" class="tm-date">TGS MANAGER</p>
+            </div>
         </div>
-    </div>
-  </div>
-         <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="img/Prof.png"
-              class="rounded-circle img-fluid" style="width: 100px;">
-            <h5 class="my-3">Antonella Papapietro</h5>
-            <p class="text-muted mb-1">Developer</p>
-            <p class="text-muted mb-4">UST</p>
-          </div>
+        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
+            <div class="tm-home-box-2 tm-home-box-2-right">						
+                <img src="img/anto.jpg" alt="image" class="img-responsive">
+                <h2 style="text-align: center; "><b>Antonella</b></h2>
+                <h2 style="text-align: center; "><b>Papapietro</b></h2>
+                <p style="text-align: center" class="tm-date">Developer</p>
+                <p style="text-align: center" class="tm-date">TGS CUSTOMER</p>
+            </div>
         </div>
-    </div>
-  </div>
-     <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="img/Prof.png"
-              class="rounded-circle img-fluid" style="width: 100px;">
-            <h5 class="my-3">Micheal Makhoul</h5>
-            <p class="text-muted mb-1">Developer</p>
-            <p class="text-muted mb-4">UST</p>
-          </div>
+        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
+            <div class="tm-home-box-2 tm-home-box-2-right">						
+                <img src="img/mich.png" alt="image" class="img-responsive">
+                <h2 style="text-align: center; "><b>Micheal</b></h2>
+                <h2 style="text-align: center; "><b>Makhoul</b></h2>
+                <p style="text-align: center" class="tm-date">Developer</p>
+                <p style="text-align: center" class="tm-date">TGS STAFF</p>
+            </div>
         </div>
-    </div>
-  </div>
-          <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="img/Prof.png"
-              class="rounded-circle img-fluid" style="width: 100px;">
-            <h5 class="my-3">Muhunthan Muralitharan</h5>
-            <p class="text-muted mb-1">Developer</p>
-            <p class="text-muted mb-4">UST</p>
-          </div>
-        </div>
-    </div>
-  </div>
-          <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="img/Prof.png"
-              class="rounded-circle img-fluid" style="width: 100px;">
-            <h5 class="my-3">Shilpa Guruswamy</h5>
-            <p class="text-muted mb-1">Developer</p>
-            <p class="text-muted mb-4">UST</p>
-          </div>
-        </div>
-    </div>
-          </div>
-</div>
-</section>
+        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
+            <div class="tm-home-box-2 tm-home-box-2-right">						
+                <img src="img/mont.jpg" alt="image" class="img-responsive">
+                <h2 style="text-align: center; "><b>Muhunthan</b></h2>
+                <h2 style="text-align: center; "><b>Muralitharan</b></h2>
+                <p style="text-align: center" class="tm-date">Developer</p>
+                <p style="text-align: center" class="tm-date">TGS REPORTS</p>
+            </div>
+             </div>
+            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 col-xxs-12">
+                <div class="tm-home-box-2 tm-home-box-2-right">						
+                    <img src="img/shilp.jpg" alt="image" class="img-responsive">
+                    <h2 style="text-align: center; "><b>Shilpa</b></h2>
+                    <h2 style="text-align: center; "><b>Guruswamy</b></h2>
+                    <p style="text-align: center" class="tm-date">Developer</p>
+                    <p style="text-align: center" class="tm-date">TGS BOOKINGS</p>
+                </div>
+            </div>
+        </body>
+</html>

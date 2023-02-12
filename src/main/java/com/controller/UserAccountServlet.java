@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.User;
 import com.model.dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,12 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * UserAccountServlet Controller allows a staff member to get information about
+ * a specific customer. 
+ * This servlet is called after a staff member clicks on a customer email 
+ * from the customers list in customers.jsp page.
+ * The servlet returns a customer details.
  *
- * @author 236351
+ * @author Michael.
  */
 public class UserAccountServlet extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -38,22 +36,26 @@ public class UserAccountServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        // Gets customer's email from the url
         String emailView = request.getParameter("emailView");
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-        User user = (User) session.getAttribute("user");
-        
+
         session.setAttribute("emailView", emailView);
-        
+
+        // The type of the user accessing this page.
         String userType = (String) session.getAttribute("userType");
-        
+
+        // The type of the user to be updated.
         String toUpdate = (userType.equals("staff")) ? "customer" : (userType.equals("manager")) ? "staff" : "";
         session.setAttribute("toUpdate", toUpdate);
-        
+
         if (emailView != null) {
             try {
+                // Allows only staff members and managers to update other user's information
                 if (!(toUpdate.equals("staff") || toUpdate.equals("customer"))) {
                     request.getRequestDispatcher("index.jsp").include(request, response);
                 }
+                // The user to be updated
                 User userUpdate = userDAO.getUser(emailView, toUpdate);
                 userUpdate.setType(toUpdate);
                 session.setAttribute("userUpdate", userUpdate);
@@ -61,7 +63,7 @@ public class UserAccountServlet extends HttpServlet {
                 Logger.getLogger(UserAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         request.getRequestDispatcher("account.jsp").include(request, response);
     }
 }

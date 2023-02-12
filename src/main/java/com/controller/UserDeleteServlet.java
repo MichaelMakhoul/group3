@@ -46,6 +46,7 @@ public class UserDeleteServlet extends HttpServlet {
                 Logger.getLogger(UserDeleteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             if(userUpdate != null) {
+                session.setAttribute("deletedUser", "User '"+ user.getName() +"' was deleted successfully");
                 session.removeAttribute("userUpdate");
                 request.getRequestDispatcher("customers.jsp").include(request, response);
             }else {

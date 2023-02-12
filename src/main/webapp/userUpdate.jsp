@@ -14,9 +14,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Edit Profile</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link rel="stylesheet" href="css/w3.css"> 
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css"> 
+        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body class="tm-gray-bg">                
         <%
@@ -40,33 +44,29 @@
         %>
         <section>
             <div class="tm-header">
-                <div class="container py-5">
-                        <div class="container1">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                                    <p style="font-family: 'Cinzel', serif;font-size:230%; color: #565656">The Grand Serene</p>	
-                                </div>
-                                <div class="col-lg-6 col-md-8 col-sm-9">
-                                    <div class="mobile-menu-icon">
-                                        <i class="fa fa-bars"></i>
-                                    </div>
-                      <nav class="tm-nav">
-                            <ul>
-                                <% if (userType.equals("staff") ) { %>
-                                <li><a href="customers.jsp">Customers List</a></li>
-                                <% } else if (userType.equals("manager")) { %>
-                                <li><a href="viewAllStaff.jsp">Staff List</a></li>
-                                    <% } else { %>
-                                <li><a href="main.jsp">Main</a></li>
-                                    <% }%>
-                                <li><a href="userUpdate.jsp" class="active">Edit Profile</a></li>                                
-                                <li><a href="LogoutServlet">Logout</a></li>                                 
-                            </ul>
-                        </nav>
-                                </div>
-                            </div>
+                <div class="nav-container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">                        	
+                            <p class="tm-site-name">The Grand Serene</p>
                         </div>
-  
+                        <div class="col-lg-6 col-md-8 col-sm-9">
+                            <div class="mobile-menu-icon">
+                                <i class="fa fa-bars"></i>
+                            </div>
+                            <nav class="tm-nav">
+                                <ul>
+                                    <% if (userType.equals("staff")) { %>
+                                    <li><a href="customers.jsp">Customers List</a></li>
+                                        <% } else if (userType.equals("manager")) { %>
+                                    <li><a href="viewAllStaff.jsp">Staff List</a></li>
+                                        <% } else { %>
+                                    <li><a href="main.jsp">Main</a></li>
+                                        <% }%>
+                                    <li><a href="userUpdate.jsp" class="active">Edit Profile</a></li>                                
+                                    <li><a href="LogoutServlet">Logout</a></li>                                 
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
       
@@ -89,30 +89,35 @@
                                         <br>
                                     </div>
                                 </div>
+                                <br>
+                                <br>
                                 <form method="POST" action=<%= (userUpdate != null) ? "CustomerUpdateServlet" : "UserUpdateServlet"%>>
-                                    <table style="margin-bottom: 40px">
-                                        <caption><p style="color: green; font-weight: bold"><%= (message != null) ? message : ""%></p></caption>
-                                        <tr><td>Name: </td><td><input style="margin: 7px 0;" type="text" name="name" value="<%= user.getName()%>" />
-                                                <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
-                                        <tr><td>Password: </td><td><input style="margin: 7px 0;" type="password" name="password" value="<%= user.getPassword()%>" />
-                                                <p><%= (passError != null) ? passError : ""%></p></td></tr>
-                                        <tr><td>DOB: </td><td><input style="margin: 7px 0;" type="date" name="dob" value="<%= user.getDOB()%>"/>
-                                                <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
-                                        <tr><td>Phone: </td><td><input style="margin: 7px 0;" type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
-                                                <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
-                                        <tr>
-                                        <td>
-                                            <br>
-                                            <button type="submit" class="btn btn-primary ms-1" style="background: #519ECE; color: white">Update</button>
-                                            <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white" onclick="window.location='account.jsp';">Cancel</button>
-                                        </td>
-                                        </tr>
-                                    </table>
-                                </form>
+		                            <table style="margin-bottom: 40px">
+		                                <caption><p style="color: green; font-weight: bold"><%= (message != null) ? message : ""%></p></caption>
+		                                <tr><td>Name: </td><td><input style="margin: 7px 0;" type="text" name="name" value="<%= user.getName()%>" />
+		                                        <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
+		                                <tr><td>Password: </td><td><input style="margin: 7px 0;" type="password" name="password" value="<%= user.getPassword()%>" />
+		                                        <p><%= (passError != null) ? passError : ""%></p></td></tr>
+		                                <tr><td>DOB: </td><td><input style="margin: 7px 0;" type="date" name="dob" value="<%= user.getDOB()%>"/>
+		                                        <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
+		                                <tr><td>Phone: </td><td><input style="margin: 7px 0;" type="text" name="phoneNumber" value="<%= user.getPhone()%>"/>
+		                                        <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
+		                                <tr>
+		                                    <td>
+		                                        <br>
+		                                        <button type="submit" class="btn btn-primary ms-1" style="background: #519ECE; color: white">Update</button>
+		                                        <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white" onclick="window.location='account.jsp';">Cancel</button>
+		                                    </td>
+		                                </tr>
+		                            </table>
+		                        </form>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
-        </section>
-    </body>
+            </div>
+        </div>
+    </section>
+</body>
 </html>

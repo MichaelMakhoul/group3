@@ -27,13 +27,20 @@ and open the template in the editor.
 }
 
 .popup-div {
+    margin: auto;
+    text-align: center;
+}
+
+.popup-h2 {
+    font-family: 'Nunito Sans';
     display: flex;
     justify-content: space-around;
     margin: auto;
     text-align: center;
 }
 
-.popup-h2 {
+#popup-h3{
+    font-family: 'Nunito Sans';
     display: flex;
     justify-content: space-around;
     margin: auto;
