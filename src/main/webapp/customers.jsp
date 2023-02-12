@@ -1,7 +1,7 @@
 <%-- 
     Document   : customers
     Created on : Jan 30, 2023, 9:55:01 PM
-    Author     : 236351
+    Author     : Micheal
 --%>
 
 <%@page import="com.model.Customers"%>
@@ -15,24 +15,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>View All Customers</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/customer_form.css" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
-        <link href="css/flexslider.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/w3.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="css/style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/search.css">
+        <link href="css/customer_form.css" rel="stylesheet">
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
+        <link href="css/templatemo-style.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/w3.css" rel="stylesheet">
     </head>
-    <body>
+    <body class="tm-gray-bg">
         <div class="tm-header">
-            <div class="container">
+            <div class="nav-container">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                        <a href="#" class="tm-site-name">The Grand Serene</a>	
+                        <p class="tm-site-name"> The Grand Serene</p>	
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-9">
                         <div class="mobile-menu-icon">
@@ -85,9 +84,9 @@
                                 </select>
                             </div>
                             <div class="w3-col m6 l6 search_by" style="margin: 5px 0; display: flex; justify-content: space-around">
-                                <input type="text" name="search_value" autofocus class="search_field m6" placeholder="Search..">
-                                <button style="background: #1eb860; border-radius: 5px; margin: 0 2px;" type="submit"><i class="fa fa-search"></i></button>
-                                <button style="border-radius: 5px; margin: 0 2px;" type="button" onclick="window.location = 'customers.jsp';" ><i class="fa fa-refresh"></i></button>
+                                <input type="text" name="search_value" class="search_field m6" placeholder="Search..">
+                                <button style="background: #c8c2b9; border-radius: 5px; margin: 0 2px;" type="submit"><i class="fa fa-search"></i></button>
+                                <button style="background: #c8c2b9; border-radius: 5px; margin: 0 2px;" type="button" onclick="window.location = 'customers.jsp';" ><i class="fa fa-refresh"></i></button>
                             </div>
                         </div>
                     </form>
@@ -97,7 +96,7 @@
             <div class="w3-container w3-margin-top ">
                 <table class="w3-table-all w3-hoverable">
                     <thead>
-                        <tr class='w3-light-grey'>
+                        <tr class="w3-light-grey w3-text-dark-grey">
                             <th class=""> ID </th>
                             <th class=""> Name </th>
                             <th class=""> Email </th>

@@ -2,7 +2,6 @@ package com.rest;
 
 import com.model.ReportLog;
 import com.model.ReportLogs;
-import com.model.ReportSummaries;
 import com.model.dao.ReportDAO;
 import com.model.dao.SqlDBConnector;
 import java.io.FileNotFoundException;

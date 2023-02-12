@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- *
+ * 
  * @author 236351
  */
 public class SqlDBConnector extends SqlDB{

@@ -17,11 +17,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 236351
+ * StaffViewServlet Controller allows a staff member to get a list of all existing customers.
+ * The controller servlet returns a list of customers into HTML format to customers.jsp page
+ * The list contains a clickable link "the user's email" that allows the staff member
+ * to a certain customer's information.
+ * The servlet support a search method by email and ID.
+ * 
+ * @author Michael.
  */
 public class StaffViewServlet extends HttpServlet {
 
+    /**
+     * Fetches customers details from a list of customers `usersList' into a table body format.
+     * To be used inside processRequest and processPostRequest methods.
+     * 
+     * @param usersList a list of customers.
+     * @param response 
+     */
     private void fetchList(List<User> usersList, HttpServletResponse response) {
         try ( PrintWriter out = response.getWriter()) {
             out.println("<link rel=\"stylesheet\" href=\"css/w3.css\">");
@@ -39,6 +51,15 @@ public class StaffViewServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Creates and populates a list of all customers and fetch the data using `fetchList' method.
+     * Used inside the doGet method.
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -55,6 +76,15 @@ public class StaffViewServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Creates and populates a list of particular customers based on the `searchValue' and fetch the data using `fetchList' method.
+     * Used inside the doPost method.
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processPostRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -93,8 +123,8 @@ public class StaffViewServlet extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws ServletException
+     * @throws IOException
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -102,6 +132,14 @@ public class StaffViewServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

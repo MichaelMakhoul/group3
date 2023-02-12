@@ -13,17 +13,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Account</title>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
-              type='text/css'>
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link href="css/flexslider.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet">
-        <link href="css/register.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/w3.css"> 
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
+        <link href="css/templatemo-style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/w3.css"> 
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css"> 
+        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body class="tm-gray-bg">
@@ -99,7 +96,7 @@
                                     <td>
                                         <br>
                                         <button type="submit" class="btn btn-primary ms-1" style="background: #519ECE; color: white">Create</button>
-                                        <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white"><a href="main.jsp">Cancel</a></button>
+                                        <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white"><a href="main.jsp" style="color: white;">Cancel</a></button>
                                         <br>
                                     </td>
                                 </tr>

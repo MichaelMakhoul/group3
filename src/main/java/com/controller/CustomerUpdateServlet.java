@@ -14,23 +14,37 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * CustomerUpdateServlet Controller allows a staff member or a manager to update an existing user.
+ * A manager can update a staff account.
+ * A staff member can update a customer 
+ * The controller validate the input data using regular expression,
+ * and returns a proper message to notify the user what is 
+ * the correct input format
  *
- * @author 236351
+ * @author Aiman and Michael.
  */
 public class CustomerUpdateServlet extends HttpServlet {
 
+    /**
+     * Handles the HTTP POST method.
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         HttpSession session = request.getSession();
 
+        // Get user type and object from the session.
         User userUpdate = (User) session.getAttribute("userUpdate");
         User currentUser = (User) session.getAttribute("user");
         User user = (userUpdate != null) ? userUpdate : currentUser;
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
-//        int ID = Integer.parseInt(request.getParameter("ID"));
+        // Captures form inputs and assign them to relevent values.
         int ID = user.getID();
         String name = request.getParameter("name");
         String password = request.getParameter("password");
@@ -39,17 +53,20 @@ public class CustomerUpdateServlet extends HttpServlet {
 
         String toUpdate = (String) session.getAttribute("toUpdate");
 
+        // Validates user inputs using regex.
         session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "Incorrect format. Use: \"[First] [Middle] [Last]\"");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "Incorrect format. Use: \"[Example123]\"");
         session.setAttribute("dobError", dob.matches(Utils.dobRegEx) ? "" : "Incorrect format. Use: \"[dd] [mm] [yyyy] or age >18\"");
         session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "Incorrect format. Use: \"[+Contry Code][Number]\"");
 
+        // Checks if all values matches the correct format using appropriate regex.
         boolean validRegex = (name.matches(Utils.nameRegEx)
                 && password.matches(Utils.passRegEx)
                 && dob.matches(Utils.dobRegEx)
                 && Utils.isOlderThen18(dob)
                 && phoneNumber.matches(Utils.phoneRegEx));
 
+        // Allows only staff members and managers to update other user's information
         if (!(toUpdate.equals("staff") || toUpdate.equals("customer"))) {
             request.getRequestDispatcher("index.jsp").include(request, response);
         }

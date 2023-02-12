@@ -16,9 +16,10 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'type='text/css'>
         <link href="css/register.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/templatemo-style.css" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="css/style.css" rel="stylesheet">   
+        <link href="css/templatemo-style.css" rel="stylesheet"> 
     </head>
 
     <body class="tm-gray-bg">
@@ -86,7 +87,6 @@
                         <div class="register__field">
                             <label><i class="fa fa-calendar" aria-hidden="true"></i></label>
                             <input type="text" name="dob" class="register__input"  onfocus="(this.type='date')" onblur="(this.type='text')" placeholder=<%= (dobError != null) ? dobError : "DOB"%>>
-
                         </div>
                         <div class="register__field">
                             <label><i class="fa fa-phone-square" aria-hidden="true"></i></label>
