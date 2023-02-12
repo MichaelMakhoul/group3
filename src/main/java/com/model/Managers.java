@@ -13,9 +13,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
+/** This class contains the list of managers as field
+ * It contains a function to login the manager, match the manager email, match the ID.
  *
- * @author 236333
+ * @author Aiman
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "managers")

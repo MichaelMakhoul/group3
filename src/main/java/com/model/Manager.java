@@ -6,14 +6,13 @@
 package com.model;
 
 import java.io.Serializable;
-import java.util.Random;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
+/** This class is the manager bean  for loading the manager data from the manager table in the database
  *
- * @author 236333
+ * @author Aiman
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "manager")

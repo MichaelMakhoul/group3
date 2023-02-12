@@ -68,8 +68,8 @@ public class CreateAccountServlet extends HttpServlet {
                 request.getRequestDispatcher("createAccount.jsp").include(request, response);
             }
         } else if (userType.equals("manager")) {
-
-            if (validRegex) {
+            
+            if (validRegex && email.matches(Utils.staffEmailRegEx)) {
                 try {
                     User staff = userDAO.getUser(email, "staff");
                     if (staff != null) {

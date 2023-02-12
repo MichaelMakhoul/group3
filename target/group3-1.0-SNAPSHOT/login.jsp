@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : Jan 27, 2023, 10:03:44 AM
-    Author     : 236351
+    Author     : Aiman, Antonella, Micheal, Monte, Shilpa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,7 +19,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/templatemo-style.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<<<<<<< HEAD
         <link href="css/login.css" rel="stylesheet">
+=======
+>>>>>>> Aiman_Branch
     </head>
 
     <body class="tm-gray-bg">

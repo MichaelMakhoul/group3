@@ -49,14 +49,6 @@
     </servlet-mapping>
     <!--ManagerMainServlet-->
     <servlet>
-        <servlet-name>ManagerMainServlet</servlet-name>
-        <servlet-class>com.controller.ManagerMainServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ManagerMainServlet</servlet-name>
-        <url-pattern>/ManagerMainServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>ManagerViewServlet</servlet-name>
         <servlet-class>com.controller.ManagerViewServlet</servlet-class>
     </servlet>
