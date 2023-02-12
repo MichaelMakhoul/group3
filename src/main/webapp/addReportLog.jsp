@@ -1,5 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%-- 
+    Document   : addReportLog
+    Created on : 04-Feb-2023, 2:32:01 PM
+    Author     : Monte
+--%>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -15,9 +21,9 @@
   </head>
   <body>
 
-    <div class="tm-header">
-      <div class="container">
-        <div class="row">
+ <div class="tm-header">
+   <div class="container">        
+       <div class="row">
           <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
             <a href="#" class="tm-site-name">The Grand Serene</a>	
           </div>
@@ -27,7 +33,7 @@
             </div>
             <nav class="tm-nav">
               <ul>                                
-                <li><a href="main.jsp" >Manager Main</a></li>                                                              
+                <li><a href="main.jsp" >Main</a></li>                                                              
                 <li><a href="LogoutServlet">Logout</a></li>
               </ul>
             </nav>		
@@ -35,6 +41,7 @@
         </div>
       </div>	  	
     </div>
+      
       <%  
           String reportFromDate = (String) session.getAttribute("reportFromDate");
           String reportToDate = (String) session.getAttribute("reportToDate");
@@ -45,47 +52,48 @@
           session.removeAttribute("createText");
           session.removeAttribute("existErr");
       %>
+      
+      
     <div class="w3-content w3-border w3-margin-top" >
-      <!--style="min-width: 25%;max-width:70%;"-->
-
       <div class="w3-container w3-margin-top w3-border-bottom" id="rooms">
         <h3><b>Create Report Log</b></h3>
-        <% if(createText != null){%> 
-          <p><span class="w3-text-red"><b><%=createText%><b></span></p>
+        <% if(createText != null){%>
+          <p><span class="w3-text-green"><b><%=createText%><b></span></p>
+                          
           <%}%>
+          
          <% if(dateErr != null){%> 
           <p><span class="w3-text-red"><b><%=dateErr%><b></span></p>
+                          
           <%}%>
+          
           <% if(existErr != null){%> 
           <p><span class="w3-text-red"><b><%=existErr%><b></span></p>
+                          
           <%}%>
+          
       </div>
-    
-      
       <div class="w3-row-padding w3-padding-16 w3-border-bottom">
         <form  method="POST" action="AddReportLogServlet">
           <div class="w3-col m3 w3-margin-left">
             <label><i class="fa fa-calendar-o"></i> Report From</label>
             <input class="w3-input w3-border" type="date" name="reportFromDate" id ="cIn"
                    value="<%= (reportFromDate != null) ? reportFromDate : "DD MM YYYY"%>" >
-            
           </div>
           <div class="w3-col m3 w3-margin-left">
             <label><i class="fa fa-calendar-o"></i> Report To</label>
             <input class="w3-input w3-border" type="date" name="reportToDate" id ="cOut"
-                   value="<%= (reportToDate != null) ? reportToDate : "DD MM YYYY"%>" >            
-          
-        <div class="w3-row-padding w3-margin-bottom">        
-          <div class="w3-third w3-margin-right ">
-            <button class="w3-button w3-black w3-block" type="submit"> <i class="fa fa-calendar-plus-o"></i> Create Log</button>
+                   value="<%= (reportToDate != null) ? reportToDate : "DD MM YYYY"%>" >
           </div>
-          <div class="w3-third m2 w3-margin-right">
-            <a href="main.jsp" class="w3-button w3-black w3-block"> <i class="fa fa-close"></i> Cancel</a>
-          </div>          
+           <div class="w3-third w3-margin-right ">
+           <br>
+           <button style="margin: 6.5px" class="w3-button w3-round w3-black w3-block" type="submit"> <i class="fa fa-calendar-plus-o"></i> Create Log</button>
+          </div>
+        <div class="w3-row-padding w3-margin-bottom">
         </div>
         </form>
       </div>
-    </div>
+    </div>     
     <script>
         Date.prototype.toYYYYMMDD = function() {
                 return this.getFullYear()+"-"+ (''+(this.getMonth()+1)).padStart(2,'0')+"-"+(''+(this.getDate())).padStart(2,'0'); };
@@ -98,7 +106,6 @@
 
         checkinElem.setAttribute("min", "2000-01-01");
         checkinElem.setAttribute("max", maxDate.toYYYYMMDD());
-        //minDate.setDate(minDate.getDate()+1);
         checkoutElem.setAttribute("min", "2000-01-02");
         checkoutElem.setAttribute("max", maxDate.toYYYYMMDD());
 
@@ -106,9 +113,7 @@
             var currentDate = new Date(this.value);
             currentDate.setDate(currentDate.getDate()+1);
             checkoutElem.setAttribute("min", currentDate.toYYYYMMDD());           
-        }        
-
+        } ;
     </script>
   </body>
-
 </html>

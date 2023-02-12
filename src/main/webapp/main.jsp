@@ -52,6 +52,8 @@
             </nav>		
           </div>				
         </div>
+      </div>
+    </div>
         <div class="w3-main" > 
 
 
@@ -219,6 +221,7 @@
                             </div>
                         </a>
                     </div>
+                    
                 </div>
                <div class="w3-row-padding w3-padding-16 w3-margin w3-theme">
                     <div class="w3-card-4 w3-hover-sepia" style="border-radius: 3px">             

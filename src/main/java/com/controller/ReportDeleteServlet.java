@@ -11,14 +11,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+/**
+ * Report Delete Servlet is used to handle the 
+ * request obtained from Report Summary View Page
+ * 
+ * @author Monte
+ */
 public class ReportDeleteServlet extends HttpServlet {
 
+    /**
+     * Used to delete a Report Log from Database
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-        //ReportLog reportLog = (ReportLog) session.getAttribute("reportLog");
         int ID = (int) (session.getAttribute("reportLogID"));
         ReportDAO reportDAO = (ReportDAO) session.getAttribute("reportDAO");
 

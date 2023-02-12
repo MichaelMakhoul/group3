@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
-import com.model.ReportLog;
 import com.model.dao.ReportDAO;
 import com.utils.Utils;
 import java.io.IOException;
@@ -19,39 +13,43 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 236355
+ * Add Report Servlet is used to handle the 
+ * request obtained from Add Report Page 
+ * 
+ * @author Monte
  */
 public class AddReportLogServlet extends HttpServlet {
-@Override
+
+    /**
+     * Used to add a Report Log into the Database - from User chosen To and From Date
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String reportFromDate = request.getParameter("reportFromDate");
         String reportToDate = request.getParameter("reportToDate");
-        int diff= Utils.differenceInDays(reportFromDate, reportToDate);
-        if(diff > 0){
+        int diff = Utils.differenceInDays(reportFromDate, reportToDate);
+        if (diff > 0) {
             ReportDAO reportDAO = (ReportDAO) session.getAttribute("reportDAO");
             try {
-                if(reportDAO.showOne(reportFromDate, reportToDate) == null){
-                reportDAO.createReportLog(reportFromDate, reportToDate);
-                session.setAttribute("createText", "Successfully created report.");
-                }else{
-                session.setAttribute("existErr", "Report exists already");
-//                reportDAO = (ReportDAO) session.getAttribute("reportDAO");
+                if (reportDAO.showOne(reportFromDate, reportToDate) == null) {
+                    reportDAO.createReportLog(reportFromDate, reportToDate);
+                    session.setAttribute("createText", "Successfully created report.");
+                } else {
+                    session.setAttribute("existErr", "Report exists already");
                 }
-//                
-//                ReportLog report = reportDAO.showOne(reportFromDate, reportToDate);
-//                request.setAttribute("reportLogID", report.getReportLogID());
-//                System.out.println("Add Report ID "+report.getReportLogID());
             } catch (SQLException ex) {
                 Logger.getLogger(AddReportLogServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             session.setAttribute("dateErr", "Date entries are invalid. Please re-enter.");
         }
-       
         request.getRequestDispatcher("addReportLog.jsp").forward(request, response);
-
-    } 
+    }
 }
