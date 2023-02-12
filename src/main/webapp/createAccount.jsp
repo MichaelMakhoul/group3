@@ -76,27 +76,27 @@
                         </div>
                         <form method="POST" action="CreateAccountServlet">
                             <table style="margin-bottom: 40px; margin-top: -15px">
-                                <% String color = (message != null && message.equals("User already exists")) ? "red" : "green"; %>
-                                <caption><p style="color: <%= color %>; font-weight: bold"><%= (message != null) ? message : ""%></p></caption>
+                                <% String color = (message != null && message.equals("User already exists")) ? "red" : "green";%>
+                                <caption><p style="color: <%= color%>; font-weight: bold"><%= (message != null) ? message : ""%></p></caption>
                                 <tr><td>Name: </td><td><input style="margin: 7px 0;" type="text" name="name" placeholder="Name">
-                                <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
+                                        <p><%= (nameError != null) ? nameError : ""%></p></td></tr>
 
                                 <tr><td>Email: </td><td><input style="margin: 7px 0;" type="email" name="email" placeholder="Email">
-                                <p><%= (emailError != null) ? emailError : ""%></p></td></tr>
+                                        <p><%= (emailError != null) ? emailError : ""%></p></td></tr>
 
                                 <tr><td>Password: </td><td><input style="margin: 7px 0;"type="password" name="password" placeholder="Password">
-                                <p><%= (passError != null) ? passError : ""%></p></td></tr>
+                                        <p><%= (passError != null) ? passError : ""%></p></td></tr>
 
                                 <tr><td>DOB: </td><td><input style="margin: 7px 0;" type="date" name="dob" placeholder="DOB">
-                                <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
+                                        <p ><%= (dobError != null) ? dobError : ""%></p></td></tr>
 
                                 <tr><td>Phone: </td><td><input style="margin: 7px 0;" type="text" name="phoneNumber" placeholder="Phone Number">
-                                <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
+                                        <p><%= (phoneError != null) ? phoneError : ""%></p></td></tr>
                                 <tr>
                                     <td>
                                         <br>
                                         <button type="submit" class="btn btn-primary ms-1" style="background: #519ECE; color: white">Create</button>
-                                        <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white"><a href="main.jsp" style="color: white;">Cancel</a></button>
+                                        <button type="button" class="btn btn-primary ms-1" style="background: #519ECE; color: white" onclick="window.location = 'main.jsp';">Cancel</button>                         
                                         <br>
                                     </td>
                                 </tr>
@@ -114,6 +114,6 @@
             session.removeAttribute("dobError");
             session.removeAttribute("phoneError");
         %>
-         </section>
+    </section>
 </body>
 </html>

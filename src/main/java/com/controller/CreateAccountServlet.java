@@ -45,11 +45,11 @@ public class CreateAccountServlet extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
 
         // Validates user inputs using regex.
-        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? name : "\"Incorrect format. Use: [First] [Middle] [Last]\"");
-        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? email : "\"Incorrect format. Use: [example@example.com]\"");
+        session.setAttribute("nameError", name.matches(Utils.nameRegEx) ? "" : "\"Incorrect format. Use: [First] [Middle] [Last]\"");
+        session.setAttribute("emailError", email.matches(Utils.emailRegEx) ? "" : "\"Incorrect format. Use: [example@example.com]\"");
         session.setAttribute("passError", password.matches(Utils.passRegEx) ? "" : "\"Incorrect format. Use: [Example123]\"");
-        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? dob : "Incorrect format. Use: \"[dd][mm][yyyy] or age >18\"");
-        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? phoneNumber : "\"Incorrect format. Use: [+Contry Code] [Number]\"");
+        session.setAttribute("dobError", dob.matches(Utils.dobRegEx) && Utils.isOlderThen18(dob) ? "" : "Incorrect format. Use: \"[dd][mm][yyyy] or age >18\"");
+        session.setAttribute("phoneError", phoneNumber.matches(Utils.phoneRegEx) ? "" : "\"Incorrect format. Use: [+Contry Code] [Number]\"");
 
         // Checks if all values matches the correct format using appropriate regex.
         boolean validRegex = (name.matches(Utils.nameRegEx)
